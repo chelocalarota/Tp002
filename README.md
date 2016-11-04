@@ -1,5 +1,8 @@
 Les dejo una pequeña receta para trabajar con git.
 
+Antes que nada, se tienen que clonar el repo la primera vez:
+$ git clone https://github.com/chelocalarota/Tp002.git
+
 1) Siempre antes de empezar a codear, hacerse un push para traerse lo del repo actualizado:
 $ git pull <nombre del branch>
 
