@@ -17,8 +17,8 @@ public class Algomon {
 		return vida;
 	}
 	
-	public void cambiarVida(int nuevaVida){
-		vida = vida + nuevaVida;
+	public void cambiarVida(int cantidad){
+		vida = vida + cantidad;
 	} 
 	
 	public Tipo getTipo(){
