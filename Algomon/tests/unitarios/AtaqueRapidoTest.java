@@ -1,10 +1,10 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.AtaqueRapido;
+import Modelo.Ataques.AtaqueRapido;
 
 public class AtaqueRapidoTest {
 

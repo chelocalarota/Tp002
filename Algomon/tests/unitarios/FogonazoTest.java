@@ -1,10 +1,10 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Fogonazo;
+import Modelo.Ataques.Fogonazo;
 
 public class FogonazoTest {
 

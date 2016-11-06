@@ -1,10 +1,10 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Modelo.LatigoCepa;
+import Modelo.Ataques.LatigoCepa;
 
 public class LatigoCepaTest {
 	

@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.*;
 

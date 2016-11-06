@@ -1,10 +1,10 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Brasas;
+import Modelo.Ataques.Brasas;
 
 public class BrasasTest {
 

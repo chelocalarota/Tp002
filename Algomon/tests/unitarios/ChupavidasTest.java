@@ -1,7 +1,7 @@
-package Tests.tests.unitarios;
+package unitarios;
 
 import static org.junit.Assert.*;
-import Modelo.Chupavidas;
+import Modelo.Ataques.Chupavidas;
 
 import org.junit.Test;
 
