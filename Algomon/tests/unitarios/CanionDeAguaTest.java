@@ -1,4 +1,4 @@
-package unitarios;
+package Tests.tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +23,7 @@ public class CanionDeAguaTest {
 	}
 	
 	@Test
-	public void test03CañonDeAguaTipoOk() {
+	public void test03CanionDeAguaTipoOk() {
 		CanionDeAgua ataque = new CanionDeAgua();
 		
 		assertEquals("A", ataque.getTipo());
