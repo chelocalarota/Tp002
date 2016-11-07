@@ -1,17 +1,14 @@
 package Modelo.Algomon;
 
-
 import java.util.Hashtable;
 
-import Modelo.TipoNormal;
-
-public class Jigglypuff extends Algomon {
-	public Jigglypuff(){
+public class Rattata extends Algomon {
+	public Rattata(){
 		this.ataques =new Hashtable<String,Modelo.Ataques.Ataque>();
-		this.ataques.put("Burbuja", new Modelo.Ataques.Burbuja());
+		this.ataques.put("Fogonazo", new Modelo.Ataques.Fogonazo());
 		this.ataques.put("Ataques Rapido", new Modelo.Ataques.AtaqueRapido());
-		this.ataques.put("Canto",new Modelo.Ataques.Canto());
-		this.vida = 130;
+		this.ataques.put("Burbuja", new Modelo.Ataques.Burbuja());
+		this.vida = 170;
 		this.tipo = new TipoNormal();
 	}
 }
