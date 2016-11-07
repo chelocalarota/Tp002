@@ -1,15 +1,16 @@
 package Modelo.Algomon;
 
-import java.util.Hashtable;
+import java.util.Map;
 
 import Modelo.Tipo;
+import Modelo.Ataques.Ataque;
 
 public class Algomon {
 	protected Tipo tipo;
 	protected int vida;
-	protected Hashtable<String,Modelo.Ataques.Ataque> ataques;
+	protected Map<String, Ataque> ataques;
 	
-	public Modelo.Ataques.Ataque ataque(String nombreAtaque){
+	public Ataque ataque(String nombreAtaque){
 		return ataques.get(nombreAtaque);
 	}
 	
