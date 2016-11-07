@@ -26,4 +26,11 @@ public class Algomon {
 		return tipo;
 	}
 	
+	public void recibirDaño(Ataque unAtaque, Algomon unAlgomon){
+		Tipo tipoAtacante = unAlgomon.getTipo();
+		int multiplicador = (int) this.tipo.reaccionATipo(tipoAtacante);
+		int dañoResultante = unAtaque.getPotencia()*multiplicador;
+		this.vida = this.vida-dañoResultante;
+	}
+	
 }
