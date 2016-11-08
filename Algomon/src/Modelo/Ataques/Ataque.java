@@ -1,6 +1,7 @@
 package Modelo.Ataques;
 
 import Modelo.Tipo;
+import Modelo.Algomon.Algomon;
 
 public abstract class Ataque {
 	private double potencia;
@@ -39,4 +40,9 @@ public abstract class Ataque {
 	public int getPuntosDePoder(){
 		return this.cantidad;
 	}
+	
+	public void cambioDeEstado(Algomon unAlgomon){
+		return;
+	}
 }
+

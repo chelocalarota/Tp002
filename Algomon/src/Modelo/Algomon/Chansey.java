@@ -9,6 +9,7 @@ import Modelo.Ataques.LatigoCepa;
 
 public class Chansey extends Algomon{
 	public Chansey(){
+		this.estado = new EstadoNormal();
 		this.ataques = new HashMap<String, Ataque>();
 		this.ataques.put("Burbuja", new Burbuja());
 		this.ataques.put("Latigo Cepa", new LatigoCepa());

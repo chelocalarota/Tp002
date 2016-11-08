@@ -1,6 +1,9 @@
 package Modelo.Ataques;
 
 import Modelo.TipoNormal;
+import Modelo.Algomon.Algomon;
+import Modelo.Algomon.EstadoDormido;
+
 
 public class Canto extends Ataque {
 	public Canto(){
@@ -8,6 +11,7 @@ public class Canto extends Ataque {
 		this.setCantidad(6);
 		this.setTipo(new TipoNormal());
 	}
-	
-	// Ver como manejamos el tema de los ataques especiales
+	public void cambioDeEstado(Algomon unAlgomon){
+		unAlgomon.cambiarEstado(new EstadoDormido());
+	}
 }

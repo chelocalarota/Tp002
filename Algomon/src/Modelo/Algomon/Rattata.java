@@ -10,6 +10,7 @@ import Modelo.Ataques.Fogonazo;
 
 public class Rattata extends Algomon {
 	public Rattata(){
+		this.estado = new EstadoNormal();
 		this.ataques =new HashMap<String, Ataque>();
 		this.ataques.put("Fogonazo", new Fogonazo());
 		this.ataques.put("Ataque Rapido", new AtaqueRapido());
