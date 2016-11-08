@@ -99,7 +99,7 @@ public class AtaqueSimplesTest {
 		double vida = Squirtle.getVida();
 		Squirtle.recibirDanio(Chansey.ataque("Latigo Cepa"));
 		Squirtle.recibirDanio(Bulbasaur.ataque("Latigo Cepa"));
-		assertEquals((vida-30), Squirtle.getVida(),0.001D);
+		assertEquals((vida-60), Squirtle.getVida(),0.001D);
 	}
 
 }
