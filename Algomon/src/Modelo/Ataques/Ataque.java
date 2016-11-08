@@ -7,12 +7,6 @@ public abstract class Ataque {
 	private int cantidad;
 	private Tipo tipo;
 	
-//	Tipo:
-//	"N" = Normal
-//	"A" = Agua
-//	"P" = Planta
-//	"F" = Fuego
-	
 	public void setPotencia(double potencia){
 		this.potencia = potencia;
 	}
@@ -36,5 +30,13 @@ public abstract class Ataque {
 	
 	public Tipo getTipo(){
 		return this.tipo;
+	}
+	
+	public void restarPuntoDePoder(){
+		this.cantidad-=1;
+	}
+	
+	public int getPuntosDePoder(){
+		return this.cantidad;
 	}
 }

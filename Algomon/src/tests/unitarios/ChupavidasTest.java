@@ -1,6 +1,8 @@
 package tests.unitarios;
 
 import static org.junit.Assert.*;
+
+import Modelo.TipoPlanta;
 import Modelo.Ataques.Chupavidas;
 
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class ChupavidasTest {
 	public void test03ChupavidasTipoOk() {
 		Chupavidas ataque = new Chupavidas();
 		
-		assertEquals("P", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoPlanta);
 	}
 
 }

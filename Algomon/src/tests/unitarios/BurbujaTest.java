@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoAgua;
 import Modelo.Ataques.Burbuja;
 
 public class BurbujaTest {
@@ -26,7 +27,7 @@ public class BurbujaTest {
 	public void test03BurbujaTipoOk() {
 		Burbuja ataque = new Burbuja();
 		
-		assertEquals("A", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoAgua);
 	}
 
 }

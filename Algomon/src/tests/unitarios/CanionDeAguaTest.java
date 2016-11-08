@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoAgua;
 import Modelo.Ataques.CanionDeAgua;
 
 public class CanionDeAguaTest {
@@ -26,6 +27,6 @@ public class CanionDeAguaTest {
 	public void test03CanionDeAguaTipoOk() {
 		CanionDeAgua ataque = new CanionDeAgua();
 		
-		assertEquals("A", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoAgua);
 	}
 }

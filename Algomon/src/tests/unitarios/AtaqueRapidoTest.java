@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoNormal;
 import Modelo.Ataques.AtaqueRapido;
 
 public class AtaqueRapidoTest {
@@ -29,7 +30,7 @@ public class AtaqueRapidoTest {
 	public void test03AtaqueRapidoTipoOk() {
 		AtaqueRapido ataque = new AtaqueRapido();
 		
-		assertEquals("N", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoNormal);
 	}
 
 }

@@ -1,9 +1,11 @@
 package tests.unitarios;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import Modelo.TipoPlanta;
 import Modelo.Ataques.LatigoCepa;
 
 public class LatigoCepaTest {
@@ -26,7 +28,7 @@ public class LatigoCepaTest {
 	public void test03LatigoCepaTipoOk() {
 		LatigoCepa ataque = new LatigoCepa();
 		
-		assertEquals("P", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoPlanta);
 	}
 
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoFuego;
 import Modelo.Ataques.Brasas;
 
 public class BrasasTest {
@@ -26,7 +27,7 @@ public class BrasasTest {
 	public void test03BrasasTipoOk() {
 		Brasas ataque = new Brasas();
 		
-		assertEquals("F", ataque.getTipo());
+		assertTrue(ataque.getTipo()instanceof TipoFuego);
 	}
 
 }

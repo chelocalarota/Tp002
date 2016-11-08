@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoNormal;
 import Modelo.Ataques.Canto;
 
 public class CantoTest {
@@ -26,7 +27,7 @@ public class CantoTest {
 	public void test03CantoTipoOk() {
 		Canto ataque = new Canto();
 		
-		assertEquals("N", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoNormal);
 	}
 
 }

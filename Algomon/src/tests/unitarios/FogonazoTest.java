@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Modelo.TipoFuego;
 import Modelo.Ataques.Fogonazo;
 
 public class FogonazoTest {
@@ -26,7 +27,7 @@ public class FogonazoTest {
 	public void test03FogonazoTipoOk() {
 		Fogonazo ataque = new Fogonazo();
 		
-		assertEquals("F", ataque.getTipo());
+		assertTrue(ataque.getTipo() instanceof TipoFuego);
 	}
 
 }
