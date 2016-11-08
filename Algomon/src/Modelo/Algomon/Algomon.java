@@ -26,8 +26,8 @@ public class Algomon {
 		return tipo;
 	}
 	
-	public double recibirDanio(Ataque unAtaque, Algomon unAlgomon){
-		Tipo tipoAtacante = unAlgomon.getTipo();
+	public double recibirDanio(Ataque unAtaque){
+		Tipo tipoAtacante = unAtaque.getTipo();
 		double multiplicador =  this.tipo.reaccionATipo(tipoAtacante);
 		double danioResultante = unAtaque.getPotencia()*multiplicador;
 		this.vida = this.vida-danioResultante;

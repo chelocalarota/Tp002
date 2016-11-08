@@ -1,7 +1,7 @@
 package Modelo;
 
 public class TipoNormal implements Tipo {
-
+	
 	@Override
 	public double respuestaAAgua() {
 		return 1.0;

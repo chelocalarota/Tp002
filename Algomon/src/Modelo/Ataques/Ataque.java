@@ -1,9 +1,11 @@
 package Modelo.Ataques;
 
+import Modelo.Tipo;
+
 public abstract class Ataque {
 	private double potencia;
 	private int cantidad;
-	private String tipo;
+	private Tipo tipo;
 	
 //	Tipo:
 //	"N" = Normal
@@ -19,7 +21,8 @@ public abstract class Ataque {
 		this.cantidad = cantidad;
 	}
 	
-	public void setTipo(String tipo){
+	public void setTipo(Tipo tipo){
+		
 		this.tipo = tipo;
 	}
 	
@@ -31,7 +34,7 @@ public abstract class Ataque {
 		return this.cantidad;
 	}
 	
-	public String getTipo(){
+	public Tipo getTipo(){
 		return this.tipo;
 	}
 }

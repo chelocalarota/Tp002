@@ -20,13 +20,13 @@ public class AtaqueSimplesTest {
 		Algomon Squirtle = new Squirtle();
 		Algomon Charmander = new Charmander();
 		double vida = Charmander.getVida();
-		Charmander.recibirDanio(Squirtle.ataque("Burbuja"), Squirtle);
+		Charmander.recibirDanio(Squirtle.ataque("Burbuja"));
 		
 		assertEquals((vida-20), Charmander.getVida(),0.001D);
 		
 		
 		vida -= 20;
-		Charmander.recibirDanio(Squirtle.ataque("Canion de Agua"), Squirtle);
+		Charmander.recibirDanio(Squirtle.ataque("Canion de Agua"));
 		
 		Assert.assertTrue((vida-40) == Charmander.getVida());
 		
@@ -37,12 +37,12 @@ public class AtaqueSimplesTest {
 		Algomon Squirtle = new Squirtle();
 		Algomon Bulbasaur = new Bulbasaur();
 		double vida = Bulbasaur.getVida();
-		Bulbasaur.recibirDanio(Squirtle.ataque("Burbuja"), Squirtle);
+		Bulbasaur.recibirDanio(Squirtle.ataque("Burbuja"));
 		
 		assertEquals((vida-5), Bulbasaur.getVida(),0.001D);
 		
 		vida -= 5;
-		Bulbasaur.recibirDanio(Squirtle.ataque("Canion de Agua"), Squirtle);
+		Bulbasaur.recibirDanio(Squirtle.ataque("Canion de Agua"));
 		
 		assertEquals((vida-10), Bulbasaur.getVida(),0.001D);
 		
@@ -54,12 +54,12 @@ public class AtaqueSimplesTest {
 		double vida = Chansey.getVida();
 		
 		
-		Chansey.recibirDanio(Squirtle.ataque("Burbuja"), Squirtle);
+		Chansey.recibirDanio(Squirtle.ataque("Burbuja"));
 		
 		assertEquals((vida-10), Chansey.getVida(),0.001D);
 		
 		vida -= 10;
-		Chansey.recibirDanio(Squirtle.ataque("Canion de Agua"), Squirtle);
+		Chansey.recibirDanio(Squirtle.ataque("Canion de Agua"));
 		
 		assertEquals((vida-20), Chansey.getVida(),0.001D);
 
@@ -67,12 +67,12 @@ public class AtaqueSimplesTest {
 		vida = Jigglypuff.getVida();
 		
 		
-		Jigglypuff.recibirDanio(Squirtle.ataque("Burbuja"), Squirtle);
+		Jigglypuff.recibirDanio(Squirtle.ataque("Burbuja"));
 		
 		assertEquals((vida-10), Jigglypuff.getVida(),0.001D);
 		
 		vida -= 10;
-		Jigglypuff.recibirDanio(Squirtle.ataque("Canion de Agua"), Squirtle);
+		Jigglypuff.recibirDanio(Squirtle.ataque("Canion de Agua"));
 		
 		assertEquals((vida-20), Jigglypuff.getVida(),0.001D);
 		
@@ -80,15 +80,26 @@ public class AtaqueSimplesTest {
 		vida = Rattata.getVida();
 		
 		
-		Rattata.recibirDanio(Squirtle.ataque("Burbuja"), Squirtle);
+		Rattata.recibirDanio(Squirtle.ataque("Burbuja"));
 		
 		assertEquals((vida-10), Rattata.getVida(),0.001D);
 		
 		vida -= 10;
-		Rattata.recibirDanio(Squirtle.ataque("Canion de Agua"), Squirtle);
+		Rattata.recibirDanio(Squirtle.ataque("Canion de Agua"));
 		
 		assertEquals((vida-20), Rattata.getVida(),0.001D);
 		
+	}
+	
+	@Test
+	public void test04BalbasauryChanseyVsSquirtle(){
+		Algomon Squirtle = new Squirtle();
+		Algomon Chansey = new Chansey();
+		Algomon Bulbasaur = new Bulbasaur();
+		double vida = Squirtle.getVida();
+		Squirtle.recibirDanio(Chansey.ataque("Latigo Cepa"));
+		Squirtle.recibirDanio(Bulbasaur.ataque("Latigo Cepa"));
+		assertEquals((vida-30), Squirtle.getVida(),0.001D);
 	}
 
 }
