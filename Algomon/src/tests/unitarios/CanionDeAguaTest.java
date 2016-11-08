@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ public class CanionDeAguaTest {
 	public void test01CanionDeAguaPotenciaOk() {
 		CanionDeAgua ataque = new CanionDeAgua();
 		
-		assertEquals(20, ataque.getPotencia());
+		assertEquals(20, ataque.getPotencia(), 0.001D);
 	}
 	
 	@Test

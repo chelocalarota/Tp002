@@ -10,7 +10,7 @@ public class AtaquesAlgomonTest {
 		Bulbasaur bulbasaur = new Bulbasaur();
 		Rattata rattata = new Rattata();
 		Ataque ataqueRealizado = rattata.ataque("Ataque Rapido");
-		int vidaRestante = bulbasaur.recibirDaño(ataqueRealizado, rattata);
+		double vidaRestante = bulbasaur.recibirDanio(ataqueRealizado, rattata);
 		assertEquals(vidaRestante,130);
 	}
 	
@@ -18,7 +18,7 @@ public class AtaquesAlgomonTest {
 		Bulbasaur bulbasaur = new Bulbasaur();
 		Charmander charmander = new Charmander();
 		Ataque ataqueRealizado = charmander.ataque("Brasas");
-		int vidaRestante = bulbasaur.recibirDaño(ataqueRealizado, charmander);
+		double vidaRestante = bulbasaur.recibirDanio(ataqueRealizado, charmander);
 		assertEquals(vidaRestante,108);
 	}
 }

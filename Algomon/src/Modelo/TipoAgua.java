@@ -20,7 +20,7 @@ public class TipoAgua implements Tipo {
 
 	@Override
 	public double respuestaAAgua() {
-		return 1.0;
+		return 0.5;
 	}
 
 	@Override

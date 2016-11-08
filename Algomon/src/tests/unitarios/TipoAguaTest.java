@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -9,28 +9,28 @@ import Modelo.TipoFuego;
 import Modelo.TipoNormal;
 import Modelo.TipoPlanta;
 
-public class TipoNormalTest {
+public class TipoAguaTest {
 	@Test
 	public void RespuestaFrenteFuego(){
-		TipoNormal unTipo = new TipoNormal();
+		TipoAgua unTipo = new TipoAgua();
 		TipoFuego TipoFuego = new TipoFuego();
-		assertEquals(unTipo.reaccionATipo(TipoFuego), 1.0,0.0001D);	
+		assertEquals(unTipo.reaccionATipo(TipoFuego), 0.5,0.0001D);	
 	}
 	@Test
 	public void RespuestaFrenteAgua(){
-		TipoNormal unTipo = new TipoNormal();
+		TipoAgua unTipo = new TipoAgua();
 		TipoAgua TipoAgua = new TipoAgua();
-		assertEquals(unTipo.reaccionATipo(TipoAgua), 1.0,0.0001D);
+		assertEquals(unTipo.reaccionATipo(TipoAgua), 0.5,0.0001D);
 	}
 	@Test
 	public void RespuestaFrentePlanta(){
-		TipoNormal unTipo = new TipoNormal();
+		TipoAgua unTipo = new TipoAgua();
 		TipoPlanta TipoPlanta = new TipoPlanta();
-		assertEquals(unTipo.reaccionATipo(TipoPlanta), 1.0,0.0001D);
+		assertEquals(unTipo.reaccionATipo(TipoPlanta), 2.0,0.0001D);
 	}
 	@Test
 	public void RespuestaFrenteNormal(){
-		TipoNormal unTipo = new TipoNormal();
+		TipoAgua unTipo = new TipoAgua();
 		TipoNormal TipoNormal = new TipoNormal();
 		assertEquals(unTipo.reaccionATipo(TipoNormal), 1.0,0.0001D);
 	}

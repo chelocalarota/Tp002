@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ public class TipoFuegoTest {
 	public void RespuestaFrenteFuego(){
 		TipoFuego unTipo = new TipoFuego();
 		TipoFuego TipoFuego = new TipoFuego();
-		assertEquals(unTipo.reaccionATipo(TipoFuego), 1.0,0.00001D);	
+		assertEquals(unTipo.reaccionATipo(TipoFuego), 0.5,0.00001D);	
 	}
 	@Test
 	public void RespuestaFrenteAgua(){

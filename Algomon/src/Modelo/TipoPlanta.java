@@ -14,7 +14,7 @@ public class TipoPlanta implements Tipo {
 
 	@Override
 	public double respuestaAPlanta() {
-		return 1.0;
+		return 0.5;
 	}
 
 	@Override

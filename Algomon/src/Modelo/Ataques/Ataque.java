@@ -1,7 +1,7 @@
 package Modelo.Ataques;
 
 public abstract class Ataque {
-	private int potencia;
+	private double potencia;
 	private int cantidad;
 	private String tipo;
 	
@@ -11,7 +11,7 @@ public abstract class Ataque {
 //	"P" = Planta
 //	"F" = Fuego
 	
-	public void setPotencia(int potencia){
+	public void setPotencia(double potencia){
 		this.potencia = potencia;
 	}
 	
@@ -23,7 +23,7 @@ public abstract class Ataque {
 		this.tipo = tipo;
 	}
 	
-	public int getPotencia(){
+	public double getPotencia(){
 		return this.potencia;
 	}
 	

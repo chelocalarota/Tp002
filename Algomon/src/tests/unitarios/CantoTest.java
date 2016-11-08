@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ public class CantoTest {
 	public void test01CantoPotenciaOk() {
 		Canto ataque = new Canto();
 		
-		assertEquals(0, ataque.getPotencia());
+		assertEquals(0, ataque.getPotencia(), 0.001D);
 	}
 	
 	@Test

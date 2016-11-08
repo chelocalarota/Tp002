@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ public class FogonazoTest {
 	public void test01FogonazoPotenciaOk() {
 		Fogonazo ataque = new Fogonazo();
 		
-		assertEquals(2, ataque.getPotencia());
+		assertEquals(2, ataque.getPotencia(), 0.001D);
 	}
 	
 	@Test

@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -20,13 +20,13 @@ public class TipoPlantaTest {
 	public void RespuestaFrenteAgua(){
 		TipoPlanta unTipo = new TipoPlanta();
 		TipoAgua TipoAgua = new TipoAgua();
-		assertEquals(unTipo.reaccionATipo(TipoAgua), 0.5,0.0001D);
+		assertEquals(unTipo.reaccionATipo(TipoAgua), 0.5 ,0.0001D);
 	}
 	@Test
 	public void RespuestaFrentePlanta(){
 		TipoPlanta unTipo = new TipoPlanta();
 		TipoPlanta TipoPlanta = new TipoPlanta();
-		assertEquals(unTipo.reaccionATipo(TipoPlanta), 1.0,0.0001D);
+		assertEquals(unTipo.reaccionATipo(TipoPlanta), 0.5,0.0001D);
 	}
 	@Test
 	public void RespuestaFrenteNormal(){

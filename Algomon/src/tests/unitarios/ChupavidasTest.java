@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 import Modelo.Ataques.Chupavidas;
@@ -11,7 +11,7 @@ public class ChupavidasTest {
 	public void test01ChupavidasPotenciaOk() {
 		Chupavidas ataque = new Chupavidas();
 		
-		assertEquals(15, ataque.getPotencia());
+		assertEquals(15, ataque.getPotencia(), 0.001D);
 	}
 	
 	@Test

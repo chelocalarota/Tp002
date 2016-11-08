@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ public class LatigoCepaTest {
 	public void test01LatigoCepaPotenciaOk() {
 		LatigoCepa ataque = new LatigoCepa();
 		
-		assertEquals(15, ataque.getPotencia());
+		assertEquals(15, ataque.getPotencia(), 0.001D);
 	}
 	
 	@Test

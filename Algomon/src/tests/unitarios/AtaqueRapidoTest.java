@@ -1,4 +1,6 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
+
+
 
 import static org.junit.Assert.*;
 
@@ -8,11 +10,12 @@ import Modelo.Ataques.AtaqueRapido;
 
 public class AtaqueRapidoTest {
 
+	
 	@Test
 	public void test01AtaqueRapidoPotenciaOk() {
 		AtaqueRapido ataque = new AtaqueRapido();
 		
-		assertEquals(10, ataque.getPotencia());
+		assertEquals(10.0, ataque.getPotencia(),0.001D);
 	}
 	
 	@Test

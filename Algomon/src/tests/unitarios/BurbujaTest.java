@@ -1,4 +1,4 @@
-package Tests.tests.unitarios;
+package tests.unitarios;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ public class BurbujaTest {
 	public void test01BurbujaPotenciaOk() {
 		Burbuja ataque = new Burbuja();
 		
-		assertEquals(10, ataque.getPotencia());
+		assertEquals(10, ataque.getPotencia(),0.001D);
 	}
 	
 	@Test
