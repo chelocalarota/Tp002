@@ -12,10 +12,10 @@ public class Algomon {
 	protected Estado estadoEfimero;
 	protected Estado estadoPersistente;
 	
-	public Ataque ataque(String nombreAtaque){
+	public Ataque ataque(String nombreAtaque) throws SinPuntosDePoderException{
 		Ataque ataque = ataques.get(nombreAtaque);
 		if (ataque.getPuntosDePoder()==0){
-			return null; //hay que utilizar una excepcion;
+			throw new SinPuntosDePoderException("");
 		}
 		ataque.restarPuntoDePoder();
 		return ataque;
@@ -52,6 +52,10 @@ public class Algomon {
 		this.vida = this.vida-danioResultante;
 		unAtaque.cambioDeEstado(this);
 		return this.vida;
+	}
+
+	public boolean estaMuerto() {
+		return (this.vida == 0.0);
 	}
 	
 	
