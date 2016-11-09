@@ -13,12 +13,13 @@ import Modelo.Algomon.Chansey;
 import Modelo.Algomon.Charmander;
 import Modelo.Algomon.Jigglypuff;
 import Modelo.Algomon.Rattata;
+import Modelo.Algomon.SinPuntosDePoderException;
 import Modelo.Algomon.Squirtle;
 
 public class AtaquesEspecialesTest {
 
 	@Test
-	public void JigglypuffYChanseyPuebanCantoConEstadoDormido() {
+	public void JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();

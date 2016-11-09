@@ -14,12 +14,13 @@ import Modelo.Algomon.Chansey;
 import Modelo.Algomon.Charmander;
 import Modelo.Algomon.Jigglypuff;
 import Modelo.Algomon.Rattata;
+import Modelo.Algomon.SinPuntosDePoderException;
 import Modelo.Algomon.Squirtle;
 
 public class AtaqueSimplesTest {
 
 	@Test
-	public void test01SquirtleVsCharmander() {
+	public void test01SquirtleVsCharmander() throws SinPuntosDePoderException {
 		Algomon Squirtle = new Squirtle();
 		Algomon Charmander = new Charmander();
 		double vida = Charmander.getVida();
@@ -36,7 +37,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test
-	public void test02SquirtleVsBulbasaur(){
+	public void test02SquirtleVsBulbasaur() throws SinPuntosDePoderException{
 		Algomon Squirtle = new Squirtle();
 		Algomon Bulbasaur = new Bulbasaur();
 		double vida = Bulbasaur.getVida();
@@ -51,7 +52,7 @@ public class AtaqueSimplesTest {
 		
 	}
 	@Test
-	public void test03SquirtleVsOtrosAlgomones(){
+	public void test03SquirtleVsOtrosAlgomones() throws SinPuntosDePoderException{
 		Algomon Squirtle = new Squirtle();
 		Algomon Chansey = new Chansey();
 		double vida = Chansey.getVida();
@@ -95,7 +96,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test
-	public void test04BalbasauryChanseyVsSquirtle(){
+	public void test04BalbasauryChanseyVsSquirtle() throws SinPuntosDePoderException{
 		
 		Algomon Squirtle = new Squirtle();
 		Algomon Chansey = new Chansey();
@@ -115,7 +116,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test 
-	public void test05BalbasauryChanseyVsCharmander(){
+	public void test05BalbasauryChanseyVsCharmander() throws SinPuntosDePoderException{
 		
 		Algomon Charmander = new Charmander();
 		Algomon Bulbasaur = new Bulbasaur();
@@ -136,7 +137,7 @@ public class AtaqueSimplesTest {
 	
 	
 	@Test
-	public void test06SquirtleVsOtrosAlgomones(){
+	public void test06SquirtleVsOtrosAlgomones() throws SinPuntosDePoderException{
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Chansey = new Chansey();;
 		
@@ -174,7 +175,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test
-	public void test07CharmanderVsBulbasaur(){
+	public void test07CharmanderVsBulbasaur() throws SinPuntosDePoderException{
 		
 		Algomon Charmander = new Charmander();
 		Algomon Bulbasaur = new Bulbasaur();
@@ -188,7 +189,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test
-	public void test08CharmanderVsSquirtle(){
+	public void test08CharmanderVsSquirtle() throws SinPuntosDePoderException{
 		
 		Algomon Charmander = new Charmander();
 		Algomon Squirtle = new Squirtle();
@@ -202,7 +203,7 @@ public class AtaqueSimplesTest {
 	}
 	
 	@Test
-	public void test09CharmanderVsOtrosAlgomones(){
+	public void test09CharmanderVsOtrosAlgomones() throws SinPuntosDePoderException{
 		Algomon Charmander = new Charmander();;
 		Algomon Chansey = new Chansey();
 		double vida = Chansey.getVida();
@@ -231,7 +232,7 @@ public class AtaqueSimplesTest {
 		
 	}
 	@Test
-	public void test10AlgomonesAtacanConAtaqueRapido(){
+	public void test10AlgomonesAtacanConAtaqueRapido() throws SinPuntosDePoderException{
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Rattata = new Rattata();

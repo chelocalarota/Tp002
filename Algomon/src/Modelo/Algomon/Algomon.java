@@ -1,7 +1,10 @@
 package Modelo.Algomon;
 
+import java.util.ArrayList;
+
 import java.util.Map;
 
+import Modelo.Item;
 import Modelo.Tipo;
 import Modelo.Ataques.Ataque;
 
@@ -12,10 +15,10 @@ public class Algomon {
 	protected Estado estadoEfimero;
 	protected Estado estadoPersistente;
 	
-	public Ataque ataque(String nombreAtaque){
+	public Ataque ataque(String nombreAtaque) throws SinPuntosDePoderException{
 		Ataque ataque = ataques.get(nombreAtaque);
 		if (ataque.getPuntosDePoder()==0){
-			return null; //hay que utilizar una excepcion;
+			throw new SinPuntosDePoderException("");
 		}
 		ataque.restarPuntoDePoder();
 		return ataque;
@@ -52,6 +55,19 @@ public class Algomon {
 		this.vida = this.vida-danioResultante;
 		unAtaque.cambioDeEstado(this);
 		return this.vida;
+	}
+
+	public boolean estaMuerto() {
+		return (this.vida == 0.0);
+	}
+
+	public void usarItem(Item unItem) {
+		unItem.aplicarEfecto(this);
+	}
+	public ArrayList<Ataque> ObtenerTodosLosAtaques(){
+		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
+		listaDeAtaques.addAll(this.ataques.values());
+		return listaDeAtaques;
 	}
 	
 	
