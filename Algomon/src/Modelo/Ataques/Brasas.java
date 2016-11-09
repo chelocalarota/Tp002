@@ -11,7 +11,7 @@ public class Brasas extends Ataque {
 		this.setTipo(new TipoFuego());
 	}
 	public void cambioDeEstado(Algomon unAlgomon){
-		unAlgomon.cambiarEstado(new EstadoQuemado());
+		unAlgomon.cambiarEstadoPersistente(new EstadoQuemado());
 	
 	}
 

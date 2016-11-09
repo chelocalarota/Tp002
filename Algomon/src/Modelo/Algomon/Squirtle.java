@@ -11,7 +11,8 @@ import Modelo.Ataques.CanionDeAgua;
 public class Squirtle extends Algomon {
 	
 	public Squirtle(){
-		this.estado = new EstadoNormal();
+		this.estadoEfimero = new EstadoNormal();
+		this.estadoPersistente = new EstadoNormal();
 		this.tipo = new TipoAgua();
 		this.vida = 150;
 		this.ataques = new HashMap<String, Ataque>();
