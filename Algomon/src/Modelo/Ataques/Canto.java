@@ -12,6 +12,6 @@ public class Canto extends Ataque {
 		this.setTipo(new TipoNormal());
 	}
 	public void cambioDeEstado(Algomon unAlgomon){
-		unAlgomon.cambiarEstado(new EstadoDormido());
+		unAlgomon.cambiarEstadoEfimero(new EstadoDormido());
 	}
 }

@@ -11,7 +11,8 @@ import Modelo.TipoNormal;
 
 public class Jigglypuff extends Algomon {
 	public Jigglypuff(){
-		this.estado = new EstadoNormal();
+		this.estadoEfimero = new EstadoNormal();
+		this.estadoPersistente = new EstadoNormal();
 		this.ataques = new HashMap<String, Ataque>();
 		this.ataques.put("Burbuja", new Burbuja());
 		this.ataques.put("Ataque Rapido", new AtaqueRapido());

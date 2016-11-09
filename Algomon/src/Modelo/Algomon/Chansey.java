@@ -9,6 +9,8 @@ import Modelo.Ataques.LatigoCepa;
 
 public class Chansey extends Algomon{
 	public Chansey(){
+		this.estadoEfimero = new EstadoNormal();
+		this.estadoPersistente = new EstadoNormal();
 		this.ataques = new HashMap<String, Ataque>();
 		this.ataques.put("Ataque Rapido", new AtaqueRapido());
 		this.ataques.put("Latigo Cepa", new LatigoCepa());

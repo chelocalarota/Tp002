@@ -9,7 +9,8 @@ public class Algomon {
 	protected Tipo tipo;
 	protected double vida;
 	protected Map<String, Ataque> ataques;
-	protected Estado estado;
+	protected Estado estadoEfimero;
+	protected Estado estadoPersistente;
 	
 	public Ataque ataque(String nombreAtaque){
 		Ataque ataque = ataques.get(nombreAtaque);
@@ -19,8 +20,17 @@ public class Algomon {
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
-	public boolean posibilidadDeAccion(){
-		return estado.getPosibilidad(this);
+	
+	public boolean estaEnEstadoNormal(){
+		return (estadoEfimero.getEstado(this) && estadoPersistente.getEstado(this));
+	}
+	
+	public void cambiarEstadoEfimero(Estado estadoNuevo) {
+		this.estadoEfimero = estadoNuevo;
+	}
+	
+	public void cambiarEstadoPersistente(Estado estadoNuevo) {
+		this.estadoPersistente = estadoNuevo;
 	}
 	
 	public double getVida(){
@@ -43,8 +53,6 @@ public class Algomon {
 		unAtaque.cambioDeEstado(this);
 		return this.vida;
 	}
-	public void cambiarEstado(Estado estadoNuevo) {
-		this.estado = estadoNuevo;
-	}
+	
 	
 }

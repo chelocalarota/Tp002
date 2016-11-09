@@ -11,7 +11,8 @@ import Modelo.Ataques.Fogonazo;
 public class Charmander extends Algomon {
 	
 	public Charmander(){
-		this.estado = new EstadoNormal();
+		this.estadoEfimero = new EstadoNormal();
+		this.estadoPersistente = new EstadoNormal();
 		this.tipo = new TipoFuego();
 		this.vida = 170;
 		this.ataques = new HashMap<String, Ataque>();

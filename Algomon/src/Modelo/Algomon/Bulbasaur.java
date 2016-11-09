@@ -10,7 +10,8 @@ import Modelo.Ataques.LatigoCepa;
 public class Bulbasaur extends Algomon {
 	
 	public Bulbasaur(){
-		this.estado = new EstadoNormal();	
+		this.estadoEfimero = new EstadoNormal();
+		this.estadoPersistente = new EstadoNormal();
 		this.tipo = new TipoPlanta();
 		this.vida = 140;
 		this.ataques = new HashMap<String, Ataque>();

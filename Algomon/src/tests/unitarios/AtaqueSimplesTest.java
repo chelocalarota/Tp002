@@ -125,13 +125,13 @@ public class AtaqueSimplesTest {
 		
 		Charmander.recibirDanio(Chansey.ataque("Latigo Cepa"));
 		
-		assertEquals((vida-7.0), Charmander.getVida(),0.001D);
+		assertEquals((vida-7.5), Charmander.getVida(),0.001D);
 		
-		vida -= 7;
+		vida -= 7.5;
 		
 		Charmander.recibirDanio(Bulbasaur.ataque("Latigo Cepa"));
 		
-		assertEquals((vida-7), Charmander.getVida(),0.001D);
+		assertEquals((vida-7.5), Charmander.getVida(),0.001D);
 	}
 	
 	
