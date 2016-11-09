@@ -46,5 +46,4 @@ public class Jugador {
 		}
 		this.algomonActivo.usarItem(unItem);
 	}
-	
 }
