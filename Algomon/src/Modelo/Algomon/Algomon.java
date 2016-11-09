@@ -36,8 +36,8 @@ public class Algomon {
 		this.estadoPersistente = estadoNuevo;
 	}
 	
-	public double getVida(){
-		return vida;
+	public int getVida(){
+		return (int) vida;
 	}
 
 	public void cambiarVida(int cantidad){
@@ -52,7 +52,7 @@ public class Algomon {
 		Tipo tipoAtacante = unAtaque.getTipo();
 		double multiplicador =  this.tipo.reaccionATipo(tipoAtacante);
 		double danioResultante = unAtaque.getPotencia()*multiplicador;
-		this.vida = this.vida-danioResultante;
+		this.vida = this.vida-(int)danioResultante;
 		unAtaque.cambioDeEstado(this);
 		return this.vida;
 	}
