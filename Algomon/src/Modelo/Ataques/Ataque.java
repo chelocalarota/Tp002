@@ -44,5 +44,8 @@ public abstract class Ataque {
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;
 	}
+	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon){
+		return;
+	}
 }
 
