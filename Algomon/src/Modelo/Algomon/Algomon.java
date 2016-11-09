@@ -1,7 +1,10 @@
 package Modelo.Algomon;
 
+import java.util.ArrayList;
+
 import java.util.Map;
 
+import Modelo.Item;
 import Modelo.Tipo;
 import Modelo.Ataques.Ataque;
 
@@ -56,6 +59,15 @@ public class Algomon {
 
 	public boolean estaMuerto() {
 		return (this.vida == 0.0);
+	}
+
+	public void usarItem(Item unItem) {
+		unItem.aplicarEfecto(this);
+	}
+	public ArrayList<Ataque> ObtenerTodosLosAtaques(){
+		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
+		listaDeAtaques.addAll(this.ataques.values());
+		return listaDeAtaques;
 	}
 	
 	

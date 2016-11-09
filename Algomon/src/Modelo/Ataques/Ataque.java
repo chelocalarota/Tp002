@@ -47,5 +47,9 @@ public abstract class Ataque {
 	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon){
 		return;
 	}
+
+	public void agregarPuntosDePoder(int cantidad) {
+		this.cantidad+=cantidad;
+	}
 }
 
