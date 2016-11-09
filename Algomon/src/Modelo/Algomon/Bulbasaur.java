@@ -14,10 +14,11 @@ public class Bulbasaur extends Algomon {
 		this.estadoPersistente = new EstadoNormal();
 		this.tipo = new TipoPlanta();
 		this.vida = 140;
+		this.vidaOriginal=140;
 		this.ataques = new HashMap<String, Ataque>();
 		this.ataques.put("Chupavidas", new Chupavidas());
 		this.ataques.put("Latigo Cepa", new LatigoCepa());
-		this.ataques.put("Ataque rapido", new AtaqueRapido());
+		this.ataques.put("Ataque Rapido", new AtaqueRapido());
 	}
 
 }

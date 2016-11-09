@@ -9,7 +9,7 @@ public class Chupavidas extends Ataque {
 		this.setCantidad(8);
 		this.setTipo(new TipoPlanta());
 	}
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon){
-		unAlgomon.cambiarVida((int) (unAlgomon.getVida()*0.30));
+	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon, int danioResultante){
+		unAlgomon.cambiarVida((int) (danioResultante*0.30));
 	}
 }

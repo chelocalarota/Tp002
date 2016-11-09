@@ -17,6 +17,8 @@ public class Rattata extends Algomon {
 		this.ataques.put("Ataque Rapido", new AtaqueRapido());
 		this.ataques.put("Burbuja", new Burbuja());
 		this.vida = 170;
+		this.vidaOriginal = 170;
+		
 		this.tipo = new TipoNormal();
 	}
 }

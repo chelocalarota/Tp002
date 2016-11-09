@@ -15,10 +15,11 @@ public class Squirtle extends Algomon {
 		this.estadoPersistente = new EstadoNormal();
 		this.tipo = new TipoAgua();
 		this.vida = 150;
+		this.vidaOriginal = 150;
 		this.ataques = new HashMap<String, Ataque>();
 		this.ataques.put("Burbuja", new Burbuja());
 		this.ataques.put("Canion de Agua", new CanionDeAgua());
-		this.ataques.put("Ataque rapido", new AtaqueRapido());
+		this.ataques.put("Ataque Rapido", new AtaqueRapido());
 	}
 
 }

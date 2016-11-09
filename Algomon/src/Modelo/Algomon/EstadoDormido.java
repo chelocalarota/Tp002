@@ -6,12 +6,18 @@ public class EstadoDormido implements Estado {
 		turnos = 3;
 	}
 	@Override
-	public boolean getEstado(Algomon unAlgomon) {
+	public boolean esEstadoNormal() {
+		
+		return false;
+	}
+	@Override
+	public boolean accion(Algomon unAlgomon) {
 		if (this.turnos ==0){
 			unAlgomon.cambiarEstadoEfimero(new EstadoNormal());
+			return false;
 		}
 		this.turnos-=1;
-		return false;
+		return true;
 	}
 	
 }

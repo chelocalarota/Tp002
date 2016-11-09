@@ -44,8 +44,12 @@ public abstract class Ataque {
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;
 	}
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon){
+	public void consecuenciaPropiaDeAtaque(Algomon unAlgomonAtacante, int danio){
 		return;
+	}
+
+	public void agregarPuntosDePoder(int cantidad) {
+		this.cantidad+=cantidad;
 	}
 }
 
