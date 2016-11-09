@@ -18,6 +18,7 @@ public class Jigglypuff extends Algomon {
 		this.ataques.put("Ataque Rapido", new AtaqueRapido());
 		this.ataques.put("Canto", new Canto());
 		this.vida = 130;
+		this.vidaOriginal=130;
 		this.tipo = new TipoNormal();
 	}
 }

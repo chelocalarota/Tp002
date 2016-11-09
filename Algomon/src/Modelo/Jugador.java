@@ -32,7 +32,7 @@ public class Jugador {
 		this.algomonActivo= unAlgomon;
 	}
 	
-	public void ElegirAtaque(String ataqueElegido) throws SinPuntosDePoderException{
+	public void ElegirAtaque(String ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
 		this.algomonActivo.ataque(ataqueElegido);
 	}
 	public void UsarItem(int numeroItem) throws SinUsosDisponiblesException{
