@@ -1,5 +1,7 @@
 package Modelo.Algomon;
 
 public interface Estado {
-	public boolean getEstado(Algomon unAlgomon);
+	public boolean esEstadoNormal();
+
+	public boolean accion(Algomon unAlgomon);
 }

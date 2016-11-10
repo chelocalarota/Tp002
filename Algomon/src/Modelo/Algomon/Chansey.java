@@ -16,6 +16,7 @@ public class Chansey extends Algomon{
 		this.ataques.put("Latigo Cepa", new LatigoCepa());
 		this.ataques.put("Canto", new Canto());
 		this.vida = 130;
+		this.vidaOriginal=130;
 		this.tipo = new TipoNormal();
 	}
 }
