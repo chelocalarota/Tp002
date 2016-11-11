@@ -1,4 +1,6 @@
-package Modelo.Algomon;
+package Modelo.Estados;
+
+import Modelo.Algomon.Algomon;
 
 public interface Estado {
 	public boolean esEstadoNormal();

@@ -1,6 +1,6 @@
 package Modelo.Ataques;
 
-import Modelo.TipoPlanta;
+import Modelo.Tipos.TipoPlanta;
 
 public class LatigoCepa extends Ataque {
 	public LatigoCepa(){

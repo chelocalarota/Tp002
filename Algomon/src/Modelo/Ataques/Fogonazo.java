@@ -1,8 +1,8 @@
 package Modelo.Ataques;
 
-import Modelo.TipoFuego;
+import Modelo.Tipos.TipoFuego;
 import Modelo.Algomon.Algomon;
-import Modelo.Algomon.EstadoQuemado;
+import Modelo.Estados.EstadoQuemado;
 
 public class Fogonazo extends Ataque {
 	public Fogonazo(){

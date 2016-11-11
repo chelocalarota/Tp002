@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Items;
 
 import Modelo.Algomon.Algomon;
 

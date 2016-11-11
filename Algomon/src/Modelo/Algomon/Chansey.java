@@ -1,11 +1,12 @@
 package Modelo.Algomon;
 
 import java.util.HashMap;
-import Modelo.TipoNormal;
+import Modelo.Tipos.TipoNormal;
 import Modelo.Ataques.Ataque;
 import Modelo.Ataques.AtaqueRapido;
 import Modelo.Ataques.Canto;
 import Modelo.Ataques.LatigoCepa;
+import Modelo.Estados.EstadoNormal;
 
 public class Chansey extends Algomon{
 	public Chansey(){

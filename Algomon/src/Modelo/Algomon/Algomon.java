@@ -3,9 +3,10 @@ package Modelo.Algomon;
 import java.util.ArrayList;
 
 import java.util.Map;
+import Modelo.Estados.*;
 
-import Modelo.Item;
-import Modelo.Tipo;
+import Modelo.Items.Item;
+import Modelo.Tipos.Tipo;
 import Modelo.Ataques.Ataque;
 
 public class Algomon {

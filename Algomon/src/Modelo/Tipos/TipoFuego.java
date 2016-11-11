@@ -1,16 +1,20 @@
-package Modelo;
+package Modelo.Tipos;
 
-public class TipoAgua implements Tipo {
+public class TipoFuego implements Tipo {
 
+	@Override
+	public double respuestaAAgua() {
+		return 0.5;
+	}
 
 	@Override
 	public double respuestaAFuego() {
-		return 2.0;
+		return 0.5;
 	}
 
 	@Override
 	public double respuestaAPlanta() {
-		return 0.5;
+		return 2.0;
 	}
 
 	@Override
@@ -19,13 +23,8 @@ public class TipoAgua implements Tipo {
 	}
 
 	@Override
-	public double respuestaAAgua() {
-		return 0.5;
-	}
-
-	@Override
 	public double reaccionATipo(Tipo unTipo) {
-		return unTipo.respuestaAAgua();
+		return unTipo.respuestaAFuego();
 	}
 
 }

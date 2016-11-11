@@ -1,6 +1,6 @@
 package Modelo.Ataques;
 
-import Modelo.Tipo;
+import Modelo.Tipos.Tipo;
 import Modelo.Algomon.Algomon;
 
 public abstract class Ataque {

@@ -1,17 +1,20 @@
-package Modelo;
+package Modelo.Items;
 
 import Modelo.Algomon.Algomon;
 
-public class SuperPocion implements Item {
+public class Pocion implements Item {
 	int cantidadDeUsos;
+	public Pocion(){
+		cantidadDeUsos = 4;
+	}
 	@Override
 	public boolean sinUsosDisponibles() {
-		return this.cantidadDeUsos==0;
+		return cantidadDeUsos ==0;
 	}
 
 	@Override
 	public void aplicarEfecto(Algomon algomon) {
-		algomon.cambiarVida(40);
+		algomon.cambiarVida(20);
 	}
 
 }

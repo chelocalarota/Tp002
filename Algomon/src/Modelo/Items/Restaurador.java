@@ -1,7 +1,7 @@
-package Modelo;
+package Modelo.Items;
 
 import Modelo.Algomon.Algomon;
-import Modelo.Algomon.EstadoNormal;
+import Modelo.Estados.EstadoNormal;
 
 public class Restaurador implements Item {
 	int cantidadDeUsos;
