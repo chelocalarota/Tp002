@@ -17,6 +17,9 @@ public class Algomon {
 	protected Estado estadoPersistente;
 	
 	public Ataque ataque(String nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
+		
+		estadoPersistente.accion(this);
+		
 		if(this.estadoEfimero.accion(this)){
 			throw new EstaDormidoException("");
 		}
@@ -29,7 +32,7 @@ public class Algomon {
 	}
 	
 	public int getVidaOriginal(){
-		return (int) this.getVidaOriginal();
+		return (int)vidaOriginal;
 	}
 	
 	public boolean estaEnEstadoNormal(){
@@ -57,12 +60,17 @@ public class Algomon {
 	}
 	
 	public double recibirDanio(Ataque unAtaque, Algomon unAlgomonAtacante){
+		
 		Tipo tipoAtacante = unAtaque.getTipo();
+		
 		double multiplicador =  this.tipo.reaccionATipo(tipoAtacante);
 		double danioResultante = unAtaque.getPotencia()*multiplicador;
+		
 		this.vida = this.vida-(int)danioResultante;
+		
 		unAtaque.cambioDeEstado(this);
 		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante,(int)danioResultante);
+		
 		return this.vida;
 	}
 
