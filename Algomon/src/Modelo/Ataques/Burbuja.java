@@ -1,6 +1,6 @@
 package Modelo.Ataques;
 
-import Modelo.TipoAgua;
+import Modelo.Tipos.TipoAgua;
 
 public class Burbuja extends Ataque {
 	public Burbuja(){

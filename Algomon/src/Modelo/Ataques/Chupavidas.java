@@ -1,6 +1,6 @@
 package Modelo.Ataques;
 
-import Modelo.TipoPlanta;
+import Modelo.Tipos.TipoPlanta;
 import Modelo.Algomon.Algomon;
 
 public class Chupavidas extends Ataque {

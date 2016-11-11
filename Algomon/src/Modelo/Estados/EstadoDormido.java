@@ -1,4 +1,6 @@
-package Modelo.Algomon;
+package Modelo.Estados;
+
+import Modelo.Algomon.Algomon;
 
 public class EstadoDormido implements Estado {
 	int turnos;

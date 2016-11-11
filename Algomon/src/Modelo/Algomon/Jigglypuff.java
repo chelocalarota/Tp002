@@ -6,8 +6,8 @@ import Modelo.Ataques.Ataque;
 import Modelo.Ataques.AtaqueRapido;
 import Modelo.Ataques.Burbuja;
 import Modelo.Ataques.Canto;
-
-import Modelo.TipoNormal;
+import Modelo.Estados.EstadoNormal;
+import Modelo.Tipos.TipoNormal;
 
 public class Jigglypuff extends Algomon {
 	public Jigglypuff(){

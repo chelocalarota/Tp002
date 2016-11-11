@@ -2,7 +2,7 @@ package tests.unitarios;
 
 import static org.junit.Assert.*;
 
-import Modelo.TipoPlanta;
+import Modelo.Tipos.TipoPlanta;
 import Modelo.Ataques.Chupavidas;
 
 import org.junit.Test;

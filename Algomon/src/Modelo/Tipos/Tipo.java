@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Tipos;
 
 public interface Tipo {
 	public double respuestaAAgua();

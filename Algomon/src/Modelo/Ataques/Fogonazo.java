@@ -1,6 +1,8 @@
 package Modelo.Ataques;
 
-import Modelo.TipoFuego;
+import Modelo.Tipos.TipoFuego;
+import Modelo.Algomon.Algomon;
+import Modelo.Estados.EstadoQuemado;
 
 public class Fogonazo extends Ataque {
 	public Fogonazo(){
@@ -8,5 +10,7 @@ public class Fogonazo extends Ataque {
 		this.setCantidad(4);
 		this.setTipo(new TipoFuego());
 	}
-
+	public void cambioDeEstado(Algomon unAlgomon){
+		unAlgomon.cambiarEstadoPersistente(new EstadoQuemado());
+	}
 }

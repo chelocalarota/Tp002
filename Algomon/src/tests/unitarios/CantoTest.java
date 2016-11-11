@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.TipoNormal;
+import Modelo.Tipos.TipoNormal;
 import Modelo.Ataques.Canto;
 
 public class CantoTest {

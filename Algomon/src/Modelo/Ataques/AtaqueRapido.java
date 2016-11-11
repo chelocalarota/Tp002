@@ -1,6 +1,6 @@
 package Modelo.Ataques;
 
-import Modelo.TipoNormal;
+import Modelo.Tipos.TipoNormal;
 
 public class AtaqueRapido extends Ataque {
 	public AtaqueRapido(){

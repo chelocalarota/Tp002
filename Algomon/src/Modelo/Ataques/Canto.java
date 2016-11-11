@@ -1,8 +1,9 @@
 package Modelo.Ataques;
 
-import Modelo.TipoNormal;
+import Modelo.Tipos.TipoNormal;
+import Modelo.Tipos.Tipo;
 import Modelo.Algomon.Algomon;
-import Modelo.Algomon.EstadoDormido;
+import Modelo.Estados.EstadoDormido;
 
 
 public class Canto extends Ataque {

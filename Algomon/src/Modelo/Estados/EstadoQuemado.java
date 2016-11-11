@@ -1,4 +1,6 @@
-package Modelo.Algomon;
+package Modelo.Estados;
+
+import Modelo.Algomon.Algomon;
 
 public class EstadoQuemado implements Estado {
 
@@ -10,6 +12,7 @@ public class EstadoQuemado implements Estado {
 
 	@Override
 	public boolean accion(Algomon unAlgomon) {
+		unAlgomon.cambiarEstadoPersistente(this);
 		unAlgomon.cambiarVida((int) (-unAlgomon.getVidaOriginal()*0.1));
 		return false;
 	}

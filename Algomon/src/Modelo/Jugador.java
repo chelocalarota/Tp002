@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import Modelo.Algomon.*;
+import Modelo.Items.Item;
 
 public class Jugador {
 	List<Algomon> algomonDisponibles;
@@ -22,8 +23,8 @@ public class Jugador {
 	public void ElegirAlgomonActivo(int indice) throws PokemonMuertoException{
 		/**
 		 * Los Pokemon estaran en un orden. El mismo que eligio el jugador
-		 * Cuando uno decide cambiar, elegirá el Algomon numero 2, por ejemplo,
-		 * ese será el indice que recibe.
+		 * Cuando uno decide cambiar, elegirï¿½ el Algomon numero 2, por ejemplo,
+		 * ese serï¿½ el indice que recibe.
 		 */
 		Algomon unAlgomon = algomonDisponibles.get(indice);
 		if (unAlgomon.estaMuerto()){

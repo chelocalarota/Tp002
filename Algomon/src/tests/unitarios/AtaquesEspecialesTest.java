@@ -20,7 +20,7 @@ import Modelo.Algomon.Squirtle;
 public class AtaquesEspecialesTest {
 
 	@Test
-	public void JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException {
+	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
@@ -42,7 +42,7 @@ public class AtaquesEspecialesTest {
 	}
 	
 	@Test
-	public void UnAlgomonDormidoNoPuedeAtacarPorTresTurnos() throws SinPuntosDePoderException{
+	public void test02UnAlgomonDormidoNoPuedeAtacarPorTresTurnos() throws SinPuntosDePoderException{
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		try {
@@ -73,12 +73,90 @@ public class AtaquesEspecialesTest {
 	}
 	}	
 	@Test
-	public void ChupaVidasTest() throws SinPuntosDePoderException, EstaDormidoException{
+	public void test03ChupaVidasBulbasaurVsCharmander() throws SinPuntosDePoderException, EstaDormidoException{
+		
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Charmander = new Charmander();
-		int vida = Bulbasaur.getVida();
+		
+		int vidaBulbasaur = Bulbasaur.getVida();
+		int vidaCharmander = Charmander.getVida();
+		
 		Charmander.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
-		assertEquals(vida+2,Bulbasaur.getVida());
+		
+		assertEquals(vidaCharmander - 7,Charmander.getVida());
+		assertEquals(vidaBulbasaur+2,Bulbasaur.getVida());
+	}
+	@Test
+	public void test04ChupaVidasBulbasaurVsSquirtle() throws SinPuntosDePoderException, EstaDormidoException{
+		
+		Algomon Bulbasaur = new Bulbasaur();
+		Algomon Squirtle = new Squirtle();
+		
+		int vidaBulbasor = Bulbasaur.getVida();
+		int vidaSquirtle = Squirtle.getVida();
+		
+		Squirtle.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
+		
+		assertEquals(vidaSquirtle - 30,Squirtle.getVida());
+		assertEquals(vidaBulbasor+9,Bulbasaur.getVida());
+	}
+	
+	@Test
+	public void test05ChupaVidasBulbasaurVsOtrosAlgomones() throws SinPuntosDePoderException, EstaDormidoException{
+		
+		Algomon Bulbasaur = new Bulbasaur();
+		List<Algomon> OtrosAlgomones = new ArrayList<Algomon>();
+		
+		OtrosAlgomones.add(new Jigglypuff());
+		OtrosAlgomones.add(new Rattata());
+		OtrosAlgomones.add(new Chansey());
+		
+		for(Algomon atacado : OtrosAlgomones){
+	
+			int vidaBulbasor = Bulbasaur.getVida();
+			int vidaAtacado = atacado.getVida();
+			
+			atacado.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
+			
+			assertEquals(vidaAtacado - 15,atacado.getVida());
+			assertEquals(vidaBulbasor + 4,Bulbasaur.getVida());
+			
+		}
+
+	}
+	@Test 
+	public void test06CharmanderYRattataAtacanConFogonazo()throws SinPuntosDePoderException, EstaDormidoException{
+		
+		Algomon Charmander = new Charmander();
+		Algomon Rattata = new Rattata();
+		
+		Algomon Squirtle = new Squirtle();
+		
+		int diezporcientoVidaOriginal = (int)(Squirtle.getVida() * 0.1);
+		
+		Squirtle.recibirDanio(Charmander.ataque("Fogonazo"), Charmander);
+		
+		
+		
+		for(int i = 0; i<4 ; i++){
+			
+			int vida = Squirtle.getVida();
+			
+			Squirtle.ataque("Burbuja");
+			
+			assertEquals(vida - diezporcientoVidaOriginal,Squirtle.getVida());
+		}
+		
+		Squirtle.recibirDanio(Rattata.ataque("Fogonazo"), Rattata);
+		
+		for(int i = 0; i<4 ; i++){
+			
+			int vida = Squirtle.getVida();
+			
+			Squirtle.ataque("Burbuja");
+			
+			assertEquals(vida - diezporcientoVidaOriginal,Squirtle.getVida());
+		}
 	}
 	
 }
