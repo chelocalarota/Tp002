@@ -5,7 +5,6 @@ package tests.unitarios;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import Modelo.Tipos.Tipo;
 import Modelo.Tipos.TipoNormal;
 import Modelo.Ataques.AtaqueRapido;
 
