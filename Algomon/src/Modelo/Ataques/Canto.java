@@ -1,7 +1,6 @@
 package Modelo.Ataques;
 
 import Modelo.Tipos.TipoNormal;
-import Modelo.Tipos.Tipo;
 import Modelo.Algomon.Algomon;
 import Modelo.Estados.EstadoDormido;
 
