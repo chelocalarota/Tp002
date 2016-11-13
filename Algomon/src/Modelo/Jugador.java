@@ -8,9 +8,9 @@ import Modelo.Algomon.*;
 import Modelo.Items.Item;
 
 public class Jugador {
-	List<Algomon> algomonDisponibles;
-	List<Item> itemsDisponibles;
-	Algomon algomonActivo;
+	private List<Algomon> algomonDisponibles;
+	private List<Item> itemsDisponibles;
+	private Algomon algomonActivo;
 	
 	public Jugador(){
 		algomonDisponibles = new ArrayList<Algomon>();
