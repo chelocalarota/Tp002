@@ -9,7 +9,7 @@ import Modelo.Items.Item;
 import Modelo.Tipos.Tipo;
 import Modelo.Ataques.Ataque;
 
-public class Algomon {
+public abstract class Algomon {
 	protected Tipo tipo;
 	protected double vida;
 	protected double vidaOriginal;
