@@ -2,6 +2,7 @@ package Modelo.Ataques;
 
 import Modelo.Tipos.Tipo;
 import Modelo.Algomon.Algomon;
+import Modelo.Algomon.SinPuntosDePoderException;
 
 public abstract class Ataque {
 	private double potencia;
@@ -37,9 +38,13 @@ public abstract class Ataque {
 		this.cantidad-=1;
 	}
 	
-	public int getPuntosDePoder(){
-		return this.cantidad;
+	public void getPuntosDePoderEsCero()throws SinPuntosDePoderException{
+		if (this.cantidad == 0){
+			throw new SinPuntosDePoderException("");
+		}
 	}
+	
+	
 	
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;

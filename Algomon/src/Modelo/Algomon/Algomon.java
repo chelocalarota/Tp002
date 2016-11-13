@@ -23,9 +23,8 @@ public class Algomon {
 		this.estadoEfimero.accion(this);
 		
 		Ataque ataque = ataques.get(nombreAtaque);
-		if (ataque.getPuntosDePoder()==0){
-			throw new SinPuntosDePoderException("");
-		}
+		ataque.getPuntosDePoderEsCero();
+
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
