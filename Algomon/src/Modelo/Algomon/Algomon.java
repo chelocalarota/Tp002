@@ -20,10 +20,8 @@ public class Algomon {
 	public Ataque ataque(String nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
 
 		estadoPersistente.accion(this);
-
-		if(this.estadoEfimero.accion(this)){
-			throw new EstaDormidoException("");
-		}
+		this.estadoEfimero.accion(this);
+		
 		Ataque ataque = ataques.get(nombreAtaque);
 		if (ataque.getPuntosDePoder()==0){
 			throw new SinPuntosDePoderException("");

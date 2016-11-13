@@ -1,6 +1,7 @@
 package Modelo.Estados;
 
 import Modelo.Algomon.Algomon;
+import Modelo.Algomon.EstaDormidoException;
 
 public class EstadoNormal implements Estado {
 
@@ -10,9 +11,7 @@ public class EstadoNormal implements Estado {
 	}
 
 	@Override
-	public boolean accion(Algomon unAlgomon) {
-		
-		return false;
+	public void accion(Algomon unAlgomon) throws EstaDormidoException{
 	}
 
 }

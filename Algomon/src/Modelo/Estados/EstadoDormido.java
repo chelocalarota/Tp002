@@ -1,6 +1,7 @@
 package Modelo.Estados;
 
 import Modelo.Algomon.Algomon;
+import Modelo.Algomon.EstaDormidoException;
 
 public class EstadoDormido implements Estado {
 	int turnos;
@@ -13,13 +14,13 @@ public class EstadoDormido implements Estado {
 		return false;
 	}
 	@Override
-	public boolean accion(Algomon unAlgomon) {
+	public void accion(Algomon unAlgomon) throws EstaDormidoException {
 		if (this.turnos ==0){
 			unAlgomon.cambiarEstadoEfimero(new EstadoNormal());
-			return false;
+			return ;
 		}
 		this.turnos-=1;
-		return true;
+		throw new EstaDormidoException("");
 	}
 	
 }
