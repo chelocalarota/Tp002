@@ -6,11 +6,11 @@ public class SuperPocion implements Item {
 	int cantidadDeUsos;
 
 	public SuperPocion(){
-		cantidadDeUsos=2;
+		cantidadDeUsos = 2;
 	}
 	@Override
 	public boolean sinUsosDisponibles() {
-		return this.cantidadDeUsos==0;
+		return this.cantidadDeUsos == 0;
 	}
 
 	@Override
@@ -19,5 +19,4 @@ public class SuperPocion implements Item {
 			algomon.cambiarVida(40);
 		}
 	}
-
 }

@@ -2,7 +2,6 @@ package modelo.tipos;
 
 public class TipoAgua implements Tipo {
 
-
 	@Override
 	public double respuestaAFuego() {
 		return 2.0;
@@ -27,5 +26,4 @@ public class TipoAgua implements Tipo {
 	public double reaccionATipo(Tipo unTipo) {
 		return unTipo.respuestaAAgua();
 	}
-
 }

@@ -26,5 +26,4 @@ public class TipoFuego implements Tipo {
 	public double reaccionATipo(Tipo unTipo) {
 		return unTipo.respuestaAFuego();
 	}
-
 }

@@ -4,12 +4,14 @@ import modelo.algomon.Algomon;
 
 public class Pocion implements Item {
 	int cantidadDeUsos;
+	
 	public Pocion(){
 		cantidadDeUsos = 4;
 	}
+	
 	@Override
 	public boolean sinUsosDisponibles() {
-		return cantidadDeUsos ==0;
+		return cantidadDeUsos == 0;
 	}
 
 	@Override
@@ -18,5 +20,4 @@ public class Pocion implements Item {
 			algomon.cambiarVida(20);
 		}
 	}
-
 }

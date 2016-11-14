@@ -7,11 +7,12 @@ public class Restaurador implements Item {
 	int cantidadDeUsos;
 	
 	public Restaurador(){
-		cantidadDeUsos=3;
+		cantidadDeUsos = 3;
 	}
+	
 	@Override
 	public boolean sinUsosDisponibles() {
-		return this.cantidadDeUsos==0;
+		return this.cantidadDeUsos == 0;
 	}
 
 	@Override
@@ -19,5 +20,4 @@ public class Restaurador implements Item {
 		algomon.cambiarEstadoEfimero(new EstadoNormal());
 		algomon.cambiarEstadoPersistente(new EstadoNormal());
 	}
-
 }

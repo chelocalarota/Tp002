@@ -17,10 +17,11 @@ public class Jugador {
 		itemsDisponibles = new ArrayList<Item>();
 	}
 	
-	public void AgregarAlgomon(Algomon unAlgomon){
+	public void agregarAlgomon(Algomon unAlgomon){
 		this.algomonDisponibles.add(unAlgomon);
 	}
-	public void ElegirAlgomonActivo(int indice) throws PokemonMuertoException{
+	
+	public void elegirAlgomonActivo(int indice) throws PokemonMuertoException{
 		/**
 		 * Los Pokemon estaran en un orden. El mismo que eligio el jugador
 		 * Cuando uno decide cambiar, elegir� el Algomon numero 2, por ejemplo,
@@ -33,10 +34,11 @@ public class Jugador {
 		this.algomonActivo= unAlgomon;
 	}
 	
-	public void ElegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
+	public void elegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
 		this.algomonActivo.ataque(ataqueElegido);
 	}
-	public void UsarItem(int numeroItem) throws SinUsosDisponiblesException{
+	
+	public void usarItem(int numeroItem) throws SinUsosDisponiblesException{
 		/**
 		 * Esto tambien puede manejarse igual que con los Pokemon, en el metodo
 		 * elegirAlgomonActivo

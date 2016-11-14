@@ -1,7 +1,6 @@
 package modelo.algomon;
 
 public class SinUsosDisponiblesException extends Exception {
-
 	/**
 	 * 
 	 */

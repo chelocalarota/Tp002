@@ -18,7 +18,6 @@ public abstract class Ataque {
 	}
 	
 	public void setTipo(Tipo tipo){
-		
 		this.tipo = tipo;
 	}
 	
@@ -44,17 +43,16 @@ public abstract class Ataque {
 		}
 	}
 	
-	
-	
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;
 	}
+	
 	public void consecuenciaPropiaDeAtaque(Algomon unAlgomonAtacante, int danio){
 		return;
 	}
 
 	public void agregarPuntosDePoder(int cantidad) {
-		this.cantidad+=cantidad;
+		this.cantidad += cantidad;
 	}
 }
 

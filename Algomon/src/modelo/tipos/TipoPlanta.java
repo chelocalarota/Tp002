@@ -26,5 +26,4 @@ public class TipoPlanta implements Tipo {
 	public double reaccionATipo(Tipo unTipo) {
 		return unTipo.respuestaAPlanta();
 	}
-
 }

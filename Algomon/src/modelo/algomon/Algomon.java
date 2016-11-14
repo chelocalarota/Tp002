@@ -68,7 +68,7 @@ public abstract class Algomon {
 		this.vida = this.vida-(int)danioResultante;
 
 		unAtaque.cambioDeEstado(this);
-		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante,(int)danioResultante);
+		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante, (int)danioResultante);
 
 		return this.vida;
 	}
@@ -81,11 +81,9 @@ public abstract class Algomon {
 		unItem.aplicarEfecto(this);
 	}
 	
-	public ArrayList<Ataque> ObtenerTodosLosAtaques(){
+	public ArrayList<Ataque> obtenerTodosLosAtaques(){
 		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
 		listaDeAtaques.addAll(this.ataques.values());
 		return listaDeAtaques;
 	}
-
-
 }

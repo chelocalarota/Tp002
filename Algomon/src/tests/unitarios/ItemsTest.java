@@ -87,8 +87,8 @@ public class ItemsTest {
 		Item vitamina = new Vitamina();
 		Algomon squirtle1 = new Squirtle();
 		Algomon squirtle2 = new Squirtle();
-		ArrayList<Ataque> listaDeAtaques = squirtle1.ObtenerTodosLosAtaques();
-		ArrayList<Ataque> listaDeAtaques2 = squirtle2.ObtenerTodosLosAtaques();
+		ArrayList<Ataque> listaDeAtaques = squirtle1.obtenerTodosLosAtaques();
+		ArrayList<Ataque> listaDeAtaques2 = squirtle2.obtenerTodosLosAtaques();
 		squirtle1.usarItem(vitamina);
 		for (int i = 0; i < listaDeAtaques.size(); i++){
 			assertEquals(listaDeAtaques.get(i).getCantidad(),listaDeAtaques2.get(i).getCantidad()+2);

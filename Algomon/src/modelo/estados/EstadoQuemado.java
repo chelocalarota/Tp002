@@ -5,7 +5,6 @@ import modelo.algomon.EstaDormidoException;
 
 public class EstadoQuemado implements Estado {
 
-
 	@Override
 	public boolean esEstadoNormal() {
 		return false;

@@ -26,5 +26,4 @@ public class TipoNormal implements Tipo {
 	public double reaccionATipo(Tipo unTipo) {
 		return unTipo.respuestaANormal();
 	}
-
 }

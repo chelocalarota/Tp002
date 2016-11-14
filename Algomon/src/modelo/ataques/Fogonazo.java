@@ -5,11 +5,13 @@ import modelo.estados.EstadoQuemado;
 import modelo.tipos.TipoFuego;
 
 public class Fogonazo extends Ataque {
+	
 	public Fogonazo(){
 		this.setPotencia(2);
 		this.setCantidad(4);
 		this.setTipo(new TipoFuego());
 	}
+	
 	public void cambioDeEstado(Algomon unAlgomon){
 		unAlgomon.cambiarEstadoPersistente(new EstadoQuemado());
 	}
