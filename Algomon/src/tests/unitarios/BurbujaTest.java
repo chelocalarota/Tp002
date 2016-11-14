@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Tipos.TipoAgua;
-import Modelo.Ataques.Burbuja;
+import modelo.ataques.Burbuja;
+import modelo.tipos.TipoAgua;
 
 public class BurbujaTest {
 

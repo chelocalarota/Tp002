@@ -8,15 +8,15 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import Modelo.Algomon.Algomon;
-import Modelo.Algomon.Bulbasaur;
-import Modelo.Algomon.Chansey;
-import Modelo.Algomon.Charmander;
-import Modelo.Algomon.EstaDormidoException;
-import Modelo.Algomon.Jigglypuff;
-import Modelo.Algomon.Rattata;
-import Modelo.Algomon.SinPuntosDePoderException;
-import Modelo.Algomon.Squirtle;
+import modelo.algomon.Algomon;
+import modelo.algomon.Bulbasaur;
+import modelo.algomon.Chansey;
+import modelo.algomon.Charmander;
+import modelo.algomon.EstaDormidoException;
+import modelo.algomon.Jigglypuff;
+import modelo.algomon.Rattata;
+import modelo.algomon.SinPuntosDePoderException;
+import modelo.algomon.Squirtle;
 
 public class AtaqueSimplesTest {
 

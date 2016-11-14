@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Tipos.TipoAgua;
-import Modelo.Ataques.CanionDeAgua;
+import modelo.ataques.CanionDeAgua;
+import modelo.tipos.TipoAgua;
 
 public class CanionDeAguaTest {
 

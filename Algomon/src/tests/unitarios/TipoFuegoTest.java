@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Tipos.TipoAgua;
-import Modelo.Tipos.TipoFuego;
-import Modelo.Tipos.TipoNormal;
-import Modelo.Tipos.TipoPlanta;
+import modelo.tipos.TipoAgua;
+import modelo.tipos.TipoFuego;
+import modelo.tipos.TipoNormal;
+import modelo.tipos.TipoPlanta;
 
 public class TipoFuegoTest {
 	@Test

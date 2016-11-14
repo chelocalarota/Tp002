@@ -6,20 +6,20 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Modelo.Algomon.Algomon;
-import Modelo.Algomon.Charmander;
-import Modelo.Algomon.EstaDormidoException;
-import Modelo.Algomon.Jigglypuff;
-import Modelo.Algomon.Rattata;
-import Modelo.Algomon.SinPuntosDePoderException;
-import Modelo.Algomon.SinUsosDisponiblesException;
-import Modelo.Algomon.Squirtle;
-import Modelo.Ataques.Ataque;
-import Modelo.Items.Item;
-import Modelo.Items.Pocion;
-import Modelo.Items.Restaurador;
-import Modelo.Items.SuperPocion;
-import Modelo.Items.Vitamina;
+import modelo.algomon.Algomon;
+import modelo.algomon.Charmander;
+import modelo.algomon.EstaDormidoException;
+import modelo.algomon.Jigglypuff;
+import modelo.algomon.Rattata;
+import modelo.algomon.SinPuntosDePoderException;
+import modelo.algomon.SinUsosDisponiblesException;
+import modelo.algomon.Squirtle;
+import modelo.ataques.Ataque;
+import modelo.items.Item;
+import modelo.items.Pocion;
+import modelo.items.Restaurador;
+import modelo.items.SuperPocion;
+import modelo.items.Vitamina;
 
 public class ItemsTest {
 

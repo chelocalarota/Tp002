@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Modelo.Tipos.TipoFuego;
-import Modelo.Ataques.Brasas;
+import modelo.ataques.Brasas;
+import modelo.tipos.TipoFuego;
 
 public class BrasasTest {
 
