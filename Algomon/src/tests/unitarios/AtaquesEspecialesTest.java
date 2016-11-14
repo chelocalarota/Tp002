@@ -16,6 +16,7 @@ import modelo.algomon.Jigglypuff;
 import modelo.algomon.Rattata;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.Squirtle;
+import modelo.enums.AtaquesEnum;
 
 public class AtaquesEspecialesTest {
 
@@ -30,12 +31,12 @@ public class AtaquesEspecialesTest {
 		TodosLosAlgomones.add(new Squirtle());
 
 		for(Algomon atacado : TodosLosAlgomones){
-			atacado.recibirDanio(Jigglypuff.ataque("Canto"),Jigglypuff);
+			atacado.recibirDanio(Jigglypuff.ataque(AtaquesEnum.CANTO),Jigglypuff);
 			assertFalse(atacado.estaEnEstadoNormal());
 		}
 
 		for(Algomon atacado : TodosLosAlgomones){
-			atacado.recibirDanio(Chansey.ataque("Canto"),Chansey);
+			atacado.recibirDanio(Chansey.ataque(AtaquesEnum.CANTO),Chansey);
 			assertFalse(atacado.estaEnEstadoNormal());
 		}
 
@@ -46,29 +47,29 @@ public class AtaquesEspecialesTest {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		try {
-			Jigglypuff.recibirDanio(Chansey.ataque("Canto"),Chansey);
+			Jigglypuff.recibirDanio(Chansey.ataque(AtaquesEnum.CANTO),Chansey);
 		} catch (EstaDormidoException e) {
 			e.printStackTrace();
 			fail("no deberia haber pasado por aca");
 		}
 		try {
-			 Jigglypuff.ataque("Ataque Rapido");
+			 Jigglypuff.ataque(AtaquesEnum.ATAQUE_RAPIDO);
 		}
 		catch (EstaDormidoException e){
 			assertTrue(true);
 		}
 		try {
-			Jigglypuff.ataque("Ataque Rapido");
+			Jigglypuff.ataque(AtaquesEnum.ATAQUE_RAPIDO);
 		}catch (EstaDormidoException e){
 			assertTrue(true);
 		}
 		try {
-			Jigglypuff.ataque("Ataque Rapido");
+			Jigglypuff.ataque(AtaquesEnum.ATAQUE_RAPIDO);
 		}catch (EstaDormidoException e){
 			assertTrue(true);
 		}
 		try {
-			Jigglypuff.ataque("Ataque Rapido");
+			Jigglypuff.ataque(AtaquesEnum.ATAQUE_RAPIDO);
 		}catch (EstaDormidoException e){
 			assertTrue(false);
 	}
@@ -82,7 +83,7 @@ public class AtaquesEspecialesTest {
 		int vidaBulbasaur = Bulbasaur.getVida();
 		int vidaCharmander = Charmander.getVida();
 
-		Charmander.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
+		Charmander.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
 
 		assertEquals(vidaCharmander - 7,Charmander.getVida());
 		assertEquals(vidaBulbasaur+2,Bulbasaur.getVida());
@@ -96,7 +97,7 @@ public class AtaquesEspecialesTest {
 		int vidaBulbasor = Bulbasaur.getVida();
 		int vidaSquirtle = Squirtle.getVida();
 
-		Squirtle.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
+		Squirtle.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
 
 		assertEquals(vidaSquirtle - 30,Squirtle.getVida());
 		assertEquals(vidaBulbasor+9,Bulbasaur.getVida());
@@ -117,7 +118,7 @@ public class AtaquesEspecialesTest {
 			int vidaBulbasor = Bulbasaur.getVida();
 			int vidaAtacado = atacado.getVida();
 
-			atacado.recibirDanio(Bulbasaur.ataque("Chupavidas"),Bulbasaur);
+			atacado.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
 
 			assertEquals(vidaAtacado - 15,atacado.getVida());
 			assertEquals(vidaBulbasor + 4,Bulbasaur.getVida());
@@ -135,7 +136,7 @@ public class AtaquesEspecialesTest {
 
 		int diezporcientoVidaOriginal = (int)(Squirtle.getVida() * 0.1);
 
-		Squirtle.recibirDanio(Charmander.ataque("Fogonazo"), Charmander);
+		Squirtle.recibirDanio(Charmander.ataque(AtaquesEnum.FOGONAZO), Charmander);
 
 
 
@@ -143,18 +144,18 @@ public class AtaquesEspecialesTest {
 
 			int vida = Squirtle.getVida();
 
-			Squirtle.ataque("Burbuja");
+			Squirtle.ataque(AtaquesEnum.BURBUJA);
 
 			assertEquals(vida - diezporcientoVidaOriginal,Squirtle.getVida());
 		}
 
-		Squirtle.recibirDanio(Rattata.ataque("Fogonazo"), Rattata);
+		Squirtle.recibirDanio(Rattata.ataque(AtaquesEnum.FOGONAZO), Rattata);
 
 		for(int i = 0; i<4 ; i++){
 
 			int vida = Squirtle.getVida();
 
-			Squirtle.ataque("Burbuja");
+			Squirtle.ataque(AtaquesEnum.BURBUJA);
 
 			assertEquals(vida - diezporcientoVidaOriginal,Squirtle.getVida());
 		}

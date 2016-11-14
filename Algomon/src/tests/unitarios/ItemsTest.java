@@ -15,6 +15,7 @@ import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
 import modelo.algomon.Squirtle;
 import modelo.ataques.Ataque;
+import modelo.enums.AtaquesEnum;
 import modelo.items.Item;
 import modelo.items.Pocion;
 import modelo.items.Restaurador;
@@ -28,7 +29,7 @@ public class ItemsTest {
 		Item pocion = new Pocion();
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
-		rattata.recibirDanio(squirtle.ataque("Canion de Agua"), squirtle);
+		rattata.recibirDanio(squirtle.ataque(AtaquesEnum.CANION_DE_AGUA), squirtle);
 		int vidaRattata = rattata.getVida();
 		rattata.usarItem(pocion);
 
@@ -50,8 +51,8 @@ public class ItemsTest {
 		Item superPocion = new SuperPocion();
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
-		rattata.recibirDanio(squirtle.ataque("Canion de Agua"), squirtle);
-		rattata.recibirDanio(squirtle.ataque("Canion de Agua"), squirtle);
+		rattata.recibirDanio(squirtle.ataque(AtaquesEnum.CANION_DE_AGUA), squirtle);
+		rattata.recibirDanio(squirtle.ataque(AtaquesEnum.CANION_DE_AGUA), squirtle);
 		int vidaRattata = rattata.getVida();
 		rattata.usarItem(superPocion);
 
@@ -73,10 +74,10 @@ public class ItemsTest {
 		Item restaurador = new Restaurador();
 		Algomon jigglypuff = new Jigglypuff();
 		Algomon charmander = new Charmander();
-		charmander.recibirDanio(jigglypuff.ataque("Canto"),jigglypuff);
+		charmander.recibirDanio(jigglypuff.ataque(AtaquesEnum.CANTO),jigglypuff);
 		charmander.usarItem(restaurador);
 		assertTrue(charmander.estaEnEstadoNormal());
-		jigglypuff.recibirDanio(charmander.ataque("Fogonazo"), charmander);
+		jigglypuff.recibirDanio(charmander.ataque(AtaquesEnum.FOGONAZO), charmander);
 		jigglypuff.usarItem(restaurador);
 		assertTrue(jigglypuff.estaEnEstadoNormal());
 	}
@@ -100,7 +101,7 @@ public class ItemsTest {
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
 		for (int i = 1; i < 6; i++){
-			rattata.recibirDanio(squirtle.ataque("Canion de Agua"), squirtle);
+			rattata.recibirDanio(squirtle.ataque(AtaquesEnum.CANION_DE_AGUA), squirtle);
 		}
 		for (int j = 1; j < 6; j++){
 			try{
@@ -119,7 +120,7 @@ public class ItemsTest {
 		Algomon squirtle = new Squirtle();
 		Algomon charmander = new Charmander();
 		for (int i = 1; i < 3; i++){
-			charmander.recibirDanio(squirtle.ataque("Canion de Agua"), squirtle);
+			charmander.recibirDanio(squirtle.ataque(AtaquesEnum.CANION_DE_AGUA), squirtle);
 		}
 		for (int j = 1; j < 3; j++){
 			try{
@@ -138,7 +139,7 @@ public class ItemsTest {
 		Algomon jigglypuff = new Jigglypuff();
 		Algomon charmander = new Charmander();
 		for (int i = 1; i < 4; i++){
-			charmander.recibirDanio(jigglypuff.ataque("Canto"), jigglypuff);
+			charmander.recibirDanio(jigglypuff.ataque(AtaquesEnum.CANTO), jigglypuff);
 			try{
 				charmander.usarItem(restaurador);
 			}
@@ -148,7 +149,7 @@ public class ItemsTest {
 		}
 
 		for (int j = 1; j < 4; j++){
-			jigglypuff.recibirDanio(charmander.ataque("Fogonazo"), charmander);
+			jigglypuff.recibirDanio(charmander.ataque(AtaquesEnum.FOGONAZO), charmander);
 			try{
 				jigglypuff.usarItem(restaurador);
 			}

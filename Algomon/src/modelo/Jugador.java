@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.algomon.*;
+import modelo.enums.AtaquesEnum;
 import modelo.items.Item;
 
 public class Jugador {
@@ -32,7 +33,7 @@ public class Jugador {
 		this.algomonActivo= unAlgomon;
 	}
 	
-	public void ElegirAtaque(String ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
+	public void ElegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
 		this.algomonActivo.ataque(ataqueElegido);
 	}
 	public void UsarItem(int numeroItem) throws SinUsosDisponiblesException{

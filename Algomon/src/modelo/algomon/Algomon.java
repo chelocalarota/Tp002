@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import modelo.ataques.Ataque;
+import modelo.enums.AtaquesEnum;
 import modelo.estados.*;
 import modelo.items.Item;
 import modelo.tipos.Tipo;
@@ -13,11 +14,11 @@ public abstract class Algomon {
 	protected Tipo tipo;
 	protected double vida;
 	protected double vidaOriginal;
-	protected Map<String, Ataque> ataques;
+	protected Map<AtaquesEnum, Ataque> ataques;
 	protected Estado estadoEfimero;
 	protected Estado estadoPersistente;
 
-	public Ataque ataque(String nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
+	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
 
 		estadoPersistente.accion(this);
 		this.estadoEfimero.accion(this);
