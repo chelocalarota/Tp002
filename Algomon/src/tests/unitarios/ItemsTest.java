@@ -36,6 +36,16 @@ public class ItemsTest {
 	}
 
 	@Test
+	public void usarPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+		Item pocion = new Pocion();
+		Algomon rattata = new Rattata();
+		int vidaRattata = rattata.getVida();
+		rattata.usarItem(pocion);
+
+		assertEquals(vidaRattata, rattata.getVida());
+	}
+
+	@Test
 	public void usarSuperPocion() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
 		Item superPocion = new SuperPocion();
 		Algomon squirtle = new Squirtle();
@@ -46,6 +56,16 @@ public class ItemsTest {
 		rattata.usarItem(superPocion);
 
 		assertEquals(vidaRattata+40, rattata.getVida());
+	}
+
+	@Test
+	public void usarSuperPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+		Item superPocion = new SuperPocion();
+		Algomon rattata = new Rattata();
+		int vidaRattata = rattata.getVida();
+		rattata.usarItem(superPocion);
+
+		assertEquals(vidaRattata, rattata.getVida());
 	}
 
 	@Test

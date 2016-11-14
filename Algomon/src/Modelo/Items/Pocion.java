@@ -14,7 +14,9 @@ public class Pocion implements Item {
 
 	@Override
 	public void aplicarEfecto(Algomon algomon) {
-		algomon.cambiarVida(20);
+		if (algomon.getVida() != algomon.getVidaOriginal()){
+			algomon.cambiarVida(20);
+		}
 	}
 
 }

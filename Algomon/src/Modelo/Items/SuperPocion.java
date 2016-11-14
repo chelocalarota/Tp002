@@ -15,7 +15,9 @@ public class SuperPocion implements Item {
 
 	@Override
 	public void aplicarEfecto(Algomon algomon) {
-		algomon.cambiarVida(40);
+		if (algomon.getVida() != algomon.getVidaOriginal()){
+			algomon.cambiarVida(40);
+		}
 	}
 
 }
