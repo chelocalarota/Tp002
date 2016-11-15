@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import Modelo.TipoPlanta;
-import Modelo.Ataques.LatigoCepa;
+import modelo.ataques.LatigoCepa;
+import modelo.tipos.TipoPlanta;
 
 public class LatigoCepaTest {
 	

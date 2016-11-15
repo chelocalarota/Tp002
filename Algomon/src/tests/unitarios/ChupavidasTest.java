@@ -2,10 +2,10 @@ package tests.unitarios;
 
 import static org.junit.Assert.*;
 
-import Modelo.TipoPlanta;
-import Modelo.Ataques.Chupavidas;
-
 import org.junit.Test;
+
+import modelo.ataques.Chupavidas;
+import modelo.tipos.TipoPlanta;
 
 public class ChupavidasTest {
 
