@@ -58,7 +58,7 @@ public abstract class Algomon {
 		return tipo;
 	}
 
-	public double recibirDanio(Ataque unAtaque, Algomon unAlgomonAtacante){
+	public double recibirDanio(Ataque unAtaque, Algomon unAlgomonAtacante) throws PokemonMuertoException{
 
 		Tipo tipoAtacante = unAtaque.getTipo();
 
@@ -69,7 +69,9 @@ public abstract class Algomon {
 
 		unAtaque.cambioDeEstado(this);
 		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante, (int)danioResultante);
-
+		if(this.vida<=0){
+			throw new PokemonMuertoException("");
+		}
 		return this.vida;
 	}
 

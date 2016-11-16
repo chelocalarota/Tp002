@@ -53,4 +53,13 @@ public class Jugador {
 	public Algomon getPokemonActivo(){
 		return this.algomonActivo;
 	}
+
+	public Boolean verificarVictoria() {
+		for (Algomon algomon: this.algomonDisponibles){
+			if(algomon.getVida()>0){
+				return false;
+			}
+		}
+		return true;
+	}
 }

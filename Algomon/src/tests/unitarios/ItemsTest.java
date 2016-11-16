@@ -10,6 +10,7 @@ import modelo.algomon.Algomon;
 import modelo.algomon.Charmander;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.Jigglypuff;
+import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.Rattata;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
@@ -25,7 +26,7 @@ import modelo.items.Vitamina;
 public class ItemsTest {
 
 	@Test
-	public void usarPocion() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarPocion() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item pocion = new Pocion();
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
@@ -47,7 +48,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarSuperPocion() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarSuperPocion() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item superPocion = new SuperPocion();
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
@@ -70,7 +71,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarRestaurador() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarRestaurador() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item restaurador = new Restaurador();
 		Algomon jigglypuff = new Jigglypuff();
 		Algomon charmander = new Charmander();
@@ -96,7 +97,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarPocionMasDe4Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException{
+	public void usarPocionMasDe4Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException{
 		Item pocion = new Pocion();
 		Algomon squirtle = new Squirtle();
 		Algomon rattata = new Rattata();
@@ -115,7 +116,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarSuperPocionMasDe2Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException{
+	public void usarSuperPocionMasDe2Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException{
 		Item superPocion = new SuperPocion();
 		Algomon squirtle = new Squirtle();
 		Algomon charmander = new Charmander();
@@ -134,7 +135,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarRestauradorMasDe3Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException{
+	public void usarRestauradorMasDe3Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException{
 		Item restaurador = new Restaurador();
 		Algomon jigglypuff = new Jigglypuff();
 		Algomon charmander = new Charmander();

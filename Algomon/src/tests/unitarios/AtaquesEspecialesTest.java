@@ -13,6 +13,7 @@ import modelo.algomon.Chansey;
 import modelo.algomon.Charmander;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.Jigglypuff;
+import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.Rattata;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.Squirtle;
@@ -21,7 +22,7 @@ import modelo.enums.AtaquesEnum;
 public class AtaquesEspecialesTest {
 
 	@Test
-	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException {
+	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
@@ -43,7 +44,7 @@ public class AtaquesEspecialesTest {
 	}
 
 	@Test
-	public void test02UnAlgomonDormidoNoPuedeAtacarPorTresTurnos() throws SinPuntosDePoderException{
+	public void test02UnAlgomonDormidoNoPuedeAtacarPorTresTurnos() throws SinPuntosDePoderException, PokemonMuertoException{
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		try {
@@ -75,7 +76,7 @@ public class AtaquesEspecialesTest {
 	}
 	}
 	@Test
-	public void test03ChupaVidasBulbasaurVsCharmander() throws SinPuntosDePoderException, EstaDormidoException{
+	public void test03ChupaVidasBulbasaurVsCharmander() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Charmander = new Charmander();
@@ -89,7 +90,7 @@ public class AtaquesEspecialesTest {
 		assertEquals(vidaBulbasaur+2,Bulbasaur.getVida());
 	}
 	@Test
-	public void test04ChupaVidasBulbasaurVsSquirtle() throws SinPuntosDePoderException, EstaDormidoException{
+	public void test04ChupaVidasBulbasaurVsSquirtle() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Squirtle = new Squirtle();
@@ -104,7 +105,7 @@ public class AtaquesEspecialesTest {
 	}
 
 	@Test
-	public void test05ChupaVidasBulbasaurVsOtrosAlgomones() throws SinPuntosDePoderException, EstaDormidoException{
+	public void test05ChupaVidasBulbasaurVsOtrosAlgomones() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Bulbasaur = new Bulbasaur();
 		List<Algomon> OtrosAlgomones = new ArrayList<Algomon>();
@@ -127,7 +128,7 @@ public class AtaquesEspecialesTest {
 
 	}
 	@Test
-	public void test06CharmanderYRattataAtacanConFogonazo()throws SinPuntosDePoderException, EstaDormidoException{
+	public void test06CharmanderYRattataAtacanConFogonazo()throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Charmander = new Charmander();
 		Algomon Rattata = new Rattata();

@@ -10,18 +10,42 @@ import modelo.enums.AtaquesEnum;
 public class JuegoTest {
 
 	@Test
-	public void JuegoBasico() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+	public void AtaqueBasico() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException{
 		Juego juego = new Juego();
 		juego.agregarCharmander();
 		juego.elegirPokemonInicial(0);
-		juego.obtenerJugadorActual().getPokemonActivo().getVida();
 		juego.cambiarJugador();
 		juego.agregarSquirtle();
 		juego.elegirPokemonInicial(0);
-		juego.obtenerJugadorActual().getPokemonActivo().getVida();
 		juego.JugarTurnoAtaque(AtaquesEnum.BURBUJA);
-		
-		
 		assertEquals(juego.obtenerJugadorDefensor().getPokemonActivo().getVida(),150);
 	}
+	@Test
+	public void unJugadorGana() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+		Juego juego = new Juego();
+		juego.agregarCharmander();
+		try {
+			juego.elegirPokemonInicial(0);
+		} catch (PokemonMuertoException e1) {
+			assertTrue(false);
+		}
+		juego.obtenerJugadorActual().getPokemonActivo().getVida();
+		juego.cambiarJugador();
+		juego.agregarSquirtle();
+		try {
+			juego.elegirPokemonInicial(0);
+		} catch (PokemonMuertoException e1) {
+			assertTrue(false);
+		}
+		while (true){
+			
+			try {
+				juego.JugarTurnoAtaque(AtaquesEnum.BURBUJA);
+				juego.pasarTurno();
+		} 
+		 catch (VictoriaObtenidaException e) {
+				assertTrue(true);
+			}
+		}
+}
 }
