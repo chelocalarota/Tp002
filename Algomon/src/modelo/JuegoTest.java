@@ -24,6 +24,7 @@ public class JuegoTest {
 	public void unJugadorGana() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		Juego juego = new Juego();
 		juego.agregarCharmander();
+		juego.agregarBulbasaur();
 		try {
 			juego.elegirPokemonInicial(0);
 		} catch (PokemonMuertoException e1) {
@@ -32,6 +33,9 @@ public class JuegoTest {
 		juego.obtenerJugadorActual().getPokemonActivo().getVida();
 		juego.cambiarJugador();
 		juego.agregarSquirtle();
+
+		assertEquals(juego.obtenerJugadorActual().obtenerAlgomon().size(),1);
+		assertEquals(juego.obtenerJugadorDefensor().obtenerAlgomon().size(),2);
 		try {
 			juego.elegirPokemonInicial(0);
 		} catch (PokemonMuertoException e1) {
@@ -42,10 +46,16 @@ public class JuegoTest {
 			try {
 				juego.JugarTurnoAtaque(AtaquesEnum.BURBUJA);
 				juego.pasarTurno();
-		} 
+			} 
 		 catch (VictoriaObtenidaException e) {
-				assertTrue(true);
+				assertTrue(false);
+			} 
+		catch (PokemonMuertoException e) {
+			juego.obtenerJugadorDefensor().elegirAlgomonActivo(1);
+			//Cuando se muere un algomon, lo elimina de la lista del jugador
+			assertTrue(true);
+			break;
 			}
 		}
-}
+	}
 }

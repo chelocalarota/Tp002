@@ -1,7 +1,7 @@
 package modelo;
 
 
-import java.util.List;
+
 
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
@@ -10,8 +10,6 @@ import modelo.enums.AtaquesEnum;
 public class Juego {
 	private Jugador jugador1;
 	private Jugador jugador2;
-	private List<Ataque> listaDeAtaquesJugador1;
-	private List<Ataque> listaDeAtaquesJugador2;
 	private Cola colaAtacante;
 	private Cola colaDefensor;
 	
@@ -61,6 +59,9 @@ public class Juego {
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
 		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
 		verificarVictoria();
+		if (algomonDefensor.getVida()<0){
+			throw new PokemonMuertoException("");
+		}
 		this.cambiarJugador();
 	}
 

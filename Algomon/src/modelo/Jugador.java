@@ -13,6 +13,10 @@ public class Jugador {
 	private List<Item> itemsDisponibles;
 	private Algomon algomonActivo;
 	
+	
+	public List<Algomon> obtenerAlgomon(){
+		return this.algomonDisponibles;
+	}
 	public Jugador(){
 		algomonDisponibles = new ArrayList<Algomon>();
 		itemsDisponibles = new ArrayList<Item>();
