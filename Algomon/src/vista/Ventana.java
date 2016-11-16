@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,7 +25,7 @@ public class Ventana extends Application {
 		ImageView iv1 = new ImageView();
         iv1.setImage(image1);
 
-        Image image2 = new Image("vista/Pikachu.png",200,200,false,false);
+        Image image2 = new Image("vista/Pikachu.png",200,200,false,true);
 		ImageView iv2 = new ImageView();
         iv2.setImage(image2);
 
@@ -47,20 +48,25 @@ public class Ventana extends Application {
 
         h.getChildren().addAll(btn4,btn5);
         h.setSpacing(25);
-        h.setAlignment(Pos.CENTER);
+        h.setAlignment(Pos.BASELINE_CENTER);
 		v.getChildren().addAll(iv1,btn1,btn2, btn3,h);
 		v.setSpacing(20);
-		v.setAlignment(Pos.CENTER);
+		v.setAlignment(Pos.BASELINE_CENTER);
 		grid.add(v,2,2);
-		grid.add(iv2, 3, 2);
+		grid.add(iv2,3,6);
+		BackgroundImage myBI= new BackgroundImage(new Image("vista/fondo.jpg",220,220,false,false), null, null, null, null);
+		grid.setBackground(new Background(myBI));
 		GridPane.setHalignment(iv2, HPos.CENTER);
+		
+		Scene scene = new Scene(grid, 681, 600);
 
-		Scene scene = new Scene(grid, 600, 600);
-
-
-        Stage.setTitle("Algomon");
+		
+		
+        Stage.setTitle("Algomon-v0.2");
         Stage.setScene(scene);
         Stage.sizeToScene();
+        Stage.centerOnScreen();
+        Stage.setResizable(false);
         Stage.show();
     }
 	public static void main(String[] args) {
