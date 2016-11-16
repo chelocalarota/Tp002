@@ -1,5 +1,4 @@
 package modelo;
-import java.util.Collections;
 import java.util.LinkedList;
 public class Cola {
 	LinkedList<Jugador> cola;
