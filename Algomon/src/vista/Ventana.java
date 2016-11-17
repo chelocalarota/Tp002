@@ -24,7 +24,7 @@ public class Ventana extends Application {
 	@Override
 	public void start(Stage Stage) {
 		
-		AudioClip mApplause = new AudioClip(this.getClass().getResource("/vista/intro pokemon.mp3").toExternalForm());
+		AudioClip mApplause = new AudioClip(this.getClass().getResource("/vista/intro Pokemon.mp3").toExternalForm());
 		mApplause.play();
 		mApplause.setCycleCount(AudioClip.INDEFINITE);
 		mApplause.play();
@@ -44,7 +44,7 @@ public class Ventana extends Application {
 		HBox h = new HBox();
 		VBox v = new VBox();
 		GridPane grid = new GridPane();
-		Image imageDecline = new Image("vista/pokeball.jpg",30,30,true,true);
+		Image imageDecline = new Image("vista/Pokeball.png",30,30,true,true);
 		Button btn1 = new Button("Nuevo Juego",new ImageView(imageDecline));
 		btn1.setEffect(r);
 		btn1.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
