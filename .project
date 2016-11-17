@@ -16,34 +16,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Algomon/src/vista/Algomon.png</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Algomon.png</locationURI>
-		</link>
-		<link>
-			<name>Algomon/src/vista/Pikachu.png</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Pikachu.png</locationURI>
-		</link>
-		<link>
-			<name>Algomon/src/vista/Pokeball.PNG</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Pokeball.PNG</locationURI>
-		</link>
-		<link>
 			<name>Algomon/src/vista/Ventana.class</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Ventana.class</locationURI>
-		</link>
-		<link>
-			<name>Algomon/src/vista/fondo.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/fondo.jpg</locationURI>
-		</link>
-		<link>
-			<name>Algomon/src/vista/intro Pokemon.mp3</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/intro%20Pokemon.mp3</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
