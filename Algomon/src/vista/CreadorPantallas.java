@@ -147,86 +147,14 @@ public class CreadorPantallas {
 				boton.setMaxSize(280, contenedorHorizontalSuperior.getPrefHeight());
 				boton.setMinSize(280, contenedorHorizontalSuperior.getPrefHeight());
 			}
-			
+			creadorBoton.setearBotonAlgomon(listaDeBotones,botonContinuar,this.controladorLogico);
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
+				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.stage.close();
+				}
 				this.crearPantallaJugador();
 			});
-			
-			botonCharmander.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			botonChansey.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			botonRattata.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			botonBulbasaur.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			botonSquirtle.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			botonJigglypuff.setOnAction(event ->{
-				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.controladorLogico.agregarCharmanderJugadorActual();
-				}
-				else{
-					for (Button boton:listaDeBotones){
-						boton.setDisable(true);
-					}
-					botonContinuar.setDisable(false);
-					
-				}
-			});
-			
-		
 			contenedorVertical.setSpacing(100);
 			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 			contenedorHorizontalSuperior.setSpacing(60);
