@@ -82,7 +82,7 @@ public class CreadorPantallas {
         sombraBoton.setOffsetX(2.0);
         sombraBoton.setColor(Color.PINK);
     	
-        Label label1 = new Label("Jugador 1");
+        Label label1 = new Label("Jugador");
 		Label label2 = new Label("Nombre:");
 		TextField textField = new TextField ();
 		GridPane grilla = new GridPane();
