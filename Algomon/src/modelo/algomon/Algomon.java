@@ -20,9 +20,9 @@ public abstract class Algomon {
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
 
-		estadoPersistente.accion(this);
+		this.estadoPersistente.accion(this);
 		this.estadoEfimero.accion(this);
-		
+
 		Ataque ataque = ataques.get(nombreAtaque);
 		ataque.getPuntosDePoderEsCero();
 
@@ -82,7 +82,7 @@ public abstract class Algomon {
 	public void usarItem(Item unItem) throws SinUsosDisponiblesException {
 		unItem.aplicarEfecto(this);
 	}
-	
+
 	public ArrayList<Ataque> obtenerTodosLosAtaques(){
 		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
 		listaDeAtaques.addAll(this.ataques.values());

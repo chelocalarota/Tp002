@@ -42,14 +42,14 @@ public class JuegoTest {
 			assertTrue(false);
 		}
 		while (true){
-			
+
 			try {
 				juego.JugarTurnoAtaque(AtaquesEnum.BURBUJA);
 				juego.pasarTurno();
-			} 
+			}
 		 catch (VictoriaObtenidaException e) {
 				assertTrue(false);
-			} 
+			}
 		catch (PokemonMuertoException e) {
 			juego.obtenerJugadorDefensor().elegirAlgomonActivo(1);
 			//Cuando se muere un algomon, lo elimina de la lista del jugador
