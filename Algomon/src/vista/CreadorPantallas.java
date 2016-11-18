@@ -1,5 +1,7 @@
 package vista;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -50,7 +52,11 @@ public class CreadorPantallas {
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
         botonNuevoJuego.setOnAction(event ->{
         	musicaPantallaInicial.stop();
+<<<<<<< HEAD
         	this.crearPantallaJugador(this.stage);
+=======
+        	this.crearPantallaJugador();
+>>>>>>> refs/remotes/origin/branchBrian
         	this.controladorLogico.crearJuegoNuevo();
         });
 		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");
@@ -73,17 +79,26 @@ public class CreadorPantallas {
         contenedorVerticalCentral.setAlignment(Pos.BASELINE_CENTER);
         contenedorVerticalIzquierdo.getChildren().addAll(imageViewPikachu);
         contenedorVerticalDerecho.getChildren().addAll(imageViewPikachu2);
-        Scene principal = new Scene(border, 681, 600);
+        Scene principal = new Scene(border, 981, 600);
         this.stage.setScene(principal);
         this.stage.show();
 	}
+<<<<<<< HEAD
 	private void crearPantallaJugador(Stage stage2) {
+=======
+	private void crearPantallaJugador() {
+>>>>>>> refs/remotes/origin/branchBrian
 		DropShadow sombraBoton = new DropShadow();
         sombraBoton.setOffsetY(2.0);
         sombraBoton.setOffsetX(2.0);
         sombraBoton.setColor(Color.PINK);
+<<<<<<< HEAD
 
         Label label1 = new Label("Jugador 1");
+=======
+    	
+        Label label1 = new Label("Jugador");
+>>>>>>> refs/remotes/origin/branchBrian
 		Label label2 = new Label("Nombre:");
 		TextField textField = new TextField ();
 		GridPane grilla = new GridPane();
@@ -98,8 +113,13 @@ public class CreadorPantallas {
 		Button botonAceptar =  creadorBoton.crearBoton("Aceptar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
 		botonAceptar.setOnAction(event ->{
 			this.controladorLogico.setNombreJugadorActual(textField.getText());
+<<<<<<< HEAD
 			this.crearPantallaEleccionAlgomon(stage);
 
+=======
+			this.crearPantallaEleccionAlgomon();
+			
+>>>>>>> refs/remotes/origin/branchBrian
 		});
 		botonAceptar.setEffect(sombraBoton);
 		contenedorHorizontalSuperior.getChildren().addAll(label2, textField);
@@ -110,6 +130,7 @@ public class CreadorPantallas {
 		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
 		contenedorVertical.getChildren().addAll(label1,contenedorHorizontalSuperior,contenedorHorizontalInferior);
 		contenedorVertical.setAlignment(Pos.BASELINE_CENTER);
+<<<<<<< HEAD
 		grilla.add(contenedorVertical,2,2);
 		Scene escenaCargarJugador= new Scene(grilla, 681, 600);
 		stage.setScene(escenaCargarJugador);
@@ -315,5 +336,95 @@ public class CreadorPantallas {
         this.stage.setScene(principal);
         this.stage.show();
 	}
+=======
+		grilla.add(contenedorVertical,4,4);
+		Scene escenaCargarJugador= new Scene(grilla, 981, 600);
+		
+		this.stage.setScene(escenaCargarJugador);
+	}
+	private void crearPantallaEleccionAlgomon() {
+			CreadorImagen creadorImagen = new CreadorImagen();
+			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.PNG", 150, 150, false, true);
+			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("vista/Squirtle.PNG", 150, 150, false, true);
+			ImageView imageViewRattata = creadorImagen.crearImageViewConTamanioEspecifico("vista/rattata.PNG", 150, 150, false, true);
+			ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("vista/Chansey.PNG",150,150,false,true);
+			ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("vista/Bulbasaur.PNG", 150, 150, false, true);
+			ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("vista/jigglypuff.PNG", 150, 150, false, true);
+			VBox contenedorVertical = new VBox();
+			HBox contenedorHorizontalSuperior = new HBox();
+			HBox contenedorHorizontalMedio = new HBox();
+			HBox contenedorHorizontalInferior = new HBox();
+			CreadorBoton creadorBoton = new CreadorBoton();
+			ArrayList<Button> listaDeBotones = new ArrayList<Button>();
+			ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
+			
+			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
+			listaDeBotones.add(botonCharmander);
+			AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/Charmander_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoCharmander);
+			
+			Button botonChansey = creadorBoton.crearBoton("chansey",imageViewChansey);
+			listaDeBotones.add(botonChansey);
+			AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/Chansey_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoChansey);
+			
+			Button botonSquirtle =creadorBoton.crearBoton("squirtle",imageViewSquirtle);
+			listaDeBotones.add(botonSquirtle);
+			AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/Squirtle_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoSquirtle);
+			
+			Button botonRattata =creadorBoton.crearBoton("rattata",imageViewRattata);
+			listaDeBotones.add(botonRattata);
+			AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/Rattata_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoRattata);
+			
+			Button botonBulbasaur =creadorBoton.crearBoton("bulbasaur",imageViewBulbasaur);
+			listaDeBotones.add(botonBulbasaur);
+			AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/Bulbasaur_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoBulbasaur);
+			
+			Button botonJigglypuff =creadorBoton.crearBoton("jigglypuff",imageViewJigglypuff);
+			listaDeBotones.add(botonJigglypuff);
+			AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/Jigglypuff_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoJigglypuff);
+			
+			Button botonContinuar = creadorBoton.crearBoton("Continuar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
+			botonContinuar.setDisable(true);
+			int indice = 0;
+			for (Button boton:listaDeBotones){
+				boton.setStyle("-fx-font: 16 arial; -fx-base: #b6e7c9;");
+				boton.setMaxSize(280, contenedorHorizontalSuperior.getPrefHeight());
+				boton.setMinSize(280, contenedorHorizontalSuperior.getPrefHeight());
+				creadorBoton.setearBotonAlgomon(listaDeBotones, boton,botonContinuar,this.controladorLogico,listaDeSonidos.get(indice));
+				indice+=1;
+			}
+			
+			
+			botonContinuar.setOnAction(event->{
+				this.controladorLogico.cambiarJugador();
+				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.stage.close();
+				}
+				this.crearPantallaJugador();
+			});
+			contenedorVertical.setSpacing(100);
+			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
+			contenedorHorizontalSuperior.setSpacing(60);
+			contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
+			contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
+			contenedorHorizontalMedio.setSpacing(60);
+			contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
+			contenedorHorizontalInferior.getChildren().add(botonContinuar);
+			contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
+			
+			contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
+		    BorderPane border = new BorderPane();
+			border.setTop(contenedorHorizontalSuperior);
+			border.setCenter(contenedorVertical);
+			Scene escenaElegirAlgomon= new Scene(border, 981, 600);
+		    stage.setScene(escenaElegirAlgomon); 
+		}
+	
+>>>>>>> refs/remotes/origin/branchBrian
 	
 }

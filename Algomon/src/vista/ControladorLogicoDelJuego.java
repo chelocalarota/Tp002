@@ -1,6 +1,10 @@
 package vista;
 
 import modelo.Juego;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/branchBrian
 
 public class ControladorLogicoDelJuego {
 
@@ -22,6 +26,18 @@ public class ControladorLogicoDelJuego {
 	}
 	public void agregarBulbasaurJugadorActual() {
 		this.juego.agregarBulbasaur();
+	}
+
+
+	public boolean verificarCantidadAlgomonDeJugadorActual() {
+		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==2){
+			return true;
+		}
+		return false;
+	}
+
+	public void cambiarJugador() {
+		this.juego.cambiarJugador();
 	}
 
 }
