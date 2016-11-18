@@ -12,7 +12,7 @@ public class CreadorImagen {
         return imageView;
 	}
 
-	public ImageView crearImageViewConTamañoEspecifico(String string, int i, int j, boolean b, boolean c) {
+	public ImageView crearImageViewConTamanioEspecifico(String string, int i, int j, boolean b, boolean c) {
 		Image imagen = new Image(string,i,j,b,c);
 		ImageView imageView = new ImageView();
         imageView.setImage(imagen);

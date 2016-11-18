@@ -1,8 +1,6 @@
 package vista;
 
 import modelo.Juego;
-import modelo.Jugador;
-import modelo.algomon.*;
 
 public class ControladorLogicoDelJuego {
 

@@ -28,8 +28,8 @@ public class CreadorPantallas {
 		musicaPantallaInicial.play();
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("vista/Algomon.png");
-        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamañoEspecifico("vista/Pikachu.png",200,200,false,true);
-        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamañoEspecifico("vista/Pikachu.png",200,200,false,true);
+        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("vista/Pikachu.png",200,200,false,true);
+        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/Pikachu.png",200,200,false,true);
 
         BorderPane border = new BorderPane();
         HBox contenedorHorizontal = new HBox();
@@ -47,7 +47,7 @@ public class CreadorPantallas {
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
         botonNuevoJuego.setOnAction(event ->{
         	musicaPantallaInicial.stop();
-        	this.crearPantallaJugador1(this.stage);
+        	this.crearPantallaJugador(this.stage);
         	this.controladorLogico.crearJuegoNuevo();
         });
 		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");
@@ -74,7 +74,7 @@ public class CreadorPantallas {
         this.stage.setScene(principal);
         this.stage.show();
 	}
-	private void crearPantallaJugador1(Stage stage2) {
+	private void crearPantallaJugador(Stage stage2) {
 		DropShadow sombraBoton = new DropShadow();
         sombraBoton.setOffsetY(2.0);
         sombraBoton.setOffsetX(2.0);
@@ -115,21 +115,22 @@ public class CreadorPantallas {
 	private void crearPantallaEleccionAlgomon(Stage stage) {
 		int cantidadAlgomon = 0;
 		CreadorImagen creadorImagen = new CreadorImagen();
-		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamañoEspecifico("vista/charmander.PNG", 150, 150, false, true);
-		ImageView imageViewChansey = creadorImagen.crearImageViewConTamañoEspecifico("vista/Chansey.PNG",150,150,false,true);
+		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.PNG", 150, 150, false, true);
+		ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("vista/Chansey.PNG",150,150,false,true);
 		CreadorBoton creadorBoton = new CreadorBoton();
 		Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
-		//botonCharmander.setOnAction(event ->{
-			//if (cantidadAlgomon == 2){
-				//this.controladorLogico.agregarCharmanderJugadorActual();
-			//}
-			//else{
-				//this.controladorLogico.agregarCharmanderJugadorActual();
-				//CambiarDeScene
-			//}
-		//});
+		botonCharmander.setOnAction(event ->{
+			this.controladorLogico.agregarCharmanderJugadorActual();
+		});
+		cantidadAlgomon+=1;
 		
 		Button botonChansey = creadorBoton.crearBoton("  chansey    ",imageViewChansey);
+		botonChansey.setOnAction(event ->{
+			this.controladorLogico.agregarChanseyJugadorActual();
+		});
+		if (cantidadAlgomon == 3){
+			this.crearPantallaJugador(stage);
+		}
 		VBox contenedorVertical = new VBox();
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalInferior = new HBox();
