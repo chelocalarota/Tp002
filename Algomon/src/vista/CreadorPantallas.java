@@ -49,7 +49,7 @@ public class CreadorPantallas {
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
         botonNuevoJuego.setOnAction(event ->{
         	//musicaPantallaInicial.stop();
-        	this.crearPantallaJugador(this.stage);
+        	this.crearPantallaJugador();
         	this.controladorLogico.crearJuegoNuevo();
         });
 		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");
@@ -72,11 +72,11 @@ public class CreadorPantallas {
         contenedorVerticalCentral.setAlignment(Pos.BASELINE_CENTER);
         contenedorVerticalIzquierdo.getChildren().addAll(imageViewPikachu);
         contenedorVerticalDerecho.getChildren().addAll(imageViewPikachu2);
-        Scene principal = new Scene(border, 681, 600);
+        Scene principal = new Scene(border, 981, 600);
         this.stage.setScene(principal);
         this.stage.show();
 	}
-	private void crearPantallaJugador(Stage stage2) {
+	private void crearPantallaJugador() {
 		DropShadow sombraBoton = new DropShadow();
         sombraBoton.setOffsetY(2.0);
         sombraBoton.setOffsetX(2.0);
@@ -97,7 +97,7 @@ public class CreadorPantallas {
 		Button botonAceptar =  creadorBoton.crearBoton("Aceptar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
 		botonAceptar.setOnAction(event ->{
 			this.controladorLogico.setNombreJugadorActual(textField.getText());
-			this.crearPantallaEleccionAlgomon(stage);
+			this.crearPantallaEleccionAlgomon();
 			
 		});
 		botonAceptar.setEffect(sombraBoton);
@@ -110,10 +110,11 @@ public class CreadorPantallas {
 		contenedorVertical.getChildren().addAll(label1,contenedorHorizontalSuperior,contenedorHorizontalInferior);
 		contenedorVertical.setAlignment(Pos.BASELINE_CENTER);
 		grilla.add(contenedorVertical,4,4);
-		Scene escenaCargarJugador= new Scene(grilla, 981, 700);
-		stage.setScene(escenaCargarJugador);
+		Scene escenaCargarJugador= new Scene(grilla, 981, 600);
+		
+		this.stage.setScene(escenaCargarJugador);
 	}
-	private void crearPantallaEleccionAlgomon(Stage stage) {
+	private void crearPantallaEleccionAlgomon() {
 			CreadorImagen creadorImagen = new CreadorImagen();
 			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.PNG", 150, 150, false, true);
 			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("vista/Squirtle.PNG", 150, 150, false, true);
@@ -125,21 +126,26 @@ public class CreadorPantallas {
 			ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 			listaDeBotones.add(botonCharmander);
-			Button botonChansey = creadorBoton.crearBoton("  chansey    ",imageViewChansey);
+			Button botonChansey = creadorBoton.crearBoton("chansey",imageViewChansey);
 			listaDeBotones.add(botonChansey);
-			Button botonSquirtle =creadorBoton.crearBoton("  squirtle    ",imageViewSquirtle);
+			Button botonSquirtle =creadorBoton.crearBoton("squirtle",imageViewSquirtle);
 			listaDeBotones.add(botonSquirtle);
-			Button botonRattata =creadorBoton.crearBoton("  rattata    ",imageViewRattata);
+			Button botonRattata =creadorBoton.crearBoton("rattata",imageViewRattata);
 			listaDeBotones.add(botonRattata);
-			Button botonBulbasaur =creadorBoton.crearBoton("  bulbasaur    ",imageViewBulbasaur);
+			Button botonBulbasaur =creadorBoton.crearBoton("bulbasaur",imageViewBulbasaur);
 			listaDeBotones.add(botonBulbasaur);
-			Button botonJigglypuff =creadorBoton.crearBoton(" jigglypuff    ",imageViewJigglypuff);
+			Button botonJigglypuff =creadorBoton.crearBoton("jigglypuff",imageViewJigglypuff);
 			listaDeBotones.add(botonJigglypuff);
 			Button botonContinuar = creadorBoton.crearBoton("Continuar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
 			botonContinuar.setDisable(true);
+			for (Button boton:listaDeBotones){
+				boton.setStyle("-fx-font: 16 arial; -fx-base: #b6e7c9;");
+				boton.minWidth(1000);
+				boton.minHeight(1000);
+			}
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
-				this.crearPantallaJugador(stage);
+				this.crearPantallaJugador();
 			});
 			
 			botonCharmander.setOnAction(event ->{
@@ -219,17 +225,21 @@ public class CreadorPantallas {
 			HBox contenedorHorizontalSuperior = new HBox();
 			HBox contenedorHorizontalMedio = new HBox();
 			HBox contenedorHorizontalInferior = new HBox();
+			contenedorVertical.setSpacing(100);
 			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
-			contenedorHorizontalSuperior.setSpacing(10);
+			contenedorHorizontalSuperior.setSpacing(60);
 			contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
 			contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
-			contenedorHorizontalMedio.setSpacing(10);
+			contenedorHorizontalMedio.setSpacing(60);
 			contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
 			contenedorHorizontalInferior.getChildren().add(botonContinuar);
-			contenedorVertical.getChildren().addAll(contenedorHorizontalSuperior,contenedorHorizontalMedio,contenedorHorizontalInferior);
-			GridPane grilla = new GridPane();
-			grilla.add(contenedorVertical,2,2);
-			Scene escenaElegirAlgomon= new Scene(grilla, 681, 600);
+			contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
+			
+			contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
+		    BorderPane border = new BorderPane();
+			border.setTop(contenedorHorizontalSuperior);
+			border.setCenter(contenedorVertical);
+			Scene escenaElegirAlgomon= new Scene(border, 981, 600);
 		    stage.setScene(escenaElegirAlgomon); 
 		}
 	
