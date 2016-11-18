@@ -12,7 +12,7 @@ public class Jugador {
 	private List<Algomon> algomonDisponibles;
 	private List<Item> itemsDisponibles;
 	private Algomon algomonActivo;
-	
+	public String nombre;
 	
 	public List<Algomon> obtenerAlgomon(){
 		return this.algomonDisponibles;
@@ -65,5 +65,8 @@ public class Jugador {
 			}
 		}
 		return true;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

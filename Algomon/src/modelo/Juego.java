@@ -24,6 +24,9 @@ public class Juego {
 		this.colaDefensor.encolar(jugador1);
 	}
 
+	public void setNombreJugadorActual(String nombre){
+		this.obtenerJugadorActual().setNombre(nombre);
+	}
 	public Jugador obtenerJugadorActual() {
 		return this.colaAtacante.verPrimero();
 	}

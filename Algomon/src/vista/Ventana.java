@@ -3,6 +3,10 @@ import java.awt.*;
 
 public class Ventana extends Frame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8520443944205457770L;
 	MenuBar barra = new MenuBar();
 	Menu programa = new Menu("Programa");
 	Menu ayuda = new Menu("Ayuda");
