@@ -16,4 +16,9 @@ public class EstadoQuemado implements Estado {
 		unAlgomon.cambiarVida((int) (-unAlgomon.getVidaOriginal()*0.1));
 	}
 
+	@Override
+	public String asString() {
+		return "Quemado";
+	}
+
 }

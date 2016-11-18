@@ -24,4 +24,7 @@ public class EstadoDormido implements Estado {
 		this.turnos -= 1;
 		throw new EstaDormidoException("");
 	}
+	public String asString(){
+		return "Dormido";
+	}
 }

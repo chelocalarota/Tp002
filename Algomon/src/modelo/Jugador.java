@@ -24,6 +24,9 @@ public class Jugador {
 	
 	public void agregarAlgomon(Algomon unAlgomon){
 		this.algomonDisponibles.add(unAlgomon);
+		if (this.algomonActivo == null){
+			this.algomonActivo = unAlgomon;
+		}
 	}
 	
 	public void elegirAlgomonActivo(int indice) throws PokemonMuertoException{

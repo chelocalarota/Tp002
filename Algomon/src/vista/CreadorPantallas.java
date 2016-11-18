@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import modelo.algomon.Algomon;
 
 public class CreadorPantallas {
 	Stage stage;
@@ -90,14 +91,15 @@ public class CreadorPantallas {
         HBox contenedorEstados = new HBox();
         VBox contenedorEstadosJugador1 = new VBox();
         VBox contenedorEstadosJugador2 = new VBox();
-        
-        contenedorEstadosJugador1.getChildren().add(new Label("VIDA: 100"));
-        contenedorEstadosJugador1.getChildren().add(new Label("ESTADO: NORMAL"));
+        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
         
 
-        contenedorEstadosJugador2.getChildren().add(new Label("VIDA: 100"));
-        contenedorEstadosJugador2.getChildren().add(new Label("ESTADO: NORMAL"));
-        
+        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
+        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
+        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
+
         
         contenedorEstados.getChildren().addAll(contenedorEstadosJugador1, contenedorEstadosJugador2);
        
@@ -319,15 +321,79 @@ public class CreadorPantallas {
 			
 			Button botonContinuar = creadorBoton.crearBoton("Continuar", "-fx-font: 16 arial; -fx-base: #b6e7c9;");
 			botonContinuar.setDisable(true);
-			int indice = 0;
 			for (Button boton:listaDeBotones){
 				boton.setStyle("-fx-font: 16 arial; -fx-base: #b6e7c9;");
 				boton.setMaxSize(280, contenedorHorizontalSuperior.getPrefHeight());
 				boton.setMinSize(280, contenedorHorizontalSuperior.getPrefHeight());
-				creadorBoton.setearBotonAlgomon(listaDeBotones, boton, botonContinuar, this.controladorLogico, listaDeSonidos.get(indice));
-				indice+=1;
 			}
+			botonCharmander.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarCharmanderJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoCharmander.play();});
+			botonSquirtle.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarSquirtleJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoSquirtle.play();});
 			
+			botonBulbasaur.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarBulbasaurJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoBulbasaur.play();});
+			
+			botonRattata.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarRattataJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoRattata.play();});
+			botonJigglypuff.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarJigglypuffJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoJigglypuff.play();});
+			botonChansey.setOnAction(event ->{
+				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.controladorLogico.agregarChanseyJugadorActual();
+				}
+				else{
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
+				sonidoChansey.play();});
 			
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
