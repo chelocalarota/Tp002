@@ -28,8 +28,8 @@ public class CreadorPantallas {
 		musicaPantallaInicial.play();
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("vista/Algomon.png");
-        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamañoEspecifico("vista/Pikachu.png",200,200,false,true);
-        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamañoEspecifico("vista/Pikachu.png",200,200,false,true);
+        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("vista/Pikachu.png",200,200,false,true);
+        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/Pikachu.png",200,200,false,true);
 
         BorderPane border = new BorderPane();
         HBox contenedorHorizontal = new HBox();
@@ -40,7 +40,7 @@ public class CreadorPantallas {
         border.setLeft(contenedorVerticalIzquierdo);
         border.setCenter(contenedorVerticalCentral);
         border.setRight(contenedorVerticalDerecho);
-        
+
         HBox contenedorBotones = new HBox();
         CreadorBoton creadorBoton = new CreadorBoton();
         creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
@@ -58,7 +58,7 @@ public class CreadorPantallas {
 			musicaPantallaInicial.stop();
 			this.stage.close();
         });
-		
+
 
         contenedorBotones.getChildren().addAll(botonAyuda,botonSalir);
         contenedorBotones.setSpacing(25);
@@ -79,14 +79,14 @@ public class CreadorPantallas {
         sombraBoton.setOffsetY(2.0);
         sombraBoton.setOffsetX(2.0);
         sombraBoton.setColor(Color.PINK);
-    	
+
         Label label1 = new Label("Jugador 1");
 		Label label2 = new Label("Nombre:");
 		TextField textField = new TextField ();
 		GridPane grilla = new GridPane();
-		
+
 		CreadorBoton creadorBoton = new CreadorBoton();
-		
+
 		VBox contenedorVertical = new VBox();
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalInferior = new HBox();
@@ -96,7 +96,7 @@ public class CreadorPantallas {
 		botonAceptar.setOnAction(event ->{
 			this.controladorLogico.setNombreJugadorActual(textField.getText());
 			this.crearPantallaEleccionAlgomon(stage);
-			
+
 		});
 		botonAceptar.setEffect(sombraBoton);
 		contenedorHorizontalSuperior.getChildren().addAll(label2, textField);
@@ -115,8 +115,8 @@ public class CreadorPantallas {
 	private void crearPantallaEleccionAlgomon(Stage stage) {
 		int cantidadAlgomon = 0;
 		CreadorImagen creadorImagen = new CreadorImagen();
-		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamañoEspecifico("vista/charmander.PNG", 150, 150, false, true);
-		ImageView imageViewChansey = creadorImagen.crearImageViewConTamañoEspecifico("vista/Chansey.PNG",150,150,false,true);
+		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.PNG", 150, 150, false, true);
+		ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("vista/Chansey.PNG",150,150,false,true);
 		CreadorBoton creadorBoton = new CreadorBoton();
 		Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 		//botonCharmander.setOnAction(event ->{
@@ -128,7 +128,7 @@ public class CreadorPantallas {
 				//CambiarDeScene
 			//}
 		//});
-		
+
 		Button botonChansey = creadorBoton.crearBoton("  chansey    ",imageViewChansey);
 		VBox contenedorVertical = new VBox();
 		HBox contenedorHorizontalSuperior = new HBox();
@@ -143,8 +143,8 @@ public class CreadorPantallas {
 		GridPane grilla = new GridPane();
 		grilla.add(contenedorVertical,2,2);
 		Scene escenaElegirAlgomon= new Scene(grilla, 681, 600);
-	    stage.setScene(escenaElegirAlgomon); 
+	    stage.setScene(escenaElegirAlgomon);
 	}
-	
-	
+
+
 }
