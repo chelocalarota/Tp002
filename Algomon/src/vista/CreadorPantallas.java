@@ -26,8 +26,8 @@ public class CreadorPantallas {
 	}
 	public void crearPantallaInicial() {
 		this.controladorLogico = new ControladorLogicoDelJuego();
-		//AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/intro Pokemon.mp3").toExternalForm());
-		//musicaPantallaInicial.play();
+		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/intro Pokemon.mp3").toExternalForm());
+		musicaPantallaInicial.play();
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("vista/Algomon.png");
         ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("vista/Pikachu.png",200,200,false,true);
@@ -48,7 +48,7 @@ public class CreadorPantallas {
         creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
         botonNuevoJuego.setOnAction(event ->{
-        	//musicaPantallaInicial.stop();
+        	musicaPantallaInicial.stop();
         	this.crearPantallaJugador();
         	this.controladorLogico.crearJuegoNuevo();
         });
@@ -57,7 +57,7 @@ public class CreadorPantallas {
 		Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  16 arial; -fx-base: #b6e7c9;");
 		Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  16 arial; -fx-base: #b6e7c9;");
 		botonSalir.setOnAction(event -> {
-			//musicaPantallaInicial.stop();
+			musicaPantallaInicial.stop();
 			this.stage.close();
         });
 		
@@ -128,26 +128,50 @@ public class CreadorPantallas {
 			HBox contenedorHorizontalInferior = new HBox();
 			CreadorBoton creadorBoton = new CreadorBoton();
 			ArrayList<Button> listaDeBotones = new ArrayList<Button>();
+			ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
+			
 			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 			listaDeBotones.add(botonCharmander);
+			AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/Charmander_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoCharmander);
+			
 			Button botonChansey = creadorBoton.crearBoton("chansey",imageViewChansey);
 			listaDeBotones.add(botonChansey);
+			AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/Chansey_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoChansey);
+			
 			Button botonSquirtle =creadorBoton.crearBoton("squirtle",imageViewSquirtle);
 			listaDeBotones.add(botonSquirtle);
+			AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/Squirtle_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoSquirtle);
+			
 			Button botonRattata =creadorBoton.crearBoton("rattata",imageViewRattata);
 			listaDeBotones.add(botonRattata);
+			AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/Rattata_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoRattata);
+			
 			Button botonBulbasaur =creadorBoton.crearBoton("bulbasaur",imageViewBulbasaur);
 			listaDeBotones.add(botonBulbasaur);
+			AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/Bulbasaur_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoBulbasaur);
+			
 			Button botonJigglypuff =creadorBoton.crearBoton("jigglypuff",imageViewJigglypuff);
 			listaDeBotones.add(botonJigglypuff);
+			AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/Jigglypuff_audio.mp3").toExternalForm());
+			listaDeSonidos.add(sonidoJigglypuff);
+			
 			Button botonContinuar = creadorBoton.crearBoton("Continuar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
 			botonContinuar.setDisable(true);
+			int indice = 0;
 			for (Button boton:listaDeBotones){
 				boton.setStyle("-fx-font: 16 arial; -fx-base: #b6e7c9;");
 				boton.setMaxSize(280, contenedorHorizontalSuperior.getPrefHeight());
 				boton.setMinSize(280, contenedorHorizontalSuperior.getPrefHeight());
+				creadorBoton.setearBotonAlgomon(listaDeBotones, boton,botonContinuar,this.controladorLogico,listaDeSonidos.get(indice));
+				indice+=1;
 			}
-			creadorBoton.setearBotonAlgomon(listaDeBotones,botonContinuar,this.controladorLogico);
+			
+			
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
 				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){

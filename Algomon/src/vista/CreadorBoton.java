@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 public class CreadorBoton {
 
@@ -22,9 +23,9 @@ public class CreadorBoton {
 		return boton;
 	}
 
-	public void setearBotonAlgomon(ArrayList<Button> listaDeBotones,Button botonContinuar,ControladorLogicoDelJuego controlador) {
-		for (Button boton: listaDeBotones){
-			boton.setOnAction(event ->{
+	public void setearBotonAlgomon(ArrayList<Button> listaDeBotones,Button botonElegido,Button botonContinuar,ControladorLogicoDelJuego controlador, AudioClip audio) {
+	
+			botonElegido.setOnAction(event ->{
 			if (!controlador.verificarCantidadAlgomonDeJugadorActual()){
 				controlador.agregarCharmanderJugadorActual();
 			}
@@ -33,9 +34,10 @@ public class CreadorBoton {
 					boton_auxiliar.setDisable(true);
 				}
 				botonContinuar.setDisable(false);
-				
-			}
-		});
+	
+		}
+		audio.play();});
+
 		}
 	}
-}
+
