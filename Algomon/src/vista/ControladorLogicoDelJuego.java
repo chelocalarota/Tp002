@@ -26,4 +26,16 @@ public class ControladorLogicoDelJuego {
 		this.juego.agregarBulbasaur();
 	}
 
+
+	public boolean verificarCantidadAlgomonDeJugadorActual() {
+		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==2){
+			return true;
+		}
+		return false;
+	}
+
+	public void cambiarJugador() {
+		this.juego.cambiarJugador();
+	}
+
 }
