@@ -122,6 +122,10 @@ public class CreadorPantallas {
 			ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("vista/Chansey.PNG",150,150,false,true);
 			ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("vista/Bulbasaur.PNG", 150, 150, false, true);
 			ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("vista/jigglypuff.PNG", 150, 150, false, true);
+			VBox contenedorVertical = new VBox();
+			HBox contenedorHorizontalSuperior = new HBox();
+			HBox contenedorHorizontalMedio = new HBox();
+			HBox contenedorHorizontalInferior = new HBox();
 			CreadorBoton creadorBoton = new CreadorBoton();
 			ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
@@ -140,9 +144,10 @@ public class CreadorPantallas {
 			botonContinuar.setDisable(true);
 			for (Button boton:listaDeBotones){
 				boton.setStyle("-fx-font: 16 arial; -fx-base: #b6e7c9;");
-				boton.minWidth(1000);
-				boton.minHeight(1000);
+				boton.setMaxSize(280, contenedorHorizontalSuperior.getPrefHeight());
+				boton.setMinSize(280, contenedorHorizontalSuperior.getPrefHeight());
 			}
+			
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
 				this.crearPantallaJugador();
@@ -221,10 +226,7 @@ public class CreadorPantallas {
 				}
 			});
 			
-			VBox contenedorVertical = new VBox();
-			HBox contenedorHorizontalSuperior = new HBox();
-			HBox contenedorHorizontalMedio = new HBox();
-			HBox contenedorHorizontalInferior = new HBox();
+		
 			contenedorVertical.setSpacing(100);
 			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 			contenedorHorizontalSuperior.setSpacing(60);
