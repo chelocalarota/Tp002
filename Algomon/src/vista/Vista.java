@@ -8,7 +8,7 @@ public class Vista extends Application {
 
 	@Override
 	public void start(Stage Stage) {
-        Stage.setTitle("Algomon-v0.1");
+        Stage.setTitle("Algomon-v0.3");
 		CreadorPantallas creadorPantallas = new CreadorPantallas(Stage);
 		creadorPantallas.crearPantallaInicial();
 
