@@ -1,9 +1,11 @@
-package modelo;
+package tests.integradores;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import modelo.Juego;
+import modelo.VictoriaObtenidaException;
 import modelo.algomon.*;
 import modelo.enums.AtaquesEnum;
 
