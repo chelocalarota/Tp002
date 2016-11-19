@@ -55,7 +55,8 @@ public class CreadorPantallas {
         VBox contenedorVerticalIzquierdo = new VBox();
         VBox contenedorVerticalCentral = new VBox();
         VBox contenedorVerticalDerecho = new VBox();
-       
+        
+        
         border.setTop(contenedorHorizontalTop);
         border.setLeft(contenedorVerticalIzquierdo);
         border.setCenter(contenedorVerticalCentral);
@@ -252,10 +253,10 @@ public class CreadorPantallas {
             indice2+=1;
         }
         
-        t2.setText("Atacar");
+        t2.setText("ATACAR");
         t2.setExpanded(false);
         t2.setContent(grid2);
-       
+        
         //Accion del atacar
 
         TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
@@ -308,6 +309,8 @@ public class CreadorPantallas {
         contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2, contenedorBotonesJugador2);
 //        contenedorVerticalDerecho.setPrefWidth(300);
 //        contenedorVerticalIzquierdo.setPrefWidth(300);
+        
+        
         Scene principal = new Scene(border, 981, 600);
         stage.setScene(principal);
 	}
