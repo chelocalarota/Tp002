@@ -35,7 +35,7 @@ import modelo.ataques.Ataque;
 public class CreadorPantallas {
 	Stage stage;
 	ControladorLogicoDelJuego controladorLogico;
-	LinkedList ColaImageView;
+	LinkedList<ImageView> ColaImageView;
 	public CreadorPantallas(Stage stage) {
 		this.stage = stage;
 		
