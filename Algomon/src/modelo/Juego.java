@@ -28,6 +28,7 @@ public class Juego {
 		this.obtenerJugadorActual().setNombre(nombre);
 	}
 	public Jugador obtenerJugadorActual() {
+		// cuando comienza el juego, el jugador Actual sera el 1
 		return this.colaAtacante.verPrimero();
 	}
 
@@ -39,40 +40,45 @@ public class Juego {
 	public void agregarCharmander() {
 		this.obtenerJugadorActual().agregarAlgomon(new Charmander());
 	}
+	
 	public void agregarBulbasaur() {
 		this.obtenerJugadorActual().agregarAlgomon(new Bulbasaur());
 	}
+	
 	public void agregarSquirtle() {
 		this.obtenerJugadorActual().agregarAlgomon(new Squirtle());
 	}
+	
 	public void agregarRattata() {
 		this.obtenerJugadorActual().agregarAlgomon(new Rattata());
 	}
+	
 	public void agregarJigglypuff() {
 		this.obtenerJugadorActual().agregarAlgomon(new Jigglypuff());
 	}
+	
 	public void agregarChansey() {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void JugarTurnoAtaque(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+	public void resolverAtaque(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
 		Ataque unAtaque = this.obtenerJugadorActual().elegirAtaque(ataque);
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
 		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
-		verificarVictoria();
+		verificarVictoriaDeJugadorActual();
 		if (algomonDefensor.getVida()<0){
 			throw new PokemonMuertoException("");
 		}
 		this.cambiarJugador();
 	}
 
-	private void verificarVictoria() throws VictoriaObtenidaException {
-		if (this.obtenerJugadorDefensor().verificarVictoria()){
+	public void verificarVictoriaDeJugadorActual() throws VictoriaObtenidaException {
+		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
+		if (this.obtenerJugadorActual().verificarVictoriaContraOtroJugador(jugadorDefensor)){
 			throw new VictoriaObtenidaException("");
 		}
-		
 	}
 
 	public Jugador obtenerJugadorDefensor() {
@@ -80,8 +86,12 @@ public class Juego {
 		
 	}
 
-	public void elegirPokemonInicial(int i) throws PokemonMuertoException {
-		this.obtenerJugadorActual().elegirAlgomonActivo(i);
+	public void cambiarPokemonDeJugadorActual(int indice) throws PokemonMuertoException {
+		this.obtenerJugadorActual().elegirAlgomonEnBatalla(indice);
+	}
+	
+	public void elegirPokemonInicialDeJugadorActual() throws PokemonMuertoException{
+		this.cambiarPokemonDeJugadorActual(0);
 	}
 
 	public void pasarTurno() {

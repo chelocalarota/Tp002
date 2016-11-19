@@ -14,4 +14,9 @@ public class EstadoNormal implements Estado {
 	public void accion(Algomon unAlgomon) throws EstaDormidoException{
 	}
 
+	@Override
+	public String asString() {
+		return "Normal";
+	}
+
 }

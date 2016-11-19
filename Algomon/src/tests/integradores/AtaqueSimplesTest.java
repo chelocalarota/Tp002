@@ -1,4 +1,4 @@
-package tests.unitarios;
+package tests.integradores;
 
 import static org.junit.Assert.*;
 
@@ -275,7 +275,6 @@ public class AtaqueSimplesTest {
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Rattata = new Rattata();
-		Rattata.cambiarVida(1000000000);
 		Algomon Chansey = new Chansey();
 		TodosLosAlgomones.add(new Chansey());
 		TodosLosAlgomones.add(new Rattata());
@@ -289,6 +288,7 @@ public class AtaqueSimplesTest {
 			for(int i = 0; i< 17; i++){
 				try {
 					Rattata.recibirDanio(atacado.ataque(AtaquesEnum.ATAQUE_RAPIDO),Rattata);
+					Rattata.cambiarVida(200);
 				} catch (SinPuntosDePoderException e) {
 					assertTrue(true);
 				}

@@ -1,6 +1,7 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
+import modelo.enums.AtaquesEnum;
 import modelo.estados.EstadoQuemado;
 import modelo.tipos.TipoFuego;
 
@@ -10,6 +11,7 @@ public class Fogonazo extends Ataque {
 		this.setPotencia(2);
 		this.setCantidad(4);
 		this.setTipo(new TipoFuego());
+		this.nombre = "Fogonazo";
 	}
 	
 	public void cambioDeEstado(Algomon unAlgomon){

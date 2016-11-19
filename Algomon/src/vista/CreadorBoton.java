@@ -16,14 +16,15 @@ public class CreadorBoton {
 		
 	}
 
-	public Button crearBoton(String titulo, ImageView imageViewCharmander) {
-		Button boton = new Button(titulo, imageViewCharmander);
+	public Button crearBoton(String titulo, ImageView imageView) {
+		Button boton = new Button(titulo, imageView);
 
 		boton.setContentDisplay(ContentDisplay.LEFT);
 		return boton;
 	}
 
-	public void setearBotonAlgomon(ArrayList<Button> listaDeBotones,Button botonElegido,Button botonContinuar,ControladorLogicoDelJuego controlador, AudioClip audio) {
+	public void setearBotonAlgomon(ArrayList<Button> listaDeBotones,Button botonElegido, Button botonContinuar, 
+								   ControladorLogicoDelJuego controlador, AudioClip audio) {
 	
 			botonElegido.setOnAction(event ->{
 			if (!controlador.verificarCantidadAlgomonDeJugadorActual()){

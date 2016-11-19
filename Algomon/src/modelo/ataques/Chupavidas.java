@@ -1,6 +1,7 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
+import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoPlanta;
 
 public class Chupavidas extends Ataque {
@@ -9,6 +10,7 @@ public class Chupavidas extends Ataque {
 		this.setPotencia(15);
 		this.setCantidad(8);
 		this.setTipo(new TipoPlanta());
+		this.nombre = "ChupaVidas";
 	}
 	
 	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon, int danioResultante){

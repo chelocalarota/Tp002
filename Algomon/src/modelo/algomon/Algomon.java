@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import java.util.Map;
 
+import javafx.scene.image.ImageView;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.estados.*;
 import modelo.items.Item;
 import modelo.tipos.Tipo;
+import vista.CreadorImagen;
 
 public abstract class Algomon {
 	protected Tipo tipo;
@@ -17,6 +19,7 @@ public abstract class Algomon {
 	protected Map<AtaquesEnum, Ataque> ataques;
 	protected Estado estadoEfimero;
 	protected Estado estadoPersistente;
+	protected String imagenAsociada;
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
 
@@ -29,7 +32,7 @@ public abstract class Algomon {
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
-
+	
 	public int getVidaOriginal(){
 		return (int)vidaOriginal;
 	}
@@ -51,7 +54,10 @@ public abstract class Algomon {
 	}
 
 	public void cambiarVida(int cantidad){
-		vida = vida + cantidad;
+		this.vida = this.vida + cantidad;
+		if (vida >= this.vidaOriginal) {
+			this.vida = this.vidaOriginal;
+		}
 	}
 
 	public Tipo getTipo(){
@@ -87,5 +93,13 @@ public abstract class Algomon {
 		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
 		listaDeAtaques.addAll(this.ataques.values());
 		return listaDeAtaques;
+	}
+
+	public String getEstadoPersistenteComoString() {
+		return (this.estadoPersistente.asString());
+	}
+
+	public String getEstadoEfimeroComoString() {
+		return (this.estadoEfimero.asString());
 	}
 }

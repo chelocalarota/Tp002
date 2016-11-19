@@ -1,6 +1,13 @@
 package vista;
 
 import modelo.Juego;
+import modelo.Jugador;
+import modelo.VictoriaObtenidaException;
+import modelo.algomon.EstaDormidoException;
+import modelo.algomon.PokemonMuertoException;
+import modelo.algomon.SinPuntosDePoderException;
+import modelo.ataques.Ataque;
+import modelo.enums.AtaquesEnum;
 
 public class ControladorLogicoDelJuego {
 
@@ -23,6 +30,15 @@ public class ControladorLogicoDelJuego {
 	public void agregarBulbasaurJugadorActual() {
 		this.juego.agregarBulbasaur();
 	}
+	public void agregarSquirtleJugadorActual(){
+		this.juego.agregarSquirtle();
+	}
+	public void agregarRattataJugadorActual(){
+		this.juego.agregarRattata();
+	}
+	public void agregarJigglypuffJugadorActual(){
+		this.juego.agregarJigglypuff();
+	}
 
 
 	public boolean verificarCantidadAlgomonDeJugadorActual() {
@@ -36,4 +52,15 @@ public class ControladorLogicoDelJuego {
 		this.juego.cambiarJugador();
 	}
 
+	public Jugador obtenerJugadorActual() {
+		return this.juego.obtenerJugadorActual();
+	}
+
+	public Jugador obtenerJugadorDefensor(){
+		return this.juego.obtenerJugadorDefensor();
+	}
+
+	public void atacar(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+		this.juego.resolverAtaque(ataque);
+	}
 }

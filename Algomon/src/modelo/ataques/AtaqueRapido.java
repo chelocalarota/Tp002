@@ -1,5 +1,6 @@
 package modelo.ataques;
 
+import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoNormal;
 
 public class AtaqueRapido extends Ataque {
@@ -8,5 +9,6 @@ public class AtaqueRapido extends Ataque {
 		this.setPotencia(10.0);
 		this.setCantidad(16);
 		this.setTipo(new TipoNormal());
+		this.nombre = "Ataque Rapido"; 
 	}
 }
