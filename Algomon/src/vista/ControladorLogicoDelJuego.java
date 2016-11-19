@@ -62,6 +62,6 @@ public class ControladorLogicoDelJuego {
 	}
 
 	public void atacar(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
-		this.juego.JugarTurnoAtaque(ataque);
+		this.juego.resolverAtaque(ataque);
 	}
 }
