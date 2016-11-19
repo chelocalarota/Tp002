@@ -181,14 +181,44 @@ public class CreadorPantallas {
         GridPane gridCambiarAlgomon = new GridPane();
         CreadorBoton creadorBoton1 = new CreadorBoton();
 		Button botonPrimerAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(0));
-		Button botonSegundoAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(1) );
-		Button botonTercerAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(2) );
+		Button botonSegundoAlgomon = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorInicial.get(1) );
+		Button botonTercerAlgomon = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorInicial.get(2) );
 		gridCambiarAlgomon.add(botonPrimerAlgomon,0,0);
 		gridCambiarAlgomon.add(botonSegundoAlgomon,1,0);
 		gridCambiarAlgomon.add(botonTercerAlgomon,2,0);
 		listaDeBotones1.add(botonPrimerAlgomon);
+		botonPrimerAlgomon.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones1.add(botonSegundoAlgomon);
+		botonSegundoAlgomon.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones1.add(botonTercerAlgomon);
+		botonTercerAlgomon.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		
 		
         botonCambiarAlgomonJugador1.setText("CAMBIAR ALGOMON");
@@ -211,9 +241,49 @@ public class CreadorPantallas {
 		Button botonRestaurador = creadorBoton1.crearBoton("Restaurador", restaurador );
 		Button botonVitamina = creadorBoton1.crearBoton("vitamina", vitamina );
 		listaDeBotones1.add(botonPocion);
+		botonPocion.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones1.add(botonSuperPocion);
+		botonSuperPocion.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones1.add(botonRestaurador);
+		botonRestaurador.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones1.add(botonVitamina);
+		botonVitamina.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones2){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones1){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		gridUsarItem.add(botonPocion,0,0);
 		gridUsarItem.add(botonSuperPocion,1,0);
 		gridUsarItem.add(botonRestaurador,2,0);
@@ -274,10 +344,43 @@ public class CreadorPantallas {
         
 		Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
 		listaDeBotones2.add(botonPrimerAlgomon2);
+		botonPrimerAlgomon2.setDisable(true);
+		botonPrimerAlgomon2.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
 		listaDeBotones2.add(botonSegundoAlgomon2);
+		botonSegundoAlgomon2.setDisable(true);
+		botonSegundoAlgomon2.setOnAction(event->{
+		
+		this.controladorLogico.cambiarJugador();
+		for (Button boton1: listaDeBotones1){
+			boton1.setDisable(false);
+		}
+		for (Button boton: listaDeBotones2){
+			boton.setDisable(true);
+		}
+		});
 		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
 		listaDeBotones2.add(botonTercerAlgomon2);
+		botonTercerAlgomon2.setDisable(true);
+		botonTercerAlgomon2.setOnAction(event->{
+			
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+				boton1.setDisable(false);
+			}
+			for (Button boton: listaDeBotones2){
+				boton.setDisable(true);
+			}
+			});
 		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
 		gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
@@ -305,9 +408,54 @@ public class CreadorPantallas {
 		Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
 		Button botonVitamina2 = creadorBoton1.crearBoton("vitamina", vitamina2 );
 		listaDeBotones2.add(botonPocion2);
+		botonPocion2.setDisable(true);
+		botonPocion2.setOnAction(event->{
+			
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones2.add(botonSuperPocion2);
+		botonSuperPocion2.setDisable(true);
+		botonSuperPocion2.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones2.add(botonRestaurador2);
+		botonRestaurador2.setDisable(true);
+		botonRestaurador2.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		listaDeBotones2.add(botonVitamina2);
+		botonVitamina2.setDisable(true);
+		botonVitamina2.setOnAction(event->{
+			this.controladorLogico.cambiarJugador();
+			for (Button boton1: listaDeBotones1){
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+		}
+		);
 		gridUsarItem2.add(botonPocion2,0,0);
 		gridUsarItem2.add(botonSuperPocion2,1,0);
 		gridUsarItem2.add(botonRestaurador2,2,0);
