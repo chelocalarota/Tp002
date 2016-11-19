@@ -148,9 +148,13 @@ public class CreadorPantallas {
         int indice = 0;
         for(Ataque ataque: listaDeAtaques){
         	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+        	boton.setOnAction(event->{
+        		this.controladorLogico.cambiarJugador();
+        	});
             grid.add(boton,indice,0);
             indice+=1;
         }
+        
         t1.setText("Atacar");
         t1.setExpanded(false);
         t1.setContent(grid);
