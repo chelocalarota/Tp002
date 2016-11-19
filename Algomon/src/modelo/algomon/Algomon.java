@@ -32,10 +32,7 @@ public abstract class Algomon {
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
-	public ImageView obtenerImageViewAsociado(){
-		CreadorImagen creadorImagen = new CreadorImagen();
-		return creadorImagen.crearImageView(imagenAsociada);
-	}
+	
 	public int getVidaOriginal(){
 		return (int)vidaOriginal;
 	}
@@ -57,7 +54,10 @@ public abstract class Algomon {
 	}
 
 	public void cambiarVida(int cantidad){
-		vida = vida + cantidad;
+		this.vida = this.vida + cantidad;
+		if (vida >= this.vidaOriginal) {
+			this.vida = this.vidaOriginal;
+		}
 	}
 
 	public Tipo getTipo(){
