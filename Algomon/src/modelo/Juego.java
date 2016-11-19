@@ -74,7 +74,7 @@ public class Juego {
 		this.cambiarJugador();
 	}
 
-	private void verificarVictoriaDeJugadorActual() throws VictoriaObtenidaException {
+	public void verificarVictoriaDeJugadorActual() throws VictoriaObtenidaException {
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
 		if (this.obtenerJugadorActual().verificarVictoriaContraOtroJugador(jugadorDefensor)){
 			throw new VictoriaObtenidaException("");
@@ -86,8 +86,12 @@ public class Juego {
 		
 	}
 
-	public void elegirPokemonInicial(int i) throws PokemonMuertoException {
-		this.obtenerJugadorActual().elegirAlgomonActivo(i);
+	public void cambiarPokemonDeJugadorActual(int indice) throws PokemonMuertoException {
+		this.obtenerJugadorActual().elegirAlgomonEnBatalla(indice);
+	}
+	
+	public void elegirPokemonInicialDeJugadorActual() throws PokemonMuertoException{
+		this.cambiarPokemonDeJugadorActual(0);
 	}
 
 	public void pasarTurno() {
