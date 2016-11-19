@@ -61,9 +61,10 @@ public class Jugador {
 		return this.algomonActivo;
 	}
 
-	public Boolean verificarVictoria() {
-		for (Algomon algomon: this.algomonDisponibles){
-			if(algomon.getVida()>0){
+	public Boolean verificarVictoriaContraOtroJugador(Jugador unJugador) {
+		
+		for (Algomon algomon: unJugador.algomonDisponibles){
+			if(! algomon.estaMuerto()){
 				return false;
 			}
 		}
