@@ -133,7 +133,6 @@ public class CreadorPantallas {
         HBox contenedorAvatarJugador1 = new HBox();
         contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
         contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
-
         HBox contenedorAlgomonesJugador1 = new HBox();
         contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(0));
         contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(1));
@@ -167,9 +166,10 @@ public class CreadorPantallas {
             indice+=1;
         }
         
-        t1.setText("Atacar");
+        t1.setText("ATACAR");
         t1.setExpanded(false);
         t1.setContent(grid);
+        
        
         //Accion del atacar
 		
@@ -228,13 +228,7 @@ public class CreadorPantallas {
         HBox contenedorAvatarJugador2 = new HBox();
         contenedorAvatarJugador2.getChildren().addAll(avatarJugador2);
         contenedorAvatarJugador2.setAlignment(Pos.BASELINE_CENTER);
-        
-        ImageView primerAlgomonJugador2 = miniaturasJugadorSegundo.get(0);
-        ImageView segundoAlgomonJugador2 =miniaturasJugadorSegundo.get(1);
-        ImageView terceroAlgomonJugador2 = miniaturasJugadorSegundo.get(2);
-        HBox contenedorAlgomonesJugador2 = new HBox();
-        contenedorAlgomonesJugador2.getChildren().addAll(primerAlgomonJugador2, segundoAlgomonJugador2, terceroAlgomonJugador2);
-        contenedorAlgomonesJugador2.setAlignment(Pos.BASELINE_CENTER);
+      
         VBox contenedorBotonesJugador2 = new VBox();
         ArrayList<Ataque> listaDeAtaques2 = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
        
@@ -263,24 +257,57 @@ public class CreadorPantallas {
         t2.setContent(grid2);
        
         //Accion del atacar
-		
+
         TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
-        botonCambiarAlgomonJugador2.setText("CAMBIAR\nALGOMON");
+        GridPane gridCambiarAlgomon2 = new GridPane();
+        
+		Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
+		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(1) );
+		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(2) );
+		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
+		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
+		gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
+		
+		
+        botonCambiarAlgomonJugador2.setText("CAMBIAR ALGOMON");
+        
         botonCambiarAlgomonJugador2.setExpanded(false);
+        botonCambiarAlgomonJugador2.setContent(gridCambiarAlgomon2);
 		
 		
 		//Accion del cambiar algomon
-		TitledPane botonUsarItemJugador2 = new TitledPane();
+        
+        TitledPane botonUsarItemJugador2 = new TitledPane();
+		GridPane gridUsarItem2 = new GridPane();
+		 
+		 
+		ImageView pocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
+		ImageView superpocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
+		ImageView restaurador2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
+		ImageView vitamina2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
+		Button botonPocion2 = creadorBoton1.crearBoton("Posicion", pocion2 );
+		Button botonSuperPocion2 = creadorBoton1.crearBoton("Super pocion", superpocion2 );
+		Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
+		Button botonVitamina2 = creadorBoton1.crearBoton("vitamina", vitamina2 );
+		gridUsarItem2.add(botonPocion2,0,0);
+		gridUsarItem2.add(botonSuperPocion2,1,0);
+		gridUsarItem2.add(botonRestaurador2,2,0);
+		gridUsarItem2.add(botonVitamina2,3,0);
+		
+		
 		botonUsarItemJugador2.setText("USAR ITEM");
 		botonUsarItemJugador2.setExpanded(false);
+		botonUsarItemJugador2.setContent(gridUsarItem2);
+		
 		//Accion del usar item
      
 		contenedorBotonesJugador2.getChildren().addAll(t2,botonCambiarAlgomonJugador2, botonUsarItemJugador2);
         contenedorBotonesJugador2.setSpacing(25);
-        contenedorBotonesJugador2.setAlignment(Pos.BASELINE_RIGHT);
+        contenedorBotonesJugador2.setAlignment(Pos.BOTTOM_RIGHT);
         
-        contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2,contenedorAlgomonesJugador2, contenedorBotonesJugador2);
-        contenedorVerticalDerecho.setPrefWidth(300);
+        contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2, contenedorBotonesJugador2);
+//        contenedorVerticalDerecho.setPrefWidth(300);
+//        contenedorVerticalIzquierdo.setPrefWidth(300);
         Scene principal = new Scene(border, 981, 600);
         stage.setScene(principal);
 	}
