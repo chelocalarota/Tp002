@@ -5,15 +5,15 @@ import javafx.scene.image.ImageView;
 
 public class CreadorImagen {
 
-	public ImageView crearImageView(String string) {
-		Image imagen = new Image(string);
+	public ImageView crearImageView(String pathImagen) {
+		Image imagen = new Image(pathImagen);
 		ImageView imageView = new ImageView();
         imageView.setImage(imagen);
         return imageView;
 	}
 
-	public ImageView crearImageViewConTamanioEspecifico(String string, int i, int j, boolean b, boolean c) {
-		Image imagen = new Image(string,i,j,b,c);
+	public ImageView crearImageViewConTamanioEspecifico(String pathImagen, int ancho, int alto, boolean redimensionable, boolean buenaCalidad) {
+		Image imagen = new Image(pathImagen, ancho, alto, redimensionable, buenaCalidad);
 		ImageView imageView = new ImageView();
         imageView.setImage(imagen);
         return imageView;
