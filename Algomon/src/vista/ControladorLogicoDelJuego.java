@@ -1,10 +1,6 @@
 package vista;
 
 import modelo.Juego;
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/branchBrian
 
 public class ControladorLogicoDelJuego {
 
