@@ -6,8 +6,10 @@ import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
+import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
+import modelo.enums.ItemsEnum;
 
 public class ControladorLogicoDelJuego {
 
@@ -62,5 +64,8 @@ public class ControladorLogicoDelJuego {
 
 	public void atacar(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
 		this.juego.resolverAtaque(ataque);
+	}
+	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException {
+		this.obtenerJugadorActual().usarItem(vitamina);
 	}
 }

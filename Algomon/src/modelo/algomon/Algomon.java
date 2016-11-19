@@ -87,6 +87,7 @@ public abstract class Algomon {
 
 	public void usarItem(Item unItem) throws SinUsosDisponiblesException {
 		unItem.aplicarEfecto(this);
+		
 	}
 
 	public ArrayList<Ataque> obtenerTodosLosAtaques(){

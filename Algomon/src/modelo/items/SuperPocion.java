@@ -18,5 +18,10 @@ public class SuperPocion implements Item {
 		if (algomon.getVida() != algomon.getVidaOriginal()){
 			algomon.cambiarVida(40);
 		}
+		this.cantidadDeUsos-=1;
+	}
+	@Override
+	public int cantidadDeUsos() {
+		return this.cantidadDeUsos;
 	}
 }

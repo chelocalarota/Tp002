@@ -19,5 +19,11 @@ public class Vitamina implements Item {
 		for (int i = 0; i < listaDeAtaques.size(); i++) {
 			listaDeAtaques.get(i).agregarPuntosDePoder(2);
 		}
+		this.usosDisponibles-=1;
+	}
+
+	@Override
+	public int cantidadDeUsos() {
+		return this.usosDisponibles;
 	}
 }

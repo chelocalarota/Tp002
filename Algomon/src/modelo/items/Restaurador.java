@@ -19,5 +19,11 @@ public class Restaurador implements Item {
 	public void aplicarEfecto(Algomon algomon) {
 		algomon.cambiarEstadoEfimero(new EstadoNormal());
 		algomon.cambiarEstadoPersistente(new EstadoNormal());
+		this.cantidadDeUsos-=1;
+	}
+
+	@Override
+	public int cantidadDeUsos() {
+		return this.cantidadDeUsos;
 	}
 }

@@ -87,4 +87,9 @@ public class Jugador {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public int cantidadDeUsosDisponiblesDeItem(ItemsEnum unItem) {
+		Item item = this.itemsDisponibles.get(unItem);
+		return item.cantidadDeUsos();
+	}
 }

@@ -19,5 +19,11 @@ public class Pocion implements Item {
 		if (algomon.getVida() != algomon.getVidaOriginal()){
 			algomon.cambiarVida(20);
 		}
+		this.cantidadDeUsos-=1;
+	}
+
+	@Override
+	public int cantidadDeUsos() {
+		return this.cantidadDeUsos;
 	}
 }

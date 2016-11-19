@@ -31,7 +31,9 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.algomon.Algomon;
+import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
+import modelo.enums.ItemsEnum;
 
 public class CreadorPantallas {
 	
@@ -242,46 +244,46 @@ public class CreadorPantallas {
 		Button botonVitamina = creadorBoton1.crearBoton("vitamina", vitamina );
 		listaDeBotones1.add(botonPocion);
 		botonPocion.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
+    		this.controladorLogico.cambiarJugador();
 		}
 		);
 		listaDeBotones1.add(botonSuperPocion);
 		botonSuperPocion.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
+    		this.controladorLogico.cambiarJugador();
 		}
 		);
 		listaDeBotones1.add(botonRestaurador);
 		botonRestaurador.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
+    		this.controladorLogico.cambiarJugador();
 		}
 		);
 		listaDeBotones1.add(botonVitamina);
 		botonVitamina.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
+    		this.controladorLogico.cambiarJugador();
 		}
 		);
 		gridUsarItem.add(botonPocion,0,0);
@@ -353,6 +355,7 @@ public class CreadorPantallas {
     		for (Button boton: listaDeBotones2){
     			boton.setDisable(true);
     		}
+    	
 		}
 		);
 		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
@@ -361,12 +364,13 @@ public class CreadorPantallas {
 		botonSegundoAlgomon2.setOnAction(event->{
 		
 		this.controladorLogico.cambiarJugador();
-		for (Button boton1: listaDeBotones1){
-			boton1.setDisable(false);
-		}
-		for (Button boton: listaDeBotones2){
-			boton.setDisable(true);
-		}
+			for (Button boton1: listaDeBotones1){
+				boton1.setDisable(false);
+			}
+			for (Button boton: listaDeBotones2){
+				boton.setDisable(true);
+			}
+	
 		});
 		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
 		listaDeBotones2.add(botonTercerAlgomon2);
@@ -380,6 +384,7 @@ public class CreadorPantallas {
 			for (Button boton: listaDeBotones2){
 				boton.setDisable(true);
 			}
+	
 			});
 		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
@@ -418,6 +423,7 @@ public class CreadorPantallas {
     		for (Button boton: listaDeBotones2){
     			boton.setDisable(true);
     		}
+
 		}
 		);
 		listaDeBotones2.add(botonSuperPocion2);
@@ -430,6 +436,7 @@ public class CreadorPantallas {
     		for (Button boton: listaDeBotones2){
     			boton.setDisable(true);
     		}
+ 
 		}
 		);
 		listaDeBotones2.add(botonRestaurador2);
@@ -442,18 +449,29 @@ public class CreadorPantallas {
     		for (Button boton: listaDeBotones2){
     			boton.setDisable(true);
     		}
-		}
+ 		}
 		);
 		listaDeBotones2.add(botonVitamina2);
 		botonVitamina2.setDisable(true);
 		botonVitamina2.setOnAction(event->{
+			try {
+				this.controladorLogico.usarItem(ItemsEnum.VITAMINA);
+				
+				for (Button boton1: listaDeBotones1){
+	    			boton1.setDisable(false);
+	    		}
+	    		for (Button boton: listaDeBotones2){
+	    			boton.setDisable(true);
+	    		}
+	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
+	    			textArea.setText("No tienes mas vitaminas jeje");
+					botonVitamina2.setDisable(true);
+	    		}
+			} catch (SinUsosDisponiblesException e) {
+				textArea.setText("No tienes mas vitaminas");
+				botonVitamina2.setDisable(true);
+			}
 			this.controladorLogico.cambiarJugador();
-			for (Button boton1: listaDeBotones1){
-    			boton1.setDisable(false);
-    		}
-    		for (Button boton: listaDeBotones2){
-    			boton.setDisable(true);
-    		}
 		}
 		);
 		gridUsarItem2.add(botonPocion2,0,0);
