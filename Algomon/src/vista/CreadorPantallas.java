@@ -186,6 +186,9 @@ public class CreadorPantallas {
 		gridCambiarAlgomon.add(botonPrimerAlgomon,0,0);
 		gridCambiarAlgomon.add(botonSegundoAlgomon,1,0);
 		gridCambiarAlgomon.add(botonTercerAlgomon,2,0);
+		listaDeBotones1.add(botonPrimerAlgomon);
+		listaDeBotones1.add(botonSegundoAlgomon);
+		listaDeBotones1.add(botonTercerAlgomon);
 		
 		
         botonCambiarAlgomonJugador1.setText("CAMBIAR ALGOMON");
@@ -207,6 +210,10 @@ public class CreadorPantallas {
 		Button botonSuperPocion = creadorBoton1.crearBoton("Super pocion", superpocion );
 		Button botonRestaurador = creadorBoton1.crearBoton("Restaurador", restaurador );
 		Button botonVitamina = creadorBoton1.crearBoton("vitamina", vitamina );
+		listaDeBotones1.add(botonPocion);
+		listaDeBotones1.add(botonSuperPocion);
+		listaDeBotones1.add(botonRestaurador);
+		listaDeBotones1.add(botonVitamina);
 		gridUsarItem.add(botonPocion,0,0);
 		gridUsarItem.add(botonSuperPocion,1,0);
 		gridUsarItem.add(botonRestaurador,2,0);
@@ -266,8 +273,11 @@ public class CreadorPantallas {
         GridPane gridCambiarAlgomon2 = new GridPane();
         
 		Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
-		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(1) );
-		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(2) );
+		listaDeBotones2.add(botonPrimerAlgomon2);
+		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
+		listaDeBotones2.add(botonSegundoAlgomon2);
+		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
+		listaDeBotones2.add(botonTercerAlgomon2);
 		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
 		gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
@@ -290,9 +300,14 @@ public class CreadorPantallas {
 		ImageView restaurador2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
 		ImageView vitamina2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
 		Button botonPocion2 = creadorBoton1.crearBoton("Posicion", pocion2 );
+		
 		Button botonSuperPocion2 = creadorBoton1.crearBoton("Super pocion", superpocion2 );
 		Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
 		Button botonVitamina2 = creadorBoton1.crearBoton("vitamina", vitamina2 );
+		listaDeBotones2.add(botonPocion2);
+		listaDeBotones2.add(botonSuperPocion2);
+		listaDeBotones2.add(botonRestaurador2);
+		listaDeBotones2.add(botonVitamina2);
 		gridUsarItem2.add(botonPocion2,0,0);
 		gridUsarItem2.add(botonSuperPocion2,1,0);
 		gridUsarItem2.add(botonRestaurador2,2,0);
@@ -310,8 +325,8 @@ public class CreadorPantallas {
         contenedorBotonesJugador2.setAlignment(Pos.BOTTOM_RIGHT);
         
         contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2, contenedorBotonesJugador2);
-//        contenedorVerticalDerecho.setPrefWidth(300);
-//        contenedorVerticalIzquierdo.setPrefWidth(300);
+        contenedorVerticalDerecho.setPrefWidth(500);
+        contenedorVerticalIzquierdo.setPrefWidth(500);
         
         
         Scene principal = new Scene(border, 981, 600);
