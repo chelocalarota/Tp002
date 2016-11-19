@@ -9,7 +9,6 @@ import modelo.algomon.SinPuntosDePoderException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 
-
 public class ControladorLogicoDelJuego {
 
 	Juego juego;
@@ -62,6 +61,6 @@ public class ControladorLogicoDelJuego {
 	}
 
 	public void atacar(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
-		this.juego.JugarTurnoAtaque(ataque);
+		this.juego.resolverAtaque(ataque);
 	}
 }

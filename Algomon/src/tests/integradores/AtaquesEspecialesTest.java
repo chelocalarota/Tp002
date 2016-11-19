@@ -83,11 +83,12 @@ public class AtaquesEspecialesTest {
 
 		int vidaBulbasaur = Bulbasaur.getVida();
 		int vidaCharmander = Charmander.getVida();
-
+		
+		Bulbasaur.cambiarVida(-20);
 		Charmander.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
-
-		assertEquals(vidaCharmander - 7,Charmander.getVida());
-		assertEquals(vidaBulbasaur+2,Bulbasaur.getVida());
+		vidaBulbasaur = vidaBulbasaur -20 + 2;
+		assertEquals(vidaCharmander - 7, Charmander.getVida());
+		assertEquals(vidaBulbasaur, Bulbasaur.getVida());
 	}
 	@Test
 	public void test04ChupaVidasBulbasaurVsSquirtle() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
@@ -98,31 +99,35 @@ public class AtaquesEspecialesTest {
 		int vidaBulbasor = Bulbasaur.getVida();
 		int vidaSquirtle = Squirtle.getVida();
 
+		Bulbasaur.cambiarVida(-20);
 		Squirtle.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
+		vidaBulbasor = vidaBulbasor - 20 + 9;
 
-		assertEquals(vidaSquirtle - 30,Squirtle.getVida());
-		assertEquals(vidaBulbasor+9,Bulbasaur.getVida());
+		assertEquals(vidaSquirtle - 30, Squirtle.getVida());
+		assertEquals(vidaBulbasor, Bulbasaur.getVida());
 	}
 
 	@Test
 	public void test05ChupaVidasBulbasaurVsOtrosAlgomones() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
-		Algomon Bulbasaur = new Bulbasaur();
-		List<Algomon> OtrosAlgomones = new ArrayList<Algomon>();
+		Algomon bulbasaur = new Bulbasaur();
+		List<Algomon> otrosAlgomones = new ArrayList<Algomon>();
 
-		OtrosAlgomones.add(new Jigglypuff());
-		OtrosAlgomones.add(new Rattata());
-		OtrosAlgomones.add(new Chansey());
+		otrosAlgomones.add(new Jigglypuff());
+		otrosAlgomones.add(new Rattata());
+		otrosAlgomones.add(new Chansey());
 
-		for(Algomon atacado : OtrosAlgomones){
+		for(Algomon atacado : otrosAlgomones){
 
-			int vidaBulbasor = Bulbasaur.getVida();
 			int vidaAtacado = atacado.getVida();
+			bulbasaur.cambiarVida(-10);
 
-			atacado.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
+			atacado.recibirDanio(bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS), bulbasaur);
+			int vidaBulbasaur = bulbasaur.getVida();
+			
 
-			assertEquals(vidaAtacado - 15,atacado.getVida());
-			assertEquals(vidaBulbasor + 4,Bulbasaur.getVida());
+			assertEquals(vidaAtacado - 15, atacado.getVida());
+			assertEquals(vidaBulbasaur, bulbasaur.getVida());
 
 		}
 
