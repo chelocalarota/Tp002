@@ -2,8 +2,6 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
-import modelo.Cola;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -36,11 +34,19 @@ public class CreadorPantallas {
 	
 	Stage stage;
 	ControladorLogicoDelJuego controladorLogico;
-	LinkedList<ImageView> ColaImageView;
+	LinkedList<ImageView> miniaturasJugadorInicial;
+	LinkedList<ImageView> imagenesJugadorInicial;
+	LinkedList<ImageView> miniaturasJugadorSegundo;
+	LinkedList<ImageView> imagenesJugadorSegundo;
+	
 	public CreadorPantallas(Stage stage) {
 		this.stage = stage;
-		
+		this.miniaturasJugadorInicial = new LinkedList<ImageView>();
+		this.imagenesJugadorInicial= new LinkedList<ImageView>();
+		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
+		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 	}
+	
 	public void crearPantallaBatalla() {
 	       
 		BorderPane border = new BorderPane();
@@ -86,8 +92,8 @@ public class CreadorPantallas {
         HBox contenedorAlgomonesActivos = new HBox();
         
         
-        ImageView algomonJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/pikachu.png",100,100,false,true);
-        ImageView algomonJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/pikachu.png",100,100,false,true);
+        ImageView algomonJugador1 =this.imagenesJugadorInicial.get(0);
+        ImageView algomonJugador2 =this.imagenesJugadorSegundo.get(0);
         
         contenedorAlgomonesActivos.getChildren().addAll(algomonJugador1,algomonJugador2);
 
@@ -128,9 +134,9 @@ public class CreadorPantallas {
         contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
         contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
         HBox contenedorAlgomonesJugador1 = new HBox();
-        contenedorAlgomonesJugador1.getChildren().add((Node) ColaImageView.get(0));
-        contenedorAlgomonesJugador1.getChildren().add((Node) ColaImageView.get(1));
-        contenedorAlgomonesJugador1.getChildren().add((Node) ColaImageView.get(2));
+        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(0));
+        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(1));
+        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(2));
         contenedorAlgomonesJugador1.setAlignment(Pos.BASELINE_CENTER);
         
         VBox contenedorBotonesJugador1 = new VBox();
@@ -151,11 +157,15 @@ public class CreadorPantallas {
        
         //Accion del atacar
 		
-        Button botonCambiarAlgomonJugador1 = creadorBoton.crearBoton("CAMBIAR\nALGOMON","-fx-font:  16 arial; -fx-base: #b6e7c9;");
-		botonCambiarAlgomonJugador1.setMinHeight(50.0);
+        TitledPane botonCambiarAlgomonJugador1 = new TitledPane();
+        botonCambiarAlgomonJugador1.setText("CAMBIAR\nALGOMON");
+        botonCambiarAlgomonJugador1.setExpanded(false);
+		
 		
 		//Accion del cambiar algomon
-		Button botonUsarItemJugador1 = creadorBoton.crearBoton("USAR ITEM","-fx-font:  16 arial; -fx-base: #b6e7c9;");
+		TitledPane botonUsarItemJugador1 = new TitledPane();
+		botonUsarItemJugador1.setText("USAR ITEM");
+		botonUsarItemJugador1.setExpanded(false);
 		//Accion del usar item
      
 		contenedorBotonesJugador1.getChildren().addAll(t1,botonCambiarAlgomonJugador1, botonUsarItemJugador1);
@@ -258,7 +268,7 @@ public class CreadorPantallas {
 		this.stage.setScene(escenaCargarJugador);
 	}
 	private void crearPantallaEleccionAlgomon() {
-			this.ColaImageView = new LinkedList<ImageView>();
+			
 			CreadorImagen creadorImagen = new CreadorImagen();
 			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
@@ -323,7 +333,14 @@ public class CreadorPantallas {
 	
 				}
 				sonidoCharmander.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
+				}
 });
 			botonSquirtle.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -335,7 +352,14 @@ public class CreadorPantallas {
 					}
 					botonContinuar.setDisable(false);
 				}
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
+				}
 
 				sonidoSquirtle.play();});
 			
@@ -349,7 +373,14 @@ public class CreadorPantallas {
 					}
 					botonContinuar.setDisable(false);
 				}
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
+				}
 
 				sonidoBulbasaur.play();});
 			
@@ -364,7 +395,14 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoRattata.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
+				}
 });
 			botonJigglypuff.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -377,7 +415,14 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoJigglypuff.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
+				}
 });
 			botonChansey.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -390,7 +435,14 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoChansey.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
+				if(this.miniaturasJugadorInicial.size()<3){
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));	
+					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
+				}
+				else{
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));	
+					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
+				}
 });
 			
 			botonContinuar.setOnAction(event->{
