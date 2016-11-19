@@ -86,8 +86,8 @@ public class CreadorPantallas {
         HBox contenedorAlgomonesActivos = new HBox();
         
         
-        ImageView algomonJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("vista/pikachu.png",100,100,false,true);
-        ImageView algomonJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/pikachu.png",100,100,false,true);
+        ImageView algomonJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/pikachu.png",100,100,false,true);
+        ImageView algomonJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/pikachu.png",100,100,false,true);
         
         contenedorAlgomonesActivos.getChildren().addAll(algomonJugador1,algomonJugador2);
 
@@ -123,7 +123,7 @@ public class CreadorPantallas {
         
         
 		
-        ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("vista/avatar1.png",100,100,false,true);
+        ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/avatar1.png",100,100,false,true);
         HBox contenedorAvatarJugador1 = new HBox();
         contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
         contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
@@ -169,12 +169,12 @@ public class CreadorPantallas {
 	}
 	public void crearPantallaInicial() {
 		this.controladorLogico = new ControladorLogicoDelJuego();
-		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/intro_pokemon.mp3").toExternalForm());
+		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
 		musicaPantallaInicial.play();
 		CreadorImagen creadorImagen = new CreadorImagen();
-		ImageView imageViewTitulo = creadorImagen.crearImageView("vista/algomon.png");
-        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("vista/pikachu.png",200,200,false,true);
-        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/pikachu.png",200,200,false,true);
+		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
+        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pikachu.png",200,200,false,true);
+        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pikachu.png",200,200,false,true);
 
         BorderPane border = new BorderPane();
         HBox contenedorHorizontal = new HBox();
@@ -260,12 +260,12 @@ public class CreadorPantallas {
 	private void crearPantallaEleccionAlgomon() {
 			this.ColaImageView = new LinkedList<ImageView>();
 			CreadorImagen creadorImagen = new CreadorImagen();
-			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.png", 150, 150, false, true);
-			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("vista/squirtle.png", 150, 150, false, true);
-			ImageView imageViewRattata = creadorImagen.crearImageViewConTamanioEspecifico("vista/rattata.png", 150, 150, false, true);
-			ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("vista/chansey.png", 150, 150, false, true);
-			ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("vista/bulbasaur.png", 150, 150, false, true);
-			ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("vista/jigglypuff.png", 150, 150, false, true);
+			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
+			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
+			ImageView imageViewRattata = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/rattata.png", 150, 150, false, true);
+			ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/chansey.png", 150, 150, false, true);
+			ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/bulbasaur.png", 150, 150, false, true);
+			ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
 			VBox contenedorVertical = new VBox();
 			HBox contenedorHorizontalSuperior = new HBox();
 			HBox contenedorHorizontalMedio = new HBox();
@@ -276,32 +276,32 @@ public class CreadorPantallas {
 			
 			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 			listaDeBotones.add(botonCharmander);
-			AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/charmander_audio.mp3").toExternalForm());
+			AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/sonidos/charmander_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoCharmander);
 			
 			Button botonChansey = creadorBoton.crearBoton("chansey", imageViewChansey);
 			listaDeBotones.add(botonChansey);
-			AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/chansey_audio.mp3").toExternalForm());
+			AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/sonidos/chansey_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoChansey);
 			
 			Button botonSquirtle =creadorBoton.crearBoton("squirtle", imageViewSquirtle);
 			listaDeBotones.add(botonSquirtle);
-			AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/squirtle_audio.mp3").toExternalForm());
+			AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/sonidos/squirtle_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoSquirtle);
 			
 			Button botonRattata =creadorBoton.crearBoton("rattata", imageViewRattata);
 			listaDeBotones.add(botonRattata);
-			AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/rattata_audio.mp3").toExternalForm());
+			AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/sonidos/rattata_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoRattata);
 			
 			Button botonBulbasaur =creadorBoton.crearBoton("bulbasaur", imageViewBulbasaur);
 			listaDeBotones.add(botonBulbasaur);
-			AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/bulbasaur_audio.mp3").toExternalForm());
+			AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/sonidos/bulbasaur_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoBulbasaur);
 			
 			Button botonJigglypuff =creadorBoton.crearBoton("jigglypuff", imageViewJigglypuff);
 			listaDeBotones.add(botonJigglypuff);
-			AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/jigglypuff_audio.mp3").toExternalForm());
+			AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/sonidos/jigglypuff_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoJigglypuff);
 			
 			Button botonContinuar = creadorBoton.crearBoton("Continuar", "-fx-font: 16 arial; -fx-base: #b6e7c9;");
@@ -323,7 +323,7 @@ public class CreadorPantallas {
 	
 				}
 				sonidoCharmander.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/charmander.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 });
 			botonSquirtle.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -335,7 +335,7 @@ public class CreadorPantallas {
 					}
 					botonContinuar.setDisable(false);
 				}
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/squirtle.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 
 				sonidoSquirtle.play();});
 			
@@ -349,7 +349,7 @@ public class CreadorPantallas {
 					}
 					botonContinuar.setDisable(false);
 				}
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/bulbasaur.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 
 				sonidoBulbasaur.play();});
 			
@@ -364,7 +364,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoRattata.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/rattata.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 });
 			botonJigglypuff.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -377,7 +377,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoJigglypuff.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/jigglypuff.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 });
 			botonChansey.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -390,7 +390,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoChansey.play();
-				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/chansey.png", 30, 30, false, true));
+				this.ColaImageView.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 });
 			
 			botonContinuar.setOnAction(event->{
