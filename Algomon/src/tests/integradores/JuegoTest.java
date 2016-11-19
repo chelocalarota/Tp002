@@ -5,11 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import modelo.Juego;
-import modelo.Jugador;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.*;
 import modelo.enums.AtaquesEnum;
-import modelo.tipos.Tipo;
 
 public class JuegoTest {
 
@@ -17,10 +15,10 @@ public class JuegoTest {
 	public void test01ResolverAtaqueCuandoAlgomonAtaca() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException{
 		Juego juego = new Juego();
 		juego.agregarCharmander();
-		juego.elegirPokemonInicial(0);
+		juego.elegirPokemonInicialDeJugadorActual();
 		juego.cambiarJugador();
 		juego.agregarSquirtle();
-		juego.elegirPokemonInicial(0);
+		juego.elegirPokemonInicialDeJugadorActual();
 		
 		int vidaAlgomonDefensor = juego.obtenerJugadorDefensor().getPokemonActivo().getVida();
 		int valorAtaque = (int)juego.obtenerJugadorActual().getPokemonActivo().ataque(AtaquesEnum.BURBUJA).getPotencia();
@@ -110,12 +108,57 @@ public class JuegoTest {
 	}
 	
 	@Test
+	public void test09VerificarVictoriaDeJugadorAtacante(){
+		Juego juego = new Juego();
+		juego.agregarBulbasaur();
+		juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-100000);
+		juego.cambiarJugador();
+		
+		try{
+			juego.verificarVictoriaDeJugadorActual();
+		}
+		catch (VictoriaObtenidaException voe) {
+			assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void test10VerificarNoVictoriaDeJugadorAtacante(){
+		Juego juego = new Juego();
+		juego.agregarBulbasaur();
+		juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-10);
+		juego.cambiarJugador();
+		
+		try{
+			juego.verificarVictoriaDeJugadorActual();
+		}
+		catch (VictoriaObtenidaException voe) {
+			assertTrue(false);
+		}
+		assertTrue(true); //No hubo excepcion de victoria
+	}
+	
+	@Test
+	public void test11ElegirPokemosActual() throws PokemonMuertoException {
+		Juego juego = new Juego();
+		juego.agregarBulbasaur();
+		juego.agregarCharmander();
+		juego.agregarRattata();
+		Bulbasaur bulba = new Bulbasaur();
+		juego.elegirPokemonInicialDeJugadorActual();
+		Algomon algomon = juego.obtenerJugadorActual().getPokemonActivo();
+		
+		assertEquals(algomon.getClass(), bulba.getClass());
+	}
+	
+	
+	@Test
 	public void unJugadorGana() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		Juego juego = new Juego();
 		juego.agregarCharmander();
 		juego.agregarBulbasaur();
 		try {
-			juego.elegirPokemonInicial(0);
+			juego.elegirPokemonInicialDeJugadorActual();
 		} catch (PokemonMuertoException e1) {
 			assertTrue(false);
 		}
@@ -126,7 +169,7 @@ public class JuegoTest {
 		assertEquals(juego.obtenerJugadorActual().obtenerAlgomon().size(),1);
 		assertEquals(juego.obtenerJugadorDefensor().obtenerAlgomon().size(),2);
 		try {
-			juego.elegirPokemonInicial(0);
+			juego.elegirPokemonInicialDeJugadorActual();
 		} catch (PokemonMuertoException e1) {
 			assertTrue(false);
 		}
@@ -140,7 +183,7 @@ public class JuegoTest {
 				assertTrue(false);
 			}
 		catch (PokemonMuertoException e) {
-			juego.obtenerJugadorDefensor().elegirAlgomonActivo(1);
+			juego.obtenerJugadorDefensor().elegirAlgomonEnBatalla(1);
 			//Cuando se muere un algomon, lo elimina de la lista del jugador
 			assertTrue(true);
 			break;
