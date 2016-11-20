@@ -42,7 +42,7 @@ import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
 
 public class CreadorPantallas {
-	
+
 	Stage stage;
 	ControladorLogicoDelJuego controladorLogico;
 	LinkedList<ImageView> miniaturasJugadorInicial;
@@ -51,7 +51,9 @@ public class CreadorPantallas {
 	LinkedList<ImageView> imagenesJugadorSegundo;
 	LinkedList<Button> botonesIntocables;
 	HashMap<String, AtaquesEnum>diccionarioEnums;
-	
+	CuadroDeNotificaciones notificaciones;
+
+
 	public CreadorPantallas(Stage stage) {
 		this.stage = stage;
 		this.miniaturasJugadorInicial = new LinkedList<ImageView>();
@@ -59,6 +61,7 @@ public class CreadorPantallas {
 		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 		this.botonesIntocables = new LinkedList<Button>();
+		this.notificaciones = new CuadroDeNotificaciones();
 		this.diccionarioEnums = new HashMap<String, AtaquesEnum>();
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
@@ -68,63 +71,63 @@ public class CreadorPantallas {
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
 		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
+
 	}
-	
+
 	public void crearPantallaBatalla() {
-	       
+
 		BorderPane border = new BorderPane();
         HBox contenedorHorizontalTop = new HBox();
         VBox contenedorHorizontalBottom = new VBox();
         VBox contenedorVerticalIzquierdo = new VBox();
         VBox contenedorVerticalCentral = new VBox();
         VBox contenedorVerticalDerecho = new VBox();
-        
-        
+
+
         border.setTop(contenedorHorizontalTop);
         border.setLeft(contenedorVerticalIzquierdo);
         border.setCenter(contenedorVerticalCentral);
         border.setRight(contenedorVerticalDerecho);
         border.setBottom(contenedorHorizontalBottom);
-        
+
         CreadorImagen creadorImagen = new CreadorImagen();
-        
+
         //Menu
         MenuBar menuBar = new MenuBar();
-        
+
         // --- Menu File
         Menu menuFile = new Menu("File");
- 
+
         // --- Menu Edit
         Menu menuEdit = new Menu("Edit");
- 
+
         // --- Menu View
         Menu menuView = new Menu("View");
- 
+
         menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
         menuBar.setMinWidth(1400);
-        
+
         contenedorHorizontalTop.getChildren().addAll(menuBar);
-        
-        
+
+
         //Notificaciones
-        TextArea textArea = new TextArea();
-        contenedorHorizontalBottom.getChildren().add(new Label("notificaciones:"));
-        contenedorHorizontalBottom.getChildren().addAll(textArea);
-        
+        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
+        contenedorHorizontalBottom.getChildren().addAll(notificaciones.getTextArea());
+
         //Batalla
 
         HBox contenedorAlgomonesActivos = new HBox();
-        
-        
+
+
         ImageView algomonJugador1 =this.imagenesJugadorInicial.get(0);
         ImageView algomonJugador2 =this.imagenesJugadorSegundo.get(0);
-        
+
         contenedorAlgomonesActivos.getChildren().addAll(algomonJugador1,algomonJugador2);
-  
+
         contenedorAlgomonesActivos.setSpacing(1);
         contenedorAlgomonesActivos.setAlignment(Pos.BOTTOM_CENTER);
-        
-        
+
+
         //Estados
         HBox contenedorEstados = new HBox();
         VBox contenedorEstadosJugador1 = new VBox();
@@ -132,27 +135,25 @@ public class CreadorPantallas {
         contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
         contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
         contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
-        
+
 
         contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
         contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
         contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
 
-        
+
         contenedorEstados.getChildren().addAll(contenedorEstadosJugador1, contenedorEstadosJugador2);
 
         contenedorEstados.setSpacing(25);
         contenedorEstados.setAlignment(Pos.TOP_CENTER);
-        
+
         contenedorVerticalCentral.getChildren().addAll(contenedorEstados, contenedorAlgomonesActivos);
         contenedorVerticalCentral.setSpacing(2);
-        
-        
-        
+
+
+
         //Parte del jugador 1
-        
-        
-		
+
         ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/avatar1.png",100,100,false,true);
         HBox contenedorAvatarJugador1 = new HBox();
         contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
@@ -162,8 +163,8 @@ public class CreadorPantallas {
         contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(1));
         contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(2));
         contenedorAlgomonesJugador1.setAlignment(Pos.BASELINE_CENTER);
-        
-        
+
+
         ArrayList<Button> listaDeBotones1 = new ArrayList<Button>();
         ArrayList<Button> listaDeBotones2 = new ArrayList<Button>();
 
@@ -180,8 +181,8 @@ public class CreadorPantallas {
         	boton.setOnAction(event->{
         		try {
 					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-					
-		    		
+
+
 				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
 						| VictoriaObtenidaException e) {
 					this.controladorLogico.cambiarJugador();
@@ -190,7 +191,7 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
         		for (Button boton2: listaDeBotones2){
         			boton2.setDisable(false);
         		}
@@ -201,14 +202,14 @@ public class CreadorPantallas {
             grid.add(boton,indice,0);
             indice+=1;
         }
-        
+
         botonAtacarJugador1.setText("ATACAR");
         botonAtacarJugador1.setExpanded(false);
         botonAtacarJugador1.setContent(grid);
-        
-       
+
+
         //Accion del atacar
-		
+
         TitledPane botonCambiarAlgomonJugador1 = new TitledPane();
         GridPane gridCambiarAlgomon = new GridPane();
         CreadorBoton creadorBoton1 = new CreadorBoton();
@@ -237,7 +238,7 @@ public class CreadorPantallas {
 			botonPrimerAlgomon.setDisable(true);
     		botonesIntocables.add(botonPrimerAlgomon);
     		listaDeBotones1.remove(botonPrimerAlgomon);
-    		
+
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
@@ -252,24 +253,23 @@ public class CreadorPantallas {
             contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
             contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    int indiceNuevo = 0;
     	    grid.getChildren().clear();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
-    				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+
+            		} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
     				}
+
             		contenedorEstadosJugador1.getChildren().clear(); //ESTO HAY QUE ENCAPSULARLO EN UN METODO ACTUALIZAR ESTADO
 		    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
 		            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
@@ -281,7 +281,7 @@ public class CreadorPantallas {
             			boton.setDisable(true);
             		}
             	});
-     
+
                 grid.add(boton2,indiceNuevo,0);
                 indiceNuevo+=1;
             }
@@ -318,20 +318,20 @@ public class CreadorPantallas {
             contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
             contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    int indiceNuevo = 0;
     	    grid.getChildren().clear();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
+
+
+
     				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
@@ -347,7 +347,7 @@ public class CreadorPantallas {
             			boton.setDisable(true);
             		}
             	});
-  
+
                 grid.add(boton2,indiceNuevo,0);
                 indiceNuevo+=1;
             }
@@ -370,7 +370,7 @@ public class CreadorPantallas {
 			botonTercerAlgomon.setDisable(true);
     		botonesIntocables.add(botonTercerAlgomon);
     		listaDeBotones1.remove(botonTercerAlgomon);
-    		
+
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
@@ -385,20 +385,20 @@ public class CreadorPantallas {
             contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
             contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    int indiceNuevo = 0;
     	    grid.getChildren().clear();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
+
+
+
     				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
@@ -414,25 +414,25 @@ public class CreadorPantallas {
             			boton.setDisable(true);
             		}
             	});
-            	
+
                 grid.add(boton2,indiceNuevo,0);
                 indiceNuevo+=1;
             }
 		}
 		);
-		
-		
+
+
         botonCambiarAlgomonJugador1.setText("CAMBIAR ALGOMON");
-        
+
         botonCambiarAlgomonJugador1.setExpanded(false);
         botonCambiarAlgomonJugador1.setContent(gridCambiarAlgomon);
-		
-		
+
+
 		//Accion del cambiar algomon
 		TitledPane botonUsarItemJugador1 = new TitledPane();
 		GridPane gridUsarItem = new GridPane();
-		 
-		 
+
+
 		ImageView pocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
 		ImageView superpocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
 		ImageView restaurador = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
@@ -445,7 +445,7 @@ public class CreadorPantallas {
 		botonPocion.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.POCION);
-				
+
 				for (Button boton1: listaDeBotones2){
 	    			boton1.setDisable(false);
 	    		}
@@ -453,7 +453,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.POCION)== 0){
-	    			textArea.setText("No tienes mas pociones jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
 					botonPocion.setDisable(true);
 					botonesIntocables.add(botonPocion);
 					listaDeBotones1.remove(botonPocion);
@@ -462,10 +462,10 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
-	    		
+
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 				botonPocion.setDisable(true);
 			}
 		}
@@ -474,7 +474,7 @@ public class CreadorPantallas {
 		botonSuperPocion.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.SUPER_POCION);
-				
+
 				for (Button boton1: listaDeBotones2){
 	    			boton1.setDisable(false);
 	    		}
@@ -482,7 +482,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.SUPER_POCION)== 0){
-	    			textArea.setText("No tienes mas super pociones jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
 					botonSuperPocion.setDisable(true);
 					botonesIntocables.add(botonSuperPocion);
 					listaDeBotones1.remove(botonSuperPocion);
@@ -491,9 +491,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 				botonSuperPocion.setDisable(true);
 			}
 
@@ -503,7 +503,7 @@ public class CreadorPantallas {
 		botonRestaurador.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.RESTAURADOR);
-				
+
 				for (Button boton1: listaDeBotones2){
 	    			boton1.setDisable(false);
 	    		}
@@ -511,7 +511,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.RESTAURADOR)== 0){
-	    			textArea.setText("No tienes mas pociones jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
 					botonRestaurador.setDisable(true);
 					botonesIntocables.add(botonRestaurador);
 					listaDeBotones1.remove(botonRestaurador);
@@ -520,9 +520,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 				botonPocion.setDisable(true);
 			}
 
@@ -532,7 +532,7 @@ public class CreadorPantallas {
 		botonVitamina.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.VITAMINA);
-				
+
 				for (Button boton1: listaDeBotones2){
 	    			boton1.setDisable(false);
 	    		}
@@ -540,7 +540,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
-	    			textArea.setText("No tienes mas vitaminas jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonVitamina.setDisable(true);
 					botonesIntocables.add(botonVitamina);
 					listaDeBotones1.remove(botonVitamina);
@@ -549,9 +549,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 				botonPocion.setDisable(true);
 			}
 
@@ -561,45 +561,45 @@ public class CreadorPantallas {
 		gridUsarItem.add(botonSuperPocion,1,0);
 		gridUsarItem.add(botonRestaurador,2,0);
 		gridUsarItem.add(botonVitamina,3,0);
-		
-		
+
+
 		botonUsarItemJugador1.setText("USAR ITEM");
 		botonUsarItemJugador1.setExpanded(false);
 		botonUsarItemJugador1.setContent(gridUsarItem);
-		
+
 		//Accion del usar item
-     
+
 		contenedorBotonesJugador1.getChildren().addAll(botonAtacarJugador1,botonCambiarAlgomonJugador1, botonUsarItemJugador1);
         contenedorBotonesJugador1.setSpacing(25);
         contenedorBotonesJugador1.setAlignment(Pos.BOTTOM_CENTER);
-        
-        contenedorVerticalIzquierdo.getChildren().addAll(contenedorAvatarJugador1, contenedorBotonesJugador1);      
-        
-        
+
+        contenedorVerticalIzquierdo.getChildren().addAll(contenedorAvatarJugador1, contenedorBotonesJugador1);
+
+
         //Parte del jugador 2
-        
+
         ImageView avatarJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/avatar2.png",100,100,false,true);
         HBox contenedorAvatarJugador2 = new HBox();
         contenedorAvatarJugador2.getChildren().addAll(avatarJugador2);
         contenedorAvatarJugador2.setAlignment(Pos.BASELINE_CENTER);
-      
+
         VBox contenedorBotonesJugador2 = new VBox();
         ArrayList<Ataque> listaDeAtaques2 = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
-       
+
         TitledPane botonAtacarJugador2 = new TitledPane();
         GridPane grid2 = new GridPane();
         int indice2 = 0;
         for(Ataque ataque: listaDeAtaques2){
         	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-        	
+
         	boton2.setDisable(true);
         	listaDeBotones2.add(boton2);
         	boton2.setOnAction(event->{
         		try {
 					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-					
-					
-		    		
+
+
+
 				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
 						| VictoriaObtenidaException e) {
 					this.controladorLogico.cambiarJugador();
@@ -618,11 +618,11 @@ public class CreadorPantallas {
             grid2.add(boton2,indice2,0);
             indice2+=1;
         }
-        
+
         botonAtacarJugador2.setText("ATACAR");
         botonAtacarJugador2.setExpanded(false);
         botonAtacarJugador2.setContent(grid2);
-        
+
         //Accion del atacar
 
         TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
@@ -648,7 +648,7 @@ public class CreadorPantallas {
 			botonPrimerAlgomon2.setDisable(true);
     		botonesIntocables.add(botonPrimerAlgomon2);
     		listaDeBotones2.remove(botonPrimerAlgomon2);
-    		
+
 			for (Button boton1: listaDeBotones1){
     			boton1.setDisable(false);
     		}
@@ -663,20 +663,20 @@ public class CreadorPantallas {
             contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
             contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    int indiceNuevo = 0;
     	    grid2.getChildren().clear();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
+
+
+
     				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
@@ -692,13 +692,13 @@ public class CreadorPantallas {
             			boton.setDisable(true);
             		}
             	});
-            	
+
                 grid2.add(boton2,indiceNuevo,0);
                 indiceNuevo+=1;
             }
 		}
 		);
-		
+
 		listaDeBotones2.add(botonSegundoAlgomon2);
 		botonSegundoAlgomon2.setDisable(true);
 		botonSegundoAlgomon2.setOnAction(event->{
@@ -733,18 +733,18 @@ public class CreadorPantallas {
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
     	    int indiceNuevo = 0;
     	    grid2.getChildren().clear();
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
+
+
+
     				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
@@ -760,13 +760,13 @@ public class CreadorPantallas {
             			boton.setDisable(true);
             		}
             	});
-       
+
                 grid2.add(boton2,indiceNuevo,0);
                 indiceNuevo+=1;
             }
 		}
 		);
-		
+
 		listaDeBotones2.add(botonTercerAlgomon2);
 		botonTercerAlgomon2.setDisable(true);
 		botonTercerAlgomon2.setOnAction(event->{
@@ -801,23 +801,23 @@ public class CreadorPantallas {
     	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
     	    int indiceNuevo = 0;
     	    grid2.getChildren().clear();
-    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques(); 
+    	    ArrayList<Ataque> listaDeAtaquesNueva = this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
     	    for(Ataque ataque: listaDeAtaquesNueva){
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-            	
+
             	boton2.setDisable(true);
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-    					
-    					
-    		    		
+
+
+
     				} catch (SinPuntosDePoderException |EstaDormidoException | PokemonMuertoException
     						| VictoriaObtenidaException e) {
     					this.controladorLogico.cambiarJugador();
     				}
-            			
+
             		contenedorEstadosJugador1.getChildren().clear(); //ESTO HAY QUE ENCAPSULARLO EN UN METODO ACTUALIZAR ESTADO
 		    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
 		            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
@@ -838,26 +838,26 @@ public class CreadorPantallas {
 		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
 		gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
-		
-		
+
+
         botonCambiarAlgomonJugador2.setText("CAMBIAR ALGOMON");
-        
+
         botonCambiarAlgomonJugador2.setExpanded(false);
         botonCambiarAlgomonJugador2.setContent(gridCambiarAlgomon2);
-		
-		
+
+
 		//Accion del cambiar algomon
-        
+
         TitledPane botonUsarItemJugador2 = new TitledPane();
 		GridPane gridUsarItem2 = new GridPane();
-		 
-		 
+
+
 		ImageView pocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
 		ImageView superpocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
 		ImageView restaurador2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
 		ImageView vitamina2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
 		Button botonPocion2 = creadorBoton1.crearBoton("Posicion", pocion2 );
-		
+
 		Button botonSuperPocion2 = creadorBoton1.crearBoton("Super pocion", superpocion2 );
 		Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
 		Button botonVitamina2 = creadorBoton1.crearBoton("vitamina", vitamina2 );
@@ -866,7 +866,7 @@ public class CreadorPantallas {
 		botonPocion2.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.POCION);
-				
+
 				for (Button boton1: listaDeBotones1){
 	    			boton1.setDisable(false);
 	    		}
@@ -874,7 +874,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.POCION)== 0){
-	    			textArea.setText("No tienes mas pociones jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
 					botonPocion2.setDisable(true);
 					botonesIntocables.add(botonPocion2);
 					listaDeBotones2.remove(botonPocion2);
@@ -883,9 +883,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
 				botonVitamina2.setDisable(true);
 			}
 
@@ -896,7 +896,7 @@ public class CreadorPantallas {
 		botonSuperPocion2.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.SUPER_POCION);
-				
+
 				for (Button boton1: listaDeBotones1){
 	    			boton1.setDisable(false);
 	    		}
@@ -904,7 +904,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.SUPER_POCION)== 0){
-	    			textArea.setText("No tienes mas Superpociones jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
 					botonSuperPocion2.setDisable(true);
 					botonesIntocables.add(botonSuperPocion2);
 					listaDeBotones2.remove(botonSuperPocion2);
@@ -913,9 +913,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas superPociones");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
 				botonSuperPocion2.setDisable(true);
 			}
 
@@ -926,7 +926,7 @@ public class CreadorPantallas {
 		botonRestaurador2.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.RESTAURADOR);
-				
+
 				for (Button boton1: listaDeBotones1){
 	    			boton1.setDisable(false);
 	    		}
@@ -934,7 +934,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.RESTAURADOR)== 0){
-	    			textArea.setText("No tienes mas Restauradores");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
 					botonRestaurador2.setDisable(true);
 					botonesIntocables.add(botonRestaurador2);
 					listaDeBotones2.remove(botonRestaurador2);
@@ -943,9 +943,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 				} catch (SinUsosDisponiblesException e) {
-					textArea.setText("No tienes mas Restauradores");
+					notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
 					botonRestaurador2.setDisable(true);
 				}
 
@@ -956,7 +956,7 @@ public class CreadorPantallas {
 		botonVitamina2.setOnAction(event->{
 			try {
 				this.controladorLogico.usarItem(ItemsEnum.VITAMINA);
-				
+
 				for (Button boton1: listaDeBotones1){
 	    			boton1.setDisable(false);
 	    		}
@@ -964,7 +964,7 @@ public class CreadorPantallas {
 	    			boton.setDisable(true);
 	    		}
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
-	    			textArea.setText("No tienes mas vitaminas jeje");
+	    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonVitamina2.setDisable(true);
 					botonesIntocables.add(botonVitamina2);
 					listaDeBotones2.remove(botonVitamina2);
@@ -973,9 +973,9 @@ public class CreadorPantallas {
 	    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getVida())));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
 	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
-	    		
+
 			} catch (SinUsosDisponiblesException e) {
-				textArea.setText("No tienes mas vitaminas");
+				notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 				botonVitamina2.setDisable(true);
 			}
 
@@ -985,23 +985,23 @@ public class CreadorPantallas {
 		gridUsarItem2.add(botonSuperPocion2,1,0);
 		gridUsarItem2.add(botonRestaurador2,2,0);
 		gridUsarItem2.add(botonVitamina2,3,0);
-		
-		
+
+
 		botonUsarItemJugador2.setText("USAR ITEM");
 		botonUsarItemJugador2.setExpanded(false);
 		botonUsarItemJugador2.setContent(gridUsarItem2);
-		
+
 		//Accion del usar item
-     
+
 		contenedorBotonesJugador2.getChildren().addAll(botonAtacarJugador2,botonCambiarAlgomonJugador2, botonUsarItemJugador2);
         contenedorBotonesJugador2.setSpacing(25);
         contenedorBotonesJugador2.setAlignment(Pos.BOTTOM_RIGHT);
-        
+
         contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2, contenedorBotonesJugador2);
         contenedorVerticalDerecho.setPrefWidth(500);
         contenedorVerticalIzquierdo.setPrefWidth(500);
-        
-        
+
+
         Scene principal = new Scene(border, 981, 600);
         stage.setScene(principal);
 	}
@@ -1091,13 +1091,14 @@ public class CreadorPantallas {
 		contenedorVertical.getChildren().addAll(label1,contenedorHorizontalSuperior,contenedorHorizontalInferior);
 		contenedorVertical.setAlignment(Pos.BASELINE_CENTER);
 		grilla.add(contenedorVertical,4,4);
+		grilla.setAlignment(Pos.CENTER);
 		Scene escenaCargarJugador= new Scene(grilla, 981, 600);
-		
+
 		this.stage.setScene(escenaCargarJugador);
 	}
-	
+
 	private void crearPantallaEleccionAlgomon() {
-			
+
 			CreadorImagen creadorImagen = new CreadorImagen();
 			ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 			ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
@@ -1112,37 +1113,37 @@ public class CreadorPantallas {
 			CreadorBoton creadorBoton = new CreadorBoton();
 			ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 			ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
-			
+
 			Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 			listaDeBotones.add(botonCharmander);
 			AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/sonidos/charmander_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoCharmander);
-			
+
 			Button botonChansey = creadorBoton.crearBoton("chansey", imageViewChansey);
 			listaDeBotones.add(botonChansey);
 			AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/sonidos/chansey_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoChansey);
-			
+
 			Button botonSquirtle =creadorBoton.crearBoton("squirtle", imageViewSquirtle);
 			listaDeBotones.add(botonSquirtle);
 			AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/sonidos/squirtle_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoSquirtle);
-			
+
 			Button botonRattata =creadorBoton.crearBoton("rattata", imageViewRattata);
 			listaDeBotones.add(botonRattata);
 			AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/sonidos/rattata_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoRattata);
-			
+
 			Button botonBulbasaur =creadorBoton.crearBoton("bulbasaur", imageViewBulbasaur);
 			listaDeBotones.add(botonBulbasaur);
 			AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/sonidos/bulbasaur_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoBulbasaur);
-			
+
 			Button botonJigglypuff =creadorBoton.crearBoton("jigglypuff", imageViewJigglypuff);
 			listaDeBotones.add(botonJigglypuff);
 			AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/sonidos/jigglypuff_audio.mp3").toExternalForm());
 			listaDeSonidos.add(sonidoJigglypuff);
-			
+
 			Button botonContinuar = creadorBoton.crearBoton("Continuar", "-fx-font: 16 arial; -fx-base: #b6e7c9;");
 			botonContinuar.setDisable(true);
 			for (Button boton:listaDeBotones){
@@ -1159,15 +1160,15 @@ public class CreadorPantallas {
 						boton_auxiliar.setDisable(true);
 					}
 					botonContinuar.setDisable(false);
-	
+
 				}
 				sonidoCharmander.play();
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1188,11 +1189,11 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1202,7 +1203,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoSquirtle.play();});
-			
+
 			botonBulbasaur.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
 					this.controladorLogico.agregarBulbasaurJugadorActual();
@@ -1214,11 +1215,11 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1228,7 +1229,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 				sonidoBulbasaur.play();});
-			
+
 			botonRattata.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
 					this.controladorLogico.agregarRattataJugadorActual();
@@ -1241,11 +1242,11 @@ public class CreadorPantallas {
 				}
 				sonidoRattata.play();
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1267,11 +1268,11 @@ public class CreadorPantallas {
 				}
 				sonidoJigglypuff.play();
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1282,7 +1283,7 @@ public class CreadorPantallas {
 				}
 });
 			botonChansey.setOnAction(event ->{
-			
+
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
 					this.controladorLogico.agregarChanseyJugadorActual();
 				}
@@ -1294,11 +1295,11 @@ public class CreadorPantallas {
 				}
 				sonidoChansey.play();
 				if(this.miniaturasJugadorInicial.size()<3){
-					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));	
+					this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));
 					this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 				}
 				else{
-					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));	
+					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 				}
 				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1308,7 +1309,7 @@ public class CreadorPantallas {
 					botonContinuar.setDisable(false);
 				}
 });
-			
+
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
 				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -1327,12 +1328,12 @@ public class CreadorPantallas {
 			contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
 			contenedorHorizontalInferior.getChildren().add(botonContinuar);
 			contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
-			
+
 			contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
 		    BorderPane border = new BorderPane();
 			border.setTop(contenedorHorizontalSuperior);
 			border.setCenter(contenedorVertical);
 			Scene escenaElegirAlgomon= new Scene(border, 981, 600);
-		    stage.setScene(escenaElegirAlgomon); 
-		}	
+		    stage.setScene(escenaElegirAlgomon);
+		}
 }
