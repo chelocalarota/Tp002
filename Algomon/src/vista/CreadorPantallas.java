@@ -262,13 +262,37 @@ public class CreadorPantallas {
 		);
 		listaDeBotones1.add(botonTercerAlgomon);
 		botonTercerAlgomon.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
+			try {
+				this.controladorLogico.cambiarAlgomon(2);
+			} catch (PokemonMuertoException e) {
+			}
+			if (botonesIntocables.contains(botonPrimerAlgomon)){
+				botonesIntocables.remove(botonPrimerAlgomon);
+    			listaDeBotones1.add(botonPrimerAlgomon);
+    		}
+    		else{
+    			botonesIntocables.remove(botonSegundoAlgomon);
+    			listaDeBotones1.add(botonSegundoAlgomon);
+    		}
+			botonTercerAlgomon.setDisable(true);
+    		botonesIntocables.add(botonTercerAlgomon);
+    		listaDeBotones1.remove(botonTercerAlgomon);
+    		
 			for (Button boton1: listaDeBotones2){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
+    		contenedorAlgomonesActivos.getChildren().remove(0);
+    	    ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(2);
+    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+    	    contenedorEstadosJugador1.getChildren().clear();
+    	    contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+    	   
 		}
 		);
 		
@@ -466,49 +490,115 @@ public class CreadorPantallas {
 
         TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
         GridPane gridCambiarAlgomon2 = new GridPane();
-        
+        Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
 		Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
-		listaDeBotones2.add(botonPrimerAlgomon2);
+		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
 		botonPrimerAlgomon2.setDisable(true);
 		botonesIntocables.add(botonPrimerAlgomon2);
 		botonPrimerAlgomon2.setOnAction(event->{
-			this.controladorLogico.cambiarJugador();
+			try {
+				this.controladorLogico.cambiarAlgomon(0);
+			} catch (PokemonMuertoException e) {
+			}
+			if (botonesIntocables.contains(botonSegundoAlgomon2)){
+				botonesIntocables.remove(botonSegundoAlgomon2);
+    			listaDeBotones2.add(botonSegundoAlgomon2);
+    		}
+    		else{
+    			botonesIntocables.remove(botonTercerAlgomon2);
+    			listaDeBotones2.add(botonTercerAlgomon2);
+    		}
+			botonPrimerAlgomon2.setDisable(true);
+    		botonesIntocables.add(botonPrimerAlgomon2);
+    		listaDeBotones2.remove(botonPrimerAlgomon2);
+    		
 			for (Button boton1: listaDeBotones1){
     			boton1.setDisable(false);
     		}
     		for (Button boton: listaDeBotones2){
     			boton.setDisable(true);
     		}
-    	
+
+    		contenedorAlgomonesActivos.getChildren().remove(1);
+    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
+    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+    	    contenedorEstadosJugador2.getChildren().clear();
+    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+    	   
 		}
 		);
-		Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
+		
 		listaDeBotones2.add(botonSegundoAlgomon2);
 		botonSegundoAlgomon2.setDisable(true);
 		botonSegundoAlgomon2.setOnAction(event->{
-		
-		this.controladorLogico.cambiarJugador();
+			try {
+				this.controladorLogico.cambiarAlgomon(1);
+			} catch (PokemonMuertoException e) {
+			}
+			if (botonesIntocables.contains(botonPrimerAlgomon2)){
+				botonesIntocables.remove(botonPrimerAlgomon2);
+    			listaDeBotones2.add(botonPrimerAlgomon2);
+    		}
+    		else{
+    			botonesIntocables.remove(botonTercerAlgomon2);
+    			listaDeBotones2.add(botonTercerAlgomon2);
+    		}
+    		botonesIntocables.add(botonSegundoAlgomon2);
+    		listaDeBotones2.remove(botonSegundoAlgomon2);
+    		botonSegundoAlgomon2.setDisable(true);
 			for (Button boton1: listaDeBotones1){
-				boton1.setDisable(false);
-			}
-			for (Button boton: listaDeBotones2){
-				boton.setDisable(true);
-			}
-	
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+    		contenedorAlgomonesActivos.getChildren().remove(1);
+    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
+    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+    	    contenedorEstadosJugador2.getChildren().clear();
+    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+    	   
 		});
-		Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
+		
 		listaDeBotones2.add(botonTercerAlgomon2);
 		botonTercerAlgomon2.setDisable(true);
 		botonTercerAlgomon2.setOnAction(event->{
-			
-			this.controladorLogico.cambiarJugador();
+			try {
+				this.controladorLogico.cambiarAlgomon(2);
+			} catch (PokemonMuertoException e) {
+			}
+			if (botonesIntocables.contains(botonPrimerAlgomon2)){
+				botonesIntocables.remove(botonPrimerAlgomon2);
+    			listaDeBotones2.add(botonPrimerAlgomon2);
+    		}
+    		else{
+    			botonesIntocables.remove(botonSegundoAlgomon2);
+    			listaDeBotones2.add(botonSegundoAlgomon2);
+    		}
+    		botonesIntocables.add(botonTercerAlgomon2);
+    		listaDeBotones2.remove(botonTercerAlgomon2);
+    		botonTercerAlgomon2.setDisable(true);
 			for (Button boton1: listaDeBotones1){
-				boton1.setDisable(false);
-			}
-			for (Button boton: listaDeBotones2){
-				boton.setDisable(true);
-			}
-	
+    			boton1.setDisable(false);
+    		}
+    		for (Button boton: listaDeBotones2){
+    			boton.setDisable(true);
+    		}
+    		contenedorAlgomonesActivos.getChildren().remove(1);
+    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(2);
+    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+    	    contenedorEstadosJugador2.getChildren().clear();
+    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+    	   
 			});
 		gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 		gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
