@@ -3,6 +3,8 @@ package modelo;
 
 
 
+import java.util.HashMap;
+
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
@@ -13,6 +15,7 @@ public class Juego {
 	private Jugador jugador2;
 	private Cola colaAtacante;
 	private Cola colaDefensor;
+	private HashMap<String, AtaquesEnum>diccionarioEnums;
 	
 	public Juego() {
 		this.jugador1 = new Jugador();
@@ -23,6 +26,15 @@ public class Juego {
 		this.colaDefensor = new Cola();
 		this.colaDefensor.encolar(jugador2);
 		this.colaDefensor.encolar(jugador1);
+		this.diccionarioEnums = new HashMap<String, AtaquesEnum>();
+		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
+		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
+		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
+		diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
+		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
+		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
+		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
 	}
 
 	public void setNombreJugadorActual(String nombre){
@@ -62,12 +74,13 @@ public class Juego {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
-		Ataque unAtaque = this.obtenerJugadorActual().elegirAtaque(ataque);
+	public void resolverAtaqueYPasarDeTurno(Ataque ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+		
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
+		ataque = algomonAtacante.ataque(this.diccionarioEnums.get(ataque.getNombre()));
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
-		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
+		algomonDefensor.recibirDanio(ataque,algomonAtacante);
 		verificarVictoriaDeJugadorActual();
 		if (algomonDefensor.getVida()<0){
 			throw new PokemonMuertoException("");

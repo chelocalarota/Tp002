@@ -9,6 +9,6 @@ public class CanionDeAgua extends Ataque{
 		this.setPotencia(20);
 		this.setCantidad(8);
 		this.setTipo(new TipoAgua());
-		this.nombre = "CANION DE AGUA";
+		this.nombre = "Canion de Agua";
 	}
 }
