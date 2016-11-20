@@ -62,8 +62,8 @@ public class ControladorLogicoDelJuego {
 		return this.juego.obtenerJugadorDefensor();
 	}
 
-	public void atacar(Ataque ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
-		this.juego.resolverAtaqueYPasarDeTurno(ataque);
+	public void atacar(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+		this.juego.resolverAtaqueYPasarDeTurno(ataquesEnum);
 	}
 	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException {
 		this.obtenerJugadorActual().usarItem(vitamina);

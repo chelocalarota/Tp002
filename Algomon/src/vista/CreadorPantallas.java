@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -37,6 +38,7 @@ import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
+import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
 
 public class CreadorPantallas {
@@ -48,6 +50,7 @@ public class CreadorPantallas {
 	LinkedList<ImageView> miniaturasJugadorSegundo;
 	LinkedList<ImageView> imagenesJugadorSegundo;
 	LinkedList<Button> botonesIntocables;
+	HashMap<String, AtaquesEnum>diccionarioEnums;
 	
 	public CreadorPantallas(Stage stage) {
 		this.stage = stage;
@@ -56,6 +59,15 @@ public class CreadorPantallas {
 		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 		this.botonesIntocables = new LinkedList<Button>();
+		this.diccionarioEnums = new HashMap<String, AtaquesEnum>();
+		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
+		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
+		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
+		diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
+		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
+		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
+		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
 	}
 	
 	public void crearPantallaBatalla() {
@@ -167,7 +179,7 @@ public class CreadorPantallas {
         	listaDeBotones1.add(boton);
         	boton.setOnAction(event->{
         		try {
-					this.controladorLogico.atacar(ataque);
+					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
 					
 		    		
 				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
@@ -250,7 +262,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
@@ -316,7 +328,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
@@ -383,7 +395,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
@@ -584,7 +596,7 @@ public class CreadorPantallas {
         	listaDeBotones2.add(boton2);
         	boton2.setOnAction(event->{
         		try {
-					this.controladorLogico.atacar(ataque);
+					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
 					
 					
 		    		
@@ -661,7 +673,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
@@ -729,7 +741,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
@@ -797,7 +809,7 @@ public class CreadorPantallas {
             	listaDeBotones2.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
-    					this.controladorLogico.atacar(ataque);
+    					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
     					
     					
     		    		
