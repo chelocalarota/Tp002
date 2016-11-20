@@ -453,7 +453,6 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonPocion.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
 		}
 		);
 		listaDeBotones1.add(botonSuperPocion);
@@ -482,7 +481,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonSuperPocion.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		listaDeBotones1.add(botonRestaurador);
@@ -511,7 +510,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonPocion.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		listaDeBotones1.add(botonVitamina);
@@ -540,7 +539,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonPocion.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		gridUsarItem.add(botonPocion,0,0);
@@ -873,7 +872,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonVitamina2.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		listaDeBotones2.add(botonSuperPocion2);
@@ -903,7 +902,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas superPociones");
 				botonSuperPocion2.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		listaDeBotones2.add(botonRestaurador2);
@@ -933,7 +932,7 @@ public class CreadorPantallas {
 					textArea.setText("No tienes mas Restauradores");
 					botonRestaurador2.setDisable(true);
 				}
-				this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		listaDeBotones2.add(botonVitamina2);
@@ -963,7 +962,7 @@ public class CreadorPantallas {
 				textArea.setText("No tienes mas vitaminas");
 				botonVitamina2.setDisable(true);
 			}
-			this.controladorLogico.cambiarJugador();
+
 		}
 		);
 		gridUsarItem2.add(botonPocion2,0,0);
