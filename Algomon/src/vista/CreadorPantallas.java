@@ -176,8 +176,6 @@ public class CreadorPantallas {
 				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
 						| VictoriaObtenidaException e) {
 				}
-        		
-        		this.controladorLogico.cambiarJugador();
         		for (Button boton2: listaDeBotones2){
         			boton2.setDisable(false);
         		}
@@ -489,18 +487,16 @@ public class CreadorPantallas {
         		try {
 					this.controladorLogico.atacar(ataque);
 					
-					contenedorEstadosJugador2.getChildren().clear(); //ESTO HAY QUE ENCAPSULARLO EN UN METODO ACTUALIZAR ESTADO
-		    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+					contenedorEstadosJugador1.getChildren().clear(); //ESTO HAY QUE ENCAPSULARLO EN UN METODO ACTUALIZAR ESTADO
+		    		contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getVida())));
+		            contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+		            contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.controladorLogico.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
 		    		
 				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
 						| VictoriaObtenidaException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-        		
-        		this.controladorLogico.cambiarJugador();
         		for (Button boton1: listaDeBotones1){
         			boton1.setDisable(false);
         		}
