@@ -207,10 +207,11 @@ public class CreadorPantallas {
 		listaDeBotones1.add(botonSegundoAlgomon);
 		botonSegundoAlgomon.setOnAction(event->{
 			try {
-				this.controladorLogico.cambiarAlgomon(2);
+				this.controladorLogico.cambiarAlgomon(1);
 			} catch (PokemonMuertoException e) {
 			}
-			if (botonesIntocables.remove(botonPrimerAlgomon)){
+			if (botonesIntocables.contains(botonPrimerAlgomon)){
+				botonesIntocables.remove(botonPrimerAlgomon);
     			listaDeBotones1.add(botonPrimerAlgomon);
     		}
     		else{
@@ -224,9 +225,12 @@ public class CreadorPantallas {
     		for (Button boton: listaDeBotones1){
     			boton.setDisable(true);
     		}
-    		contenedorAlgomonesActivos.getChildren().remove(1);
-    	    ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
-    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,algomonJugador2);
+    		contenedorAlgomonesActivos.getChildren().remove(0);
+    	    ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(1);
+    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+    	    
+    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+    	    botonSegundoAlgomon.setDisable(true);
 		}
 		);
 		listaDeBotones1.add(botonTercerAlgomon);
@@ -926,6 +930,7 @@ public class CreadorPantallas {
 				}
 });
 			botonChansey.setOnAction(event ->{
+			
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
 					this.controladorLogico.agregarChanseyJugadorActual();
 				}
@@ -954,7 +959,12 @@ public class CreadorPantallas {
 			
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
-				this.crearPantallaJugador();
+				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					this.crearPantallaBatalla();
+				}
+				else{
+					this.crearPantallaJugador();
+				}
 			});
 			contenedorVertical.setSpacing(100);
 			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
