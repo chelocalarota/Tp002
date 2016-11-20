@@ -68,4 +68,8 @@ public class ControladorLogicoDelJuego {
 	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException {
 		this.obtenerJugadorActual().usarItem(vitamina);
 	}
+
+	public void cambiarAlgomon(int indice) throws PokemonMuertoException {
+		this.juego.cambiarAlgomonParaJugadorActualYPasarDeTurno(indice);
+	}
 }
