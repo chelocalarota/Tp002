@@ -62,12 +62,12 @@ public class Juego {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
-		Ataque unAtaque = this.obtenerJugadorActual().elegirAtaque(ataque);
+	public void resolverAtaqueYPasarDeTurno(Ataque ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+		
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
-		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
+		algomonDefensor.recibirDanio(ataque,algomonAtacante);
 		verificarVictoriaDeJugadorActual();
 		if (algomonDefensor.getVida()<0){
 			throw new PokemonMuertoException("");
