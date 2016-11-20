@@ -43,6 +43,7 @@ public class CreadorPantallas {
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
 	LinkedList<ImageView> imagenesJugadorSegundo;
+	LinkedList<Button> botonesIntocables;
 	
 	public CreadorPantallas(Stage stage) {
 		this.stage = stage;
@@ -50,6 +51,7 @@ public class CreadorPantallas {
 		this.imagenesJugadorInicial= new LinkedList<ImageView>();
 		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
+		this.botonesIntocables = new LinkedList<Button>();
 	}
 	
 	public void crearPantallaBatalla() {
@@ -466,6 +468,8 @@ public class CreadorPantallas {
 	    		if(controladorLogico.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
 	    			textArea.setText("No tienes mas vitaminas jeje");
 					botonVitamina2.setDisable(true);
+					botonesIntocables.add(botonVitamina2);
+					listaDeBotones2.remove(botonVitamina2);
 	    		}
 			} catch (SinUsosDisponiblesException e) {
 				textArea.setText("No tienes mas vitaminas");
