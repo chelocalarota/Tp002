@@ -6,6 +6,7 @@ package modelo;
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
+import modelo.enums.ItemsEnum;
 
 public class Juego {
 	private Jugador jugador1;
@@ -61,7 +62,7 @@ public class Juego {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void resolverAtaque(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
 		Ataque unAtaque = this.obtenerJugadorActual().elegirAtaque(ataque);
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
@@ -72,6 +73,16 @@ public class Juego {
 			throw new PokemonMuertoException("");
 		}
 		this.cambiarJugador();
+	}
+	
+	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException{
+		this.obtenerJugadorActual().usarItem(unItem);
+		this.pasarTurno();
+	}
+	
+	public void cambiarAlgomonParaJugadorActualYPasarDeTurno(int indiceAlgomon) throws PokemonMuertoException{
+		this.cambiarPokemonDeJugadorActual(indiceAlgomon);
+		this.pasarTurno();
 	}
 
 	public void verificarVictoriaDeJugadorActual() throws VictoriaObtenidaException {

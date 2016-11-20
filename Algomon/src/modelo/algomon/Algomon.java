@@ -55,7 +55,7 @@ public abstract class Algomon {
 
 	public void cambiarVida(int cantidad){
 		this.vida = this.vida + cantidad;
-		if (vida >= this.vidaOriginal) {
+		if (vida >= this.vidaOriginal) { // Un algomon nunca tendra mas vida que la original
 			this.vida = this.vidaOriginal;
 		}
 	}

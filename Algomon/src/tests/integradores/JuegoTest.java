@@ -25,7 +25,7 @@ public class JuegoTest {
 		int multiplicador = (int)juego.obtenerJugadorActual().getPokemonActivo().ataque(AtaquesEnum.BURBUJA).getTipo().respuestaAFuego();
 		vidaAlgomonDefensor = vidaAlgomonDefensor - (valorAtaque * multiplicador);
 		
-		juego.resolverAtaque(AtaquesEnum.BURBUJA);
+		juego.resolverAtaqueYPasarDeTurno(AtaquesEnum.BURBUJA);
 		assertEquals(juego.obtenerJugadorDefensor().getPokemonActivo().getVida(), vidaAlgomonDefensor);
 	}
 	
@@ -176,7 +176,7 @@ public class JuegoTest {
 		while (true){
 
 			try {
-				juego.resolverAtaque(AtaquesEnum.BURBUJA);
+				juego.resolverAtaqueYPasarDeTurno(AtaquesEnum.BURBUJA);
 				juego.pasarTurno();
 			}
 		 catch (VictoriaObtenidaException e) {
