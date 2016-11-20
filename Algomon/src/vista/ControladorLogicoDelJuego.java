@@ -44,7 +44,7 @@ public class ControladorLogicoDelJuego {
 
 
 	public boolean verificarCantidadAlgomonDeJugadorActual() {
-		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==2){
+		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
 			return true;
 		}
 		return false;

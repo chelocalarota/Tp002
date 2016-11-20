@@ -814,6 +814,12 @@ public class CreadorPantallas {
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 				}
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
 });
 			botonSquirtle.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -833,7 +839,12 @@ public class CreadorPantallas {
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 				}
-
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
 				sonidoSquirtle.play();});
 			
 			botonBulbasaur.setOnAction(event ->{
@@ -854,7 +865,12 @@ public class CreadorPantallas {
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 				}
-
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
 				sonidoBulbasaur.play();});
 			
 			botonRattata.setOnAction(event ->{
@@ -876,6 +892,12 @@ public class CreadorPantallas {
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 				}
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
 });
 			botonJigglypuff.setOnAction(event ->{
 				if (!this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
@@ -895,6 +917,12 @@ public class CreadorPantallas {
 				else{
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
+				}
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
 				}
 });
 			botonChansey.setOnAction(event ->{
@@ -916,16 +944,17 @@ public class CreadorPantallas {
 					this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));	
 					this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 				}
+				if (this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
+					for (Button boton_auxiliar:listaDeBotones){
+						boton_auxiliar.setDisable(true);
+					}
+					botonContinuar.setDisable(false);
+				}
 });
 			
 			botonContinuar.setOnAction(event->{
 				this.controladorLogico.cambiarJugador();
-				if(this.controladorLogico.verificarCantidadAlgomonDeJugadorActual()){
-					this.crearPantallaBatalla();
-				}
-				else{
-					this.crearPantallaJugador();
-				}
+				this.crearPantallaJugador();
 			});
 			contenedorVertical.setSpacing(100);
 			contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
