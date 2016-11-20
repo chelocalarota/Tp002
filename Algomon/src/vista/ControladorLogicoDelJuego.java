@@ -44,7 +44,7 @@ public class ControladorLogicoDelJuego {
 
 
 	public boolean verificarCantidadAlgomonDeJugadorActual() {
-		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==2){
+		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
 			return true;
 		}
 		return false;
@@ -67,5 +67,9 @@ public class ControladorLogicoDelJuego {
 	}
 	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException {
 		this.obtenerJugadorActual().usarItem(vitamina);
+	}
+
+	public void cambiarAlgomon(int indice) throws PokemonMuertoException {
+		this.juego.cambiarAlgomonParaJugadorActualYPasarDeTurno(indice);
 	}
 }
