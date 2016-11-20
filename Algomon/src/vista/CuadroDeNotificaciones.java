@@ -33,15 +33,15 @@ public class CuadroDeNotificaciones {
 		this.textArea.setText(jugador + "ha utilizado" + item);
 	}
 
-	public void notificarNoHayItemDisponible(ItemsEnum item, String jugador){
-		this.textArea.setText(jugador + " no hay mas " + item + " disponible.\n");
+	public void notificarNoHayItemDisponible(ItemsEnum item){
+		this.textArea.setText("No hay mas " + item + " disponible.\n");
 	}
 
 	public void notificarCambioDePokemon(String jugador, String pokemon){
 		this.textArea.setText("El" + jugador + "ha cambiado de pokemon." + pokemon + "salió al combate.");
 	}
 
-	public void notificarPokemonMuerto(String pokemon){
-		this.textArea.setText(pokemon + "ha muerto. No podrás seguir utilizándolo.");
+	public void notificarPokemonMuerto(){
+		this.textArea.setText("Este pokemon ha muerto. No podrás seguir utilizándolo.");
 	}
 }
