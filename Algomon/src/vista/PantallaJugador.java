@@ -18,12 +18,15 @@ public class PantallaJugador {
 	GridPane grilla;
 	ControladorLogicoDelJuego controlador;
 
-	public PantallaJugador(ControladorLogicoDelJuego controlador) {
+
+	public PantallaJugador() {
 		this.grilla = new GridPane();
-		this.controlador = controlador;
 	}
 
-	public void cargarPantalla(Stage stage){
+	public void cargarPantalla(Stage stage,ControladorLogicoDelJuego controlador){
+		this.controlador = controlador;
+
+
 		DropShadow sombraBoton = new DropShadow();
         sombraBoton.setOffsetY(2.0);
         sombraBoton.setOffsetX(2.0);
@@ -45,7 +48,9 @@ public class PantallaJugador {
 		Button botonAceptar =  creadorBoton.crearBoton("Aceptar","-fx-font: 16 arial; -fx-base: #b6e7c9;");
 		botonAceptar.setOnAction(event ->{
 			this.controlador.setNombreJugadorActual(textField.getText());
-			PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon();
+
+			PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon(this);
+
 			pantallaEleccion.cargarPantalla(stage,this.controlador);
 		});
 		botonAceptar.setEffect(sombraBoton);
