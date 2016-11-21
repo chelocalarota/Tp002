@@ -165,7 +165,7 @@ public class PantallaBatalla {
 	        TitledPane botonAtacarJugador1 = new TitledPane();
 	        GridPane grid = new GridPane();
 	        ArrayList<Ataque> listaDeAtaques = controlador.obtenerJugadorActual().getPokemonActivo().obtenerTodosLosAtaques();
-
+	        //Ataques iniciales del jugador 1
 	        int indice = 0;
 	        for(Ataque ataque: listaDeAtaques){
 	        	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
@@ -203,8 +203,8 @@ public class PantallaBatalla {
 	        botonAtacarJugador1.setExpanded(false);
 	        botonAtacarJugador1.setContent(grid);
 
-	        //Accion del atacar
 
+	        //Cambiar algomon jugador 1
 	        TitledPane botonCambiarAlgomonJugador1 = new TitledPane();
 	        GridPane gridCambiarAlgomon = new GridPane();
 
@@ -219,9 +219,12 @@ public class PantallaBatalla {
 			gridCambiarAlgomon.add(botonPrimerAlgomon,0,0);
 			gridCambiarAlgomon.add(botonSegundoAlgomon,1,0);
 			gridCambiarAlgomon.add(botonTercerAlgomon,2,0);
+			
+			
 			botonPrimerAlgomon.setOnAction(event->{
 				try {
 					controlador.cambiarAlgomon(0);
+					//cambia de turno tambien
 				} catch (PokemonMuertoException e) {
 					notificaciones.notificarPokemonMuerto();
 					botonPrimerAlgomon.setDisable(true);
@@ -249,16 +252,16 @@ public class PantallaBatalla {
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 	    	    contenedorEstadosJugador1.getChildren().clear();
 
-        		this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
- 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
- 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
- 	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon2)));
+        		this.vidaAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
+ 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
+ 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
+ 	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon1));
- 	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador1);
+ 	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
-
+ 	 	        //Creacion de los nuevos botones de ataques en caso de cambio de algomon
  	 	        int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
@@ -298,6 +301,7 @@ public class PantallaBatalla {
 	            }
 			}
 			);
+			//Segundo boton de cambio
 			listaDeBotones1.add(botonSegundoAlgomon);
 			botonSegundoAlgomon.setOnAction(event->{
 				try {
@@ -330,9 +334,9 @@ public class PantallaBatalla {
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    	    contenedorEstadosJugador1.getChildren().clear();
-	    	    this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
- 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
- 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
+	    	    this.vidaAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
+ 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
+ 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
  	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon1));
@@ -342,6 +346,7 @@ public class PantallaBatalla {
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
+	    	    //Nuevos botones de ataque al cambiar por algomon numero 2
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
@@ -378,6 +383,7 @@ public class PantallaBatalla {
 	            }
 			}
 			);
+			//Ultimo boton de cambio de algomon del jugador 1
 			listaDeBotones1.add(botonTercerAlgomon);
 			botonTercerAlgomon.setOnAction(event->{
 				try {
@@ -411,9 +417,9 @@ public class PantallaBatalla {
 
 	    	    contenedorEstadosJugador1.getChildren().clear();
 
-	    	    this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
- 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
- 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
+	    	    this.vidaAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
+ 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
+ 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
  	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon1));
@@ -424,6 +430,7 @@ public class PantallaBatalla {
 
  	 	        int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
+	    	    //Nuevos botones de ataques debido al cambio por el tercer algomon
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
@@ -468,7 +475,7 @@ public class PantallaBatalla {
 	        botonCambiarAlgomonJugador1.setContent(gridCambiarAlgomon);
 
 
-			//Accion del cambiar algomon
+			//Botones de uso de items del jugador 1
 			TitledPane botonUsarItemJugador1 = new TitledPane();
 			GridPane gridUsarItem = new GridPane();
 
@@ -642,6 +649,7 @@ public class PantallaBatalla {
 	        TitledPane botonAtacarJugador2 = new TitledPane();
 	        GridPane grid2 = new GridPane();
 	        int indice2 = 0;
+	        //Ataques iniciales jugador1
 	        for(Ataque ataque: listaDeAtaques2){
 	        	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
@@ -680,7 +688,7 @@ public class PantallaBatalla {
 	        botonAtacarJugador2.setExpanded(false);
 	        botonAtacarJugador2.setContent(grid2);
 
-	        //Accion del atacar
+	        //Botones de cambio de algomon de jugador 2
 
 	        TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
 	        GridPane gridCambiarAlgomon2 = new GridPane();
@@ -720,16 +728,16 @@ public class PantallaBatalla {
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    	    contenedorEstadosJugador2.getChildren().clear();
-	    	    this.vidaAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
- 	 	        this.estadoEfimeroAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
- 	 	        this.estadoPersistenteAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
+	    	    this.vidaAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
+ 	 	        this.estadoEfimeroAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
+ 	 	        this.estadoPersistenteAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
  	 	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.vidaAlgomon2)));
  	 	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon2));
  	 	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon2));
  	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
-
+ 	 	        //Ataques nuevos
  	 	        int indiceNuevo = 0;
 	    	    grid2.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
@@ -769,7 +777,7 @@ public class PantallaBatalla {
 	            }
 			}
 			);
-
+			//Boton de cambio por algomon numero 2
 			listaDeBotones2.add(botonSegundoAlgomon2);
 			botonSegundoAlgomon2.setDisable(true);
 			botonSegundoAlgomon2.setOnAction(event->{
@@ -800,9 +808,9 @@ public class PantallaBatalla {
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    	    contenedorEstadosJugador2.getChildren().clear();
-	    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorDefensor().getPokemonActivo().getVida())));
-	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
-	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
+	    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
+	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
 	    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
 	    	    int indiceNuevo = 0;
@@ -842,6 +850,7 @@ public class PantallaBatalla {
 			);
 
 			listaDeBotones2.add(botonTercerAlgomon2);
+			//Tercer boton de cambio
 			botonTercerAlgomon2.setDisable(true);
 			botonTercerAlgomon2.setOnAction(event->{
 				try {
