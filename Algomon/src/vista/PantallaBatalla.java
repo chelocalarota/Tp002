@@ -45,6 +45,7 @@ public class PantallaBatalla {
 
 
 	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
+
 		this.miniaturasJugadorInicial = miniaturasJugadorInicial;
 		this.imagenesJugadorInicial = imagenesJugadorInicial;
 		this.miniaturasJugadorSegundo = miniaturasJugadorSegundo;
@@ -63,7 +64,6 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-
 			BorderPane border = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
 	        VBox contenedorHorizontalBottom = new VBox();
@@ -200,7 +200,7 @@ public class PantallaBatalla {
 		        			boton1.setDisable(true);
 		        		}
 
-					} catch (SinPuntosDePoderException | EstaDormidoException 
+					} catch (SinPuntosDePoderException 
 							| VictoriaObtenidaException e) {
 						notificaciones.notificar("No se pudo utilizar el ataque jeje.");
 						
@@ -210,8 +210,15 @@ public class PantallaBatalla {
 						botonUsarItemJugador1.setDisable(true);
 						
 						
-					}
-	        		
+					} catch (EstaDormidoException e) {
+						controlador.pasarTurno();
+						for (Button boton2: listaDeBotones2){
+			        		boton2.setDisable(false);
+			        	}
+			        	for (Button boton1: listaDeBotones1){
+			        		boton1.setDisable(true);
+			        	}
+					}	
 	        	});
 	            grid.add(boton,indice,0);
 	            indice+=1;
@@ -319,11 +326,19 @@ public class PantallaBatalla {
 		            			boton.setDisable(true);
 		            		}
 
-	            		} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+	            		} catch (SinPuntosDePoderException| PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    						notificaciones.notificar("No se pudo utilizar el ataque.");
 	    						return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}
+						}
 	            		
 	            	});
 
@@ -410,11 +425,19 @@ public class PantallaBatalla {
 		            			boton.setDisable(false);
 		            		}
 
-	    				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+	    				} catch (SinPuntosDePoderException| PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    					notificaciones.notificar("No se pudo utilizar el ataque.");
 	    					return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}
+						}
 	            		
 	            	});
 
@@ -504,11 +527,19 @@ public class PantallaBatalla {
 		            			boton.setDisable(false);
 		            		}
 
-	            		} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+	            		} catch (SinPuntosDePoderException | PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    					notificaciones.notificar("No se pudo utilizar el ataque.");
 	    					return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}
+						}
 	            		
 	            	});
 
@@ -734,10 +765,18 @@ public class PantallaBatalla {
 		        			boton.setDisable(true);
 		        		}
 
-					} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+					} catch (SinPuntosDePoderException | PokemonMuertoException
 							| VictoriaObtenidaException e) {
     					notificaciones.notificar("No se pudo utilizar el ataque.");
     					return;
+					} catch (EstaDormidoException e) {
+						controlador.pasarTurno();
+						for (Button boton: listaDeBotones2){
+			        		boton.setDisable(false);
+			        	}
+			        	for (Button boton1: listaDeBotones1){
+			        		boton1.setDisable(true);
+			        	}
 					}
 	        		
 	        	});
@@ -832,11 +871,20 @@ public class PantallaBatalla {
 		            			boton.setDisable(true);
 		            		}
 
-	    				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+	    				} catch (SinPuntosDePoderException | PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    					notificaciones.notificar("No se pudo utilizar el ataque.");
 	    					return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}
+						}
+	            		
 	            		
 	            	});
 
@@ -916,11 +964,19 @@ public class PantallaBatalla {
 		            			boton.setDisable(true);
 		            		}
 
-	    				} catch (SinPuntosDePoderException | EstaDormidoException | PokemonMuertoException
+	    				} catch (SinPuntosDePoderException| PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    					notificaciones.notificar("No se pudo utilizar el ataque.");
 	    					return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}
+						}
 	            		
 	            	});
 
@@ -998,11 +1054,18 @@ public class PantallaBatalla {
 		            			boton.setDisable(true);
 		            		}
 
-	    				} catch (SinPuntosDePoderException |EstaDormidoException | PokemonMuertoException
+	    				} catch (SinPuntosDePoderException | PokemonMuertoException
 	    						| VictoriaObtenidaException e) {
 	    					notificaciones.notificar("No se pudo utilizar el ataque.");
 	    					return;
-	    				}
+	    				} catch (EstaDormidoException e) {
+	    					controlador.pasarTurno();
+							for (Button boton: listaDeBotones2){
+				        		boton.setDisable(false);
+				        	}
+				        	for (Button boton1: listaDeBotones1){
+				        		boton1.setDisable(true);
+				        	}						}
 	            		
 	            	});
 
@@ -1179,6 +1242,7 @@ public class PantallaBatalla {
 
 	        this.escena = new Scene(border, 981, 600);
 	        stage.setScene(escena);
+	        stage.setFullScreen(true);
 	        stage.show();
 	}
 }
