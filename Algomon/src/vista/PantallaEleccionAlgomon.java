@@ -1,10 +1,12 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,8 +30,8 @@ public class PantallaEleccionAlgomon {
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 	}
 
-	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-
+	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int i) {
+		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 		ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
@@ -38,7 +40,9 @@ public class PantallaEleccionAlgomon {
 		ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/bulbasaur.png", 150, 150, false, true);
 		ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
 
+		Label label = new Label("Jugador" + String.valueOf(i));
 		VBox contenedorVertical = new VBox();
+		VBox contenedorVertical2 = new VBox();
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalMedio = new HBox();
 		HBox contenedorHorizontalInferior = new HBox();
@@ -246,18 +250,18 @@ public class PantallaEleccionAlgomon {
 		botonContinuar.setOnAction(event->{
 			controlador.pasarTurno();
 			if(controlador.verificarCantidadAlgomonDeJugadorActual()){
-				PantallaBatalla pantallaBatalla = new PantallaBatalla(this.miniaturasJugadorInicial,this.imagenesJugadorInicial,this.miniaturasJugadorSegundo,this.imagenesJugadorSegundo);
+				PantallaBatalla pantallaBatalla = new PantallaBatalla(this.miniaturasJugadorInicial,this.imagenesJugadorInicial, this.miniaturasJugadorSegundo, this.imagenesJugadorSegundo);
 				pantallaBatalla.cargarPantalla(stage,controlador);
 			}
 			else{
-				PantallaJugador pantallaJugador = new PantallaJugador(controlador);
-	        	pantallaJugador.cargarPantalla(stage);
+				this.cargarPantalla(stage, controlador,2);
 			}
 		});
 		contenedorVertical.setSpacing(100);
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
 		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
+		contenedorVertical2.getChildren().addAll(label,contenedorHorizontalSuperior);
 		contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
 		contenedorHorizontalMedio.setSpacing(60);
 		contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
@@ -266,7 +270,7 @@ public class PantallaEleccionAlgomon {
 
 		contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
 	    BorderPane border = new BorderPane();
-		border.setTop(contenedorHorizontalSuperior);
+		border.setTop(contenedorVertical2);
 		border.setCenter(contenedorVertical);
 		this.escena = new Scene(border, 981, 600);
         stage.setScene(escena);

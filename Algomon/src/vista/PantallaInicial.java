@@ -14,11 +14,11 @@ public class PantallaInicial {
 
 	ControladorLogicoDelJuego controlador;
 
-	public PantallaInicial(){
-		this.controlador = new ControladorLogicoDelJuego();
+	public PantallaInicial(ControladorLogicoDelJuego controlador){
+		this.controlador = controlador;
 	}
 
-	public void cargarPantalla(Stage stage) {
+	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 
 		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
 		musicaPantallaInicial.play();
@@ -44,8 +44,8 @@ public class PantallaInicial {
         botonNuevoJuego.setOnAction(event ->{
         	musicaPantallaInicial.stop();
         	this.controlador.crearJuegoNuevo();
-        	PantallaJugador pantallaJugador = new PantallaJugador(controlador);
-        	pantallaJugador.cargarPantalla(stage);
+        	pantallaEleccion.cargarPantalla(stage,this.controlador,1);
+
         });
 		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");
 		Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  16 arial; -fx-base: #b6e7c9;");
