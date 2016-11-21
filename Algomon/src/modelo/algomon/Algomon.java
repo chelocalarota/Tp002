@@ -1,7 +1,7 @@
 package modelo.algomon;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.image.ImageView;
@@ -94,6 +94,12 @@ public abstract class Algomon {
 		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
 		listaDeAtaques.addAll(this.ataques.values());
 		return listaDeAtaques;
+	}
+	
+	public Map<AtaquesEnum, Ataque> obtenerTodosLosAtaquesEnFormaDeMap(){
+		Map<AtaquesEnum, Ataque> hashDeAtaques = new HashMap<>();
+		hashDeAtaques.putAll(this.ataques);
+		return hashDeAtaques;
 	}
 
 	public String getEstadoPersistenteComoString() {
