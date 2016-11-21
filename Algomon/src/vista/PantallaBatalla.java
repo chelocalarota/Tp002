@@ -231,7 +231,7 @@ public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
 				}
 				if (botonesIntocables.contains(botonSegundoAlgomon)){
 					botonesIntocables.remove(botonSegundoAlgomon);
-	    			listaDeBotones1.add(botonSegundoAlgomon);
+	    			listaDeBotones1.add(botonSegundoAlgomon);					//mirar de nuevo
 	    		}
 	    		else{
 	    			botonesIntocables.remove(botonTercerAlgomon);
@@ -247,7 +247,7 @@ public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
 	    		for (Button boton: listaDeBotones1){
 	    			boton.setDisable(true);
 	    		}
-	    		contenedorAlgomonesActivos.getChildren().remove(0);
+	    		contenedorAlgomonesActivos.getChildren().remove(0); //mirar
 	    	    ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 	    	    contenedorEstadosJugador1.getChildren().clear();
@@ -339,7 +339,7 @@ public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
  	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
  	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon1));
-
+ 	 	        
  	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();

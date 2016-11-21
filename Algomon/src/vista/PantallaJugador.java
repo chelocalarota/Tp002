@@ -49,9 +49,9 @@ public class PantallaJugador {
 		botonAceptar.setOnAction(event ->{
 			this.controlador.setNombreJugadorActual(textField.getText());
 
-			PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon(this);
+//			PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon(this);
 
-			pantallaEleccion.cargarPantalla(stage,this.controlador);
+//			pantallaEleccion.cargarPantalla(stage,this.controlador);
 		});
 		botonAceptar.setEffect(sombraBoton);
 		contenedorHorizontalSuperior.getChildren().addAll(label2, textField);
