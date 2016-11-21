@@ -518,7 +518,9 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonPocion.setDisable(true);
 				}
+				controlador.pasarTurno();
 			}
+		
 			);
 			listaDeBotones1.add(botonSuperPocion);
 			botonSuperPocion.setOnAction(event->{
@@ -550,8 +552,8 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonSuperPocion.setDisable(true);
 				}
-
-			}
+				controlador.pasarTurno();
+			}	
 			);
 			listaDeBotones1.add(botonRestaurador);
 			botonRestaurador.setOnAction(event->{
@@ -582,7 +584,7 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonPocion.setDisable(true);
 				}
-
+				controlador.pasarTurno();
 			}
 			);
 			listaDeBotones1.add(botonVitamina);
@@ -614,7 +616,7 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonPocion.setDisable(true);
 				}
-
+				controlador.pasarTurno();
 			}
 			);
 			gridUsarItem.add(botonPocion,0,0);
@@ -929,7 +931,7 @@ public class PantallaBatalla {
 	        botonCambiarAlgomonJugador2.setContent(gridCambiarAlgomon2);
 
 
-			//Accion del cambiar algomon
+			//Uso de items jugador 2
 
 	        TitledPane botonUsarItemJugador2 = new TitledPane();
 			GridPane gridUsarItem2 = new GridPane();
@@ -971,7 +973,7 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
 					botonVitamina2.setDisable(true);
 				}
-
+				controlador.pasarTurno();
 			}
 			);
 			listaDeBotones2.add(botonSuperPocion2);
@@ -1001,7 +1003,7 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
 					botonSuperPocion2.setDisable(true);
 				}
-
+				controlador.pasarTurno();
 			}
 			);
 			listaDeBotones2.add(botonRestaurador2);
@@ -1031,7 +1033,7 @@ public class PantallaBatalla {
 						notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
 						botonRestaurador2.setDisable(true);
 					}
-
+				controlador.pasarTurno();
 			}
 			);
 			listaDeBotones2.add(botonVitamina2);
@@ -1061,7 +1063,7 @@ public class PantallaBatalla {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
 					botonVitamina2.setDisable(true);
 				}
-
+				controlador.pasarTurno();
 			}
 			);
 			gridUsarItem2.add(botonPocion2,0,0);
