@@ -45,27 +45,25 @@ public class PantallaBatalla {
 	String estadoPersistenteAlgomon2;
 
 
-	public PantallaBatalla(LinkedList<ImageView> miniaturasInicial,LinkedList<ImageView> imagenesInicial, LinkedList<ImageView>miniaturasSegundo,LinkedList<ImageView> imagenesSegundo){
-			this.miniaturasJugadorInicial = miniaturasInicial;
-			this.imagenesJugadorInicial= imagenesInicial;
-			this.miniaturasJugadorSegundo = miniaturasSegundo;
-			this.imagenesJugadorSegundo = imagenesSegundo;
-			this.botonesIntocables = new LinkedList<Button>();
-			this.notificaciones = new CuadroDeNotificaciones();
-			this.diccionarioEnums = new HashMap<String, AtaquesEnum>();
-			diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
-			diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
-			diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-			diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
-			diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
-			diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
-			diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
-			diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
-
-		}
+	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
+		this.miniaturasJugadorInicial = miniaturasJugadorInicial;
+		this.imagenesJugadorInicial = imagenesJugadorInicial;
+		this.miniaturasJugadorSegundo = miniaturasJugadorSegundo;
+		this.imagenesJugadorSegundo = imagenesJugadorSegundo;
+		this.botonesIntocables = new LinkedList<Button>();
+		this.notificaciones = new CuadroDeNotificaciones();
+		this.diccionarioEnums = new HashMap<String, AtaquesEnum>();
+		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
+		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
+		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
+		diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
+		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
+		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
+		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
+	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-
 
 			BorderPane border = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
@@ -109,7 +107,7 @@ public class PantallaBatalla {
 
 	        HBox contenedorAlgomonesActivos = new HBox();
 
-
+	        System.out.println(imagenesJugadorInicial.size());
 	        ImageView algomonJugador1 = this.imagenesJugadorInicial.get(0);
 	        ImageView algomonJugador2 = this.imagenesJugadorSegundo.get(0);
 

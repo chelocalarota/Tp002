@@ -9,8 +9,10 @@ public class Vista extends Application {
 	@Override
 	public void start(Stage Stage) {
         Stage.setTitle("Algomon-v0.3");
-        PantallaInicial pantallaInicial = new PantallaInicial();
-		pantallaInicial.cargarPantalla(Stage);
+        ControladorLogicoDelJuego controlador = new ControladorLogicoDelJuego();
+        PantallaInicial pantallaInicial = new PantallaInicial(controlador);
+        PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon();
+		pantallaInicial.cargarPantalla(Stage, pantallaEleccion);
 
 	}
 	public static void main(String[] args) {
