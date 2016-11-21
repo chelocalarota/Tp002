@@ -260,7 +260,7 @@ public class CreadorPantallas {
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
             	boton2.setDisable(true);
-            	listaDeBotones2.add(boton2);
+            	listaDeBotones1.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
@@ -325,7 +325,7 @@ public class CreadorPantallas {
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
             	boton2.setDisable(true);
-            	listaDeBotones2.add(boton2);
+            	listaDeBotones1.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));
@@ -392,7 +392,7 @@ public class CreadorPantallas {
             	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
             	boton2.setDisable(true);
-            	listaDeBotones2.add(boton2);
+            	listaDeBotones1.add(boton2);
             	boton2.setOnAction(event2->{
             		try {
     					this.controladorLogico.atacar(this.diccionarioEnums.get(ataque.getNombre()));

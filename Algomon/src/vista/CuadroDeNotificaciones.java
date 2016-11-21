@@ -25,7 +25,7 @@ public class CuadroDeNotificaciones {
 		this.textArea.setText(pokemon + "ha realizado" + ataque + ".");
 	}
 
-	public void notificarDaño(String pokemon, String vida){
+	public void notificarDanio(String pokemon, String vida){
 		this.textArea.setText(pokemon + "ha perdido" + vida + "puntos de vida.");
 	}
 
