@@ -923,10 +923,7 @@ public class PantallaBatalla {
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
-	    	    contenedorEstadosJugador2.getChildren().clear();
-	    	    contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-	            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-	            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+	    	    actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
 	    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
 	    	    int indiceNuevo = 0;
@@ -1119,10 +1116,7 @@ public class PantallaBatalla {
 						botonesIntocablesTemporal.add(botonPocion2);
 						listaDeBotones2.remove(botonPocion2);
 		    		}
-		    		contenedorEstadosJugador2.getChildren().clear();
-		    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
 
 				} catch (SinUsosDisponiblesException e) {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
@@ -1149,10 +1143,7 @@ public class PantallaBatalla {
 						botonesIntocablesTemporal.add(botonSuperPocion2);
 						listaDeBotones2.remove(botonSuperPocion2);
 		    		}
-		    		contenedorEstadosJugador2.getChildren().clear();
-		    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
 
 				} catch (SinUsosDisponiblesException e) {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
@@ -1179,10 +1170,7 @@ public class PantallaBatalla {
 						botonesIntocablesTemporal.add(botonRestaurador2);
 						listaDeBotones2.remove(botonRestaurador2);
 		    		}
-		    		contenedorEstadosJugador2.getChildren().clear();
-		    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
 
 					} catch (SinUsosDisponiblesException e) {
 						notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
@@ -1209,10 +1197,7 @@ public class PantallaBatalla {
 						botonesIntocablesTemporal.add(botonVitamina2);
 						listaDeBotones2.remove(botonVitamina2);
 		    		}
-		    		contenedorEstadosJugador2.getChildren().clear();
-		    		contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-		            contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
 
 				} catch (SinUsosDisponiblesException e) {
 					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
@@ -1246,4 +1231,11 @@ public class PantallaBatalla {
 	        stage.setFullScreen(true);
 	        stage.show();
 	}
+
+		private void actualizarJugador2PorItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
+			contenedorEstadosJugador2.getChildren().clear();
+			contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
+			contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
+			contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+		}
 }
