@@ -455,7 +455,7 @@ public class PantallaBatalla {
 					notificaciones.notificarPokemonMuerto();
 					botonTercerAlgomon.setDisable(true);
 				}
-				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon)){//si está, es el primero el utilizado
+				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon)){//si estï¿½, es el primero el utilizado
 					botonesIntocablesTemporal.remove(botonPrimerAlgomon);
 	    			listaDeBotones1.add(botonPrimerAlgomon);
 	    		}
@@ -970,6 +970,7 @@ public class PantallaBatalla {
 	    					return;
 	    				} catch (EstaDormidoException e) {
 	    					controlador.pasarTurno();
+	    					//Falta copy paste
 							for (Button boton: listaDeBotones2){
 				        		boton.setDisable(false);
 				        	}

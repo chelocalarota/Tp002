@@ -26,7 +26,6 @@ public abstract class Algomon {
 		ataque.getPuntosDePoderEsCero();
 		this.estadoPersistente.accion(this);
 		this.estadoEfimero.accion(this);
-
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
@@ -84,8 +83,9 @@ public abstract class Algomon {
 		unItem.aplicarEfecto(this);
 		try {
 			this.estadoPersistente.accion(this);
+			this.estadoEfimero.accion(this);
 		} catch (EstaDormidoException e) {
-			e.printStackTrace();
+			
 		}
 	}
 
