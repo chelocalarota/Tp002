@@ -14,7 +14,7 @@ import modelo.enums.ItemsEnum;
 public class ControladorLogicoDelJuego {
 
 	Juego juego;
-	
+
 	public void crearJuegoNuevo() {
 		this.juego = new Juego();
 	}
@@ -50,8 +50,8 @@ public class ControladorLogicoDelJuego {
 		return false;
 	}
 
-	public void cambiarJugador() {
-		this.juego.cambiarJugador();
+	public void pasarTurno() {
+		this.juego.pasarTurno();
 	}
 
 	public Jugador obtenerJugadorActual() {

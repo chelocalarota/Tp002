@@ -1,7 +1,7 @@
 package modelo.algomon;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.image.ImageView;
@@ -22,13 +22,10 @@ public abstract class Algomon {
 	protected String imagenAsociada;
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
-
-		this.estadoPersistente.accion(this);
-		this.estadoEfimero.accion(this);
-
 		Ataque ataque = ataques.get(nombreAtaque);
 		ataque.getPuntosDePoderEsCero();
-
+		this.estadoPersistente.accion(this);
+		this.estadoEfimero.accion(this);
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
@@ -75,9 +72,6 @@ public abstract class Algomon {
 
 		unAtaque.cambioDeEstado(this);
 		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante, (int)danioResultante);
-		if(this.vida<=0){
-			throw new PokemonMuertoException("");
-		}
 		return this.vida;
 	}
 
@@ -87,13 +81,24 @@ public abstract class Algomon {
 
 	public void usarItem(Item unItem) throws SinUsosDisponiblesException {
 		unItem.aplicarEfecto(this);
-		
+		try {
+			this.estadoPersistente.accion(this);
+			this.estadoEfimero.accion(this);
+		} catch (EstaDormidoException e) {
+			
+		}
 	}
 
 	public ArrayList<Ataque> obtenerTodosLosAtaques(){
 		ArrayList<Ataque> listaDeAtaques = new ArrayList<Ataque>();
 		listaDeAtaques.addAll(this.ataques.values());
 		return listaDeAtaques;
+	}
+	
+	public Map<AtaquesEnum, Ataque> obtenerTodosLosAtaquesEnFormaDeMap(){
+		Map<AtaquesEnum, Ataque> hashDeAtaques = new HashMap<>();
+		hashDeAtaques.putAll(this.ataques);
+		return hashDeAtaques;
 	}
 
 	public String getEstadoPersistenteComoString() {

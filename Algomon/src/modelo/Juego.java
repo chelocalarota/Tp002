@@ -74,10 +74,11 @@ public class Juego {
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
 		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
 		verificarVictoriaDeJugadorActual();
+		this.cambiarJugador();
 		if (algomonDefensor.getVida()<0){
 			throw new PokemonMuertoException("");
 		}
-		this.cambiarJugador();
+		
 	}
 	
 	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException{
