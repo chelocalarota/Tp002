@@ -44,4 +44,8 @@ public class CuadroDeNotificaciones {
 	public void notificarPokemonMuerto(){
 		this.textArea.setText("Este pokemon ha muerto. No podrás seguir utilizándolo.");
 	}
+
+	public void notificar(String string){
+		this.textArea.setText(string);
+	}
 }
