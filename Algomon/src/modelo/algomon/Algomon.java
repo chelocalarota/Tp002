@@ -23,11 +23,12 @@ public abstract class Algomon {
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
 
-		this.estadoPersistente.accion(this);
-		this.estadoEfimero.accion(this);
+	
 
 		Ataque ataque = ataques.get(nombreAtaque);
 		ataque.getPuntosDePoderEsCero();
+		this.estadoPersistente.accion(this);
+		this.estadoEfimero.accion(this);
 
 		ataque.restarPuntoDePoder();
 		return ataque;
