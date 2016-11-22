@@ -22,13 +22,10 @@ public abstract class Algomon {
 	protected String imagenAsociada;
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
-
-		this.estadoPersistente.accion(this);
-		this.estadoEfimero.accion(this);
-
 		Ataque ataque = ataques.get(nombreAtaque);
 		ataque.getPuntosDePoderEsCero();
-
+		this.estadoPersistente.accion(this);
+		this.estadoEfimero.accion(this);
 		ataque.restarPuntoDePoder();
 		return ataque;
 	}
@@ -75,9 +72,6 @@ public abstract class Algomon {
 
 		unAtaque.cambioDeEstado(this);
 		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante, (int)danioResultante);
-		if(this.vida<=0){
-			throw new PokemonMuertoException("");
-		}
 		return this.vida;
 	}
 
@@ -87,7 +81,12 @@ public abstract class Algomon {
 
 	public void usarItem(Item unItem) throws SinUsosDisponiblesException {
 		unItem.aplicarEfecto(this);
-		
+		try {
+			this.estadoPersistente.accion(this);
+			this.estadoEfimero.accion(this);
+		} catch (EstaDormidoException e) {
+			
+		}
 	}
 
 	public ArrayList<Ataque> obtenerTodosLosAtaques(){

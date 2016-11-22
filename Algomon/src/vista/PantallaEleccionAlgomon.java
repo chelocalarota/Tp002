@@ -35,8 +35,6 @@ public class PantallaEleccionAlgomon {
 	}
 
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int i) {
-
-
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 		ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);

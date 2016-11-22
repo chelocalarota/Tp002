@@ -21,8 +21,6 @@ public class PantallaInicial {
 
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 
-
-
 		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
 		musicaPantallaInicial.play();
 		CreadorImagen creadorImagen = new CreadorImagen();

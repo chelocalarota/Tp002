@@ -5,3 +5,4 @@ Algomon/.settings
 Algomon/bin
 /bin/
 .recommenders/index/
+.recommenders/caches/
