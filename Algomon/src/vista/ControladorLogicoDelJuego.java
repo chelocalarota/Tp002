@@ -1,5 +1,9 @@
 package vista;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import javafx.scene.control.Button;
 import modelo.Juego;
 import modelo.Jugador;
 import modelo.VictoriaObtenidaException;
@@ -65,11 +69,35 @@ public class ControladorLogicoDelJuego {
 	public void atacar(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
 		this.juego.resolverAtaqueYPasarDeTurno(ataquesEnum);
 	}
-	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException {
+	public void usarItem(ItemsEnum vitamina) throws SinUsosDisponiblesException, PokemonMuertoException {
 		this.obtenerJugadorActual().usarItem(vitamina);
 	}
 
 	public void cambiarAlgomon(int indice) throws PokemonMuertoException {
 		this.juego.cambiarAlgomonParaJugadorActualYPasarDeTurno(indice);
 	}
+
+	public void verificarAlgomonActualMuerto() throws PokemonMuertoException {
+		this.juego.verificarAlgomonDefensorMuerto();
+	}
+
+	public void bloquearBotonesPorMuerteJugadorActual(ArrayList<Button> listaDeBotonesDeJugador,
+			LinkedList<Button> listaDeBotonesDeCambio, LinkedList<Button> botonesBloqueadosForEver) {
+		for (Button botonABloquear: listaDeBotonesDeJugador){
+			botonABloquear.setDisable(true);
+		}
+		Button botonACambiar = null;
+		for(Button botonDeCambio : listaDeBotonesDeCambio){
+			if (!listaDeBotonesDeJugador.contains(botonDeCambio)){
+				botonesBloqueadosForEver.add(botonDeCambio);
+				botonACambiar = botonDeCambio;
+			}
+			else{
+				botonDeCambio.setDisable(false);
+			}
+		}
+		listaDeBotonesDeCambio.remove(botonACambiar);
+	}
+
+
 }

@@ -34,6 +34,7 @@ public class PantallaBatalla {
 	LinkedList<ImageView> miniaturasJugadorSegundo;
 	LinkedList<ImageView> imagenesJugadorSegundo;
 	LinkedList<Button> botonesIntocablesTemporal;
+	LinkedList<Button> botonesBloqueadosForEver;
 	CuadroDeNotificaciones notificaciones;
 	HashMap<String, AtaquesEnum>diccionarioEnums;
 	int vidaAlgomon1;
@@ -42,10 +43,11 @@ public class PantallaBatalla {
 	int vidaAlgomon2;
 	String estadoEfimeroAlgomon2;
 	String estadoPersistenteAlgomon2;
-
+	
+	
 	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
 
-
+		this.botonesBloqueadosForEver = new LinkedList<Button>();
 		this.miniaturasJugadorInicial = miniaturasJugadorInicial;
 		this.imagenesJugadorInicial = imagenesJugadorInicial;
 		this.miniaturasJugadorSegundo = miniaturasJugadorSegundo;
@@ -64,6 +66,10 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
+			LinkedList<Button> botonesBloqueadosForEver = new LinkedList<Button>();
+			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
+			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
+			
 			BorderPane border = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
 	        VBox contenedorHorizontalBottom = new VBox();
@@ -157,6 +163,7 @@ public class PantallaBatalla {
 	        ArrayList<Ataque> listaDeAtaques = controlador.obtenerJugadorActual().getPokemonActivo().obtenerTodosLosAtaques();
 	       
 	        //Ataques iniciales del jugador 1
+	        
 	        int indice = 0;
 	        for(Ataque ataque: listaDeAtaques){
 	        	Button boton = creadorBoton.crearBoton(ataque.getNombre(), "-fx-font: 14 arial; -fx-base: #b6e7c9;");
@@ -178,13 +185,18 @@ public class PantallaBatalla {
 	        GridPane gridCambiarAlgomon = new GridPane();
 
 	        CreadorBoton creadorBoton1 = new CreadorBoton();
+	        
 			Button botonPrimerAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(0));
-			botonPrimerAlgomon.setDisable(true);
-			this.botonesIntocablesTemporal.add(botonPrimerAlgomon);
-
 			Button botonSegundoAlgomon = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorInicial.get(1) );
 			Button botonTercerAlgomon = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorInicial.get(2) );
-
+			
+			botonPrimerAlgomon.setDisable(true);
+			this.botonesIntocablesTemporal.add(botonPrimerAlgomon);
+			
+			botonesDeCambioDeAlgomonDelJugador1.add(botonPrimerAlgomon);
+			botonesDeCambioDeAlgomonDelJugador1.add(botonSegundoAlgomon);
+			botonesDeCambioDeAlgomonDelJugador1.add(botonTercerAlgomon);
+			
 			gridCambiarAlgomon.add(botonPrimerAlgomon,0,0);
 			gridCambiarAlgomon.add(botonSegundoAlgomon,1,0);
 			gridCambiarAlgomon.add(botonTercerAlgomon,2,0);
@@ -192,7 +204,17 @@ public class PantallaBatalla {
 			
 			botonPrimerAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonPrimerAlgomon,
-						botonSegundoAlgomon, botonTercerAlgomon,0);
+						botonSegundoAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 0);
+
+				
+				contenedorAlgomonesActivos.getChildren().remove(0);
+
+	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
+	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    
+	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
+ 	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
+
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
  	 	        int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
@@ -216,7 +238,7 @@ public class PantallaBatalla {
 			listaDeBotones1.add(botonSegundoAlgomon);
 			botonSegundoAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonSegundoAlgomon,
-						botonPrimerAlgomon, botonTercerAlgomon,1);
+						botonPrimerAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 1);
 	    		
 				contenedorAlgomonesActivos.getChildren().remove(0);
 
@@ -248,8 +270,9 @@ public class PantallaBatalla {
 			listaDeBotones1.add(botonTercerAlgomon);
 			botonTercerAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonTercerAlgomon,
-						botonSegundoAlgomon, botonPrimerAlgomon,2);
-	    		contenedorAlgomonesActivos.getChildren().remove(0);
+						botonSegundoAlgomon, botonPrimerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 2);
+	    		
+				contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(2);
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
@@ -298,11 +321,11 @@ public class PantallaBatalla {
 			Button botonSuperPocion = creadorBoton1.crearBoton("Super pocion", superpocion );
 			Button botonRestaurador = creadorBoton1.crearBoton("Restaurador", restaurador );
 			Button botonVitamina = creadorBoton1.crearBoton("Vitamina", vitamina );
-			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonPocion);
-			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonSuperPocion);
-			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonRestaurador);
-			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonVitamina);
-			seteBotonContenedorDeItem(botonUsarItemJugador1, gridUsarItem, botonPocion, botonSuperPocion,
+			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonPocion,ItemsEnum.POCION, botonesDeCambioDeAlgomonDelJugador1);
+			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonSuperPocion, ItemsEnum.SUPER_POCION, botonesDeCambioDeAlgomonDelJugador1);
+			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonRestaurador, ItemsEnum.RESTAURADOR, botonesDeCambioDeAlgomonDelJugador1);
+			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonVitamina, ItemsEnum.VITAMINA,botonesDeCambioDeAlgomonDelJugador1);
+			setearBotonContenedorDeItem(botonUsarItemJugador1, gridUsarItem, botonPocion, botonSuperPocion,
 					botonRestaurador, botonVitamina);
 
 			contenedorBotonesJugador1.getChildren().addAll(botonAtacarJugador1,botonCambiarAlgomonJugador1, botonUsarItemJugador1);
@@ -349,15 +372,22 @@ public class PantallaBatalla {
 
 	        TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
 	        GridPane gridCambiarAlgomon2 = new GridPane();
+	        
+	        Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
 	        Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
-			Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
 			Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
+			
 			botonPrimerAlgomon2.setDisable(true);
 			botonesIntocablesTemporal.add(botonPrimerAlgomon2);
+			
+			botonesDeCambioDeAlgomonDelJugador2.add(botonPrimerAlgomon2);
+			botonesDeCambioDeAlgomonDelJugador2.add(botonSegundoAlgomon2);
+			botonesDeCambioDeAlgomonDelJugador2.add(botonTercerAlgomon2);
+			
 			botonPrimerAlgomon2.setOnAction(event->{
 				
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonPrimerAlgomon2,
-						botonSegundoAlgomon2, botonTercerAlgomon2,0);
+						botonSegundoAlgomon2, botonTercerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 0);
 	    	
 				contenedorAlgomonesActivos.getChildren().remove(1);
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
@@ -390,8 +420,9 @@ public class PantallaBatalla {
 			botonSegundoAlgomon2.setOnAction(event->{
 				
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonSegundoAlgomon2,
-						botonPrimerAlgomon2, botonTercerAlgomon2,1);
-	    		contenedorAlgomonesActivos.getChildren().remove(1);
+						botonPrimerAlgomon2, botonTercerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 1);
+	    		
+				contenedorAlgomonesActivos.getChildren().remove(1);
 
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
@@ -422,7 +453,7 @@ public class PantallaBatalla {
 			botonTercerAlgomon2.setDisable(true);
 			botonTercerAlgomon2.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonTercerAlgomon2,
-						botonSegundoAlgomon2, botonPrimerAlgomon2,0);
+						botonSegundoAlgomon2, botonPrimerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 2);
 	    		
 				contenedorAlgomonesActivos.getChildren().remove(1);
 	    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(2);
@@ -448,6 +479,7 @@ public class PantallaBatalla {
 	            }
 			}
 			);
+			
 			gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
 			gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
 			gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
@@ -472,14 +504,18 @@ public class PantallaBatalla {
 			Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
 			Button botonVitamina2 = creadorBoton1.crearBoton("Vitamina", vitamina2 );
 			setEventBotonItem(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
-					botonPocion2);
+					botonPocion2, ItemsEnum.POCION, botonesDeCambioDeAlgomonDelJugador2);
+			botonPocion2.setDisable(true);
 			setEventBotonItem(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
-					botonSuperPocion2);
+					botonSuperPocion2,ItemsEnum.SUPER_POCION, botonesDeCambioDeAlgomonDelJugador2);
+			botonSuperPocion2.setDisable(true);
 			setEventBotonItem(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
-					botonVitamina2);
+					botonVitamina2,ItemsEnum.VITAMINA, botonesDeCambioDeAlgomonDelJugador2);
+			botonVitamina2.setDisable(true);
 			setEventBotonItem(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
-					botonRestaurador2);
-			seteBotonContenedorDeItem(botonUsarItemJugador2, gridUsarItem2, botonPocion2, botonSuperPocion2,
+					botonRestaurador2, ItemsEnum.RESTAURADOR, botonesDeCambioDeAlgomonDelJugador2);
+			botonRestaurador2.setDisable(true);
+			setearBotonContenedorDeItem(botonUsarItemJugador2, gridUsarItem2, botonPocion2, botonSuperPocion2,
 					botonRestaurador2, botonVitamina2);
 
 			contenedorBotonesJugador2.getChildren().addAll(botonAtacarJugador2,botonCambiarAlgomonJugador2, botonUsarItemJugador2);
@@ -498,38 +534,24 @@ public class PantallaBatalla {
 
 		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
 				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonElegido,
-				Button segundoBoton, Button tercerBoton,int indice) {
+				Button primerBoton, Button segundoBoton,LinkedList<Button> listaDeBotonesDeCambio,int indice) {
 			try {
 				controlador.cambiarAlgomon(indice);
-			} catch (PokemonMuertoException e) {
-				notificaciones.notificarPokemonMuerto();
-				botonElegido.setDisable(true);
+			} 
+			catch (PokemonMuertoException e) {
+				//Aca no tiene que llegar nunca
 			}
-			if (botonesIntocablesTemporal.contains(segundoBoton)){
-				botonesIntocablesTemporal.remove(segundoBoton);
+			if (listaDeBotonesDeCambio.contains(primerBoton)){
+				listaDeBotones1.add(primerBoton);
+			}
+			else if(listaDeBotonesDeCambio.contains(segundoBoton)){
 				listaDeBotones1.add(segundoBoton);
 			}
-			else{
-				botonesIntocablesTemporal.remove(tercerBoton);
-				listaDeBotones1.add(tercerBoton);
-			}
 			botonElegido.setDisable(true);
-			botonesIntocablesTemporal.add(botonElegido);
 			listaDeBotones1.remove(botonElegido);
 			this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
 			
 		}
-
-		private void setEventBotonItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
-				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button boton) {
-			listaDeBotones2.add(boton);
-			boton.setDisable(true);
-			boton.setOnAction(event->{
-				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, boton,ItemsEnum.RESTAURADOR);
-			}
-			);
-		}
-
 		
 		private void asignarEventABotonesAtaque(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador1,
 				VBox contenedorEstadosJugador2, ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2,
@@ -544,7 +566,8 @@ public class PantallaBatalla {
 					notificaciones.notificar("No se pudo utilizar el ataque.");
 			}
 		}
-
+		
+		
 		private void desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(ArrayList<Button> listaDeBotones1,
 				ArrayList<Button> listaDeBotones2) {
 			for (Button boton2: listaDeBotones2){
@@ -562,7 +585,7 @@ public class PantallaBatalla {
 	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
 		}
 
-		private void seteBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
+		private void setearBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
 				Button botonPocion, Button botonSuperPocion, Button botonRestaurador, Button botonVitamina) {
 			gridUsarItem.add(botonPocion,0,0);
 			gridUsarItem.add(botonSuperPocion,1,0);
@@ -573,26 +596,40 @@ public class PantallaBatalla {
 			botonUsarItemJugador1.setContent(gridUsarItem);
 		}
 
+		private void setEventBotonItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
+				ArrayList<Button> listaDeBotonesABloquear, ArrayList<Button> listaDeBotonesAAgregar, Button boton, ItemsEnum enumAsociado, 
+				LinkedList<Button> listaDeBotonesDeCambio) {
+			listaDeBotonesAAgregar.add(boton);
+			boton.setOnAction(event->{
+				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar, 
+						boton,enumAsociado, listaDeBotonesDeCambio);
+			}
+			);
+		}
+		
 		private void usoDeItemYPasarTurno(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
-				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonVitamina2, ItemsEnum item) {
+				ArrayList<Button> listaDeBotonesDesbloqueables, ArrayList<Button> listaDeBotonesBloqueable, Button botonVitamina2, 
+				ItemsEnum item,LinkedList<Button> listaDeBotonesDeCambio) {
 			try {
 				controlador.usarItem(item);
-				for (Button boton1: listaDeBotones1){
-					boton1.setDisable(false);
-				}
-				for (Button boton: listaDeBotones2){
-					boton.setDisable(true);
-				}
+				controlador.verificarAlgomonActualMuerto();
+				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
+				
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
 					botonVitamina2.setDisable(true);
 					botonesIntocablesTemporal.add(botonVitamina2);
-					listaDeBotones2.remove(botonVitamina2);
+					listaDeBotonesBloqueable.remove(botonVitamina2);
 				}
 				actualizarJugadorActual(controlador, contenedorEstadosJugador2);
-			} catch (SinUsosDisponiblesException e) {
-				notificaciones.notificarNoHayItemDisponible(item);
+		
+			} 
+			catch (SinUsosDisponiblesException e) {
 				botonVitamina2.setDisable(true);
+			}
+			catch (PokemonMuertoException e) {
+				controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotonesBloqueable,listaDeBotonesDeCambio,botonesBloqueadosForEver);
+				controlador.pasarTurno();
 			}
 			controlador.pasarTurno();
 		}

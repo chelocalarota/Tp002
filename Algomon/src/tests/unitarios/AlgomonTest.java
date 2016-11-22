@@ -6,11 +6,12 @@ import org.junit.Test;
 
 import modelo.algomon.Algomon;
 import modelo.algomon.Charmander;
+import modelo.algomon.PokemonMuertoException;
 
 public class AlgomonTest {
 
 	@Test 
-	public void test01CambiarVidaOriginalAlgomonConValorNeutro(){
+	public void test01CambiarVidaOriginalAlgomonConValorNeutro() throws PokemonMuertoException{
 		Algomon unAlgomon = new Charmander();
 		
 		int vidaOriginal = unAlgomon.getVida();
@@ -23,7 +24,7 @@ public class AlgomonTest {
 		
 	}
 	@Test
-	public void test02CambiarVidaOriginalAlgomonConValorPositivo(){
+	public void test02CambiarVidaOriginalAlgomonConValorPositivo() throws PokemonMuertoException{
 		Algomon unAlgomon = new Charmander();
 		
 		int vidaOriginal = unAlgomon.getVida();
@@ -36,7 +37,7 @@ public class AlgomonTest {
 		
 	}
 	@Test
-	public void test03CambiarVidaOriginalAlgomonConValorNegativ(){
+	public void test03CambiarVidaOriginalAlgomonConValorNegativ() throws PokemonMuertoException{
 		Algomon unAlgomon = new Charmander();
 		
 		int vidaOriginal = unAlgomon.getVida();
@@ -49,7 +50,7 @@ public class AlgomonTest {
 		
 	}
 	@Test
-	public void test04CambiarVidaOriginalAlgomonConValorNegativ(){
+	public void test04CambiarVidaOriginalAlgomonConValorNegativ() throws PokemonMuertoException{
 		Algomon unAlgomon = new Charmander();
 		
 		int vidaOriginal = unAlgomon.getVida();
@@ -64,7 +65,7 @@ public class AlgomonTest {
 	}
 	
 	@Test
-	public void test05VerificarSiEstaMuerto(){
+	public void test05VerificarSiEstaMuerto() throws PokemonMuertoException{
 		Algomon unAlgomon = new Charmander();
 
 		int vidaOriginal = unAlgomon.getVida();

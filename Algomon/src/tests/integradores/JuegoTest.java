@@ -108,7 +108,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void test09VerificarVictoriaDeJugadorAtacante(){
+	public void test09VerificarVictoriaDeJugadorAtacante() throws PokemonMuertoException{
 		Juego juego = new Juego();
 		juego.agregarBulbasaur();
 		juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-100000);
@@ -123,7 +123,7 @@ public class JuegoTest {
 	}
 	
 	@Test
-	public void test10VerificarNoVictoriaDeJugadorAtacante(){
+	public void test10VerificarNoVictoriaDeJugadorAtacante() throws PokemonMuertoException{
 		Juego juego = new Juego();
 		juego.agregarBulbasaur();
 		juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-10);

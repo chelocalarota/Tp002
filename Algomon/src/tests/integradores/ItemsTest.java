@@ -38,7 +38,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item pocion = new Pocion();
 		Algomon rattata = new Rattata();
 		int vidaRattata = rattata.getVida();
@@ -61,7 +61,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarSuperPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarSuperPocionConVidaMaximaNoSumaMasVida() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item superPocion = new SuperPocion();
 		Algomon rattata = new Rattata();
 		int vidaRattata = rattata.getVida();
@@ -84,7 +84,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarVitamina() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException {
+	public void usarVitamina() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException {
 		Item vitamina = new Vitamina();
 		Algomon squirtle1 = new Squirtle();
 		Algomon squirtle2 = new Squirtle();
@@ -161,7 +161,7 @@ public class ItemsTest {
 	}
 
 	@Test
-	public void usarVitaminaMasDe5Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException{
+	public void usarVitaminaMasDe5Veces() throws SinPuntosDePoderException, EstaDormidoException, SinUsosDisponiblesException, PokemonMuertoException{
 		Item vitamina = new Vitamina();
 		Algomon squirtle = new Squirtle();
 		for (int i = 1; i < 6; i++){
