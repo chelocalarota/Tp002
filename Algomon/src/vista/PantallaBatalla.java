@@ -191,40 +191,8 @@ public class PantallaBatalla {
 			
 			
 			botonPrimerAlgomon.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(0);
-				} catch (PokemonMuertoException e) {
-					notificaciones.notificarPokemonMuerto();
-					botonPrimerAlgomon.setDisable(true);
-				}
-				if (botonesIntocablesTemporal.contains(botonSegundoAlgomon)){
-					botonesIntocablesTemporal.remove(botonSegundoAlgomon);
-	    			listaDeBotones1.add(botonSegundoAlgomon);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonTercerAlgomon);
-	    			listaDeBotones1.add(botonTercerAlgomon);
-	    		}
-				botonPrimerAlgomon.setDisable(true);
-	    		botonesIntocablesTemporal.add(botonPrimerAlgomon);
-	    		listaDeBotones1.remove(botonPrimerAlgomon);
-
-				for (Button boton: listaDeBotones2){
-	    			boton.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones1){
-	    			boton.setDisable(true);
-	    		}
-	    		contenedorAlgomonesActivos.getChildren().remove(0);
-	    	    ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
-	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
-	    	   
-	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
-	    	    
- 	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
- 	 	        
- 	 	        
- 	 	        //Creacion de los nuevos botones de ataques en caso de cambio de algomon
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonPrimerAlgomon,
+						botonSegundoAlgomon, botonTercerAlgomon,0);
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
  	 	        int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
@@ -244,44 +212,23 @@ public class PantallaBatalla {
 	            }
 			}
 			);
-			//Segundo boton de cambio
+
 			listaDeBotones1.add(botonSegundoAlgomon);
 			botonSegundoAlgomon.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(1);
-				} catch (PokemonMuertoException e) {
-					notificaciones.notificarPokemonMuerto();
-					botonSegundoAlgomon.setDisable(true);
-				}
-				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon)){
-					botonesIntocablesTemporal.remove(botonPrimerAlgomon);
-	    			listaDeBotones1.add(botonPrimerAlgomon);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonTercerAlgomon);
-	    			listaDeBotones1.add(botonTercerAlgomon);
-	    		}
-	    		botonesIntocablesTemporal.add(botonSegundoAlgomon);
-	    		listaDeBotones1.remove(botonSegundoAlgomon);
-	    		botonSegundoAlgomon.setDisable(true);
-
-				for (Button boton1: listaDeBotones2){
-	    			boton1.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones1){
-	    			boton.setDisable(true);
-	    		}
-	    		contenedorAlgomonesActivos.getChildren().remove(0);
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonSegundoAlgomon,
+						botonPrimerAlgomon, botonTercerAlgomon,1);
+	    		
+				contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(1);
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
  	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
-	    	    //Nuevos botones de ataque al cambiar por algomon numero 2
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
 
@@ -300,43 +247,14 @@ public class PantallaBatalla {
 			//Ultimo boton de cambio de algomon del jugador 1
 			listaDeBotones1.add(botonTercerAlgomon);
 			botonTercerAlgomon.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(2);
-				} catch (PokemonMuertoException e) {
-					notificaciones.notificarPokemonMuerto();
-					botonTercerAlgomon.setDisable(true);
-				}
-				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon)){//si est�, es el primero el utilizado
-					botonesIntocablesTemporal.remove(botonPrimerAlgomon);
-	    			listaDeBotones1.add(botonPrimerAlgomon);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonSegundoAlgomon);
-	    			listaDeBotones1.add(botonSegundoAlgomon);
-	    		}
-				botonTercerAlgomon.setDisable(true);
-	    		botonesIntocablesTemporal.add(botonTercerAlgomon);
-	    		listaDeBotones1.remove(botonTercerAlgomon);
-
-				for (Button boton1: listaDeBotones2){
-	    			boton1.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones1){
-	    			boton.setDisable(true);
-	    		}
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonTercerAlgomon,
+						botonSegundoAlgomon, botonPrimerAlgomon,2);
 	    		contenedorAlgomonesActivos.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(2);
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
-	    	    contenedorEstadosJugador1.getChildren().clear();
-
-	    	    this.vidaAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
- 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
- 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
- 	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
- 	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
- 	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
+	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 
  	 	        contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
@@ -437,32 +355,11 @@ public class PantallaBatalla {
 			botonPrimerAlgomon2.setDisable(true);
 			botonesIntocablesTemporal.add(botonPrimerAlgomon2);
 			botonPrimerAlgomon2.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(0);
-				} catch (PokemonMuertoException e) {
-					botonPrimerAlgomon2.setDisable(true);
-					notificaciones.notificarPokemonMuerto();
-				}
-				if (botonesIntocablesTemporal.contains(botonSegundoAlgomon2)){
-					botonesIntocablesTemporal.remove(botonSegundoAlgomon2);
-	    			listaDeBotones2.add(botonSegundoAlgomon2);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonTercerAlgomon2);
-	    			listaDeBotones2.add(botonTercerAlgomon2);
-	    		}
-				botonPrimerAlgomon2.setDisable(true);
-	    		botonesIntocablesTemporal.add(botonPrimerAlgomon2);
-	    		listaDeBotones2.remove(botonPrimerAlgomon2);
-
-				for (Button boton1: listaDeBotones1){
-	    			boton1.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones2){
-	    			boton.setDisable(true);
-	    		}
-	    		contenedorAlgomonesActivos.getChildren().remove(1);
-
+				
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonPrimerAlgomon2,
+						botonSegundoAlgomon2, botonTercerAlgomon2,0);
+	    	
+				contenedorAlgomonesActivos.getChildren().remove(1);
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 	    	    actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
@@ -491,27 +388,9 @@ public class PantallaBatalla {
 			listaDeBotones2.add(botonSegundoAlgomon2);
 			botonSegundoAlgomon2.setDisable(true);
 			botonSegundoAlgomon2.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(1);
-				} catch (PokemonMuertoException e) {
-				}
-				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon2)){
-					botonesIntocablesTemporal.remove(botonPrimerAlgomon2);
-	    			listaDeBotones2.add(botonPrimerAlgomon2);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonTercerAlgomon2);
-	    			listaDeBotones2.add(botonTercerAlgomon2);
-	    		}
-	    		botonesIntocablesTemporal.add(botonSegundoAlgomon2);
-	    		listaDeBotones2.remove(botonSegundoAlgomon2);
-	    		botonSegundoAlgomon2.setDisable(true);
-				for (Button boton1: listaDeBotones1){
-	    			boton1.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones2){
-	    			boton.setDisable(true);
-	    		}
+				
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonSegundoAlgomon2,
+						botonPrimerAlgomon2, botonTercerAlgomon2,1);
 	    		contenedorAlgomonesActivos.getChildren().remove(1);
 
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
@@ -542,28 +421,10 @@ public class PantallaBatalla {
 			//Tercer boton de cambio
 			botonTercerAlgomon2.setDisable(true);
 			botonTercerAlgomon2.setOnAction(event->{
-				try {
-					controlador.cambiarAlgomon(2);
-				} catch (PokemonMuertoException e) {
-				}
-				if (botonesIntocablesTemporal.contains(botonPrimerAlgomon2)){
-					botonesIntocablesTemporal.remove(botonPrimerAlgomon2);
-	    			listaDeBotones2.add(botonPrimerAlgomon2);
-	    		}
-	    		else{
-	    			botonesIntocablesTemporal.remove(botonSegundoAlgomon2);
-	    			listaDeBotones2.add(botonSegundoAlgomon2);
-	    		}
-	    		botonesIntocablesTemporal.add(botonTercerAlgomon2);
-	    		listaDeBotones2.remove(botonTercerAlgomon2);
-	    		botonTercerAlgomon2.setDisable(true);
-				for (Button boton1: listaDeBotones1){
-	    			boton1.setDisable(false);
-	    		}
-	    		for (Button boton: listaDeBotones2){
-	    			boton.setDisable(true);
-	    		}
-	    		contenedorAlgomonesActivos.getChildren().remove(1);
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonTercerAlgomon2,
+						botonSegundoAlgomon2, botonPrimerAlgomon2,0);
+	    		
+				contenedorAlgomonesActivos.getChildren().remove(1);
 	    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(2);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
@@ -634,6 +495,30 @@ public class PantallaBatalla {
 	        stage.setFullScreen(true);
 	        stage.show();
 	}
+
+		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
+				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonElegido,
+				Button segundoBoton, Button tercerBoton,int indice) {
+			try {
+				controlador.cambiarAlgomon(indice);
+			} catch (PokemonMuertoException e) {
+				notificaciones.notificarPokemonMuerto();
+				botonElegido.setDisable(true);
+			}
+			if (botonesIntocablesTemporal.contains(segundoBoton)){
+				botonesIntocablesTemporal.remove(segundoBoton);
+				listaDeBotones1.add(segundoBoton);
+			}
+			else{
+				botonesIntocablesTemporal.remove(tercerBoton);
+				listaDeBotones1.add(tercerBoton);
+			}
+			botonElegido.setDisable(true);
+			botonesIntocablesTemporal.add(botonElegido);
+			listaDeBotones1.remove(botonElegido);
+			this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
+			
+		}
 
 		private void setEventBotonItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
 				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button boton) {
