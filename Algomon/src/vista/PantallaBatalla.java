@@ -119,20 +119,9 @@ public class PantallaBatalla {
 	        HBox contenedorEstados = new HBox();
 	        VBox contenedorEstadosJugador1 = new VBox();
 	        VBox contenedorEstadosJugador2 = new VBox();
-
-	        this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-
-	        this.vidaAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
-	        this.estadoEfimeroAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
-	        this.estadoPersistenteAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
-	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.vidaAlgomon2)));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon2));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon2));
+	        
+	        actualizarJugadorActual(controlador,contenedorEstadosJugador1);
+	        actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 
 	        contenedorEstados.getChildren().addAll(contenedorEstadosJugador1, contenedorEstadosJugador2);
 	        contenedorEstados.setSpacing(40);
@@ -175,23 +164,9 @@ public class PantallaBatalla {
 	        	boton.setOnAction(event->{
 	        		try {
 						controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-						//Actualizacion de estados del jugador 1
-		        		contenedorEstadosJugador1.getChildren().clear();
-		        		this.vidaAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
-		 	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
-		 	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
-		 	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-		 	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-		 	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-		        		
-		 	 	        //Actualizacion de estados del jugador 2
-		        		contenedorEstadosJugador2.getChildren().clear();
-		 	 	        this.vidaAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-		 	 	        this.estadoEfimeroAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-		 	 	        this.estadoPersistenteAlgomon2 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-		 	 	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.vidaAlgomon2)));
-		 	 	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon2));
-		 	 	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon2));
+						
+						this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
+		        		this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 
 		 	 	        for (Button boton2: listaDeBotones2){
 		        			boton2.setDisable(false);
@@ -976,11 +951,12 @@ public class PantallaBatalla {
 			ImageView superpocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
 			ImageView restaurador2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
 			ImageView vitamina2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
+			
 			Button botonPocion2 = creadorBoton1.crearBoton("Pocion", pocion2 );
-
 			Button botonSuperPocion2 = creadorBoton1.crearBoton("Super pocion", superpocion2 );
 			Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
 			Button botonVitamina2 = creadorBoton1.crearBoton("Vitamina", vitamina2 );
+			
 			listaDeBotones2.add(botonPocion2);
 			botonPocion2.setDisable(true);
 			botonPocion2.setOnAction(event->{
@@ -1023,6 +999,15 @@ public class PantallaBatalla {
 	        stage.setFullScreen(true);
 	        stage.show();
 	}
+
+		private void actualizarJugadorDefensor(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
+			this.vidaAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getVida();
+	        this.estadoEfimeroAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString();
+	        this.estadoPersistenteAlgomon2 = controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString();
+	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(this.vidaAlgomon2)));
+	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon2));
+	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ this.estadoEfimeroAlgomon2));
+		}
 
 		private void setearBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
 				Button botonPocion, Button botonSuperPocion, Button botonRestaurador, Button botonVitamina) {
