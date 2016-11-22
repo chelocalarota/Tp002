@@ -569,146 +569,29 @@ public class PantallaBatalla {
 			Button botonSuperPocion = creadorBoton1.crearBoton("Super pocion", superpocion );
 			Button botonRestaurador = creadorBoton1.crearBoton("Restaurador", restaurador );
 			Button botonVitamina = creadorBoton1.crearBoton("Vitamina", vitamina );
+			
 			listaDeBotones1.add(botonPocion);
-
 			botonPocion.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.POCION);
-
-					for (Button boton1: listaDeBotones2){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones1){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.POCION)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
-						botonPocion.setDisable(true);
-						botonesIntocablesTemporal.add(botonPocion);
-						listaDeBotones1.remove(botonPocion);
-		    		}
-		    		contenedorEstadosJugador1.getChildren().clear();
-		    		this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-     	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-     	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-					botonPocion.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador,contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonPocion,ItemsEnum.POCION);
 			}
-		
 			);
 			listaDeBotones1.add(botonSuperPocion);
 			botonSuperPocion.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.SUPER_POCION);
-
-					for (Button boton1: listaDeBotones2){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones1){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.SUPER_POCION)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
-						botonSuperPocion.setDisable(true);
-						botonesIntocablesTemporal.add(botonSuperPocion);
-						listaDeBotones1.remove(botonSuperPocion);
-		    		}
-
-		    		contenedorEstadosJugador1.getChildren().clear();
-		    		this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-     	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-     	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-					botonSuperPocion.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador,contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonSuperPocion,ItemsEnum.SUPER_POCION);
 			}	
 			);
 			listaDeBotones1.add(botonRestaurador);
 			botonRestaurador.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.RESTAURADOR);
-
-					for (Button boton1: listaDeBotones2){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones1){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.RESTAURADOR)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
-						botonRestaurador.setDisable(true);
-						botonesIntocablesTemporal.add(botonRestaurador);
-						listaDeBotones1.remove(botonRestaurador);
-		    		}
-		    		contenedorEstadosJugador1.getChildren().clear();
-		    		this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-     	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-     	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-					botonPocion.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador,contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonRestaurador,ItemsEnum.RESTAURADOR);
 			}
 			);
 			listaDeBotones1.add(botonVitamina);
 			botonVitamina.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.VITAMINA);
-
-					for (Button boton1: listaDeBotones2){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones1){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-						botonVitamina.setDisable(true);
-						botonesIntocablesTemporal.add(botonVitamina);
-						listaDeBotones1.remove(botonVitamina);
-		    		}
-		    		contenedorEstadosJugador1.getChildren().clear();
-		    		this.vidaAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getVida();
-     	 	        this.estadoEfimeroAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString();
-     	 	        this.estadoPersistenteAlgomon1 = controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString();
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label(Integer.toString(this.vidaAlgomon1)));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado efimero: "+ this.estadoEfimeroAlgomon1));
-     	 	        contenedorEstadosJugador1.getChildren().add(new Label("Estado persistente: "+ this.estadoPersistenteAlgomon1));
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-					botonPocion.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador,contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonVitamina,ItemsEnum.VITAMINA);
 			}
 			);
-			gridUsarItem.add(botonPocion,0,0);
-			gridUsarItem.add(botonSuperPocion,1,0);
-			gridUsarItem.add(botonRestaurador,2,0);
-			gridUsarItem.add(botonVitamina,3,0);
-
-
-			botonUsarItemJugador1.setText("USAR ITEM");
-			botonUsarItemJugador1.setExpanded(false);
-			botonUsarItemJugador1.setContent(gridUsarItem);
+			setearBotonContenedorDeItem(botonUsarItemJugador1, gridUsarItem, botonPocion, botonSuperPocion,
+					botonRestaurador, botonVitamina);
 
 			//Accion del usar item
 
@@ -923,7 +806,7 @@ public class PantallaBatalla {
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
 
-	    	    actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
+	    	    actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 	    	    contenedorAlgomonesActivos.getChildren().addAll(nuevoAlgomonJugador1,nuevoAlgomonJugador2);
 
 	    	    int indiceNuevo = 0;
@@ -1101,120 +984,29 @@ public class PantallaBatalla {
 			listaDeBotones2.add(botonPocion2);
 			botonPocion2.setDisable(true);
 			botonPocion2.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.POCION);
-
-					for (Button boton1: listaDeBotones1){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones2){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.POCION)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
-						botonPocion2.setDisable(true);
-						botonesIntocablesTemporal.add(botonPocion2);
-						listaDeBotones2.remove(botonPocion2);
-		    		}
-		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.POCION);
-					botonVitamina2.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, botonPocion2,ItemsEnum.POCION);
 			}
 			);
 			listaDeBotones2.add(botonSuperPocion2);
 			botonSuperPocion2.setDisable(true);
 			botonSuperPocion2.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.SUPER_POCION);
-
-					for (Button boton1: listaDeBotones1){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones2){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.SUPER_POCION)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
-						botonSuperPocion2.setDisable(true);
-						botonesIntocablesTemporal.add(botonSuperPocion2);
-						listaDeBotones2.remove(botonSuperPocion2);
-		    		}
-		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.SUPER_POCION);
-					botonSuperPocion2.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, botonSuperPocion2,ItemsEnum.SUPER_POCION);
 			}
 			);
 			listaDeBotones2.add(botonRestaurador2);
 			botonRestaurador2.setDisable(true);
 			botonRestaurador2.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.RESTAURADOR);
-
-					for (Button boton1: listaDeBotones1){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones2){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.RESTAURADOR)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
-						botonRestaurador2.setDisable(true);
-						botonesIntocablesTemporal.add(botonRestaurador2);
-						listaDeBotones2.remove(botonRestaurador2);
-		    		}
-		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
-
-					} catch (SinUsosDisponiblesException e) {
-						notificaciones.notificarNoHayItemDisponible(ItemsEnum.RESTAURADOR);
-						botonRestaurador2.setDisable(true);
-					}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, botonRestaurador2,ItemsEnum.RESTAURADOR);
 			}
 			);
 			listaDeBotones2.add(botonVitamina2);
 			botonVitamina2.setDisable(true);
 			botonVitamina2.setOnAction(event->{
-				try {
-					controlador.usarItem(ItemsEnum.VITAMINA);
-
-					for (Button boton1: listaDeBotones1){
-		    			boton1.setDisable(false);
-		    		}
-		    		for (Button boton: listaDeBotones2){
-		    			boton.setDisable(true);
-		    		}
-		    		if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(ItemsEnum.VITAMINA)== 0){
-		    			notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-						botonVitamina2.setDisable(true);
-						botonesIntocablesTemporal.add(botonVitamina2);
-						listaDeBotones2.remove(botonVitamina2);
-		    		}
-		    		actualizarJugador2PorItem(controlador, contenedorEstadosJugador2);
-
-				} catch (SinUsosDisponiblesException e) {
-					notificaciones.notificarNoHayItemDisponible(ItemsEnum.VITAMINA);
-					botonVitamina2.setDisable(true);
-				}
-				controlador.pasarTurno();
+				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, botonVitamina2,ItemsEnum.VITAMINA);
 			}
 			);
-			gridUsarItem2.add(botonPocion2,0,0);
-			gridUsarItem2.add(botonSuperPocion2,1,0);
-			gridUsarItem2.add(botonRestaurador2,2,0);
-			gridUsarItem2.add(botonVitamina2,3,0);
-
-
-			botonUsarItemJugador2.setText("USAR ITEM");
-			botonUsarItemJugador2.setExpanded(false);
-			botonUsarItemJugador2.setContent(gridUsarItem2);
+			setearBotonContenedorDeItem(botonUsarItemJugador2, gridUsarItem2, botonPocion2, botonSuperPocion2,
+					botonRestaurador2, botonVitamina2);
 
 			//Accion del usar item
 
@@ -1232,7 +1024,44 @@ public class PantallaBatalla {
 	        stage.show();
 	}
 
-		private void actualizarJugador2PorItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
+		private void setearBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
+				Button botonPocion, Button botonSuperPocion, Button botonRestaurador, Button botonVitamina) {
+			gridUsarItem.add(botonPocion,0,0);
+			gridUsarItem.add(botonSuperPocion,1,0);
+			gridUsarItem.add(botonRestaurador,2,0);
+			gridUsarItem.add(botonVitamina,3,0);
+			botonUsarItemJugador1.setText("USAR ITEM");
+			botonUsarItemJugador1.setExpanded(false);
+			botonUsarItemJugador1.setContent(gridUsarItem);
+		}
+
+		private void usoDeItemYPasarTurno(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
+				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonVitamina2, ItemsEnum item) {
+			try {
+				controlador.usarItem(item);
+
+				for (Button boton1: listaDeBotones1){
+					boton1.setDisable(false);
+				}
+				for (Button boton: listaDeBotones2){
+					boton.setDisable(true);
+				}
+				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
+					notificaciones.notificarNoHayItemDisponible(item);
+					botonVitamina2.setDisable(true);
+					botonesIntocablesTemporal.add(botonVitamina2);
+					listaDeBotones2.remove(botonVitamina2);
+				}
+				actualizarJugadorActual(controlador, contenedorEstadosJugador2);
+
+			} catch (SinUsosDisponiblesException e) {
+				notificaciones.notificarNoHayItemDisponible(item);
+				botonVitamina2.setDisable(true);
+			}
+			controlador.pasarTurno();
+		}
+
+		private void actualizarJugadorActual(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
 			contenedorEstadosJugador2.getChildren().clear();
 			contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
 			contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
