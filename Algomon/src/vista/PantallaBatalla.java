@@ -567,6 +567,7 @@ public class PantallaBatalla {
 				Button primerBoton, Button segundoBoton,LinkedList<Button> listaDeBotonesDeCambio,int indice) {
 			try {
 				controlador.cambiarAlgomon(indice);
+				notificaciones.notificar("");
 			} 
 			catch (PokemonMuertoException e) {
 				//Aca no tiene que llegar nunca
@@ -598,26 +599,40 @@ public class PantallaBatalla {
 				VBox contenedorEstadosJugador2, ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2,
 				Ataque ataque, LinkedList<Button> listaDeBotonesDeCambio,LinkedList<Button> listaDeBotonesDeCambio2) {
 			try {
+				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
+				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
+			    notificaciones.notificar("");
 			} catch (SinPuntosDePoderException
-					| VictoriaObtenidaException | EstaDormidoException e) {
-					notificaciones.notificar("No se pudo utilizar el ataque.");
+					e) {
+					notificaciones.notificar("No se pudo utilizar el ataque. No quedan puntos de poder para el mismo");
 			} catch (PokemonMuertoException e) {
 				
-				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){
-					
+				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){	
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones1, listaDeBotonesDeCambio, botonesBloqueadosForEver);
+					notificaciones.notificar("El algomon atacante ha muerto debido a sus heridas");
 				}
 				else{
 					this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones2, listaDeBotonesDeCambio2,botonesBloqueadosForEver);
 					this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
+					this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
+					notificaciones.notificar("El algomon defensor ha muerto. Por favor, elige otro");
 					controlador.pasarTurno();
 					
 				}
+			} catch (EstaDormidoException e) {
+				notificaciones.notificar("No se pudo atacar debido a que el algomon esta dormido. Al realizar el cuarto ataque"
+						+ "desde el cambio de estado, se despertara");
+				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
+				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
+				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
+				controlador.pasarTurno();
+			} catch (VictoriaObtenidaException e) {
+				PantallaVictoria pantallaVictoria = new PantallaVictoria();
 			}
 		}
 		
@@ -649,6 +664,7 @@ public class PantallaBatalla {
 			botonUsarItemJugador1.setText("USAR ITEM");
 			botonUsarItemJugador1.setExpanded(true);
 			botonUsarItemJugador1.setContent(gridUsarItem);
+			notificaciones.notificar("");
 		}
 
 		private void setEventBotonItem(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,

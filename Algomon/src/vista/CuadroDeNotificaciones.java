@@ -47,5 +47,7 @@ public class CuadroDeNotificaciones {
 
 	public void notificar(String string){
 		this.textArea.setText(string);
+		textArea.setEditable(true);
+		textArea.setStyle("-fx-font: 56 arial; -fx-base: #b6e7c9;");
 	}
 }
