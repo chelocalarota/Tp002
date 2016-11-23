@@ -326,29 +326,15 @@ public class PantallaBatalla {
 
 			//Botones de uso de items del jugador 1
 			
+	        Button[] arrayBotones1 = this.crearBotonesItems(creadorImagen, creadorBoton1);
+	        
+			Button botonPocion = arrayBotones1[0];
+        	Button botonSuperPocion = arrayBotones1[1];
+        	Button botonRestaurador = arrayBotones1[2];
+        	Button botonVitamina = arrayBotones1[3];
+			
 			GridPane gridUsarItem = new GridPane();
 
-			ImageView pocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
-			ImageView superpocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
-			ImageView restaurador = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
-			ImageView vitamina = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
-			
-			
-			Button botonPocion = creadorBoton1.crearBoton("Pocion", pocion );
-			Button botonSuperPocion = creadorBoton1.crearBoton("Super pocion", superpocion );
-			Button botonRestaurador = creadorBoton1.crearBoton("Restaurador", restaurador );
-			Button botonVitamina = creadorBoton1.crearBoton("Vitamina", vitamina );
-			
-
-			botonPocion.setMinWidth(135);
-        	botonPocion.setMaxWidth(135);
-        	botonSuperPocion.setMinWidth(135);
-        	botonSuperPocion.setMaxWidth(135);
-        	botonRestaurador.setMinWidth(135);
-        	botonRestaurador.setMaxWidth(135);
-        	botonVitamina.setMinWidth(135);
-        	botonVitamina.setMaxWidth(135);
-			
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonPocion,ItemsEnum.POCION, botonesDeCambioDeAlgomonDelJugador1);
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonSuperPocion, ItemsEnum.SUPER_POCION, botonesDeCambioDeAlgomonDelJugador1);
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonRestaurador, ItemsEnum.RESTAURADOR, botonesDeCambioDeAlgomonDelJugador1);
@@ -477,6 +463,7 @@ public class PantallaBatalla {
 			);
 
 			listaDeBotones2.add(botonTercerAlgomon2);
+//			this.setearBotonCambioDeAlgomon();
 			//Tercer boton de cambio
 			botonTercerAlgomon2.setDisable(true);
 			botonTercerAlgomon2.setOnAction(event->{
@@ -519,27 +506,16 @@ public class PantallaBatalla {
 
 			//Uso de items jugador 2
 
-	        TitledPane botonUsarItemJugador2 = new TitledPane();
+	        Button[] arrayBotones2 = this.crearBotonesItems(creadorImagen, creadorBoton1);
+	        
+			Button botonPocion2 = arrayBotones2[0];
+        	Button botonSuperPocion2 = arrayBotones2[1];
+        	Button botonRestaurador2 = arrayBotones2[2];
+        	Button botonVitamina2 = arrayBotones2[3];
+        	
+        	TitledPane botonUsarItemJugador2 = new TitledPane();
 			GridPane gridUsarItem2 = new GridPane();
-
-
-			ImageView pocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
-			ImageView superpocion2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
-			ImageView restaurador2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
-			ImageView vitamina2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
 			
-			Button botonPocion2 = creadorBoton1.crearBoton("Pocion", pocion2 );
-			Button botonSuperPocion2 = creadorBoton1.crearBoton("Super pocion", superpocion2 );
-			Button botonRestaurador2 = creadorBoton1.crearBoton("Restaurador", restaurador2 );
-			Button botonVitamina2 = creadorBoton1.crearBoton("Vitamina", vitamina2 );
-			botonPocion2.setMinWidth(135);
-        	botonPocion2.setMaxWidth(135);
-        	botonSuperPocion2.setMinWidth(135);
-        	botonSuperPocion2.setMaxWidth(135);
-        	botonRestaurador2.setMinWidth(135);
-        	botonRestaurador2.setMaxWidth(135);
-        	botonVitamina2.setMinWidth(135);
-        	botonVitamina2.setMaxWidth(135);
 			setEventBotonItem(controlador, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
 					botonPocion2, ItemsEnum.POCION, botonesDeCambioDeAlgomonDelJugador2);
 			botonPocion2.setDisable(true);
@@ -568,6 +544,76 @@ public class PantallaBatalla {
 	        stage.setFullScreen(true);
 	        stage.show();
 	}
+
+		private void setearBotonCambioDeAlgomon(Button botonASetear, ControladorLogicoDelJuego controlador,
+			ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonOtroAlgomon1, 
+			Button botonOtroAlgomon2, LinkedList<Button> botonesCambioDeAlgomon,
+			LinkedList<Button> botonesCambioDeAlgomonOponente, int evento,
+			BorderPane contenedorAlgomonesActivos, VBox contenedorEstadosJugador,
+			VBox contenedorEstadosJugadorOponente, CreadorBoton creadorBoton, GridPane grid) {
+			
+			botonASetear.setOnAction(event->{
+				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonASetear,
+						botonOtroAlgomon2, botonOtroAlgomon1, botonesCambioDeAlgomon, evento);
+	    		
+				contenedorAlgomonesActivos.getChildren().remove(1);
+	    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(2);
+	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador);
+	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
+		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    int indiceNuevo = 0;
+	    	    grid.getChildren().clear();
+	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
+	    	    for(Ataque ataque: listaDeAtaquesNueva){
+	            	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+
+	            	boton.setDisable(true);
+	            	listaDeBotones2.add(boton);
+	            	boton.setOnAction(event2->{
+	            			 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador,
+	 	 	        				contenedorEstadosJugadorOponente, listaDeBotones2, listaDeBotones1,
+	 	 	        				ataque, botonesCambioDeAlgomon, botonesCambioDeAlgomonOponente);
+	            	});
+
+	                grid.add(boton,indiceNuevo,0);
+	                indiceNuevo+=1;
+	            }
+			}
+			);
+		}
+
+		private Button[] crearBotonesItems(CreadorImagen creadorImagen, CreadorBoton creadorBoton) {
+			Button[] arrayBotones;
+			arrayBotones = new Button[4];
+
+			ImageView pocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pocion.png", 20, 20, false, true);
+			ImageView superpocion = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/superpocion.png", 20, 20, false, true);
+			ImageView restaurador = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/restaurador.png", 20, 20, false, true);
+			ImageView vitamina = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/vitamina.png", 20, 20, false, true);
+			
+			
+			Button botonPocion = creadorBoton.crearBoton("Pocion", pocion );
+			Button botonSuperPocion = creadorBoton.crearBoton("Super pocion", superpocion );
+			Button botonRestaurador = creadorBoton.crearBoton("Restaurador", restaurador );
+			Button botonVitamina = creadorBoton.crearBoton("Vitamina", vitamina );
+			
+			botonPocion.setMinWidth(135);
+        	botonPocion.setMaxWidth(135);
+        	botonSuperPocion.setMinWidth(135);
+        	botonSuperPocion.setMaxWidth(135);
+        	botonRestaurador.setMinWidth(135);
+        	botonRestaurador.setMaxWidth(135);
+        	botonVitamina.setMinWidth(135);
+        	botonVitamina.setMaxWidth(135);
+        	
+        	arrayBotones[0] = botonPocion;
+        	arrayBotones[1] = botonSuperPocion;
+        	arrayBotones[2] = botonRestaurador;
+        	arrayBotones[3] = botonVitamina;
+        	
+			return arrayBotones;
+		}
 
 		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
 				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonElegido,
