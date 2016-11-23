@@ -66,61 +66,51 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-			LinkedList<Button> botonesBloqueadosForEver = new LinkedList<Button>();
+			
+			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
+			ArrayList<Button> listaDeBotones1 = new ArrayList<Button>();
+	        ArrayList<Button> listaDeBotones2 = new ArrayList<Button>(); 
 			
-			BorderPane border = new BorderPane();
+			BorderPane panelPrincipal = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
 	        VBox contenedorHorizontalBottom = new VBox();
 	        VBox contenedorVerticalIzquierdo = new VBox();
 	        VBox contenedorVerticalCentral = new VBox();
 	        VBox contenedorVerticalDerecho = new VBox();
 
-
-	        border.setTop(contenedorHorizontalTop);
-	        border.setLeft(contenedorVerticalIzquierdo);
-	        border.setCenter(contenedorVerticalCentral);
-	        border.setRight(contenedorVerticalDerecho);
-	        border.setBottom(contenedorHorizontalBottom);
+	        panelPrincipal.setTop(contenedorHorizontalTop);
+	        panelPrincipal.setLeft(contenedorVerticalIzquierdo);
+	        panelPrincipal.setCenter(contenedorVerticalCentral);
+	        panelPrincipal.setRight(contenedorVerticalDerecho);
+	        panelPrincipal.setBottom(contenedorHorizontalBottom);
 
 	        CreadorImagen creadorImagen = new CreadorImagen();
-
 	        //Menu
 	        MenuBar menuBar = new MenuBar();
-
 	        // --- Menu File
 	        Menu menuFile = new Menu("File");
-
 	        // --- Menu Edit
 	        Menu menuEdit = new Menu("Edit");
-
 	        // --- Menu View
 	        Menu menuView = new Menu("View");
-
 	        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
 	        menuBar.setMinWidth(1400);
 
 	        contenedorHorizontalTop.getChildren().addAll(menuBar);
 
-
 	        //Notificaciones
 	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
 	        contenedorHorizontalBottom.getChildren().addAll(notificaciones.getTextArea());
 
-	        //Batalla
-
+	        //Imagenes de algomones iniciales
 	        BorderPane contenedorAlgomonesActivos = new BorderPane();
-
-	        ImageView algomonJugador1 = this.imagenesJugadorInicial.get(0);
-	        ImageView algomonJugador2 = this.imagenesJugadorSegundo.get(0);
-	        contenedorAlgomonesActivos.setLeft(algomonJugador1);
-	        contenedorAlgomonesActivos.setRight(algomonJugador2);
-	       
-	        
-
-	  
-	        
+	        ImageView imagenAlgomonInicialJugador1 = this.imagenesJugadorInicial.get(0);
+	        ImageView imagenAlgomonInicialJugador2 = this.imagenesJugadorSegundo.get(0);
+	        contenedorAlgomonesActivos.setLeft(imagenAlgomonInicialJugador1);
+	        contenedorAlgomonesActivos.setRight(imagenAlgomonInicialJugador2);    
+    
 	        //Estados
 	        HBox contenedorEstados = new HBox();
 	        VBox contenedorEstadosJugador1 = new VBox();
@@ -139,39 +129,33 @@ public class PantallaBatalla {
 
 
 	        //Parte del jugador 1
-	        TitledPane botonUsarItemJugador1 = new TitledPane();
-	        botonUsarItemJugador1.setMaxWidth(286);
-	        botonUsarItemJugador1.setMinWidth(286);
-	        TitledPane botonCambiarAlgomonJugador1 = new TitledPane();
-	        botonCambiarAlgomonJugador1.setMaxWidth(286);
-	        botonCambiarAlgomonJugador1.setMinWidth(286);
-	        botonCambiarAlgomonJugador1.setExpanded(true);
-	        ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/avatar1.png",100,100,false,true);
-	        HBox contenedorAvatarJugador1 = new HBox();
-	        HBox contenedorAlgomonesJugador1 = new HBox();
-	        contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
-	        contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
-	        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(0));
-	        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(1));
-	        contenedorAlgomonesJugador1.getChildren().add((Node) miniaturasJugadorInicial.get(2));
-	        contenedorAlgomonesJugador1.setAlignment(Pos.BASELINE_CENTER);
-
-
-	        ArrayList<Button> listaDeBotones1 = new ArrayList<Button>();
-	        ArrayList<Button> listaDeBotones2 = new ArrayList<Button>();
+	        //Paneles
+	        TitledPane panelContenedorDeItemsJugador1 = new TitledPane();
+	        panelContenedorDeItemsJugador1.setMaxWidth(286);
+	        panelContenedorDeItemsJugador1.setMinWidth(286);
+	        panelContenedorDeItemsJugador1.setExpanded(true);
 	        
+	        TitledPane panelContenedorDeCambioDeAlgomon = new TitledPane();
+	        panelContenedorDeCambioDeAlgomon.setMaxWidth(286);
+	        panelContenedorDeCambioDeAlgomon.setMinWidth(286);
+	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
 	        
-	        VBox contenedorBotonesJugador1 = new VBox();
-	        CreadorBoton creadorBoton = new CreadorBoton();
 	        TitledPane botonAtacarJugador1 = new TitledPane();
 	        botonAtacarJugador1.setMaxWidth(286);
 	        botonAtacarJugador1.setMinWidth(286);
 	        botonAtacarJugador1.setExpanded(true);
-	        GridPane grid = new GridPane();
-	        ArrayList<Ataque> listaDeAtaques = controlador.obtenerJugadorActual().getPokemonActivo().obtenerTodosLosAtaques();
+	        //Avatar
+	        ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/avatar1.png",100,100,false,true);
+	        HBox contenedorAvatarJugador1 = new HBox();
+	        contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
+	        contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
+
+	        VBox contenedorBotonesJugador1 = new VBox();
+	        CreadorBoton creadorBoton = new CreadorBoton();
 	       
-	        //Ataques iniciales del jugador 1
-	        
+	        //Botones de ataque iniciales
+	        GridPane gridBotonesDeAtaqueJugador1 = new GridPane();
+	        ArrayList<Ataque> listaDeAtaques = controlador.obtenerJugadorActual().getPokemonActivo().obtenerTodosLosAtaques();
 	        int indice = 0;
 	        for(Ataque ataque: listaDeAtaques){
 	        	Button boton = creadorBoton.crearBoton(ataque.getNombre(), "-fx-font: 14 arial; -fx-base: #b6e7c9;");
@@ -180,34 +164,28 @@ public class PantallaBatalla {
 	        	boton.setOnAction(event->{
 	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
 	        	});
-	            grid.add(boton,0,indice);
+	            gridBotonesDeAtaqueJugador1.add(boton,0,indice);
 	            indice+=1;
 	        }
-
 	        botonAtacarJugador1.setText("ATACAR");
-	        botonAtacarJugador1.setExpanded(false);
-	        botonAtacarJugador1.setContent(grid);
+	        botonAtacarJugador1.setContent(gridBotonesDeAtaqueJugador1);
 
-
-	        //Cambiar algomon jugador 1
-	       
+	        //Botones de cambiar algomon
 	        GridPane gridCambiarAlgomon = new GridPane();
-
-	        CreadorBoton creadorBoton1 = new CreadorBoton();
-	        
-			Button botonPrimerAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(0));
+	        CreadorBoton creadorBoton1 = new CreadorBoton();  
+			//Creacion y agregacion al grid
+	        Button botonPrimerAlgomon = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorInicial.get(0));
 			botonPrimerAlgomon.setMinWidth(256);
 			botonPrimerAlgomon.setMinHeight(50);
+			botonPrimerAlgomon.setDisable(true);
+			this.botonesIntocablesTemporal.add(botonPrimerAlgomon);
 			Button botonSegundoAlgomon = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorInicial.get(1) );
 			botonSegundoAlgomon.setMinWidth(256);
-			
 			botonSegundoAlgomon.setMinHeight(50);
 			Button botonTercerAlgomon = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorInicial.get(2) );
 			botonTercerAlgomon.setMinWidth(256);
 			botonTercerAlgomon.setMinHeight(50);
-			botonPrimerAlgomon.setDisable(true);
-			this.botonesIntocablesTemporal.add(botonPrimerAlgomon);
-			
+						
 			botonesDeCambioDeAlgomonDelJugador1.add(botonPrimerAlgomon);
 			botonesDeCambioDeAlgomonDelJugador1.add(botonSegundoAlgomon);
 			botonesDeCambioDeAlgomonDelJugador1.add(botonTercerAlgomon);
@@ -215,74 +193,63 @@ public class PantallaBatalla {
 			gridCambiarAlgomon.add(botonPrimerAlgomon,0,0);
 			gridCambiarAlgomon.add(botonSegundoAlgomon,0,1);
 			gridCambiarAlgomon.add(botonTercerAlgomon,0,2);
-			
-			
+			//Seteo de los botones
 			botonPrimerAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonPrimerAlgomon,
 						botonSegundoAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 0);
-
-				
 				contenedorAlgomonesActivos.getChildren().remove(0);
-
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
-	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
-	    	    
+	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0); 
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
 		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
  	 	        int indiceNuevo = 0;
-	    	    grid.getChildren().clear();
+	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-
-	            	boton2.setDisable(true);
-	            	listaDeBotones1.add(boton2);
-	            	boton2.setOnAction(event2->{
-	            		boton2.setMinWidth(255);
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	botonAtaque.setDisable(true);
+	            	listaDeBotones1.add(botonAtaque);
+	            	botonAtaque.setOnAction(event2->{
+	            		botonAtaque.setMinWidth(255);
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-	            		
+								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);    		
 	            	});
 
-	                grid.add(boton2,0,indiceNuevo);
+	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
 			);
-
 			listaDeBotones1.add(botonSegundoAlgomon);
 			botonSegundoAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonSegundoAlgomon,
 						botonPrimerAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 1);
 	    		
 				contenedorAlgomonesActivos.getChildren().remove(0);
-
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(1);
 	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
-	    	    
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
 		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    int indiceNuevo = 0;
-	    	    grid.getChildren().clear();
+	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-	            	boton2.setMinWidth(255);
-	            	boton2.setDisable(true);
-	            	listaDeBotones1.add(boton2);
-	            	boton2.setOnAction(event2->{
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	botonAtaque.setMinWidth(255);
+	            	botonAtaque.setDisable(true);
+	            	listaDeBotones1.add(botonAtaque);
+	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador2);	
 	            	});
 
-	                grid.add(boton2,0,indiceNuevo);
+	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
 			);
-			//Ultimo boton de cambio de algomon del jugador 1
 			listaDeBotones1.add(botonTercerAlgomon);
 			botonTercerAlgomon.setOnAction(event->{
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonTercerAlgomon,
@@ -300,31 +267,26 @@ public class PantallaBatalla {
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 
  	 	        int indiceNuevo = 0;
-	    	    grid.getChildren().clear();
-	    	    //Nuevos botones de ataques debido al cambio por el tercer algomon
+	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-	            	boton2.setMinWidth(255);
-	            	boton2.setDisable(true);
-	            	listaDeBotones1.add(boton2);
-	            	boton2.setOnAction(event2->{
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	botonAtaque.setMinWidth(255);
+	            	botonAtaque.setDisable(true);
+	            	listaDeBotones1.add(botonAtaque);
+	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
 	            	});
-	                grid.add(boton2,0,indiceNuevo);
+	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
 			);
-
-
-	        botonCambiarAlgomonJugador1.setText("CAMBIAR ALGOMON");
-
-	        botonCambiarAlgomonJugador1.setExpanded(false);
-	        botonCambiarAlgomonJugador1.setContent(gridCambiarAlgomon);
-
-
-			//Botones de uso de items del jugador 1
+	        panelContenedorDeCambioDeAlgomon.setText("CAMBIAR ALGOMON");
+	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
+	        panelContenedorDeCambioDeAlgomon.setContent(gridCambiarAlgomon);
+			
+	        //Botones de uso de items del jugador 1
 			
 			GridPane gridUsarItem = new GridPane();
 
@@ -353,18 +315,18 @@ public class PantallaBatalla {
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonSuperPocion, ItemsEnum.SUPER_POCION, botonesDeCambioDeAlgomonDelJugador1);
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonRestaurador, ItemsEnum.RESTAURADOR, botonesDeCambioDeAlgomonDelJugador1);
 			this.setEventBotonItem(controlador, contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1, botonVitamina, ItemsEnum.VITAMINA,botonesDeCambioDeAlgomonDelJugador1);
-			setearBotonContenedorDeItem(botonUsarItemJugador1, gridUsarItem, botonPocion, botonSuperPocion,
+			setearBotonContenedorDeItem(panelContenedorDeItemsJugador1, gridUsarItem, botonPocion, botonSuperPocion,
 					botonRestaurador, botonVitamina);
 
-			contenedorBotonesJugador1.getChildren().addAll(botonAtacarJugador1,botonCambiarAlgomonJugador1, botonUsarItemJugador1);
-	        contenedorBotonesJugador1.setSpacing(25);
+			contenedorBotonesJugador1.getChildren().addAll(botonAtacarJugador1,panelContenedorDeCambioDeAlgomon, panelContenedorDeItemsJugador1);
+	        contenedorBotonesJugador1.setSpacing(2);
 	        contenedorBotonesJugador1.setAlignment(Pos.BOTTOM_LEFT);
 
 	        contenedorVerticalIzquierdo.getChildren().addAll(contenedorAvatarJugador1, contenedorBotonesJugador1);
 
 
 	        //Parte del jugador 2
-
+	        //
 	        ImageView avatarJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/avatar2.png",100,100,false,true);
 	        HBox contenedorAvatarJugador2 = new HBox();
 	        contenedorAvatarJugador2.getChildren().addAll(avatarJugador2);
@@ -374,12 +336,14 @@ public class PantallaBatalla {
 	        ArrayList<Ataque> listaDeAtaques2 = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 
 	        TitledPane botonAtacarJugador2 = new TitledPane();
+	        botonAtacarJugador2.setMaxWidth(286);
+	        botonAtacarJugador2.setMinWidth(286);
 	        GridPane grid2 = new GridPane();
 	        int indice2 = 0;
 	        //Ataques iniciales jugador2
 	        for(Ataque ataque: listaDeAtaques2){
 	        	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-
+	        	boton2.setMinWidth(255);
 	        	boton2.setDisable(true);
 	        	listaDeBotones2.add(boton2);
 	        	boton2.setOnAction(event->{
@@ -388,17 +352,21 @@ public class PantallaBatalla {
 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	        		
 	        	});
-	            grid2.add(boton2,indice2,0);
+	            grid2.add(boton2,0,indice2);
 	            indice2+=1;
 	        }
 
 	        botonAtacarJugador2.setText("ATACAR");
-	        botonAtacarJugador2.setExpanded(false);
+	        botonAtacarJugador2.setExpanded(true);
 	        botonAtacarJugador2.setContent(grid2);
 
 	        //Botones de cambio de algomon de jugador 2
 
 	        TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
+	        botonCambiarAlgomonJugador2.setMaxWidth(286);
+	        botonCambiarAlgomonJugador2.setMinWidth(286);
+	        botonCambiarAlgomonJugador2.setExpanded(true);
+	       
 	        GridPane gridCambiarAlgomon2 = new GridPane();
 	        
 	        Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
@@ -429,6 +397,7 @@ public class PantallaBatalla {
 	    	    grid2.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
 	            	boton2.setOnAction(event2->{
@@ -437,7 +406,7 @@ public class PantallaBatalla {
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
 
-	                grid2.add(boton2,indiceNuevo,0);
+	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
@@ -462,7 +431,7 @@ public class PantallaBatalla {
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-
+	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
 	            	boton2.setOnAction(event2->{
@@ -470,7 +439,7 @@ public class PantallaBatalla {
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
-	                grid2.add(boton2,indiceNuevo,0);
+	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
@@ -494,7 +463,7 @@ public class PantallaBatalla {
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
-
+	            	boton.setMinWidth(255);
 	            	boton.setDisable(true);
 	            	listaDeBotones2.add(boton);
 	            	boton.setOnAction(event2->{
@@ -503,23 +472,30 @@ public class PantallaBatalla {
 	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
 
-	                grid2.add(boton,indiceNuevo,0);
+	                grid2.add(boton,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
 			}
 			);
-			
+			botonPrimerAlgomon2.setMinWidth(256);
+			botonPrimerAlgomon2.setMinHeight(50);
+			botonSegundoAlgomon2.setMinWidth(256);
+			botonSegundoAlgomon2.setMinHeight(50);
+			botonTercerAlgomon2.setMinWidth(256);
+			botonTercerAlgomon2.setMinHeight(50);
 			gridCambiarAlgomon2.add(botonPrimerAlgomon2,0,0);
-			gridCambiarAlgomon2.add(botonSegundoAlgomon2,1,0);
-			gridCambiarAlgomon2.add(botonTercerAlgomon2,2,0);
+			gridCambiarAlgomon2.add(botonSegundoAlgomon2,0,1);
+			gridCambiarAlgomon2.add(botonTercerAlgomon2,0,2);
 	        botonCambiarAlgomonJugador2.setText("CAMBIAR ALGOMON");
-	        botonCambiarAlgomonJugador2.setExpanded(false);
 	        botonCambiarAlgomonJugador2.setContent(gridCambiarAlgomon2);
 
 
 			//Uso de items jugador 2
 
 	        TitledPane botonUsarItemJugador2 = new TitledPane();
+	        botonUsarItemJugador2.setExpanded(true);
+	        botonUsarItemJugador2.setMaxWidth(286);
+	        botonUsarItemJugador2.setMinWidth(286);
 			GridPane gridUsarItem2 = new GridPane();
 
 
@@ -556,14 +532,14 @@ public class PantallaBatalla {
 					botonRestaurador2, botonVitamina2);
 
 			contenedorBotonesJugador2.getChildren().addAll(botonAtacarJugador2,botonCambiarAlgomonJugador2, botonUsarItemJugador2);
-	        contenedorBotonesJugador2.setSpacing(25);
-	        contenedorBotonesJugador2.setAlignment(Pos.BOTTOM_RIGHT);
+	        contenedorBotonesJugador2.setSpacing(1);
+	        contenedorBotonesJugador2.setAlignment(Pos.BOTTOM_CENTER);
 
 	        contenedorVerticalDerecho.getChildren().addAll(contenedorAvatarJugador2, contenedorBotonesJugador2);
 	        contenedorVerticalDerecho.setPrefWidth(500);
 	        contenedorVerticalIzquierdo.setPrefWidth(500);
 
-	        this.escena = new Scene(border, 981, 600);
+	        this.escena = new Scene(panelPrincipal, 981, 600);
 	        stage.setScene(escena);
 	        stage.setFullScreen(true);
 	        stage.show();
