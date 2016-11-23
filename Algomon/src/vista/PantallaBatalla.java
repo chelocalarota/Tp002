@@ -10,7 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -79,6 +85,9 @@ public class PantallaBatalla {
 	        VBox contenedorVerticalIzquierdo = new VBox();
 	        contenedorVerticalIzquierdo.setMaxWidth(350);
 	        VBox contenedorVerticalCentral = new VBox();
+	        contenedorVerticalCentral.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoBatalla.png",900,5000,true,false),
+	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+	                BackgroundSize.DEFAULT)));
 	        VBox contenedorVerticalDerecho = new VBox();
 	        contenedorVerticalDerecho.setMaxWidth(350);
 
@@ -111,7 +120,7 @@ public class PantallaBatalla {
 	        contenedorAlgomonesActivos.setSpacing(160);
 	        HBox contenedorAlgomonesActivos1 = new HBox();
 	        HBox contenedorAlgomonesActivos2= new HBox();
-
+	        contenedorAlgomonesActivos2.setMinHeight(130);
 	        ImageView algomonJugador1 = this.imagenesJugadorInicial.get(0);
 	        ImageView algomonJugador2 = this.imagenesJugadorSegundo.get(0);
 	        
@@ -119,7 +128,7 @@ public class PantallaBatalla {
 	        contenedorAlgomonesActivos1.getChildren().addAll(algomonJugador1);
 	        contenedorAlgomonesActivos1.setAlignment(Pos.TOP_LEFT);
 	        contenedorAlgomonesActivos2.getChildren().addAll(algomonJugador2);
-	        contenedorAlgomonesActivos2.setAlignment(Pos.TOP_RIGHT);
+	        contenedorAlgomonesActivos2.setAlignment(Pos.BOTTOM_RIGHT);
 	        contenedorAlgomonesActivos.getChildren().addAll(contenedorAlgomonesActivos2,contenedorAlgomonesActivos1);
 
 
