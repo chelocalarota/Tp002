@@ -61,7 +61,7 @@ public class PantallaEleccionAlgomon {
 		ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 		ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
 
-		Button botonCharmander = creadorBoton.crearBoton("charmander\n", imageViewCharmander);
+		Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
 		listaDeBotones.add(botonCharmander);
 		AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/sonidos/charmander_audio.mp3").toExternalForm());
 		listaDeSonidos.add(sonidoCharmander);
