@@ -326,7 +326,23 @@ public class PantallaBatalla {
 
 
 	        //Parte del jugador 2
-	        //
+	        TitledPane botonAtacarJugador2 = new TitledPane();
+	        botonAtacarJugador2.setMaxWidth(286);
+	        botonAtacarJugador2.setMinWidth(286);
+	        botonAtacarJugador2.setExpanded(true);
+	       
+	        TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
+	        botonCambiarAlgomonJugador2.setMaxWidth(286);
+	        botonCambiarAlgomonJugador2.setMinWidth(286);
+	        botonCambiarAlgomonJugador2.setExpanded(true);
+	        
+
+	        TitledPane botonUsarItemJugador2 = new TitledPane();
+	        botonUsarItemJugador2.setExpanded(true);
+	        botonUsarItemJugador2.setMaxWidth(286);
+	        botonUsarItemJugador2.setMinWidth(286);
+	        
+	        //Avatar jugador 2
 	        ImageView avatarJugador2 = creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/avatar2.png",100,100,false,true);
 	        HBox contenedorAvatarJugador2 = new HBox();
 	        contenedorAvatarJugador2.getChildren().addAll(avatarJugador2);
@@ -335,9 +351,7 @@ public class PantallaBatalla {
 	        VBox contenedorBotonesJugador2 = new VBox();
 	        ArrayList<Ataque> listaDeAtaques2 = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 
-	        TitledPane botonAtacarJugador2 = new TitledPane();
-	        botonAtacarJugador2.setMaxWidth(286);
-	        botonAtacarJugador2.setMinWidth(286);
+	       
 	        GridPane grid2 = new GridPane();
 	        int indice2 = 0;
 	        //Ataques iniciales jugador2
@@ -360,21 +374,13 @@ public class PantallaBatalla {
 	        botonAtacarJugador2.setExpanded(true);
 	        botonAtacarJugador2.setContent(grid2);
 
-	        //Botones de cambio de algomon de jugador 2
-
-	        TitledPane botonCambiarAlgomonJugador2 = new TitledPane();
-	        botonCambiarAlgomonJugador2.setMaxWidth(286);
-	        botonCambiarAlgomonJugador2.setMinWidth(286);
-	        botonCambiarAlgomonJugador2.setExpanded(true);
-	       
-	        GridPane gridCambiarAlgomon2 = new GridPane();
-	        
-	        Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));
-	        Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
-			Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
-			
+	        //Botones de cambio de algomon de jugador 2            
+	        GridPane gridCambiarAlgomon2 = new GridPane();      
+	        Button botonPrimerAlgomon2 = creadorBoton1.crearBoton("PrimerAlgomon", miniaturasJugadorSegundo.get(0));			
 			botonPrimerAlgomon2.setDisable(true);
 			botonesIntocablesTemporal.add(botonPrimerAlgomon2);
+	        Button botonSegundoAlgomon2 = creadorBoton1.crearBoton("SegundoAlgomon", miniaturasJugadorSegundo.get(1) );
+			Button botonTercerAlgomon2 = creadorBoton1.crearBoton("TercerAlgomon", miniaturasJugadorSegundo.get(2) );
 			
 			botonesDeCambioDeAlgomonDelJugador2.add(botonPrimerAlgomon2);
 			botonesDeCambioDeAlgomonDelJugador2.add(botonSegundoAlgomon2);
@@ -492,10 +498,6 @@ public class PantallaBatalla {
 
 			//Uso de items jugador 2
 
-	        TitledPane botonUsarItemJugador2 = new TitledPane();
-	        botonUsarItemJugador2.setExpanded(true);
-	        botonUsarItemJugador2.setMaxWidth(286);
-	        botonUsarItemJugador2.setMinWidth(286);
 			GridPane gridUsarItem2 = new GridPane();
 
 
