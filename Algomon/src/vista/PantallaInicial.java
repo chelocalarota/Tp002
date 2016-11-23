@@ -14,6 +14,7 @@ public class PantallaInicial {
 
 	ControladorLogicoDelJuego controlador;
 
+
 	public PantallaInicial(ControladorLogicoDelJuego controlador){
 		this.controlador = controlador;
 	}
@@ -44,7 +45,9 @@ public class PantallaInicial {
         botonNuevoJuego.setOnAction(event ->{
         	musicaPantallaInicial.stop();
         	this.controlador.crearJuegoNuevo();
+
         	pantallaEleccion.cargarPantalla(stage,this.controlador,1);
+
 
         });
 		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");

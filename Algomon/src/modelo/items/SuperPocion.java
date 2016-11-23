@@ -1,6 +1,7 @@
 package modelo.items;
 
 import modelo.algomon.Algomon;
+import modelo.algomon.PokemonMuertoException;
 
 public class SuperPocion implements Item {
 	int cantidadDeUsos;
@@ -14,7 +15,7 @@ public class SuperPocion implements Item {
 	}
 
 	@Override
-	public void aplicarEfecto(Algomon algomon) {
+	public void aplicarEfecto(Algomon algomon) throws PokemonMuertoException {
 		if (algomon.getVida() != algomon.getVidaOriginal()){
 			algomon.cambiarVida(40);
 		}

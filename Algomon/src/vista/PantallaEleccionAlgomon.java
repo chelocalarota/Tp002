@@ -1,12 +1,15 @@
 package vista;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
+
 import java.util.LinkedList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -31,7 +34,6 @@ public class PantallaEleccionAlgomon {
 	}
 
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int i) {
-		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 		ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
@@ -40,9 +42,11 @@ public class PantallaEleccionAlgomon {
 		ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/bulbasaur.png", 150, 150, false, true);
 		ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
 
+
 		Label label = new Label("Jugador" + String.valueOf(i));
 		VBox contenedorVertical = new VBox();
 		VBox contenedorVertical2 = new VBox();
+
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalMedio = new HBox();
 		HBox contenedorHorizontalInferior = new HBox();
@@ -101,11 +105,12 @@ public class PantallaEleccionAlgomon {
 			}
 			sonidoCharmander.play();
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/CharmanderEspalda.gif", 130, 130, true, false));
+				
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Charmander_XY.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -130,7 +135,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -156,7 +161,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -183,7 +188,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -209,7 +214,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -236,7 +241,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -255,6 +260,7 @@ public class PantallaEleccionAlgomon {
 			}
 			else{
 				this.cargarPantalla(stage, controlador,2);
+
 			}
 		});
 		contenedorVertical.setSpacing(100);

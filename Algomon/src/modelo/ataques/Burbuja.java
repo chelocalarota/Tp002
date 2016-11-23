@@ -1,6 +1,5 @@
 package modelo.ataques;
 
-import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoAgua;
 
 public class Burbuja extends Ataque {

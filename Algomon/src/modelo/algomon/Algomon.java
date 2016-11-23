@@ -3,14 +3,12 @@ package modelo.algomon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import javafx.scene.image.ImageView;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.estados.*;
 import modelo.items.Item;
 import modelo.tipos.Tipo;
-import vista.CreadorImagen;
+
 
 public abstract class Algomon {
 	protected Tipo tipo;
@@ -21,7 +19,7 @@ public abstract class Algomon {
 	protected Estado estadoPersistente;
 	protected String imagenAsociada;
 
-	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException{
+	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		Ataque ataque = ataques.get(nombreAtaque);
 		ataque.getPuntosDePoderEsCero();
 		this.estadoPersistente.accion(this);
@@ -50,10 +48,13 @@ public abstract class Algomon {
 		return (int) vida;
 	}
 
-	public void cambiarVida(int cantidad){
+	public void cambiarVida(int cantidad) throws PokemonMuertoException{
 		this.vida = this.vida + cantidad;
-		if (vida >= this.vidaOriginal) { // Un algomon nunca tendra mas vida que la original
+		if (vida >= this.vidaOriginal) { 
 			this.vida = this.vidaOriginal;
+		}
+		if(this.estaMuerto()){
+			throw new PokemonMuertoException("Te moriste... JA!");
 		}
 	}
 
@@ -68,7 +69,7 @@ public abstract class Algomon {
 		double multiplicador =  this.tipo.reaccionATipo(tipoAtacante);
 		double danioResultante = unAtaque.getPotencia()*multiplicador;
 
-		this.vida = this.vida-(int)danioResultante;
+		this.cambiarVida(-(int)danioResultante);
 
 		unAtaque.cambioDeEstado(this);
 		unAtaque.consecuenciaPropiaDeAtaque(unAlgomonAtacante, (int)danioResultante);
@@ -79,7 +80,7 @@ public abstract class Algomon {
 		return (this.vida < 0.001);
 	}
 
-	public void usarItem(Item unItem) throws SinUsosDisponiblesException {
+	public void usarItem(Item unItem) throws SinUsosDisponiblesException, PokemonMuertoException {
 		unItem.aplicarEfecto(this);
 		try {
 			this.estadoPersistente.accion(this);
