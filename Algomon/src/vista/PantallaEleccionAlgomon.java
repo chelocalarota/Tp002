@@ -41,7 +41,8 @@ public class PantallaEleccionAlgomon {
 		ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/chansey.png", 150, 150, false, true);
 		ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/bulbasaur.png", 150, 150, false, true);
 		ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
-
+		
+		
 
 		Label label = new Label("Jugador" + String.valueOf(i));
 		VBox contenedorVertical = new VBox();
@@ -50,11 +51,17 @@ public class PantallaEleccionAlgomon {
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalMedio = new HBox();
 		HBox contenedorHorizontalInferior = new HBox();
+		
+		MenuTop Menu = new MenuTop(stage);
+        
+        
+
+		
 		CreadorBoton creadorBoton = new CreadorBoton();
 		ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 		ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
 
-		Button botonCharmander = creadorBoton.crearBoton("charmander", imageViewCharmander);
+		Button botonCharmander = creadorBoton.crearBoton("charmander\n", imageViewCharmander);
 		listaDeBotones.add(botonCharmander);
 		AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/sonidos/charmander_audio.mp3").toExternalForm());
 		listaDeSonidos.add(sonidoCharmander);
@@ -266,13 +273,13 @@ public class PantallaEleccionAlgomon {
 		contenedorVertical.setSpacing(100);
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
-		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
-		contenedorVertical2.getChildren().addAll(label,contenedorHorizontalSuperior);
+		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_LEFT);
+		contenedorVertical2.getChildren().addAll(Menu.obtenerMenu(),label,contenedorHorizontalSuperior);
 		contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
 		contenedorHorizontalMedio.setSpacing(60);
-		contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
+		contenedorHorizontalMedio.setAlignment(Pos.BASELINE_LEFT);
 		contenedorHorizontalInferior.getChildren().add(botonContinuar);
-		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
+		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_LEFT);
 
 		contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
 	    BorderPane border = new BorderPane();
