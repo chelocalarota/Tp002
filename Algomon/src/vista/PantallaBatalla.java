@@ -169,7 +169,7 @@ public class PantallaBatalla {
 	        	Button boton = creadorBoton.crearBoton(ataque.getNombre(), "-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	        	listaDeBotones1.add(boton);
 	        	boton.setOnAction(event->{
-	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque);
+	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
 	        	});
 	            grid.add(boton,indice,0);
 	            indice+=1;
@@ -224,8 +224,9 @@ public class PantallaBatalla {
 	            	boton2.setDisable(true);
 	            	listaDeBotones1.add(boton2);
 	            	boton2.setOnAction(event2->{
+	            		
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque);
+								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
 	            		
 	            	});
 
@@ -258,7 +259,7 @@ public class PantallaBatalla {
 	            	listaDeBotones1.add(boton2);
 	            	boton2.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque);	
+								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador2);	
 	            	});
 
 	                grid.add(boton2,indiceNuevo,0);
@@ -293,7 +294,7 @@ public class PantallaBatalla {
 	            	listaDeBotones1.add(boton2);
 	            	boton2.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque);
+								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
 	            	});
 	                grid.add(boton2,indiceNuevo,0);
 	                indiceNuevo+=1;
@@ -357,7 +358,7 @@ public class PantallaBatalla {
 	        	boton2.setOnAction(event->{
 	        		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	        				ataque);
+	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	        		
 	        	});
 	            grid2.add(boton2,indice2,0);
@@ -406,7 +407,7 @@ public class PantallaBatalla {
 	            	boton2.setOnAction(event2->{
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	        				ataque);
+	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
 
 	                grid2.add(boton2,indiceNuevo,0);
@@ -440,7 +441,7 @@ public class PantallaBatalla {
 	            	boton2.setOnAction(event2->{
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	        				ataque);
+	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
 	                grid2.add(boton2,indiceNuevo,0);
 	                indiceNuevo+=1;
@@ -471,7 +472,7 @@ public class PantallaBatalla {
 	            	boton.setOnAction(event2->{
 	            			 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	 	        				ataque);
+	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
 	            	});
 
 	                grid2.add(boton,indiceNuevo,0);
@@ -541,29 +542,47 @@ public class PantallaBatalla {
 			catch (PokemonMuertoException e) {
 				//Aca no tiene que llegar nunca
 			}
-			if (listaDeBotonesDeCambio.contains(primerBoton)){
-				listaDeBotones1.add(primerBoton);
+			if (this.botonesIntocablesTemporal.contains(primerBoton)){
+				
+				if (!this.botonesBloqueadosForEver.contains(primerBoton)){
+					listaDeBotonesDeCambio.add(primerBoton);
+					listaDeBotones1.add(primerBoton);
+				}	
+				this.botonesIntocablesTemporal.remove(primerBoton);
 			}
-			else if(listaDeBotonesDeCambio.contains(segundoBoton)){
-				listaDeBotones1.add(segundoBoton);
+			else if(this.botonesIntocablesTemporal.contains(segundoBoton)){
+				
+				if(!this.botonesBloqueadosForEver.contains(segundoBoton)){
+					listaDeBotonesDeCambio.add(segundoBoton);
+					listaDeBotones1.add(segundoBoton);
+				}
+				this.botonesIntocablesTemporal.remove(segundoBoton);
 			}
 			botonElegido.setDisable(true);
 			listaDeBotones1.remove(botonElegido);
 			this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
+			this.botonesIntocablesTemporal.add(botonElegido);
 			
 		}
 		
 		private void asignarEventABotonesAtaque(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador1,
 				VBox contenedorEstadosJugador2, ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2,
-				Ataque ataque) {
+				Ataque ataque, LinkedList<Button> listaDeBotonesDeCambio,LinkedList<Button> listaDeBotonesDeCambio2) {
 			try {
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
+			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
-			} catch (SinPuntosDePoderException| PokemonMuertoException
+			} catch (SinPuntosDePoderException
 					| VictoriaObtenidaException | EstaDormidoException e) {
 					notificaciones.notificar("No se pudo utilizar el ataque.");
+			} catch (PokemonMuertoException e) {
+				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){
+					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones1, listaDeBotonesDeCambio, botonesBloqueadosForEver);
+				}
+				else{
+					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones2, listaDeBotonesDeCambio2,botonesBloqueadosForEver);
+				}
 			}
 		}
 		
