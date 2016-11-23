@@ -3,19 +3,41 @@ package vista;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TitledPane;
+import javafx.scene.effect.Lighting;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
@@ -28,6 +50,7 @@ import modelo.enums.ItemsEnum;
 public class PantallaBatalla {
 
 	Scene escena;
+	private Stage stage;
 	LinkedList<ImageView> miniaturasJugadorInicial;
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
@@ -65,7 +88,7 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-			
+			this.stage=stage;
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
@@ -78,6 +101,9 @@ public class PantallaBatalla {
 	        VBox contenedorVerticalIzquierdo = new VBox();
 	        contenedorVerticalIzquierdo.setMaxWidth(350);
 	        VBox contenedorVerticalCentral = new VBox();
+	        contenedorVerticalCentral.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoBatalla.png",900,5000,true,false),
+	                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+	                BackgroundSize.DEFAULT)));
 	        VBox contenedorVerticalDerecho = new VBox();
 	        contenedorVerticalDerecho.setMaxWidth(350);
 
@@ -110,7 +136,7 @@ public class PantallaBatalla {
 	        contenedorAlgomonesActivos.setSpacing(160);
 	        HBox contenedorAlgomonesActivos1 = new HBox();
 	        HBox contenedorAlgomonesActivos2= new HBox();
-
+	        contenedorAlgomonesActivos2.setMinHeight(130);
 	        ImageView algomonJugador1 = this.imagenesJugadorInicial.get(0);
 	        ImageView algomonJugador2 = this.imagenesJugadorSegundo.get(0);
 	        
@@ -118,7 +144,7 @@ public class PantallaBatalla {
 	        contenedorAlgomonesActivos1.getChildren().addAll(algomonJugador1);
 	        contenedorAlgomonesActivos1.setAlignment(Pos.TOP_LEFT);
 	        contenedorAlgomonesActivos2.getChildren().addAll(algomonJugador2);
-	        contenedorAlgomonesActivos2.setAlignment(Pos.TOP_RIGHT);
+	        contenedorAlgomonesActivos2.setAlignment(Pos.BOTTOM_RIGHT);
 	        contenedorAlgomonesActivos.getChildren().addAll(contenedorAlgomonesActivos2,contenedorAlgomonesActivos1);
 
 
@@ -135,7 +161,7 @@ public class PantallaBatalla {
 	        contenedorEstados.setAlignment(Pos.TOP_CENTER);
 
 	        contenedorVerticalCentral.getChildren().addAll(contenedorEstados, contenedorAlgomonesActivos);
-	        contenedorVerticalCentral.setSpacing(78);
+	        contenedorVerticalCentral.setSpacing(68);
 
 
 
@@ -408,7 +434,7 @@ public class PantallaBatalla {
 	    	
 				contenedorAlgomonesActivos2.getChildren().remove(0);
 
-	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
+	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos1.getChildren().remove(0);
 	    	    actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
@@ -558,7 +584,7 @@ public class PantallaBatalla {
 	        contenedorVerticalDerecho.setPrefWidth(500);
 	        contenedorVerticalIzquierdo.setPrefWidth(500);
 
-	        this.escena = new Scene(panelPrincipal, 981, 600);
+	        this.escena = new Scene(panelPrincipal);
 	        stage.setScene(escena);
 	        stage.setFullScreen(true);
 	        stage.show();
@@ -635,6 +661,7 @@ public class PantallaBatalla {
 				controlador.pasarTurno();
 			} catch (VictoriaObtenidaException e) {
 				PantallaVictoria pantallaVictoria = new PantallaVictoria();
+				pantallaVictoria.cargarPantalla(stage, controlador);
 			}
 		}
 		
@@ -673,13 +700,142 @@ public class PantallaBatalla {
 				ArrayList<Button> listaDeBotonesABloquear, ArrayList<Button> listaDeBotonesAAgregar, Button boton, ItemsEnum enumAsociado, 
 				LinkedList<Button> listaDeBotonesDeCambio) {
 			listaDeBotonesAAgregar.add(boton);
-			boton.setOnAction(event->{
-				usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar, 
-						boton,enumAsociado, listaDeBotonesDeCambio);
+			boton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+            if( e.isPrimaryButtonDown()) {
+            	usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar, 
+					boton,enumAsociado, listaDeBotonesDeCambio);
 			}
-			);
-		}
-		
+            else{
+                // INITIALISATION OF THE STAGE/SCENE
+
+                
+
+                //create stage which has set stage style transparent
+
+                final Stage stage = new Stage(StageStyle.TRANSPARENT);
+
+                //create root node of scene, i.e. group
+
+                Group rootGroup = new Group();
+
+                //create scene with set width, height and color
+
+                Scene scene = new Scene(rootGroup, 200, 200, Color.TRANSPARENT);
+
+                //set scene to stage
+
+                stage.setScene(scene);
+
+                //center stage on screen
+
+                stage.centerOnScreen();
+
+                //show the stage
+
+                stage.show();
+
+ 
+
+                // CREATION OF THE DRAGGER (CIRCLE)
+
+           
+
+                //create dragger with desired size
+
+                Circle dragger = new Circle(100, 100, 100);
+
+                //fill the dragger with some nice radial background
+
+                dragger.setFill(new RadialGradient(-0.3, 135, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+
+                    new Stop(0, Color.DARKGRAY),
+
+                    new Stop(1, Color.BLACK)
+
+                 }));
+
+                // CREATE MIN AND CLOSE BUTTONS
+
+                //create button for closing application
+
+                Button close = new Button("Close me");
+
+                close.setOnAction(new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent event) {
+
+                        //in case we would like to close whole demo
+
+                        //javafx.application.Platform.exit();
+
+ 
+
+                        //however we want to close only this instance of stage
+
+                        stage.close();
+
+                    }
+
+                });
+
+ 
+
+                //create button for minimalising application
+
+                Button min = new Button("Minimize me");
+
+                min.setOnAction(new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent event) {
+
+                        stage.setIconified(true);
+
+                    }
+
+                });
+
+ 
+
+ 
+
+                // CREATE SIMPLE TEXT NODE
+
+                Text text = new Text("JavaFX"); //20, 110,
+
+                text.setFill(Color.WHITESMOKE);
+
+                text.setEffect(new Lighting());
+
+                text.setBoundsType(TextBoundsType.VISUAL);
+
+                text.setFont(Font.font(Font.getDefault().getFamily(), 50));
+
+ 
+
+                // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
+
+                VBox vBox = new VBox();
+
+                vBox.setSpacing(10);
+
+                vBox.setPadding(new Insets(60, 0, 0, 20));
+
+                vBox.setAlignment(Pos.TOP_CENTER);
+
+                vBox.getChildren().addAll(text, min, close);
+
+ 
+
+                //add all nodes to main root group
+
+                rootGroup.getChildren().addAll(dragger, vBox);
+
+            }
+
+        });
+
+    }
+
 		private void usoDeItemYPasarTurno(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2,
 				ArrayList<Button> listaDeBotonesDesbloqueables, ArrayList<Button> listaDeBotonesBloqueable, Button botonVitamina2, 
 				ItemsEnum item,LinkedList<Button> listaDeBotonesDeCambio) {
