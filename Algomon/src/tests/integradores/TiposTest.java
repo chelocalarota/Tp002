@@ -14,27 +14,21 @@ public class TiposTest {
 	public void test01VerificarTiposAlgomonesAgua() {
 		Algomon unAlgomon = new Squirtle();
 		
-		Tipo tipoAgua = new TipoAgua();
-		
-		assertEquals(tipoAgua.getClass(), unAlgomon.getTipo().getClass());
+		assertTrue(unAlgomon.getTipo() instanceof TipoAgua);
 	}
 	
 	@Test
 	public void test02VerificarTiposAlgomonesFuego() {
 		Algomon unAlgomon = new Charmander();
 		
-		Tipo tipoFuego = new TipoFuego();
-		
-		assertEquals(tipoFuego.getClass(), unAlgomon.getTipo().getClass());
+		assertTrue(unAlgomon.getTipo() instanceof TipoFuego);
 	}
 	
 	@Test
 	public void test03VerificarTiposAlgomonesPlanta() {
 		Algomon unAlgomon = new Bulbasaur();
 		
-		Tipo tipoPlanta = new TipoPlanta();
-		
-		assertEquals(tipoPlanta.getClass(), unAlgomon.getTipo().getClass());
+		assertTrue(unAlgomon.getTipo() instanceof TipoPlanta);
 	}
 	
 	@Test
@@ -42,13 +36,11 @@ public class TiposTest {
 		Algomon primerAlgomon = new Chansey();
 		Algomon segundoAlgomon = new Jigglypuff();
 		Algomon tercerAlgomon = new Rattata();
+	
 		
-		
-		Tipo tipoNormal = new TipoNormal();
-		
-		assertEquals(tipoNormal.getClass(), primerAlgomon.getTipo().getClass());
-		assertEquals(tipoNormal.getClass(), segundoAlgomon.getTipo().getClass());
-		assertEquals(tipoNormal.getClass(), tercerAlgomon.getTipo().getClass());
+		assertTrue(primerAlgomon.getTipo() instanceof TipoNormal);
+		assertTrue(segundoAlgomon.getTipo() instanceof TipoNormal);
+		assertTrue(tercerAlgomon.getTipo() instanceof TipoNormal);
 	}
 	
 }
