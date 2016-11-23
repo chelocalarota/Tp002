@@ -111,7 +111,11 @@ public class JuegoTest {
 	public void test09VerificarVictoriaDeJugadorAtacante() throws PokemonMuertoException{
 		Juego juego = new Juego();
 		juego.agregarBulbasaur();
-		juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-100000);
+		try {
+			juego.obtenerJugadorActual().getPokemonActivo().cambiarVida(-100000);	
+		} catch (PokemonMuertoException e) {
+			assertTrue(true);
+		}
 		juego.cambiarJugador();
 		
 		try{
