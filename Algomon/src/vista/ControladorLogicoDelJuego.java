@@ -11,7 +11,6 @@ import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
-import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
 

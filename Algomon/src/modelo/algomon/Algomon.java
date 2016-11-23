@@ -3,14 +3,12 @@ package modelo.algomon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import javafx.scene.image.ImageView;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.estados.*;
 import modelo.items.Item;
 import modelo.tipos.Tipo;
-import vista.CreadorImagen;
+
 
 public abstract class Algomon {
 	protected Tipo tipo;

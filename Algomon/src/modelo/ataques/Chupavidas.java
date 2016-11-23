@@ -2,7 +2,6 @@ package modelo.ataques;
 
 import modelo.algomon.Algomon;
 import modelo.algomon.PokemonMuertoException;
-import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoPlanta;
 
 public class Chupavidas extends Ataque {

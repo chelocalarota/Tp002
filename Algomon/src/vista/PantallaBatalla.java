@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,7 +57,7 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Cañon de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
@@ -77,8 +76,10 @@ public class PantallaBatalla {
 	        HBox contenedorHorizontalTop = new HBox();
 	        VBox contenedorHorizontalBottom = new VBox();
 	        VBox contenedorVerticalIzquierdo = new VBox();
+	        contenedorVerticalIzquierdo.setMaxWidth(350);
 	        VBox contenedorVerticalCentral = new VBox();
 	        VBox contenedorVerticalDerecho = new VBox();
+	        contenedorVerticalDerecho.setMaxWidth(350);
 
 	        panelPrincipal.setTop(contenedorHorizontalTop);
 	        panelPrincipal.setLeft(contenedorVerticalIzquierdo);
@@ -106,6 +107,7 @@ public class PantallaBatalla {
 
 	        //Imagenes de algomones iniciales
 	        VBox contenedorAlgomonesActivos = new VBox();
+	        contenedorAlgomonesActivos.setSpacing(160);
 	        HBox contenedorAlgomonesActivos1 = new HBox();
 	        HBox contenedorAlgomonesActivos2= new HBox();
 
@@ -114,9 +116,9 @@ public class PantallaBatalla {
 	        
 	        
 	        contenedorAlgomonesActivos1.getChildren().addAll(algomonJugador1);
-	        contenedorAlgomonesActivos1.setAlignment(Pos.BASELINE_LEFT);
+	        contenedorAlgomonesActivos1.setAlignment(Pos.TOP_LEFT);
 	        contenedorAlgomonesActivos2.getChildren().addAll(algomonJugador2);
-	        contenedorAlgomonesActivos2.setAlignment(Pos.BASELINE_RIGHT);
+	        contenedorAlgomonesActivos2.setAlignment(Pos.TOP_RIGHT);
 	        contenedorAlgomonesActivos.getChildren().addAll(contenedorAlgomonesActivos2,contenedorAlgomonesActivos1);
 
 
@@ -133,7 +135,7 @@ public class PantallaBatalla {
 	        contenedorEstados.setAlignment(Pos.TOP_CENTER);
 
 	        contenedorVerticalCentral.getChildren().addAll(contenedorEstados, contenedorAlgomonesActivos);
-	        contenedorVerticalCentral.setSpacing(2);
+	        contenedorVerticalCentral.setSpacing(78);
 
 
 
@@ -157,7 +159,7 @@ public class PantallaBatalla {
 	        ImageView avatarJugador1 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/avatar1.png",100,100,false,true);
 	        HBox contenedorAvatarJugador1 = new HBox();
 	        contenedorAvatarJugador1.getChildren().addAll(avatarJugador1);
-	        contenedorAvatarJugador1.setAlignment(Pos.BASELINE_CENTER);
+	        contenedorAvatarJugador1.setAlignment(Pos.TOP_CENTER);
 
 	        VBox contenedorBotonesJugador1 = new VBox();
 	        CreadorBoton creadorBoton = new CreadorBoton();
@@ -218,7 +220,7 @@ public class PantallaBatalla {
  	 	        int indiceNuevo = 0;
 	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
 	            	botonAtaque.setOnAction(event2->{
@@ -250,7 +252,7 @@ public class PantallaBatalla {
 	    	    int indiceNuevo = 0;
 	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	botonAtaque.setMinWidth(255);
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
@@ -282,7 +284,7 @@ public class PantallaBatalla {
  	 	        int indiceNuevo = 0;
 	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	botonAtaque.setMinWidth(255);
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
@@ -369,7 +371,7 @@ public class PantallaBatalla {
 	        int indice2 = 0;
 	        //Ataques iniciales jugador2
 	        for(Ataque ataque: listaDeAtaques2){
-	        	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	        	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	        	boton2.setMinWidth(255);
 	        	boton2.setDisable(true);
 	        	listaDeBotones2.add(boton2);
@@ -416,7 +418,7 @@ public class PantallaBatalla {
  	 	        int indiceNuevo = 0;
 	    	    grid2.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
@@ -450,7 +452,7 @@ public class PantallaBatalla {
 	    	    grid2.getChildren().clear();
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button boton2 = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
@@ -483,7 +485,7 @@ public class PantallaBatalla {
 	    	    grid2.getChildren().clear();
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
-	            	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 12 arial; -fx-base: #b6e7c9;");
+	            	Button boton = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	boton.setMinWidth(255);
 	            	boton.setDisable(true);
 	            	listaDeBotones2.add(boton);

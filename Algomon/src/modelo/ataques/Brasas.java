@@ -1,7 +1,6 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
-import modelo.enums.AtaquesEnum;
 import modelo.estados.EstadoQuemado;
 import modelo.tipos.TipoFuego;
 

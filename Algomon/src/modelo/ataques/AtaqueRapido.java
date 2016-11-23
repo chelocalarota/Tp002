@@ -1,6 +1,5 @@
 package modelo.ataques;
 
-import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoNormal;
 
 public class AtaqueRapido extends Ataque {

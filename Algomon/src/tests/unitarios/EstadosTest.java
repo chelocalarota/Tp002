@@ -3,8 +3,6 @@ package tests.unitarios;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import junit.framework.Assert;
 import modelo.algomon.Algomon;
 import modelo.algomon.Charmander;
 import modelo.algomon.EstaDormidoException;

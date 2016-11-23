@@ -3,7 +3,6 @@ package modelo;
 
 
 
-import java.util.HashMap;
 
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
@@ -15,7 +14,6 @@ public class Juego {
 	private Jugador jugador2;
 	private Cola colaAtacante;
 	private Cola colaDefensor;
-	private HashMap<String, AtaquesEnum>diccionarioEnums;
 	
 	public Juego() {
 		this.jugador1 = new Jugador();
