@@ -31,7 +31,6 @@ public class Juego {
 		this.obtenerJugadorActual().setNombre(nombre);
 	}
 	public Jugador obtenerJugadorActual() {
-		// cuando comienza el juego, el jugador Actual sera el 1
 		return this.colaAtacante.verPrimero();
 	}
 
@@ -64,14 +63,26 @@ public class Juego {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException{
 		
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
 		Ataque unAtaque = algomonAtacante.ataque(ataquesEnum);
-		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
-		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
-		verificarVictoriaDeJugadorActual();
+		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();	
+		
+		try {
+			algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
+			
+		} catch (PokemonMuertoException e) {
+			try{
+				verificarVictoriaDeJugadorActual();
+				throw new PokemonMuertoException(null);
+			}
+			catch(VictoriaObtenidaException e2){
+				System.out.println("entro a la parte de victoria");
+				throw new VictoriaObtenidaException(null);
+			}
+		}
 		this.cambiarJugador();
 		
 	}

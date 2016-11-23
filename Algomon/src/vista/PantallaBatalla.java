@@ -28,6 +28,7 @@ import modelo.enums.ItemsEnum;
 public class PantallaBatalla {
 
 	Scene escena;
+	private Stage stage;
 	LinkedList<ImageView> miniaturasJugadorInicial;
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
@@ -65,7 +66,7 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-			
+			this.stage=stage;
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
@@ -408,7 +409,7 @@ public class PantallaBatalla {
 	    	
 				contenedorAlgomonesActivos2.getChildren().remove(0);
 
-	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
+	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
 	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos1.getChildren().remove(0);
 	    	    actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
@@ -635,6 +636,7 @@ public class PantallaBatalla {
 				controlador.pasarTurno();
 			} catch (VictoriaObtenidaException e) {
 				PantallaVictoria pantallaVictoria = new PantallaVictoria();
+				pantallaVictoria.cargarPantalla(stage, controlador);
 			}
 		}
 		

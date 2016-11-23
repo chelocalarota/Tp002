@@ -131,11 +131,11 @@ public class PantallaEleccionAlgomon {
 				botonContinuar.setDisable(false);
 			}
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Squirtle_espalda.gif", 130, 130, false, true));
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle_frente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -157,11 +157,11 @@ public class PantallaEleccionAlgomon {
 				botonContinuar.setDisable(false);
 			}
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Bulbasaur_espalda.gif", 130, 130, false, true));
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Bulbasaur_frente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/bulbasaur.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -184,11 +184,11 @@ public class PantallaEleccionAlgomon {
 			}
 			sonidoRattata.play();
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Rattata_espalda.gif", 130, 130, false, true));
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Rattata_frente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/rattata.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -210,11 +210,11 @@ public class PantallaEleccionAlgomon {
 			}
 			sonidoJigglypuff.play();
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Jigglypuff_espalda.gif", 130, 130, false, true));
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Jigglypuff_frente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/jigglypuff.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -237,11 +237,11 @@ public class PantallaEleccionAlgomon {
 			}
 			sonidoChansey.play();
 			if(this.miniaturasJugadorInicial.size()<3){
-				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 130, 130, false, true));
+				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Chansey_espalda.gif", 130, 130, false, true));
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/ChanseyFrente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/chansey.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
