@@ -11,6 +11,9 @@ public class CuadroDeNotificaciones {
 		this.textArea = new TextArea();
 		this.textArea.setEditable(false);
 		this.textArea.setWrapText(true);
+		this.textArea.setScrollTop(10);
+		this.textArea.setPrefColumnCount(20);
+		this.textArea.setPrefColumnCount(20);
 	}
 
 	public TextArea getTextArea(){
