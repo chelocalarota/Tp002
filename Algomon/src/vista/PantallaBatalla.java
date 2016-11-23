@@ -109,15 +109,20 @@ public class PantallaBatalla {
 	        contenedorHorizontalBottom.getChildren().addAll(notificaciones.getTextArea());
 
 	        //Batalla
-
-	        BorderPane contenedorAlgomonesActivos = new BorderPane();
+	        
+	        VBox contenedorAlgomonesActivos = new VBox();
+	        HBox contenedorAlgomonesActivos1 = new HBox();
+	        HBox contenedorAlgomonesActivos2= new HBox();
 
 	        ImageView algomonJugador1 = this.imagenesJugadorInicial.get(0);
 	        ImageView algomonJugador2 = this.imagenesJugadorSegundo.get(0);
-	        contenedorAlgomonesActivos.setLeft(algomonJugador1);
-	        contenedorAlgomonesActivos.setRight(algomonJugador2);
-	       
 	        
+	        
+	        contenedorAlgomonesActivos1.getChildren().addAll(algomonJugador1);
+	        contenedorAlgomonesActivos1.setAlignment(Pos.BASELINE_LEFT);
+	        contenedorAlgomonesActivos2.getChildren().addAll(algomonJugador2);
+	        contenedorAlgomonesActivos2.setAlignment(Pos.BASELINE_RIGHT);
+	        contenedorAlgomonesActivos.getChildren().addAll(contenedorAlgomonesActivos2,contenedorAlgomonesActivos1);
 
 	  
 	        
@@ -222,14 +227,14 @@ public class PantallaBatalla {
 						botonSegundoAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 0);
 
 				
-				contenedorAlgomonesActivos.getChildren().remove(0);
+				contenedorAlgomonesActivos1.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(0);
-	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos2.getChildren().remove(0);
 	    	    
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
  	 	        int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
@@ -256,14 +261,14 @@ public class PantallaBatalla {
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonSegundoAlgomon,
 						botonPrimerAlgomon, botonTercerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 1);
 	    		
-				contenedorAlgomonesActivos.getChildren().remove(0);
+				contenedorAlgomonesActivos1.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(1);
-	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos2.getChildren().remove(0);
 	    	    
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 	    	    int indiceNuevo = 0;
 	    	    grid.getChildren().clear();
@@ -288,15 +293,14 @@ public class PantallaBatalla {
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones1, listaDeBotones2, botonTercerAlgomon,
 						botonSegundoAlgomon, botonPrimerAlgomon,botonesDeCambioDeAlgomonDelJugador1, 2);
 	    		
-				contenedorAlgomonesActivos.getChildren().remove(0);
+				contenedorAlgomonesActivos1.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador1 =this.imagenesJugadorInicial.get(2);
-	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador2 =(ImageView) contenedorAlgomonesActivos2.getChildren().remove(0);
 
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
-
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
 
  	 	        int indiceNuevo = 0;
@@ -417,12 +421,12 @@ public class PantallaBatalla {
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonPrimerAlgomon2,
 						botonSegundoAlgomon2, botonTercerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 0);
 	    	
-				contenedorAlgomonesActivos.getChildren().remove(1);
+				contenedorAlgomonesActivos2.getChildren().remove(0);
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(0);
-	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos1.getChildren().remove(0);
 	    	    actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
  	 	        ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
  	 	        //Ataques nuevos
  	 	        int indiceNuevo = 0;
@@ -450,13 +454,13 @@ public class PantallaBatalla {
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonSegundoAlgomon2,
 						botonPrimerAlgomon2, botonTercerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 1);
 	    		
-				contenedorAlgomonesActivos.getChildren().remove(1);
+				contenedorAlgomonesActivos2.getChildren().remove(0);
 
 	    		ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(1);
-	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos1.getChildren().remove(0);
 	    	    actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
 	    	    int indiceNuevo = 0;
 	    	    grid2.getChildren().clear();
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
@@ -483,12 +487,12 @@ public class PantallaBatalla {
 				setEventBotonCambioDeAlgomon(controlador, listaDeBotones2, listaDeBotones1, botonTercerAlgomon2,
 						botonSegundoAlgomon2, botonPrimerAlgomon2,botonesDeCambioDeAlgomonDelJugador2, 2);
 	    		
-				contenedorAlgomonesActivos.getChildren().remove(1);
+				contenedorAlgomonesActivos2.getChildren().remove(0);
 	    	    ImageView nuevoAlgomonJugador2 =this.imagenesJugadorSegundo.get(2);
-	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos.getChildren().remove(0);
+	    	    ImageView nuevoAlgomonJugador1 =(ImageView) contenedorAlgomonesActivos1.getChildren().remove(0);
 	    	    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
-	    	    contenedorAlgomonesActivos.setLeft(nuevoAlgomonJugador1);
-		        contenedorAlgomonesActivos.setRight(nuevoAlgomonJugador2);
+	    	    contenedorAlgomonesActivos1.getChildren().add(nuevoAlgomonJugador1);
+	    	    contenedorAlgomonesActivos2.getChildren().add(nuevoAlgomonJugador2);
 	    	    int indiceNuevo = 0;
 	    	    grid2.getChildren().clear();
 	    	    ArrayList<Ataque> listaDeAtaquesNueva = controlador.obtenerJugadorDefensor().getPokemonActivo().obtenerTodosLosAtaques();
