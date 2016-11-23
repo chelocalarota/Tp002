@@ -577,11 +577,17 @@ public class PantallaBatalla {
 					| VictoriaObtenidaException | EstaDormidoException e) {
 					notificaciones.notificar("No se pudo utilizar el ataque.");
 			} catch (PokemonMuertoException e) {
+				
 				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){
+					
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones1, listaDeBotonesDeCambio, botonesBloqueadosForEver);
 				}
 				else{
+					this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones2, listaDeBotonesDeCambio2,botonesBloqueadosForEver);
+					this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
+					controlador.pasarTurno();
+					
 				}
 			}
 		}
