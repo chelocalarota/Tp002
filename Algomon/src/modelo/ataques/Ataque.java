@@ -1,6 +1,7 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
+import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.enums.AtaquesEnum;
 import modelo.tipos.Tipo;
@@ -49,7 +50,7 @@ public abstract class Ataque {
 		return;
 	}
 	
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomonAtacante, int danio){
+	public void consecuenciaPropiaDeAtaque(Algomon unAlgomonAtacante, int danio) throws PokemonMuertoException{
 		return;
 	}
 

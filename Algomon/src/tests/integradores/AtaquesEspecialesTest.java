@@ -16,13 +16,15 @@ import modelo.algomon.Jigglypuff;
 import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.Rattata;
 import modelo.algomon.SinPuntosDePoderException;
+import modelo.algomon.SinUsosDisponiblesException;
 import modelo.algomon.Squirtle;
 import modelo.enums.AtaquesEnum;
+import modelo.items.Vitamina;
 
 public class AtaquesEspecialesTest {
 
 	@Test
-	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException {
+	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, SinUsosDisponiblesException {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
@@ -31,9 +33,12 @@ public class AtaquesEspecialesTest {
 		TodosLosAlgomones.add(new Charmander());
 		TodosLosAlgomones.add(new Squirtle());
 
-		for(Algomon atacado : TodosLosAlgomones){
-			atacado.recibirDanio(Jigglypuff.ataque(AtaquesEnum.CANTO),Jigglypuff);
-			assertFalse(atacado.estaEnEstadoNormal());
+		for(int i = 0; i< 3; i++){
+			for	(Algomon atacado : TodosLosAlgomones){
+				atacado.recibirDanio(Jigglypuff.ataque(AtaquesEnum.CANTO),Jigglypuff);
+				assertFalse(atacado.estaEnEstadoNormal());
+				Jigglypuff.usarItem(new Vitamina());
+			}
 		}
 
 		for(Algomon atacado : TodosLosAlgomones){

@@ -74,13 +74,11 @@ public class Juego {
 		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
 		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
 		verificarVictoriaDeJugadorActual();
-		if (algomonDefensor.getVida()<0){
-			throw new PokemonMuertoException("");
-		}
 		this.cambiarJugador();
+		
 	}
 	
-	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException{
+	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException, PokemonMuertoException{
 		this.obtenerJugadorActual().usarItem(unItem);
 		this.pasarTurno();
 	}
@@ -110,7 +108,15 @@ public class Juego {
 		this.cambiarPokemonDeJugadorActual(0);
 	}
 
+	public void verificarAlgomonDefensorMuerto() throws PokemonMuertoException{
+		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
+		if (algomonAtacante.estaMuerto()){
+			throw new PokemonMuertoException("");
+		}
+	}
+	
 	public void pasarTurno() {
 		this.cambiarJugador();
+		
 	}
 }

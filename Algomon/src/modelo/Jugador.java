@@ -54,11 +54,11 @@ public class Jugador {
 		this.algomonActivo= unAlgomon;
 	}
 	
-	public Ataque elegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException{
+	public Ataque elegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		return this.algomonActivo.ataque(ataqueElegido);
 	}
 	
-	public void usarItem(ItemsEnum unItem) throws SinUsosDisponiblesException{
+	public void usarItem(ItemsEnum unItem) throws SinUsosDisponiblesException, PokemonMuertoException{
 		/**
 		 * Esto tambien puede manejarse igual que con los Pokemon, en el metodo
 		 * elegirAlgomonActivo
