@@ -120,7 +120,10 @@ public class PantallaBatalla {
 		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 		    this.stage=stage;
 		    
-			botonesBloqueadosForEver = new LinkedList<Button>();
+		    AudioClip musicaBatalla = new AudioClip(this.getClass().getResource("/vista/sonidos/batalla.mp3").toExternalForm());
+		   
+		    
+		   	botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
 			ArrayList<Button> listaDeBotones1 = new ArrayList<Button>();
@@ -640,6 +643,8 @@ public class PantallaBatalla {
 	        stage.centerOnScreen();
 	        stage.setMaximized(true);
 	        stage.show();
+	        musicaBatalla.setCycleCount(AudioClip.INDEFINITE);
+	        musicaBatalla.play();
 	}
 
 		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
@@ -672,6 +677,7 @@ public class PantallaBatalla {
 			listaDeBotones1.remove(botonElegido);
 			this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
 			this.botonesIntocablesTemporal.add(botonElegido);
+			
 			
 		}
 		
@@ -733,9 +739,18 @@ public class PantallaBatalla {
 
 		private void actualizarJugadorDefensor(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
 			contenedorEstadosJugador2.getChildren().clear();
-	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorDefensor().getPokemonActivo().getVida())));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
+			Label vida = new Label(Integer.toString(controlador.obtenerJugadorDefensor().getPokemonActivo().getVida()));
+			vida.setStyle("-fx-font: 17 arial");
+			vida.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(vida);
+			Label estadoEfimero = new Label("Estado efimero: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString());
+			estadoEfimero.setStyle("-fx-font: 17 arial");
+			estadoEfimero.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoEfimero);
+			Label estadoPermanente = new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString());
+			estadoPermanente.setStyle("-fx-font: 17 arial");
+			estadoPermanente.setTextFill(Color.WHITE);
+	        contenedorEstadosJugador2.getChildren().add(estadoPermanente);
 		}
 
 		private void setearBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
@@ -859,9 +874,18 @@ public class PantallaBatalla {
 
 		private void actualizarJugadorActual(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
 			contenedorEstadosJugador2.getChildren().clear();
-			contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-			contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-			contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+			Label vida = new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida()));
+			vida.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			vida.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(vida);
+			Label estadoEfimero = new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString());
+			estadoEfimero.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			estadoEfimero.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoEfimero);
+			Label estadoPermanente = new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString());
+			estadoPermanente.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			estadoPermanente.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoPermanente);
 		}
 }
 
