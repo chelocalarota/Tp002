@@ -89,7 +89,7 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Caï¿½on de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Cañon de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
@@ -105,7 +105,7 @@ public class PantallaBatalla {
 		AudioClip ataquePlanta = new AudioClip(this.getClass().getResource("/vista/sonidos/absorver.mp3").toExternalForm());
 		diccionarioSonidosDeAtaques.put("Fogonazo",ataqueDeFuego);
 		diccionarioSonidosDeAtaques.put("Brasas", ataqueDeFuego);
-		diccionarioSonidosDeAtaques.put("Caï¿½on de Agua", ataqueDeAgua);
+		diccionarioSonidosDeAtaques.put("Cañon de Agua", ataqueDeAgua);
 		diccionarioSonidosDeAtaques.put("Burbuja",ataqueBurbujas);
 		diccionarioSonidosDeAtaques.put("Canto", canto);
 		diccionarioSonidosDeAtaques.put("Ataque Rapido", ataqueRapido);
@@ -118,8 +118,8 @@ public class PantallaBatalla {
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
 			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
- 	
-			this.stage=stage;
+		    this.stage=stage;
+		    
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
