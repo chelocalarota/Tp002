@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PantallaEleccionAlgomon {
@@ -47,9 +48,10 @@ public class PantallaEleccionAlgomon {
 		ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
 				
 
-		Label label = new Label("Jugador" + String.valueOf(i));
+		Label label = new Label("JUGADOR  " + String.valueOf(i));
+		label.setStyle("-fx-font: 38 arial;");
+		label.setTextFill(Color.WHITE);
 		VBox contenedorVertical = new VBox();
-		VBox contenedorVertical2 = new VBox();
 
 		HBox contenedorHorizontalSuperior = new HBox();
 		HBox contenedorHorizontalMedio = new HBox();
@@ -102,6 +104,7 @@ public class PantallaEleccionAlgomon {
 		listaDeSonidos.add(sonidoJigglypuff);
 
 		Button botonContinuar = creadorBoton.crearBoton("Continuar", "-fx-font: 16 arial; -fx-base: #b6e7c9;");
+		Button botonLimpiar = creadorBoton.crearBoton("Limpiar", "-fx-font: 16 arial; -fx-base: #b6e7c9;");
 		botonContinuar.setDisable(true);
 		for (Button boton:listaDeBotones){
 			boton.setMaxSize(350, contenedorHorizontalSuperior.getPrefHeight());
@@ -279,24 +282,25 @@ public class PantallaEleccionAlgomon {
 
 			}
 		});
-		contenedorVertical.setSpacing(100);
 
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
 		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
-		contenedorVertical2.getChildren().addAll(label,contenedorHorizontalSuperior);
+		contenedorVertical.getChildren().addAll(label, contenedorHorizontalSuperior, contenedorHorizontalMedio, contenedorHorizontalInferior);
+		contenedorVertical.setAlignment(Pos.CENTER);
+		contenedorVertical.setSpacing(35);
 		contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
 		contenedorHorizontalMedio.setSpacing(60);
 		contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
-		contenedorHorizontalInferior.getChildren().add(botonContinuar);
+		contenedorHorizontalInferior.getChildren().addAll(botonLimpiar, botonContinuar);
+		contenedorHorizontalInferior.setSpacing(150);
 		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
 
-		contenedorVertical.getChildren().addAll(contenedorHorizontalMedio,contenedorHorizontalInferior);
 	    BorderPane border = new BorderPane();
-		border.setTop(contenedorVertical2);
-		border.setCenter(contenedorVertical);
+	    border.setStyle("-fx-base: #17202A;");
+		border.setTop(contenedorVertical);
 		this.escena = new Scene(border, ancho - 20, alto - 100);
-        stage.setScene(escena);
+        stage.setScene(this.escena);
         stage.centerOnScreen();
         stage.show();
 	}
