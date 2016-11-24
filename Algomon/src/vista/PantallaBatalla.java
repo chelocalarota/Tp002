@@ -638,7 +638,7 @@ public class PantallaBatalla {
 	        this.escena = new Scene(panelPrincipal,ancho-10,alto-70);
 	        stage.setScene(escena);
 	        stage.centerOnScreen();
-//	        stage.setFullScreen(true);
+	        stage.setMaximized(true);
 	        stage.show();
 	}
 

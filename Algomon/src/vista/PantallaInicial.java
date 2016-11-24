@@ -79,6 +79,7 @@ public class PantallaInicial {
                 null,null, BackgroundPosition.CENTER,
          null)));
         Scene principal = new Scene(border,ancho-20,alto-100);
+        stage.centerOnScreen();
         stage.setScene(principal);
         stage.show();
 	}

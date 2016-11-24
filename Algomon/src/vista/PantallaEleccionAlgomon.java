@@ -34,6 +34,10 @@ public class PantallaEleccionAlgomon {
 	}
 
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int i) {
+		
+		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+	    
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewCharmander = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/charmander.png", 150, 150, false, true);
 		ImageView imageViewSquirtle = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/squirtle.png", 150, 150, false, true);
@@ -280,7 +284,7 @@ public class PantallaEleccionAlgomon {
 	    BorderPane border = new BorderPane();
 		border.setTop(contenedorVertical2);
 		border.setCenter(contenedorVertical);
-		this.escena = new Scene(border, 981, 600);
+		this.escena = new Scene(border, ancho - 20, alto - 100);
         stage.setScene(escena);
         stage.centerOnScreen();
         stage.show();
