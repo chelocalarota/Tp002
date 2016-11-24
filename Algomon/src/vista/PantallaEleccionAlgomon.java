@@ -107,7 +107,7 @@ public class PantallaEleccionAlgomon {
 			sonidoCharmander.play();
 			if(this.miniaturasJugadorInicial.size()<3){
 				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/CharmanderEspalda.gif", 130, 130, true, false));
-				
+
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 			}
 			else{
@@ -136,7 +136,7 @@ public class PantallaEleccionAlgomon {
 				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			else{
-				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle_frente.gif", 90, 90, false, true));
+				this.imagenesJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/Squirtle_frente.gif", 90, 90, false, true));
 				this.miniaturasJugadorSegundo.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/squirtle.png", 30, 30, false, true));
 			}
 			if (controlador.verificarCantidadAlgomonDeJugadorActual()){
@@ -265,7 +265,7 @@ public class PantallaEleccionAlgomon {
 			}
 		});
 		contenedorVertical.setSpacing(100);
-		
+
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
 		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
@@ -329,8 +329,8 @@ public class PantallaEleccionAlgomon {
 //		ImageView imageViewChansey = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/chansey.png", 150, 150, false, true);
 //		ImageView imageViewBulbasaur = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/bulbasaur.png", 150, 150, false, true);
 //		ImageView imageViewJigglypuff = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/jigglypuff.png", 150, 150, false, true);
-//		
-//		
+//
+//
 //
 //		Label label = new Label("Jugador" + String.valueOf(i));
 //		VBox contenedorVertical = new VBox();
@@ -339,12 +339,12 @@ public class PantallaEleccionAlgomon {
 //		HBox contenedorHorizontalSuperior = new HBox();
 //		HBox contenedorHorizontalMedio = new HBox();
 //		HBox contenedorHorizontalInferior = new HBox();
-//		
-//		MenuTop Menu = new MenuTop(stage);
-//        
-//        
 //
-//		
+//		MenuTop Menu = new MenuTop(stage);
+//
+//
+//
+//
 //		CreadorBoton creadorBoton = new CreadorBoton();
 //		ArrayList<Button> listaDeBotones = new ArrayList<Button>();
 //		ArrayList<AudioClip> listaDeSonidos = new ArrayList<AudioClip>();
@@ -401,7 +401,7 @@ public class PantallaEleccionAlgomon {
 //			sonidoCharmander.play();
 //			if(this.miniaturasJugadorInicial.size()<3){
 //				this.imagenesJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/CharmanderEspalda.gif", 130, 130, true, false));
-//				
+//
 //				this.miniaturasJugadorInicial.add(creadorImagen.crearImageViewConTamanioEspecifico("vista/imagenes/charmander.png", 30, 30, false, true));
 //			}
 //			else{
