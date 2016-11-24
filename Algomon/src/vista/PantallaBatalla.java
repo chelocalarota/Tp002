@@ -118,8 +118,8 @@ public class PantallaBatalla {
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
 			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
- 	
-			this.stage=stage;
+		    this.stage=stage;
+		    
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
