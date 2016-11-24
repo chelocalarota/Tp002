@@ -89,19 +89,35 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Caï¿½on de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Cañon de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
 		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
 		diccionarioSonidosDeAtaques = new HashMap<String,AudioClip>();
 		AudioClip ataqueDeFuego = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueDeFuego.mp3").toExternalForm());
+		AudioClip ataqueDeAgua = new AudioClip(this.getClass().getResource("/vista/sonidos/canionDeAgua.mp3").toExternalForm());
+		AudioClip ataqueBurbujas = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueBurbujas.mp3").toExternalForm());
+		AudioClip canto = new AudioClip(this.getClass().getResource("/vista/sonidos/canto.mp3").toExternalForm());
+		AudioClip latigoCepa = new AudioClip(this.getClass().getResource("/vista/sonidos/latigoCepa.mp3").toExternalForm());
+		AudioClip item = new AudioClip(this.getClass().getResource("/vista/sonidos/pokemon_heal.mp3").toExternalForm());
+		AudioClip ataqueRapido = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueRapido.mp3").toExternalForm());
+		AudioClip ataquePlanta = new AudioClip(this.getClass().getResource("/vista/sonidos/absorver.mp3").toExternalForm());
 		diccionarioSonidosDeAtaques.put("Fogonazo",ataqueDeFuego);
 		diccionarioSonidosDeAtaques.put("Brasas", ataqueDeFuego);
+		diccionarioSonidosDeAtaques.put("Cañon de Agua", ataqueDeAgua);
+		diccionarioSonidosDeAtaques.put("Burbuja",ataqueBurbujas);
+		diccionarioSonidosDeAtaques.put("Canto", canto);
+		diccionarioSonidosDeAtaques.put("Ataque Rapido", ataqueRapido);
+		diccionarioSonidosDeAtaques.put("LatigoCepa", latigoCepa);
+		diccionarioSonidosDeAtaques.put("item", item);
+		diccionarioSonidosDeAtaques.put("ChupaVidas", ataquePlanta);
+		
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-
+			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
  	
 			this.stage=stage;
 			botonesBloqueadosForEver = new LinkedList<Button>();
@@ -619,9 +635,9 @@ public class PantallaBatalla {
 	        contenedorVerticalDerecho.setPrefWidth(500);
 	        contenedorVerticalIzquierdo.setPrefWidth(500);
 
-	        this.escena = new Scene(panelPrincipal);
+	        this.escena = new Scene(panelPrincipal,ancho-10,alto-70);
 	        stage.setScene(escena);
-	        stage.setFullScreen(true);
+	        stage.centerOnScreen();
 	        stage.show();
 	}
 
@@ -820,7 +836,7 @@ public class PantallaBatalla {
 				controlador.usarItem(item);
 				controlador.verificarAlgomonActualMuerto();
 				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
-				
+				this.diccionarioSonidosDeAtaques.get("item").play();
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
 					botonVitamina2.setDisable(true);
