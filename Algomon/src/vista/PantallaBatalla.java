@@ -33,14 +33,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.VictoriaObtenidaException;
@@ -51,6 +45,7 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
+import modelo.tipos.*;
 
 public class PantallaBatalla {
 
@@ -70,7 +65,7 @@ public class PantallaBatalla {
 	int vidaAlgomon2;
 	String estadoEfimeroAlgomon2;
 	String estadoPersistenteAlgomon2;
-	
+	HashMap<String,AudioClip>diccionarioSonidosDeAtaques ;
 	
 	
 	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
@@ -91,9 +86,16 @@ public class PantallaBatalla {
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
 		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
+		diccionarioSonidosDeAtaques = new HashMap<String,AudioClip>();
+		AudioClip ataqueDeFuego = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueDeFuego.mp3").toExternalForm());
+		diccionarioSonidosDeAtaques.put("Fogonazo",ataqueDeFuego);
+		diccionarioSonidosDeAtaques.put("Brasas", ataqueDeFuego);
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
+			
+	
+			
 			this.stage=stage;
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
@@ -121,9 +123,9 @@ public class PantallaBatalla {
 
 	        CreadorImagen creadorImagen = new CreadorImagen();
 	     	
-	        MenuTop Menu = new MenuTop(stage);
+	       // MenuTop Menu = new MenuTop(stage);
 	        
-	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
+	        //contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
 	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
@@ -628,6 +630,9 @@ public class PantallaBatalla {
 				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
+			    if(this.diccionarioSonidosDeAtaques.containsKey(ataque.getNombre())){//Esta validacion no deberia ir porque van todos los sonidos
+			    	diccionarioSonidosDeAtaques.get(ataque.getNombre()).play();
+			    }
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
@@ -718,7 +723,7 @@ public class PantallaBatalla {
 
                 //create scene with set width, height and color
 
-                Scene scene = new Scene(rootGroup, 200, 200, Color.TRANSPARENT);
+                Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
 
                 //set scene to stage
 
@@ -732,83 +737,22 @@ public class PantallaBatalla {
 
                 stage.show();
 
- 
 
-                // CREATION OF THE DRAGGER (CIRCLE)
+                CreadorImagen creador = new CreadorImagen();
+                ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
 
-           
-
-                //create dragger with desired size
-
-                Circle dragger = new Circle(100, 100, 100);
-
-                //fill the dragger with some nice radial background
-
-                dragger.setFill(new RadialGradient(-0.3, 135, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-
-                    new Stop(0, Color.DARKGRAY),
-
-                    new Stop(1, Color.BLACK)
-
-                 }));
-
-                // CREATE MIN AND CLOSE BUTTONS
-
-                //create button for closing application
-
-                Button close = new Button("Close me");
+                CreadorBoton creadorBoton = new CreadorBoton();
+                Button close = creadorBoton.crearBoton("Cerrar","-fx-font: 57 arial; -fx-base: #FFFFFF;");
 
                 close.setOnAction(new EventHandler<ActionEvent>() {
 
                     public void handle(ActionEvent event) {
-
-                        //in case we would like to close whole demo
-
-                        //javafx.application.Platform.exit();
-
- 
-
-                        //however we want to close only this instance of stage
 
                         stage.close();
 
                     }
 
                 });
-
- 
-
-                //create button for minimalising application
-
-                Button min = new Button("Minimize me");
-
-                min.setOnAction(new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent event) {
-
-                        stage.setIconified(true);
-
-                    }
-
-                });
-
- 
-
- 
-
-                // CREATE SIMPLE TEXT NODE
-
-                Text text = new Text("JavaFX"); //20, 110,
-
-                text.setFill(Color.WHITESMOKE);
-
-                text.setEffect(new Lighting());
-
-                text.setBoundsType(TextBoundsType.VISUAL);
-
-                text.setFont(Font.font(Font.getDefault().getFamily(), 50));
-
- 
 
                 // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
 
@@ -820,13 +764,13 @@ public class PantallaBatalla {
 
                 vBox.setAlignment(Pos.TOP_CENTER);
 
-                vBox.getChildren().addAll(text, min, close);
-
+                vBox.getChildren().addAll(close);
+                vBox.setMinSize(1300,1300);
  
 
                 //add all nodes to main root group
 
-                rootGroup.getChildren().addAll(dragger, vBox);
+                rootGroup.getChildren().addAll(imagen,vBox);
 
             }
 
