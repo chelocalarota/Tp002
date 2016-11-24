@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -9,14 +10,18 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TitledPane;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -67,6 +72,7 @@ public class PantallaBatalla {
 	String estadoPersistenteAlgomon2;
 	
 	
+	
 	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
 
 		this.botonesBloqueadosForEver = new LinkedList<Button>();
@@ -80,7 +86,7 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Cañon de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Caï¿½on de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
@@ -114,18 +120,10 @@ public class PantallaBatalla {
 	        panelPrincipal.setBottom(contenedorHorizontalBottom);
 
 	        CreadorImagen creadorImagen = new CreadorImagen();
-	        //Menu
-	        MenuBar menuBar = new MenuBar();
-	        // --- Menu File
-	        Menu menuFile = new Menu("File");
-	        // --- Menu Edit
-	        Menu menuEdit = new Menu("Edit");
-	        // --- Menu View
-	        Menu menuView = new Menu("View");
-	        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
-	        menuBar.setMinWidth(1400);
-
-	        contenedorHorizontalTop.getChildren().addAll(menuBar);
+	     	
+	        MenuTop Menu = new MenuTop(stage);
+	        
+	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
 	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
