@@ -1,16 +1,23 @@
 package vista;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.FadeTransitionBuilder;
+import javafx.animation.FillTransitionBuilder;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Node;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,9 +26,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TitledPane;
-import javafx.scene.effect.Lighting;
+
 import javafx.scene.image.Image;
-import javafx.scene.control.ToggleGroup;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -37,6 +44,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
@@ -93,9 +101,8 @@ public class PantallaBatalla {
 	}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-			
-	
-			
+
+ 	
 			this.stage=stage;
 			botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
@@ -177,6 +184,27 @@ public class PantallaBatalla {
 	        panelContenedorDeCambioDeAlgomon.setMinWidth(286);
 	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
 	        
+
+            @SuppressWarnings("deprecation")
+			FadeTransition fadeTransition = FadeTransitionBuilder.create()
+                 .duration(Duration.seconds(0.4))
+                 .node(contenedorAlgomonesActivos2.getChildren().get(0))
+                 .fromValue(0.2)
+                 .toValue(1)
+                 .cycleCount(3)
+                 .autoReverse(true)
+                 .build();
+            @SuppressWarnings("deprecation")
+			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+                    .duration(Duration.seconds(0.4))
+                    .node(contenedorAlgomonesActivos1.getChildren().get(0))
+                    .fromValue(0.2)
+                    .toValue(1)
+                    .cycleCount(3)
+                    .autoReverse(true)
+                    .build();
+            
+            
 	        TitledPane botonAtacarJugador1 = new TitledPane();
 	        botonAtacarJugador1.setMaxWidth(286);
 	        botonAtacarJugador1.setMinWidth(286);
@@ -200,6 +228,7 @@ public class PantallaBatalla {
 	        	boton.setMinWidth(255);
 	        	boton.setOnAction(event->{
 	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+	        		fadeTransition.play();
 	        	});
 	            gridBotonesDeAtaqueJugador1.add(boton,0,indice);
 	            indice+=1;
@@ -253,6 +282,7 @@ public class PantallaBatalla {
 	            		botonAtaque.setMinWidth(255);
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);    		
+	            		fadeTransition.play();
 	            	});
 
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
@@ -285,6 +315,7 @@ public class PantallaBatalla {
 	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador2);	
+	            		fadeTransition.play();
 	            	});
 
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
@@ -317,6 +348,7 @@ public class PantallaBatalla {
 	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+	            		fadeTransition.play();
 	            	});
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -405,7 +437,7 @@ public class PantallaBatalla {
 	        		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	        		
+	        		 		fadeTransition2.play();
 	        	});
 	            grid2.add(boton2,0,indice2);
 	            indice2+=1;
@@ -452,6 +484,7 @@ public class PantallaBatalla {
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            		 fadeTransition2.play();
 	            	});
 
 	                grid2.add(boton2,0,indiceNuevo);
@@ -486,6 +519,7 @@ public class PantallaBatalla {
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            		 fadeTransition2.play();
 	            	});
 	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -519,6 +553,7 @@ public class PantallaBatalla {
 	            			 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            			 fadeTransition2.play();
 	            	});
 
 	                grid2.add(boton,0,indiceNuevo);
@@ -631,7 +666,7 @@ public class PantallaBatalla {
 				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
 			    if(this.diccionarioSonidosDeAtaques.containsKey(ataque.getNombre())){//Esta validacion no deberia ir porque van todos los sonidos
-			    	diccionarioSonidosDeAtaques.get(ataque.getNombre()).play();
+			    	diccionarioSonidosDeAtaques.get(ataque.getNombre()).play();	
 			    }
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
