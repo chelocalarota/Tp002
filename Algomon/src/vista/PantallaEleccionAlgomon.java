@@ -282,6 +282,7 @@ public class PantallaEleccionAlgomon {
 		border.setCenter(contenedorVertical);
 		this.escena = new Scene(border, 981, 600);
         stage.setScene(escena);
+        stage.centerOnScreen();
         stage.show();
 	}
 }
