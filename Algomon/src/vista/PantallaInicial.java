@@ -28,6 +28,8 @@ public class PantallaInicial {
 	}
 
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
+		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 
 		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
 		musicaPantallaInicial.play();
@@ -73,10 +75,10 @@ public class PantallaInicial {
         contenedorVerticalCentral.getChildren().addAll(botonNuevoJuego,botonOpciones,contenedorBotones);
         contenedorVerticalCentral.setSpacing(40);
         contenedorVerticalCentral.setAlignment(Pos.BASELINE_CENTER);
-        border.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoPantallaInicio.jpg",981,600,false,false),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT)));
-        Scene principal = new Scene(border, 981, 600);
+        border.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoPantallaInicio.jpg",ancho,alto,false,false),
+                null,null, BackgroundPosition.CENTER,
+         null)));
+        Scene principal = new Scene(border,ancho-20,alto-100);
         stage.setScene(principal);
         stage.show();
 	}
