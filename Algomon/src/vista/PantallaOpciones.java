@@ -26,7 +26,7 @@ public class PantallaOpciones {
 		this.controlador = controlador;
 	}
 
-	public void cargarPantalla(Stage stage, ReproductorDeSonidos reproductor) {
+	public void cargarPantalla(Stage stage, ReproductorDeSonidos reproductor, PantallaInicial pantallaInicial) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 
@@ -59,6 +59,7 @@ public class PantallaOpciones {
         botonMaximizar.setEffect(dropShadow);
         botonMaximizar.setOnAction(event ->{
         	stage.setMaximized(true);
+        	
         });
         
         Button botonActivarSonido = creadorBoton.crearBoton("Activar Sonido","-fx-font:  22 arial; -fx-base: #FFFFFF;");
@@ -70,7 +71,6 @@ public class PantallaOpciones {
         Button botonVolver = creadorBoton.crearBoton("Volver","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonVolver.setEffect(dropShadow);
         botonVolver.setOnAction(event -> {
-        	PantallaInicial pantallaInicial = new PantallaInicial(controlador, reproductor);
         	PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon();
         	pantallaInicial.cargarPantalla(stage, pantallaEleccion);
 			        });
