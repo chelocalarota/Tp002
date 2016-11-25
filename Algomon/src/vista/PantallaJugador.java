@@ -66,6 +66,7 @@ public class PantallaJugador {
 		this.grilla.setAlignment(Pos.CENTER);
 		this.escena = new Scene(grilla, 981, 600);
         stage.setScene(escena);
+        stage.setMaximized(true);
         stage.show();
 
 	}

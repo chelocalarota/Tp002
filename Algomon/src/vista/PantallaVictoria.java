@@ -46,6 +46,7 @@ public class PantallaVictoria {
 		border.setTop(contenedorMensajes);
 		Scene escena = new Scene(border,ancho-50,alto-50);
         stage.setScene(escena);
+        stage.setMaximized(true);
         stage.show();
 	}
 }

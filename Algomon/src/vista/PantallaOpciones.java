@@ -86,7 +86,9 @@ public class PantallaOpciones {
         Scene principal = new Scene(border,ancho-20,alto-100);
         stage.centerOnScreen();
         stage.setScene(principal);
+        stage.setMaximized(true);
         stage.show();
+        
 	}
 
 }
