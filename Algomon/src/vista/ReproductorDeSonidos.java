@@ -24,6 +24,7 @@ public class ReproductorDeSonidos {
 		AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/sonidos/rattata_audio.mp3").toExternalForm());
 		AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/sonidos/bulbasaur_audio.mp3").toExternalForm());
 		AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/sonidos/jigglypuff_audio.mp3").toExternalForm());
+		AudioClip sonidoPokeball = new AudioClip(this.getClass().getResource("/vista/sonidos/pokebola.mp3").toExternalForm());
 		
 		this.diccionarioDeSonidos.put("charmander",sonidoCharmander);
 		this.diccionarioDeSonidos.put("chansey",sonidoChansey);
@@ -31,7 +32,7 @@ public class ReproductorDeSonidos {
 		this.diccionarioDeSonidos.put("rattata", sonidoRattata);
 		this.diccionarioDeSonidos.put("bulbasaur",sonidoBulbasaur);
 		this.diccionarioDeSonidos.put("jigglypuf", sonidoJigglypuff);
-		
+		this.diccionarioDeSonidos.put("pokebola",sonidoPokeball );
 		
 		
 		//sonido pantalla batalla
