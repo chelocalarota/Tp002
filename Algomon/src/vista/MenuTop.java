@@ -11,10 +11,12 @@ public class MenuTop {
 	
 	private MenuBar menu;
 	
-	public MenuTop(Stage stage){
-
-		menu = new MenuBar();
-        // --- Menu File
+	
+	public MenuTop(Stage stage, ReproductorDeSonidos reproductor){
+		
+		
+		this.menu = new MenuBar();
+        // --- Menu Archivo
         
         Menu menuArchivo = new Menu("Archivo");
         
@@ -29,7 +31,7 @@ public class MenuTop {
         menuArchivo.getItems().addAll(salir,
             new SeparatorMenuItem());
 
-		// --- Menu Edit
+		// --- Menu Opciones
         Menu menuOpciones = new Menu("Opciones");
         
         ToggleGroup tGroup = new ToggleGroup();
@@ -37,13 +39,13 @@ public class MenuTop {
         RadioMenuItem activarSonido = new RadioMenuItem("Activar Sonido");
         
         desactivarSonido.setOnAction(event->{
-        	
+        	reproductor.desactivar();
         });
         
         desactivarSonido.setToggleGroup(tGroup);
 
         activarSonido.setOnAction(event->{
-        	
+        	reproductor.activar();
         });
         
         activarSonido.setToggleGroup(tGroup);
@@ -51,9 +53,19 @@ public class MenuTop {
         menuOpciones.getItems().addAll(desactivarSonido, activarSonido,
             new SeparatorMenuItem());
 
-        // --- Menu View
+        // --- Menu Ayuda
         Menu menuAyuda = new Menu("Ayuda");
         
+        
+        RadioMenuItem reglas = new RadioMenuItem("Reglas del juego");
+        
+        reglas.setOnAction(event->{
+        	
+        });
+        
+
+        menuAyuda.getItems().addAll(reglas,
+            new SeparatorMenuItem());
         
         menu.getMenus().addAll(menuArchivo, menuOpciones, menuAyuda);
         menu.setMinWidth(1400);
