@@ -1,6 +1,10 @@
 package vista;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -68,6 +72,70 @@ public class PantallaInicial {
         	pantallaOpciones.cargarPantalla(stage,this.reproductor);
         });
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+        botonAyuda.setOnAction(event->{
+
+            
+
+            //create stage which has set stage style transparent
+
+//            final Stage stage = new Stage(StageStyle.TRANSPARENT);
+
+            //create root node of scene, i.e. group
+
+            Group rootGroup = new Group();
+
+            //create scene with set width, height and color
+
+            Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
+
+            //set scene to stage
+
+            stage.setScene(scene);
+
+            //center stage on screen
+
+            stage.centerOnScreen();
+
+            //show the stage
+
+            stage.show();
+
+
+            CreadorImagen creador = new CreadorImagen();
+            ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
+
+            CreadorBoton creadorBoton2 = new CreadorBoton();
+            Button close = creadorBoton2.crearBoton("Cerrar","-fx-font: 57 arial; -fx-base: #FFFFFF;");
+
+            close.setOnAction(new EventHandler<ActionEvent>() {
+
+                public void handle(ActionEvent event) {
+
+                    stage.close();
+
+                }
+
+            });
+
+            // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
+
+            VBox vBox = new VBox();
+
+            vBox.setSpacing(10);
+
+            vBox.setPadding(new Insets(60, 0, 0, 20));
+
+            vBox.setAlignment(Pos.TOP_CENTER);
+
+            vBox.getChildren().addAll(close);
+            vBox.setMinSize(1300,1300);
+
+
+            //add all nodes to main root group
+
+            rootGroup.getChildren().addAll(imagen,vBox);
+
+        });
 		botonAyuda.setEffect(dropShadow);
         Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonSalir.setEffect(dropShadow);

@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
@@ -181,7 +182,8 @@ public class PantallaBatalla {
                  .cycleCount(3)
                  .autoReverse(true)
                  .build();
-            FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+            @SuppressWarnings("deprecation")
+			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
                     .duration(Duration.seconds(0.4))
                     .node(contenedorAlgomonesActivos1.getChildren().get(0))
                     .fromValue(0.2)
@@ -748,8 +750,7 @@ public class PantallaBatalla {
                 
 
                 //create stage which has set stage style transparent
-
-//                final Stage stage = new Stage(StageStyle.TRANSPARENT);
+            	final Stage stage = new Stage(StageStyle.TRANSPARENT);
 
                 //create root node of scene, i.e. group
 
