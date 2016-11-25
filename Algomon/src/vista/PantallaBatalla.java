@@ -159,7 +159,7 @@ public class PantallaBatalla {
 
 	        //Imagenes de algomones iniciales
 	        VBox contenedorAlgomonesActivos = new VBox();
-	        contenedorAlgomonesActivos.setSpacing(160);
+	        contenedorAlgomonesActivos.setSpacing(130);
 	        HBox contenedorAlgomonesActivos1 = new HBox();
 	        HBox contenedorAlgomonesActivos2= new HBox();
 	        contenedorAlgomonesActivos2.setMinHeight(130);
