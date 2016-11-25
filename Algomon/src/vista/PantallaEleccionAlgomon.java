@@ -274,7 +274,7 @@ public class PantallaEleccionAlgomon {
 
 			}
 		});
-
+		
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
 		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
