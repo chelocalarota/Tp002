@@ -14,4 +14,12 @@ public class EstadoReproduccionActivado extends EstadoReproduccion {
 		
 	}
 
+	
+
+	@Override
+	public void stop(String nombreSonido, HashMap<String, AudioClip> diccionarioDeSonidos) {
+		diccionarioDeSonidos.get(nombreSonido).stop();
+		
+	}
+
 }

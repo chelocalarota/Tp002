@@ -46,20 +46,27 @@ public class PantallaOpciones {
         dropShadow.setOffsetX(4.0);
         dropShadow.setOffsetY(4.0);
         CreadorBoton creadorBoton = new CreadorBoton();
-        Button botonDesactivarSonido = creadorBoton.crearBoton("DesactivarSonido","-fx-font: 22 arial; -fx-base: #FFFFFF;");
+        
+        Button botonDesactivarSonido = creadorBoton.crearBoton("Desactivar Sonido","-fx-font: 22 arial; -fx-base: #FFFFFF;");
         botonDesactivarSonido.setOnAction(event ->{
         	reproductor.stopMusicaInicial();
         	reproductor.desactivar();
         	
         });
+        
 		botonDesactivarSonido.setEffect(dropShadow);
         Button botonMaximizar = creadorBoton.crearBoton("Maximizar","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonMaximizar.setEffect(dropShadow);
         botonMaximizar.setOnAction(event ->{
-        	
+        	stage.setMaximized(true);
         });
-        Button botonMinimizar = creadorBoton.crearBoton("Minimizar","-fx-font:  22 arial; -fx-base: #FFFFFF;");
-		botonMinimizar.setEffect(dropShadow);
+        
+        Button botonActivarSonido = creadorBoton.crearBoton("Activar Sonido","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+        botonActivarSonido.setEffect(dropShadow);
+        botonActivarSonido.setOnAction(event ->{
+        	reproductor.activar();
+        });
+        
         Button botonVolver = creadorBoton.crearBoton("Volver","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonVolver.setEffect(dropShadow);
         botonVolver.setOnAction(event -> {
@@ -70,7 +77,7 @@ public class PantallaOpciones {
 
         
         contenedorHorizontal.setAlignment(Pos.BOTTOM_CENTER);
-        contenedorVerticalCentral.getChildren().addAll(opcionesTitulo, botonDesactivarSonido, botonMaximizar, botonMinimizar, botonVolver);
+        contenedorVerticalCentral.getChildren().addAll(opcionesTitulo, botonActivarSonido, botonDesactivarSonido, botonMaximizar, botonVolver);
         contenedorVerticalCentral.setSpacing(40);
         contenedorVerticalCentral.setAlignment(Pos.BASELINE_CENTER);
         border.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoPantallaInicio.jpg",ancho,alto,false,false),

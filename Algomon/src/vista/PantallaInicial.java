@@ -35,7 +35,8 @@ public class PantallaInicial {
 
 //		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
 //		musicaPantallaInicial.play();
-		reproductor.reproducir("inicial");
+	    reproductor.stopMusicaInicial();
+	    reproductor.playMusicaInicial();
 		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
