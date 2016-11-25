@@ -1,11 +1,22 @@
 package vista;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MenuTop {
 	
@@ -58,11 +69,12 @@ public class MenuTop {
         
         
         RadioMenuItem reglas = new RadioMenuItem("Reglas del juego");
-        
+      
+		
         reglas.setOnAction(event->{
-        	
+        	PantallaAyuda pantallaAyuda = new PantallaAyuda();
+        	pantallaAyuda.cargarPantalla();
         });
-        
 
         menuAyuda.getItems().addAll(reglas,
             new SeparatorMenuItem());
