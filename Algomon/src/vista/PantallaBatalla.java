@@ -669,6 +669,12 @@ public class PantallaBatalla {
 			} catch (PokemonMuertoException e) {
 				
 				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){	
+					try{
+						controlador.juego.verificarVictoria();
+					} catch (VictoriaObtenidaException e2) {
+						PantallaVictoria pantallaVictoria2 = new PantallaVictoria();
+						pantallaVictoria2.cargarPantalla(stage, controlador);
+					}
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones1, listaDeBotonesDeCambio, botonesBloqueadosForEver);
 					notificaciones.notificar("El algomon atacante ha muerto debido a sus heridas");
 				}

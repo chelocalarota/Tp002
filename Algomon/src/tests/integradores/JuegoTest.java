@@ -115,7 +115,7 @@ public class JuegoTest {
 		juego.cambiarJugador();
 		
 		try{
-			juego.verificarVictoriaDeJugadorActual();
+			juego.verificarVictoria();
 		}
 		catch (VictoriaObtenidaException voe) {
 			assertTrue(true);
@@ -130,7 +130,7 @@ public class JuegoTest {
 		juego.cambiarJugador();
 		
 		try{
-			juego.verificarVictoriaDeJugadorActual();
+			juego.verificarVictoria();
 		}
 		catch (VictoriaObtenidaException voe) {
 			assertTrue(false);
