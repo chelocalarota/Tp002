@@ -182,8 +182,7 @@ public class PantallaBatalla {
                  .cycleCount(3)
                  .autoReverse(true)
                  .build();
-            @SuppressWarnings("deprecation")
-			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+            FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
                     .duration(Duration.seconds(0.4))
                     .node(contenedorAlgomonesActivos1.getChildren().get(0))
                     .fromValue(0.2)
@@ -745,34 +744,15 @@ public class PantallaBatalla {
 					boton,enumAsociado, listaDeBotonesDeCambio);
 			}
             else{
-                // INITIALISATION OF THE STAGE/SCENE
-
-                
-
-                //create stage which has set stage style transparent
             	final Stage stage = new Stage(StageStyle.TRANSPARENT);
-
-                //create root node of scene, i.e. group
 
                 Group rootGroup = new Group();
 
-                //create scene with set width, height and color
-
                 Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
 
-                //set scene to stage
-
                 stage.setScene(scene);
-
-                //center stage on screen
-
                 stage.centerOnScreen();
-
-                //show the stage
-
                 stage.show();
-
-
                 CreadorImagen creador = new CreadorImagen();
                 ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
 
@@ -788,23 +768,12 @@ public class PantallaBatalla {
                     }
 
                 });
-
-                // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
-
                 VBox vBox = new VBox();
-
                 vBox.setSpacing(10);
-
                 vBox.setPadding(new Insets(60, 0, 0, 20));
-
                 vBox.setAlignment(Pos.TOP_CENTER);
-
                 vBox.getChildren().addAll(close);
                 vBox.setMinSize(1300,1300);
- 
-
-                //add all nodes to main root group
-
                 rootGroup.getChildren().addAll(imagen,vBox);
 
             }

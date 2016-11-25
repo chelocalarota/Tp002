@@ -37,10 +37,6 @@ public class PantallaInicial {
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-
-//		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
-//		musicaPantallaInicial.play();
-	    reproductor.stopMusicaInicial();
 	    reproductor.playMusicaInicial();
 		
 		CreadorImagen creadorImagen = new CreadorImagen();
