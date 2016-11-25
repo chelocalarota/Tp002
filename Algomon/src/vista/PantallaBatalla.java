@@ -1,33 +1,21 @@
 package vista;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.FadeTransitionBuilder;
-import javafx.animation.FillTransitionBuilder;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TitledPane;
-
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -42,7 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
@@ -52,8 +39,8 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
-import modelo.tipos.*;
 
+@SuppressWarnings("deprecation")
 public class PantallaBatalla {
 
 	Scene escena;
@@ -186,8 +173,7 @@ public class PantallaBatalla {
 	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
 	        
 
-            @SuppressWarnings("deprecation")
-			FadeTransition fadeTransition = FadeTransitionBuilder.create()
+            FadeTransition fadeTransition = FadeTransitionBuilder.create()
                  .duration(Duration.seconds(0.4))
                  .node(contenedorAlgomonesActivos2.getChildren().get(0))
                  .fromValue(0.2)
@@ -195,8 +181,7 @@ public class PantallaBatalla {
                  .cycleCount(3)
                  .autoReverse(true)
                  .build();
-            @SuppressWarnings("deprecation")
-			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+            FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
                     .duration(Duration.seconds(0.4))
                     .node(contenedorAlgomonesActivos1.getChildren().get(0))
                     .fromValue(0.2)
