@@ -59,6 +59,7 @@ public class PantallaBatalla {
 
 	Scene escena;
 	private Stage stage;
+	ReproductorDeSonidos reproductor = new ReproductorDeSonidos();
 	LinkedList<ImageView> miniaturasJugadorInicial;
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
@@ -94,26 +95,8 @@ public class PantallaBatalla {
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
 		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
-		diccionarioSonidosDeAtaques = new HashMap<String,AudioClip>();
-		AudioClip ataqueDeFuego = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueDeFuego.mp3").toExternalForm());
-		AudioClip ataqueDeAgua = new AudioClip(this.getClass().getResource("/vista/sonidos/canionDeAgua.mp3").toExternalForm());
-		AudioClip ataqueBurbujas = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueBurbujas.mp3").toExternalForm());
-		AudioClip canto = new AudioClip(this.getClass().getResource("/vista/sonidos/canto.mp3").toExternalForm());
-		AudioClip latigoCepa = new AudioClip(this.getClass().getResource("/vista/sonidos/latigoCepa.mp3").toExternalForm());
-		AudioClip item = new AudioClip(this.getClass().getResource("/vista/sonidos/pokemon_heal.mp3").toExternalForm());
-		AudioClip ataqueRapido = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueRapido.mp3").toExternalForm());
-		AudioClip ataquePlanta = new AudioClip(this.getClass().getResource("/vista/sonidos/absorver.mp3").toExternalForm());
-		diccionarioSonidosDeAtaques.put("Fogonazo",ataqueDeFuego);
-		diccionarioSonidosDeAtaques.put("Brasas", ataqueDeFuego);
-		diccionarioSonidosDeAtaques.put("Ca�on de Agua", ataqueDeAgua);
-		diccionarioSonidosDeAtaques.put("Burbuja",ataqueBurbujas);
-		diccionarioSonidosDeAtaques.put("Canto", canto);
-		diccionarioSonidosDeAtaques.put("Ataque Rapido", ataqueRapido);
-		diccionarioSonidosDeAtaques.put("LatigoCepa", latigoCepa);
-		diccionarioSonidosDeAtaques.put("item", item);
-		diccionarioSonidosDeAtaques.put("ChupaVidas", ataquePlanta);
 		
-	}
+			}
 
 		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
 			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -149,9 +132,9 @@ public class PantallaBatalla {
 
 	        CreadorImagen creadorImagen = new CreadorImagen();
 	     	
-	       // MenuTop Menu = new MenuTop(stage);
+	        MenuTop Menu = new MenuTop(stage, this.reproductor);
 	        
-	        //contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
+	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
 	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
@@ -456,7 +439,7 @@ public class PantallaBatalla {
 	        		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	        		 		fadeTransition2.play();
+	        		 fadeTransition2.play();
 	        	});
 	            grid2.add(boton2,0,indice2);
 	            indice2+=1;
@@ -641,7 +624,7 @@ public class PantallaBatalla {
 	        this.escena = new Scene(panelPrincipal,ancho-10,alto-70);
 	        stage.setScene(escena);
 	        stage.centerOnScreen();
-	        stage.setMaximized(true);
+//	        stage.setMaximized(true);
 	        stage.show();
 //	        musicaBatalla.setCycleCount(AudioClip.INDEFINITE);
 //	        musicaBatalla.play();
@@ -688,9 +671,9 @@ public class PantallaBatalla {
 				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-			    if(this.diccionarioSonidosDeAtaques.containsKey(ataque.getNombre())){//Esta validacion no deberia ir porque van todos los sonidos
-			    	diccionarioSonidosDeAtaques.get(ataque.getNombre()).play();	
-			    }
+
+			    reproductor.reproducir(ataque.getNombre());
+
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
@@ -782,7 +765,7 @@ public class PantallaBatalla {
 
                 //create stage which has set stage style transparent
 
-                final Stage stage = new Stage(StageStyle.TRANSPARENT);
+//                final Stage stage = new Stage(StageStyle.TRANSPARENT);
 
                 //create root node of scene, i.e. group
 
@@ -852,7 +835,8 @@ public class PantallaBatalla {
 				controlador.usarItem(item);
 				controlador.verificarAlgomonActualMuerto();
 				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
-				this.diccionarioSonidosDeAtaques.get("item").play();
+
+				reproductor.reproducir("item");
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
 					botonVitamina2.setDisable(true);

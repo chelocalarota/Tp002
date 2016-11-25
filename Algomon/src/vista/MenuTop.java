@@ -11,9 +11,11 @@ public class MenuTop {
 	
 	private MenuBar menu;
 	
-	public MenuTop(Stage stage){
-
-		menu = new MenuBar();
+	
+	public MenuTop(Stage stage, ReproductorDeSonidos reproductor){
+		
+		
+		this.menu = new MenuBar();
         // --- Menu File
         
         Menu menuArchivo = new Menu("Archivo");
@@ -37,13 +39,13 @@ public class MenuTop {
         RadioMenuItem activarSonido = new RadioMenuItem("Activar Sonido");
         
         desactivarSonido.setOnAction(event->{
-        	
+        	reproductor.desactivar();
         });
         
         desactivarSonido.setToggleGroup(tGroup);
 
         activarSonido.setOnAction(event->{
-        	
+        	reproductor.activar();
         });
         
         activarSonido.setToggleGroup(tGroup);
