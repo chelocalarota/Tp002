@@ -32,12 +32,13 @@ public class PantallaInicial {
 	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
 		this.controlador = controlador;
 		this.reproductor = reproductor;
+		this.reproductor.playMusicaInicial();
 	}
 
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-	    reproductor.playMusicaInicial();
+	  
 		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
@@ -66,7 +67,7 @@ public class PantallaInicial {
         botonOpciones.setEffect(dropShadow);
         botonOpciones.setOnAction(event ->{
         	PantallaOpciones pantallaOpciones = new PantallaOpciones(this.controlador);
-        	pantallaOpciones.cargarPantalla(stage,this.reproductor);
+        	pantallaOpciones.cargarPantalla(stage,this.reproductor,this);
         });
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonAyuda.setOnAction(event->{
