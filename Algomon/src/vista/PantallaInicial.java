@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundPosition;
 
 
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -72,7 +73,7 @@ public class PantallaInicial {
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonAyuda.setOnAction(event->{
 
-          final Stage stage2 = new Stage(StageStyle.TRANSPARENT);
+        	final Stage stage2 = new Stage(StageStyle.TRANSPARENT);
             Group rootGroup = new Group();
             Scene scene2 = new Scene(rootGroup, ancho, alto, Color.TRANSPARENT);
             stage2.setScene(scene2);
@@ -90,13 +91,16 @@ public class PantallaInicial {
 
             });
             VBox vBox = new VBox();
+
             vBox.setSpacing(10);
+
             vBox.setPadding(new Insets(60, 0, 0, 20));
+
             vBox.setAlignment(Pos.TOP_CENTER);
+
             vBox.getChildren().addAll(close);
             vBox.setMinSize(1300,1300);
             rootGroup.getChildren().addAll(imagen,vBox);
-
         });
 		botonAyuda.setEffect(dropShadow);
         Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  22 arial; -fx-base: #FFFFFF;");

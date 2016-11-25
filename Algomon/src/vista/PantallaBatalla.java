@@ -89,10 +89,7 @@ public class PantallaBatalla {
 			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 		    this.stage = stage;
-		    this.reproductor = reproductor;
-//		    AudioClip musicaBatalla = new AudioClip(this.getClass().getResource("/vista/sonidos/batalla.mp3").toExternalForm());
-		   
-		    
+		    this.reproductor = reproductor;		    
 		   	botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
@@ -213,10 +210,19 @@ public class PantallaBatalla {
 	        	Button boton = creadorBoton.crearBoton(ataque.getNombre(), "-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	        	listaDeBotones1.add(boton);
 	        	boton.setMinWidth(255);
-	        	boton.setOnAction(event->{
-	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-	        		fadeTransition.play();
-	        	});
+	        	boton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+                    if( e.isPrimaryButtonDown()) {
+                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
+	 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
+	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+	            			 fadeTransition.play();
+                    }
+                    else{
+                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+                    }
+
+                });
 	            gridBotonesDeAtaqueJugador1.add(boton,0,indice);
 	            indice+=1;
 	        }
@@ -265,13 +271,19 @@ public class PantallaBatalla {
 	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
-	            	botonAtaque.setOnAction(event2->{
-	            		botonAtaque.setMinWidth(255);
-	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);    		
-	            		fadeTransition.play();
-	            	});
+	            	botonAtaque.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
+		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+		            			 fadeTransition.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
 
+	                    }
+
+	                });
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
@@ -299,11 +311,19 @@ public class PantallaBatalla {
 	            	botonAtaque.setMinWidth(255);
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
-	            	botonAtaque.setOnAction(event2->{
-	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador2);	
-	            		fadeTransition.play();
-	            	});
+	            	botonAtaque.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
+		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+		            			 fadeTransition.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+	                    }
+
+	                });
 
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -332,11 +352,19 @@ public class PantallaBatalla {
 	            	botonAtaque.setMinWidth(255);
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
-	            	botonAtaque.setOnAction(event2->{
-	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
-								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-	            		fadeTransition.play();
-	            	});
+	            	botonAtaque.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
+		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+		            			 fadeTransition.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+	                    }
+
+	                });
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
@@ -420,12 +448,19 @@ public class PantallaBatalla {
 	        	boton2.setMinWidth(255);
 	        	boton2.setDisable(true);
 	        	listaDeBotones2.add(boton2);
-	        	boton2.setOnAction(event->{
-	        		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
-	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	        		 fadeTransition2.play();
-	        	});
+	        	boton2.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+                    if( e.isPrimaryButtonDown()) {
+                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
+	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
+	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            			 fadeTransition2.play();
+                    }
+                    else{
+                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+                    }
+
+                });
 	            grid2.add(boton2,0,indice2);
 	            indice2+=1;
 	        }
@@ -467,12 +502,19 @@ public class PantallaBatalla {
 	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
-	            	boton2.setOnAction(event2->{
-	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
-	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	            		 fadeTransition2.play();
-	            	});
+	            	boton2.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
+		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+		            			 fadeTransition2.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+	                    }
+
+	                });
 
 	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -502,12 +544,19 @@ public class PantallaBatalla {
 	            	boton2.setMinWidth(255);
 	            	boton2.setDisable(true);
 	            	listaDeBotones2.add(boton2);
-	            	boton2.setOnAction(event2->{
-	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
-	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	            		 fadeTransition2.play();
-	            	});
+	            	boton2.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
+		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+		            			 fadeTransition2.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+	                    }
+
+	                });
 	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
 	            }
@@ -536,12 +585,19 @@ public class PantallaBatalla {
 	            	boton.setMinWidth(255);
 	            	boton.setDisable(true);
 	            	listaDeBotones2.add(boton);
-	            	boton.setOnAction(event2->{
-	            			 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
-	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
-	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	            			 fadeTransition2.play();
-	            	});
+	            	boton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+	                    if( e.isPrimaryButtonDown()) {
+	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
+		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
+		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+		            			 fadeTransition2.play();
+	                    }
+	                    else{
+	                    	crearImagenAuxiliarAtaques(creadorBoton);
+
+	                    }
+
+	                });
 
 	                grid2.add(boton,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -609,18 +665,52 @@ public class PantallaBatalla {
 	        this.escena = new Scene(panelPrincipal,ancho-10,alto-70);
 	        stage.setScene(escena);
 	        stage.centerOnScreen();
-//	        stage.setMaximized(true);
+
 	        stage.show();
-//	        musicaBatalla.setCycleCount(AudioClip.INDEFINITE);
-//	        musicaBatalla.play();
+
 	}
+
+		private void crearImagenAuxiliarAtaques(CreadorBoton creadorBoton) {
+			final Stage stageAux = new Stage(StageStyle.TRANSPARENT);
+
+			Group rootGroup = new Group();
+
+			Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
+
+			stageAux.setScene(scene);
+			stageAux.centerOnScreen();
+			stageAux.show();
+			CreadorImagen creador = new CreadorImagen();
+			ImageView imagen = creador.crearImageView("vista/imagenes/Ataques.png");
+
+      
+			Button close = creadorBoton.crearBoton("Cerrar","-fx-font: 26 arial; -fx-base: #FFFFFF;");
+
+			close.setOnAction(new EventHandler<ActionEvent>() {
+
+			    public void handle(ActionEvent event) {
+
+			        stageAux.close();
+
+			    }
+
+			});
+			VBox vBox = new VBox();
+			vBox.setSpacing(10);
+			vBox.setPadding(new Insets(60, 0, 0, 20));
+			vBox.setAlignment(Pos.TOP_CENTER);
+			vBox.getChildren().addAll(close);
+			vBox.setMinSize(1300,1300);
+			rootGroup.getChildren().addAll(imagen,vBox);
+		}
 
 		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
 				ArrayList<Button> listaDeBotones1, ArrayList<Button> listaDeBotones2, Button botonElegido,
 				Button primerBoton, Button segundoBoton,LinkedList<Button> listaDeBotonesDeCambio,int indice) {
 			try {
 				controlador.cambiarAlgomon(indice);
-				notificaciones.notificar("");
+				notificaciones.notificar("Se ha cambiado de Algomon");
+				this.reproductor.reproducir("pokebola");
 			} 
 			catch (PokemonMuertoException e) {
 				//Aca no tiene que llegar nunca
