@@ -10,6 +10,7 @@ import modelo.tipos.TipoNormal;
 import modelo.tipos.TipoPlanta;
 
 public class TipoAguaTest {
+	
 	@Test
 	public void RespuestaFrenteFuego(){
 		TipoAgua unTipo = new TipoAgua();

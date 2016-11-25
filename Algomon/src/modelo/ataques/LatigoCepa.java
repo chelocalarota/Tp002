@@ -1,6 +1,5 @@
 package modelo.ataques;
 
-import modelo.enums.AtaquesEnum;
 import modelo.tipos.TipoPlanta;
 
 public class LatigoCepa extends Ataque {

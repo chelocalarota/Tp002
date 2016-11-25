@@ -6,4 +6,5 @@ public interface Tipo {
 	public double respuestaAPlanta();
 	public double respuestaANormal();
 	public double reaccionATipo(Tipo unTipo);
+	
 }

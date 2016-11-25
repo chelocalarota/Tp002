@@ -1,7 +1,7 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
-import modelo.enums.AtaquesEnum;
+import modelo.algomon.PokemonMuertoException;
 import modelo.tipos.TipoPlanta;
 
 public class Chupavidas extends Ataque {
@@ -13,7 +13,7 @@ public class Chupavidas extends Ataque {
 		this.nombre = "ChupaVidas";
 	}
 	
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon, int danioResultante){
+	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon, int danioResultante) throws PokemonMuertoException{
 		unAlgomon.cambiarVida((int) (danioResultante*0.30));
 	}
 }

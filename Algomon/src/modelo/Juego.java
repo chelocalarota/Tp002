@@ -3,7 +3,6 @@ package modelo;
 
 
 
-import java.util.HashMap;
 
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
@@ -15,7 +14,6 @@ public class Juego {
 	private Jugador jugador2;
 	private Cola colaAtacante;
 	private Cola colaDefensor;
-	private HashMap<String, AtaquesEnum>diccionarioEnums;
 	
 	public Juego() {
 		this.jugador1 = new Jugador();
@@ -33,7 +31,6 @@ public class Juego {
 		this.obtenerJugadorActual().setNombre(nombre);
 	}
 	public Jugador obtenerJugadorActual() {
-		// cuando comienza el juego, el jugador Actual sera el 1
 		return this.colaAtacante.verPrimero();
 	}
 
@@ -66,21 +63,31 @@ public class Juego {
 		this.obtenerJugadorActual().agregarAlgomon(new Chansey());
 	}
 
-	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException {
+	public void resolverAtaqueYPasarDeTurno(AtaquesEnum ataquesEnum) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, VictoriaObtenidaException{
 		
 		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
 		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
 		Ataque unAtaque = algomonAtacante.ataque(ataquesEnum);
-		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();
-		algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
-		verificarVictoriaDeJugadorActual();
-		if (algomonDefensor.getVida()<0){
-			throw new PokemonMuertoException("");
+		Algomon algomonDefensor =jugadorDefensor.getPokemonActivo();	
+		
+		try {
+			algomonDefensor.recibirDanio(unAtaque,algomonAtacante);
+			
+		} catch (PokemonMuertoException e) {
+			try{
+				verificarVictoriaDeJugadorActual();
+				throw new PokemonMuertoException(null);
+			}
+			catch(VictoriaObtenidaException e2){
+				System.out.println("entro a la parte de victoria");
+				throw new VictoriaObtenidaException(null);
+			}
 		}
 		this.cambiarJugador();
+		
 	}
 	
-	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException{
+	public void usarItemParaJugadorActualYPasarDeTurno(ItemsEnum unItem) throws SinUsosDisponiblesException, PokemonMuertoException{
 		this.obtenerJugadorActual().usarItem(unItem);
 		this.pasarTurno();
 	}
@@ -110,7 +117,15 @@ public class Juego {
 		this.cambiarPokemonDeJugadorActual(0);
 	}
 
+	public void verificarAlgomonDefensorMuerto() throws PokemonMuertoException{
+		Algomon algomonAtacante = this.obtenerJugadorActual().getPokemonActivo();
+		if (algomonAtacante.estaMuerto()){
+			throw new PokemonMuertoException("");
+		}
+	}
+	
 	public void pasarTurno() {
 		this.cambiarJugador();
+		
 	}
 }
