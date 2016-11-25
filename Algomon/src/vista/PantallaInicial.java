@@ -1,6 +1,10 @@
 package vista;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -17,6 +21,7 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PantallaInicial {
 
@@ -27,16 +32,13 @@ public class PantallaInicial {
 	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
 		this.controlador = controlador;
 		this.reproductor = reproductor;
+		this.reproductor.playMusicaInicial();
 	}
 
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-
-//		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
-//		musicaPantallaInicial.play();
-	    reproductor.stopMusicaInicial();
-	    reproductor.playMusicaInicial();
+	  
 		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
@@ -65,9 +67,37 @@ public class PantallaInicial {
         botonOpciones.setEffect(dropShadow);
         botonOpciones.setOnAction(event ->{
         	PantallaOpciones pantallaOpciones = new PantallaOpciones(this.controlador);
-        	pantallaOpciones.cargarPantalla(stage,this.reproductor);
+        	pantallaOpciones.cargarPantalla(stage,this.reproductor,this);
         });
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+        botonAyuda.setOnAction(event->{
+
+          final Stage stage2 = new Stage(StageStyle.TRANSPARENT);
+            Group rootGroup = new Group();
+            Scene scene2 = new Scene(rootGroup, ancho, alto, Color.TRANSPARENT);
+            stage2.setScene(scene2);
+            stage2.centerOnScreen();
+            stage2.show();
+            CreadorImagen creador = new CreadorImagen();
+            ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_ayuda.png");
+            CreadorBoton creadorBoton2 = new CreadorBoton();
+            Button close = creadorBoton2.crearBoton("Cerrar","-fx-font: 57 arial; -fx-base: #FFFFFF;");
+            close.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    stage2.close();
+
+                }
+
+            });
+            VBox vBox = new VBox();
+            vBox.setSpacing(10);
+            vBox.setPadding(new Insets(60, 0, 0, 20));
+            vBox.setAlignment(Pos.TOP_CENTER);
+            vBox.getChildren().addAll(close);
+            vBox.setMinSize(1300,1300);
+            rootGroup.getChildren().addAll(imagen,vBox);
+
+        });
 		botonAyuda.setEffect(dropShadow);
         Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonSalir.setEffect(dropShadow);
@@ -90,6 +120,7 @@ public class PantallaInicial {
         Scene principal = new Scene(border,ancho-20,alto-100);
         stage.centerOnScreen();
         stage.setScene(principal);
+        stage.setMaximized(true);
         stage.show();
 	}
 

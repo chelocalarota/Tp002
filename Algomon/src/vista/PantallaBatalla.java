@@ -1,33 +1,21 @@
 package vista;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.FadeTransitionBuilder;
-import javafx.animation.FillTransitionBuilder;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TitledPane;
-
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -52,8 +40,8 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
-import modelo.tipos.*;
 
+@SuppressWarnings("deprecation")
 public class PantallaBatalla {
 
 	Scene escena;
@@ -141,7 +129,7 @@ public class PantallaBatalla {
 
 	        //Imagenes de algomones iniciales
 	        VBox contenedorAlgomonesActivos = new VBox();
-	        contenedorAlgomonesActivos.setSpacing(160);
+	        contenedorAlgomonesActivos.setSpacing(130);
 	        HBox contenedorAlgomonesActivos1 = new HBox();
 	        HBox contenedorAlgomonesActivos2= new HBox();
 	        contenedorAlgomonesActivos2.setMinHeight(130);
@@ -186,8 +174,7 @@ public class PantallaBatalla {
 	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
 	        
 
-            @SuppressWarnings("deprecation")
-			FadeTransition fadeTransition = FadeTransitionBuilder.create()
+            FadeTransition fadeTransition = FadeTransitionBuilder.create()
                  .duration(Duration.seconds(0.4))
                  .node(contenedorAlgomonesActivos2.getChildren().get(0))
                  .fromValue(0.2)
@@ -195,8 +182,7 @@ public class PantallaBatalla {
                  .cycleCount(3)
                  .autoReverse(true)
                  .build();
-            @SuppressWarnings("deprecation")
-			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+            FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
                     .duration(Duration.seconds(0.4))
                     .node(contenedorAlgomonesActivos1.getChildren().get(0))
                     .fromValue(0.2)
@@ -683,6 +669,12 @@ public class PantallaBatalla {
 			} catch (PokemonMuertoException e) {
 				
 				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){	
+					try{
+						controlador.juego.verificarVictoria();
+					} catch (VictoriaObtenidaException e2) {
+						PantallaVictoria pantallaVictoria2 = new PantallaVictoria();
+						pantallaVictoria2.cargarPantalla(stage, controlador);
+					}
 					controlador.bloquearBotonesPorMuerteJugadorActual(listaDeBotones1, listaDeBotonesDeCambio, botonesBloqueadosForEver);
 					notificaciones.notificar("El algomon atacante ha muerto debido a sus heridas");
 				}
@@ -758,35 +750,15 @@ public class PantallaBatalla {
 					boton,enumAsociado, listaDeBotonesDeCambio);
 			}
             else{
-                // INITIALISATION OF THE STAGE/SCENE
-
-                
-
-                //create stage which has set stage style transparent
-
-//                final Stage stage = new Stage(StageStyle.TRANSPARENT);
-
-                //create root node of scene, i.e. group
+            	final Stage stage = new Stage(StageStyle.TRANSPARENT);
 
                 Group rootGroup = new Group();
 
-                //create scene with set width, height and color
-
                 Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
 
-                //set scene to stage
-
                 stage.setScene(scene);
-
-                //center stage on screen
-
                 stage.centerOnScreen();
-
-                //show the stage
-
                 stage.show();
-
-
                 CreadorImagen creador = new CreadorImagen();
                 ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
 
@@ -802,23 +774,12 @@ public class PantallaBatalla {
                     }
 
                 });
-
-                // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
-
                 VBox vBox = new VBox();
-
                 vBox.setSpacing(10);
-
                 vBox.setPadding(new Insets(60, 0, 0, 20));
-
                 vBox.setAlignment(Pos.TOP_CENTER);
-
                 vBox.getChildren().addAll(close);
                 vBox.setMinSize(1300,1300);
- 
-
-                //add all nodes to main root group
-
                 rootGroup.getChildren().addAll(imagen,vBox);
 
             }

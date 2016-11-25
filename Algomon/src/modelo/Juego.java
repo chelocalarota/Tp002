@@ -75,7 +75,7 @@ public class Juego {
 			
 		} catch (PokemonMuertoException e) {
 			try{
-				verificarVictoriaDeJugadorActual();
+				verificarVictoria();
 				throw new PokemonMuertoException(null);
 			}
 			catch(VictoriaObtenidaException e2){
@@ -97,11 +97,16 @@ public class Juego {
 		this.pasarTurno();
 	}
 
-	public void verificarVictoriaDeJugadorActual() throws VictoriaObtenidaException {
-		Jugador jugadorDefensor = this.obtenerJugadorDefensor();
-		if (this.obtenerJugadorActual().verificarVictoriaContraOtroJugador(jugadorDefensor)){
+	public void verificarVictoria() throws VictoriaObtenidaException {
+		Jugador jugador = this.obtenerJugadorDefensor();
+		if (this.obtenerJugadorActual().verificarVictoriaContraOtroJugador(jugador)){
 			throw new VictoriaObtenidaException("");
 		}
+		jugador = this.obtenerJugadorActual();
+		if (this.obtenerJugadorDefensor().verificarVictoriaContraOtroJugador(jugador)){
+			throw new VictoriaObtenidaException("");
+		}
+		
 	}
 
 	public Jugador obtenerJugadorDefensor() {
