@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PantallaInicial {
 
@@ -74,65 +75,29 @@ public class PantallaInicial {
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonAyuda.setOnAction(event->{
 
-            
-
-            //create stage which has set stage style transparent
-
-//            final Stage stage = new Stage(StageStyle.TRANSPARENT);
-
-            //create root node of scene, i.e. group
-
+          final Stage stage2 = new Stage(StageStyle.TRANSPARENT);
             Group rootGroup = new Group();
-
-            //create scene with set width, height and color
-
-            Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
-
-            //set scene to stage
-
-            stage.setScene(scene);
-
-            //center stage on screen
-
-            stage.centerOnScreen();
-
-            //show the stage
-
-            stage.show();
-
-
+            Scene scene2 = new Scene(rootGroup, ancho, alto, Color.TRANSPARENT);
+            stage2.setScene(scene2);
+            stage2.centerOnScreen();
+            stage2.show();
             CreadorImagen creador = new CreadorImagen();
-            ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
-
+            ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_ayuda.png");
             CreadorBoton creadorBoton2 = new CreadorBoton();
             Button close = creadorBoton2.crearBoton("Cerrar","-fx-font: 57 arial; -fx-base: #FFFFFF;");
-
             close.setOnAction(new EventHandler<ActionEvent>() {
-
                 public void handle(ActionEvent event) {
-
-                    stage.close();
+                    stage2.close();
 
                 }
 
             });
-
-            // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
-
             VBox vBox = new VBox();
-
             vBox.setSpacing(10);
-
             vBox.setPadding(new Insets(60, 0, 0, 20));
-
             vBox.setAlignment(Pos.TOP_CENTER);
-
             vBox.getChildren().addAll(close);
             vBox.setMinSize(1300,1300);
-
-
-            //add all nodes to main root group
-
             rootGroup.getChildren().addAll(imagen,vBox);
 
         });
