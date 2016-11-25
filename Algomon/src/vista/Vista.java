@@ -10,7 +10,9 @@ public class Vista extends Application {
 	public void start(Stage Stage) {
         Stage.setTitle("Algomon-v0.5");
         ControladorLogicoDelJuego controlador = new ControladorLogicoDelJuego();
-        PantallaInicial pantallaInicial = new PantallaInicial(controlador);
+        ReproductorDeSonidos reproductor = new ReproductorDeSonidos(); 
+        
+        PantallaInicial pantallaInicial = new PantallaInicial(controlador,reproductor);
         PantallaEleccionAlgomon pantallaEleccion = new PantallaEleccionAlgomon();
 		pantallaInicial.cargarPantalla(Stage, pantallaEleccion);
 

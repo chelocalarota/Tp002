@@ -10,6 +10,31 @@ public class ReproductorDeSonidos {
 	HashMap<String, AudioClip> diccionarioDeSonidos = new HashMap<String,AudioClip>();
 	
 	public ReproductorDeSonidos(){
+		
+		//sonidos pantalla incial
+		
+		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
+		
+		diccionarioDeSonidos.put("inicial",musicaPantallaInicial);
+		//sonidos pantalla selecccion
+		
+		AudioClip sonidoCharmander = new AudioClip(this.getClass().getResource("/vista/sonidos/charmander_audio.mp3").toExternalForm());
+		AudioClip sonidoChansey = new AudioClip(this.getClass().getResource("/vista/sonidos/chansey_audio.mp3").toExternalForm());
+		AudioClip sonidoSquirtle = new AudioClip(this.getClass().getResource("/vista/sonidos/squirtle_audio.mp3").toExternalForm());
+		AudioClip sonidoRattata = new AudioClip(this.getClass().getResource("/vista/sonidos/rattata_audio.mp3").toExternalForm());
+		AudioClip sonidoBulbasaur = new AudioClip(this.getClass().getResource("/vista/sonidos/bulbasaur_audio.mp3").toExternalForm());
+		AudioClip sonidoJigglypuff = new AudioClip(this.getClass().getResource("/vista/sonidos/jigglypuff_audio.mp3").toExternalForm());
+		
+		diccionarioDeSonidos.put("charmander",sonidoCharmander);
+		diccionarioDeSonidos.put("chansey",sonidoChansey);
+		diccionarioDeSonidos.put("squirtle", sonidoSquirtle);
+		diccionarioDeSonidos.put("rattata", sonidoRattata);
+		diccionarioDeSonidos.put("bulbasaur",sonidoBulbasaur);
+		diccionarioDeSonidos.put("jigglypuf", sonidoJigglypuff);
+		
+		
+		
+		//sonido pantalla batalla
 		AudioClip ataqueDeFuego = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueDeFuego.mp3").toExternalForm());
 		AudioClip ataqueDeAgua = new AudioClip(this.getClass().getResource("/vista/sonidos/canionDeAgua.mp3").toExternalForm());
 		AudioClip ataqueBurbujas = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueBurbujas.mp3").toExternalForm());
@@ -18,6 +43,8 @@ public class ReproductorDeSonidos {
 		AudioClip item = new AudioClip(this.getClass().getResource("/vista/sonidos/pokemon_heal.mp3").toExternalForm());
 		AudioClip ataqueRapido = new AudioClip(this.getClass().getResource("/vista/sonidos/ataqueRapido.mp3").toExternalForm());
 		AudioClip ataquePlanta = new AudioClip(this.getClass().getResource("/vista/sonidos/absorver.mp3").toExternalForm());
+		
+		
 		diccionarioDeSonidos.put("Fogonazo",ataqueDeFuego);
 		diccionarioDeSonidos.put("Brasas", ataqueDeFuego);
 		diccionarioDeSonidos.put("Ca�on de Agua", ataqueDeAgua);
@@ -40,6 +67,11 @@ public class ReproductorDeSonidos {
 	}
 	public void activar() {
 		this.estado = new EstadoReproduccionActivado();
+		
+	}
+
+	public void stopMusicaInicial() {
+		diccionarioDeSonidos.get("inicial").stop();
 		
 	}
 }

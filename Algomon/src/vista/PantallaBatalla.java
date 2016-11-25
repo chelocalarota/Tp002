@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -59,7 +58,7 @@ public class PantallaBatalla {
 
 	Scene escena;
 	private Stage stage;
-	ReproductorDeSonidos reproductor = new ReproductorDeSonidos();
+	ReproductorDeSonidos reproductor;
 	LinkedList<ImageView> miniaturasJugadorInicial;
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
@@ -98,11 +97,11 @@ public class PantallaBatalla {
 		
 			}
 
-		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
+		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, ReproductorDeSonidos reproductor) {
 			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-		    this.stage=stage;
-		    
+		    this.stage = stage;
+		    this.reproductor = reproductor;
 //		    AudioClip musicaBatalla = new AudioClip(this.getClass().getResource("/vista/sonidos/batalla.mp3").toExternalForm());
 		   
 		    
