@@ -20,11 +20,11 @@ public class Jugador {
 	private Map<ItemsEnum, Item> itemsDisponibles;
 	private Algomon algomonActivo;
 	public String nombre;
-	
+
 	public List<Algomon> obtenerAlgomon(){
 		return this.algomonDisponibles;
 	}
-	
+
 	public Jugador(){
 		this.algomonDisponibles = new ArrayList<Algomon>();
 		this.itemsDisponibles = new HashMap<>();
@@ -33,14 +33,18 @@ public class Jugador {
 		this.itemsDisponibles.put(ItemsEnum.RESTAURADOR, new Restaurador());
 		this.itemsDisponibles.put(ItemsEnum.VITAMINA, new Vitamina());
 	}
-	
+
 	public void agregarAlgomon(Algomon unAlgomon){
 		this.algomonDisponibles.add(unAlgomon);
 		if (this.algomonActivo == null){
 			this.algomonActivo = unAlgomon;
 		}
 	}
-	
+
+	public void eliminarAlgomonesElegidos(){
+		this.algomonDisponibles = new ArrayList<Algomon>();
+	}
+
 	public void elegirAlgomonEnBatalla(int indice) throws PokemonMuertoException{
 		/**
 		 * Los Pokemon estaran en un orden. El mismo que eligio el jugador
@@ -53,11 +57,11 @@ public class Jugador {
 		}
 		this.algomonActivo= unAlgomon;
 	}
-	
+
 	public Ataque elegirAtaque(AtaquesEnum ataqueElegido) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		return this.algomonActivo.ataque(ataqueElegido);
 	}
-	
+
 	public void usarItem(ItemsEnum unItem) throws SinUsosDisponiblesException, PokemonMuertoException{
 		/**
 		 * Esto tambien puede manejarse igual que con los Pokemon, en el metodo
@@ -69,13 +73,13 @@ public class Jugador {
 		}
 		this.algomonActivo.usarItem(item);
 	}
-	
+
 	public Algomon getPokemonActivo(){
 		return this.algomonActivo;
 	}
 
 	public Boolean verificarVictoriaContraOtroJugador(Jugador unJugador) {
-		
+
 		for (Algomon algomon: unJugador.algomonDisponibles){
 			if(! algomon.estaMuerto()){
 				return false;
@@ -83,7 +87,7 @@ public class Jugador {
 		}
 		return true;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

@@ -16,7 +16,7 @@ public class PantallaVictoria {
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 		BorderPane border = new BorderPane();
 		CreadorImagen creador = new CreadorImagen();
-		Label mensajeVictoria = new Label("¡VICTORIA!");
+		Label mensajeVictoria = new Label("ï¿½VICTORIA!");
 		Label mensajeAgradecimiento = new Label( "MUCHAS GRACIAS POR JUGAR ALGOMON.");
 		mensajeAgradecimiento.setStyle("-fx-font: 40 arial");
 		mensajeVictoria.setStyle("-fx-font: 56 arial");
@@ -29,8 +29,8 @@ public class PantallaVictoria {
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 55 arial; -fx-base: #FFFFFF;");
         botonNuevoJuego.setOnAction(event ->{
         	PantallaEleccionAlgomon pantallaEleccionAlgomon = new PantallaEleccionAlgomon();
-          
-        	pantallaEleccionAlgomon.cargarPantalla(stage, controlador, 1, reproductor);
+			pantallaEleccionAlgomon.cargarPantalla(stage, controlador, 1, reproductor);
+
         });
         Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  55 arial; -fx-base: #FFFFFF;");
         botonSalir.setOnAction(event -> {

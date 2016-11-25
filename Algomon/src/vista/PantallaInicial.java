@@ -13,10 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
-
-
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -27,7 +24,7 @@ import javafx.stage.StageStyle;
 public class PantallaInicial {
 
 	ControladorLogicoDelJuego controlador;
-	ReproductorDeSonidos reproductor; 
+	ReproductorDeSonidos reproductor;
 
 
 	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
@@ -39,8 +36,8 @@ public class PantallaInicial {
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-	  
-		
+
+
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
 
@@ -59,9 +56,11 @@ public class PantallaInicial {
         Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 22 arial; -fx-base: #FFFFFF;");
         botonNuevoJuego.setOnAction(event ->{
         	reproductor.stopMusicaInicial();
-        	this.controlador.crearJuegoNuevo();
-
-        	pantallaEleccion.cargarPantalla(stage,this.controlador,1, reproductor);
+			try {
+				this.controlador.crearJuegoNuevo();
+			} catch (NoSuchMethodException | SecurityException e) {
+			}
+			pantallaEleccion.cargarPantalla(stage,this.controlador,1, reproductor);
         });
 		botonNuevoJuego.setEffect(dropShadow);
         Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  22 arial; -fx-base: #FFFFFF;");
@@ -86,18 +85,13 @@ public class PantallaInicial {
             close.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     stage2.close();
-
                 }
 
             });
             VBox vBox = new VBox();
-
             vBox.setSpacing(10);
-
             vBox.setPadding(new Insets(60, 0, 0, 20));
-
             vBox.setAlignment(Pos.TOP_CENTER);
-
             vBox.getChildren().addAll(close);
             vBox.setMinSize(1300,1300);
             rootGroup.getChildren().addAll(imagen,vBox);

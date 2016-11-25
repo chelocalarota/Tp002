@@ -2,8 +2,8 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import modelo.Juego;
 import modelo.Jugador;
 import modelo.VictoriaObtenidaException;
@@ -17,13 +17,21 @@ import modelo.enums.ItemsEnum;
 public class ControladorLogicoDelJuego {
 
 	Juego juego;
+	CreadorImagen creadorImagen;
+	LinkedList<ImageView> miniaturasJugadorInicial;
+	LinkedList<ImageView> imagenesJugadorInicial;
+	LinkedList<ImageView> miniaturasJugadorSegundo;
+	LinkedList<ImageView> imagenesJugadorSegundo;
 
-	public void crearJuegoNuevo() {
+	public void crearJuegoNuevo() throws NoSuchMethodException, SecurityException {
 		this.juego = new Juego();
-	}
+		this.creadorImagen  = new CreadorImagen();
 
-	public void setNombreJugadorActual(String nombre) {
-		this.juego.setNombreJugadorActual(nombre);
+		this.miniaturasJugadorInicial = new LinkedList<ImageView>();
+		this.imagenesJugadorInicial= new LinkedList<ImageView>();
+		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
+		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
+
 	}
 
 	public void agregarCharmanderJugadorActual() {
@@ -45,9 +53,21 @@ public class ControladorLogicoDelJuego {
 		this.juego.agregarJigglypuff();
 	}
 
+	public void limpiarEleccionDeAlgomones(){
+		this.juego.obtenerJugadorActual().eliminarAlgomonesElegidos();
+		if(this.miniaturasJugadorInicial.size()==3){
+			this.imagenesJugadorSegundo = new LinkedList<ImageView>();
+			this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
+		}
+		else{
+			this.imagenesJugadorInicial = new LinkedList<ImageView>();
+			this.miniaturasJugadorInicial = new LinkedList<ImageView>();
+		}
+
+	}
 
 	public boolean verificarCantidadAlgomonDeJugadorActual() {
-		if(juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
+		if(this.juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
 			return true;
 		}
 		return false;
@@ -74,6 +94,42 @@ public class ControladorLogicoDelJuego {
 
 	public void cambiarAlgomon(int indice) throws PokemonMuertoException {
 		this.juego.cambiarAlgomonParaJugadorActualYPasarDeTurno(indice);
+	}
+
+	public void agregarMiniatura(String algomon){
+
+		if(this.miniaturasJugadorInicial.size()<3){
+			this.imagenesJugadorInicial.add(this.creadorImagen.crearImagenParaBatalla("Jugador1", algomon));
+			this.miniaturasJugadorInicial.add(this.creadorImagen.crearMiniaturas(algomon));
+		}
+		else{
+			this.imagenesJugadorSegundo.add(this.creadorImagen.crearImagenParaBatalla("Jugador2", algomon));
+			this.miniaturasJugadorSegundo.add(this.creadorImagen.crearMiniaturas(algomon));
+		}
+
+	}
+
+	public LinkedList<ImageView> getMiniaturaDeJugadorActual(){
+		if(this.miniaturasJugadorInicial.size()==3){
+			return this.miniaturasJugadorSegundo;
+		}
+		return this.miniaturasJugadorInicial;
+	}
+
+	public LinkedList<ImageView> getMiniaturasJugadorInicial(){
+		return this.miniaturasJugadorInicial;
+	}
+
+	public LinkedList<ImageView> getMiniaturasJugadorSegundo(){
+		return this.miniaturasJugadorSegundo;
+	}
+
+	public LinkedList<ImageView> getImagenesJugadorInicial(){
+		return this.imagenesJugadorInicial;
+	}
+
+	public LinkedList<ImageView> getImagenesJugadorSegundo(){
+		return this.imagenesJugadorSegundo;
 	}
 
 	public void verificarAlgomonActualMuerto() throws PokemonMuertoException {
