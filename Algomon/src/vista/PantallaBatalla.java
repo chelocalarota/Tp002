@@ -1,22 +1,33 @@
 package vista;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
+
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.FadeTransitionBuilder;
+import javafx.animation.FillTransitionBuilder;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TitledPane;
-import javafx.scene.effect.Lighting;
+
 import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -28,16 +39,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import modelo.VictoriaObtenidaException;
 import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
@@ -46,11 +52,13 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
+import modelo.tipos.*;
 
 public class PantallaBatalla {
 
 	Scene escena;
 	private Stage stage;
+	ReproductorDeSonidos reproductor;
 	LinkedList<ImageView> miniaturasJugadorInicial;
 	LinkedList<ImageView> imagenesJugadorInicial;
 	LinkedList<ImageView> miniaturasJugadorSegundo;
@@ -65,6 +73,7 @@ public class PantallaBatalla {
 	int vidaAlgomon2;
 	String estadoEfimeroAlgomon2;
 	String estadoPersistenteAlgomon2;
+	HashMap<String,AudioClip>diccionarioSonidosDeAtaques ;
 	
 	
 	public PantallaBatalla(LinkedList<ImageView> miniaturasJugadorInicial, LinkedList<ImageView> imagenesJugadorInicial, LinkedList<ImageView> miniaturasJugadorSegundo, LinkedList<ImageView> imagenesJugadorSegundo){
@@ -80,16 +89,23 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Cañon de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Caï¿½on de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
 		diccionarioEnums.put("LatigoCepa", AtaquesEnum.LATIGO_CEPA);
-	}
+		
+			}
 
-		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador) {
-			this.stage=stage;
-			botonesBloqueadosForEver = new LinkedList<Button>();
+		public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, ReproductorDeSonidos reproductor) {
+			int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+		    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+		    this.stage = stage;
+		    this.reproductor = reproductor;
+//		    AudioClip musicaBatalla = new AudioClip(this.getClass().getResource("/vista/sonidos/batalla.mp3").toExternalForm());
+		   
+		    
+		   	botonesBloqueadosForEver = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador1 = new LinkedList<Button>();
 			LinkedList<Button> botonesDeCambioDeAlgomonDelJugador2 = new LinkedList<Button>();
 			ArrayList<Button> listaDeBotones1 = new ArrayList<Button>();
@@ -114,18 +130,10 @@ public class PantallaBatalla {
 	        panelPrincipal.setBottom(contenedorHorizontalBottom);
 
 	        CreadorImagen creadorImagen = new CreadorImagen();
-	        //Menu
-	        MenuBar menuBar = new MenuBar();
-	        // --- Menu File
-	        Menu menuFile = new Menu("File");
-	        // --- Menu Edit
-	        Menu menuEdit = new Menu("Edit");
-	        // --- Menu View
-	        Menu menuView = new Menu("View");
-	        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
-	        menuBar.setMinWidth(1400);
-
-	        contenedorHorizontalTop.getChildren().addAll(menuBar);
+	     	
+	        MenuTop Menu = new MenuTop(stage, this.reproductor);
+	        
+	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
 	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
@@ -177,6 +185,27 @@ public class PantallaBatalla {
 	        panelContenedorDeCambioDeAlgomon.setMinWidth(286);
 	        panelContenedorDeCambioDeAlgomon.setExpanded(true);
 	        
+
+            @SuppressWarnings("deprecation")
+			FadeTransition fadeTransition = FadeTransitionBuilder.create()
+                 .duration(Duration.seconds(0.4))
+                 .node(contenedorAlgomonesActivos2.getChildren().get(0))
+                 .fromValue(0.2)
+                 .toValue(1)
+                 .cycleCount(3)
+                 .autoReverse(true)
+                 .build();
+            @SuppressWarnings("deprecation")
+			FadeTransition fadeTransition2 = FadeTransitionBuilder.create()
+                    .duration(Duration.seconds(0.4))
+                    .node(contenedorAlgomonesActivos1.getChildren().get(0))
+                    .fromValue(0.2)
+                    .toValue(1)
+                    .cycleCount(3)
+                    .autoReverse(true)
+                    .build();
+            
+            
 	        TitledPane botonAtacarJugador1 = new TitledPane();
 	        botonAtacarJugador1.setMaxWidth(286);
 	        botonAtacarJugador1.setMinWidth(286);
@@ -200,6 +229,7 @@ public class PantallaBatalla {
 	        	boton.setMinWidth(255);
 	        	boton.setOnAction(event->{
 	        		this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+	        		fadeTransition.play();
 	        	});
 	            gridBotonesDeAtaqueJugador1.add(boton,0,indice);
 	            indice+=1;
@@ -253,6 +283,7 @@ public class PantallaBatalla {
 	            		botonAtaque.setMinWidth(255);
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);    		
+	            		fadeTransition.play();
 	            	});
 
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
@@ -285,6 +316,7 @@ public class PantallaBatalla {
 	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador2);	
+	            		fadeTransition.play();
 	            	});
 
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
@@ -317,6 +349,7 @@ public class PantallaBatalla {
 	            	botonAtaque.setOnAction(event2->{
 	            		asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1, contenedorEstadosJugador2,
 								listaDeBotones1, listaDeBotones2, ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
+	            		fadeTransition.play();
 	            	});
 	                gridBotonesDeAtaqueJugador1.add(botonAtaque,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -405,7 +438,7 @@ public class PantallaBatalla {
 	        		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	        		
+	        		 fadeTransition2.play();
 	        	});
 	            grid2.add(boton2,0,indice2);
 	            indice2+=1;
@@ -452,6 +485,7 @@ public class PantallaBatalla {
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            		 fadeTransition2.play();
 	            	});
 
 	                grid2.add(boton2,0,indiceNuevo);
@@ -486,6 +520,7 @@ public class PantallaBatalla {
 	            		 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            		 fadeTransition2.play();
 	            	});
 	                grid2.add(boton2,0,indiceNuevo);
 	                indiceNuevo+=1;
@@ -519,6 +554,7 @@ public class PantallaBatalla {
 	            			 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
+	            			 fadeTransition2.play();
 	            	});
 
 	                grid2.add(boton,0,indiceNuevo);
@@ -584,10 +620,13 @@ public class PantallaBatalla {
 	        contenedorVerticalDerecho.setPrefWidth(500);
 	        contenedorVerticalIzquierdo.setPrefWidth(500);
 
-	        this.escena = new Scene(panelPrincipal);
+	        this.escena = new Scene(panelPrincipal,ancho-10,alto-70);
 	        stage.setScene(escena);
-	        stage.setFullScreen(true);
+	        stage.centerOnScreen();
+//	        stage.setMaximized(true);
 	        stage.show();
+//	        musicaBatalla.setCycleCount(AudioClip.INDEFINITE);
+//	        musicaBatalla.play();
 	}
 
 		private void setEventBotonCambioDeAlgomon(ControladorLogicoDelJuego controlador,
@@ -621,6 +660,7 @@ public class PantallaBatalla {
 			this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
 			this.botonesIntocablesTemporal.add(botonElegido);
 			
+			
 		}
 		
 		private void asignarEventABotonesAtaque(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador1,
@@ -630,6 +670,9 @@ public class PantallaBatalla {
 				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
+
+			    reproductor.reproducir(ataque.getNombre());
+
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
@@ -678,9 +721,18 @@ public class PantallaBatalla {
 
 		private void actualizarJugadorDefensor(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
 			contenedorEstadosJugador2.getChildren().clear();
-	        contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorDefensor().getPokemonActivo().getVida())));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString()));
-	        contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString()));
+			Label vida = new Label(Integer.toString(controlador.obtenerJugadorDefensor().getPokemonActivo().getVida()));
+			vida.setStyle("-fx-font: 17 arial");
+			vida.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(vida);
+			Label estadoEfimero = new Label("Estado efimero: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoEfimeroComoString());
+			estadoEfimero.setStyle("-fx-font: 17 arial");
+			estadoEfimero.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoEfimero);
+			Label estadoPermanente = new Label("Estado persistente: "+ controlador.obtenerJugadorDefensor().getPokemonActivo().getEstadoPersistenteComoString());
+			estadoPermanente.setStyle("-fx-font: 17 arial");
+			estadoPermanente.setTextFill(Color.WHITE);
+	        contenedorEstadosJugador2.getChildren().add(estadoPermanente);
 		}
 
 		private void setearBotonContenedorDeItem(TitledPane botonUsarItemJugador1, GridPane gridUsarItem,
@@ -712,7 +764,7 @@ public class PantallaBatalla {
 
                 //create stage which has set stage style transparent
 
-                final Stage stage = new Stage(StageStyle.TRANSPARENT);
+//                final Stage stage = new Stage(StageStyle.TRANSPARENT);
 
                 //create root node of scene, i.e. group
 
@@ -720,7 +772,7 @@ public class PantallaBatalla {
 
                 //create scene with set width, height and color
 
-                Scene scene = new Scene(rootGroup, 200, 200, Color.TRANSPARENT);
+                Scene scene = new Scene(rootGroup, 1300, 900, Color.TRANSPARENT);
 
                 //set scene to stage
 
@@ -734,83 +786,22 @@ public class PantallaBatalla {
 
                 stage.show();
 
- 
 
-                // CREATION OF THE DRAGGER (CIRCLE)
+                CreadorImagen creador = new CreadorImagen();
+                ImageView imagen = creador.crearImageView("vista/imagenes/pantalla_items.png");
 
-           
-
-                //create dragger with desired size
-
-                Circle dragger = new Circle(100, 100, 100);
-
-                //fill the dragger with some nice radial background
-
-                dragger.setFill(new RadialGradient(-0.3, 135, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-
-                    new Stop(0, Color.DARKGRAY),
-
-                    new Stop(1, Color.BLACK)
-
-                 }));
-
-                // CREATE MIN AND CLOSE BUTTONS
-
-                //create button for closing application
-
-                Button close = new Button("Close me");
+                CreadorBoton creadorBoton = new CreadorBoton();
+                Button close = creadorBoton.crearBoton("Cerrar","-fx-font: 57 arial; -fx-base: #FFFFFF;");
 
                 close.setOnAction(new EventHandler<ActionEvent>() {
 
                     public void handle(ActionEvent event) {
-
-                        //in case we would like to close whole demo
-
-                        //javafx.application.Platform.exit();
-
- 
-
-                        //however we want to close only this instance of stage
 
                         stage.close();
 
                     }
 
                 });
-
- 
-
-                //create button for minimalising application
-
-                Button min = new Button("Minimize me");
-
-                min.setOnAction(new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent event) {
-
-                        stage.setIconified(true);
-
-                    }
-
-                });
-
- 
-
- 
-
-                // CREATE SIMPLE TEXT NODE
-
-                Text text = new Text("JavaFX"); //20, 110,
-
-                text.setFill(Color.WHITESMOKE);
-
-                text.setEffect(new Lighting());
-
-                text.setBoundsType(TextBoundsType.VISUAL);
-
-                text.setFont(Font.font(Font.getDefault().getFamily(), 50));
-
- 
 
                 // USE A LAYOUT VBOX FOR EASIER POSITIONING OF THE VISUAL NODES ON SCENE
 
@@ -822,13 +813,13 @@ public class PantallaBatalla {
 
                 vBox.setAlignment(Pos.TOP_CENTER);
 
-                vBox.getChildren().addAll(text, min, close);
-
+                vBox.getChildren().addAll(close);
+                vBox.setMinSize(1300,1300);
  
 
                 //add all nodes to main root group
 
-                rootGroup.getChildren().addAll(dragger, vBox);
+                rootGroup.getChildren().addAll(imagen,vBox);
 
             }
 
@@ -843,7 +834,8 @@ public class PantallaBatalla {
 				controlador.usarItem(item);
 				controlador.verificarAlgomonActualMuerto();
 				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
-				
+
+				reproductor.reproducir("item");
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
 					botonVitamina2.setDisable(true);
@@ -865,9 +857,18 @@ public class PantallaBatalla {
 
 		private void actualizarJugadorActual(ControladorLogicoDelJuego controlador, VBox contenedorEstadosJugador2) {
 			contenedorEstadosJugador2.getChildren().clear();
-			contenedorEstadosJugador2.getChildren().add(new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida())));
-			contenedorEstadosJugador2.getChildren().add(new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString()));
-			contenedorEstadosJugador2.getChildren().add(new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString()));
+			Label vida = new Label(Integer.toString(controlador.obtenerJugadorActual().getPokemonActivo().getVida()));
+			vida.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			vida.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(vida);
+			Label estadoEfimero = new Label("Estado efimero: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoEfimeroComoString());
+			estadoEfimero.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			estadoEfimero.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoEfimero);
+			Label estadoPermanente = new Label("Estado persistente: "+ controlador.obtenerJugadorActual().getPokemonActivo().getEstadoPersistenteComoString());
+			estadoPermanente.setStyle("-fx-font: 17 arial; -fx-base: #FA8258");
+			estadoPermanente.setTextFill(Color.WHITE);
+			contenedorEstadosJugador2.getChildren().add(estadoPermanente);
 		}
 }
 

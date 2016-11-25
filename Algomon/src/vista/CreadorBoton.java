@@ -40,5 +40,13 @@ public class CreadorBoton {
 		audio.play();});
 
 		}
+	
+	public Button crearBotonEleccionAlgomon(String titulo, ImageView imageView, String estilo) {
+		Button boton = new Button(titulo, imageView);
+		boton.setStyle(estilo);
+		
+		boton.setContentDisplay(ContentDisplay.LEFT);
+		return boton;
 	}
+}
 

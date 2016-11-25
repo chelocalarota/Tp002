@@ -3,73 +3,92 @@ package vista;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+
+
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
+
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PantallaInicial {
 
 	ControladorLogicoDelJuego controlador;
+	ReproductorDeSonidos reproductor; 
 
 
-	public PantallaInicial(ControladorLogicoDelJuego controlador){
+	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
 		this.controlador = controlador;
+		this.reproductor = reproductor;
 	}
 
 	public void cargarPantalla(Stage stage, PantallaEleccionAlgomon pantallaEleccion) {
+		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 
-		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
-		musicaPantallaInicial.play();
+//		AudioClip musicaPantallaInicial = new AudioClip(this.getClass().getResource("/vista/sonidos/intro_pokemon.mp3").toExternalForm());
+//		musicaPantallaInicial.play();
+	    reproductor.stopMusicaInicial();
+	    reproductor.playMusicaInicial();
+		
 		CreadorImagen creadorImagen = new CreadorImagen();
 		ImageView imageViewTitulo = creadorImagen.crearImageView("/vista/imagenes/algomon.png");
-        ImageView imageViewPikachu = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pikachu.png",200,200,false,true);
-        ImageView imageViewPikachu2 = creadorImagen.crearImageViewConTamanioEspecifico("/vista/imagenes/pikachu.png",200,200,false,true);
 
         BorderPane border = new BorderPane();
         HBox contenedorHorizontal = new HBox();
-        VBox contenedorVerticalIzquierdo = new VBox();
         VBox contenedorVerticalCentral = new VBox();
-        VBox contenedorVerticalDerecho = new VBox();
         border.setTop(contenedorHorizontal);
-        border.setLeft(contenedorVerticalIzquierdo);
         border.setCenter(contenedorVerticalCentral);
-        border.setRight(contenedorVerticalDerecho);
 
         HBox contenedorBotones = new HBox();
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.BLACK);
+        dropShadow.setOffsetX(4.0);
+        dropShadow.setOffsetY(4.0);
         CreadorBoton creadorBoton = new CreadorBoton();
-        creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
-        Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 20 arial; -fx-base: #b6e7c9;");
+        Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 22 arial; -fx-base: #FFFFFF;");
         botonNuevoJuego.setOnAction(event ->{
-        	musicaPantallaInicial.stop();
+        	reproductor.stopMusicaInicial();
         	this.controlador.crearJuegoNuevo();
 
-        	pantallaEleccion.cargarPantalla(stage,this.controlador,1);
-
-
+        	pantallaEleccion.cargarPantalla(stage,this.controlador,1, reproductor);
         });
-		Button botonCargarJuego = creadorBoton.crearBoton("Cargar Juego","-fx-font:  16 arial; -fx-base: #b6e7c9;");
-		Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  16 arial; -fx-base: #b6e7c9;");
-		Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  16 arial; -fx-base: #b6e7c9;");
-		Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  16 arial; -fx-base: #b6e7c9;");
-		botonSalir.setOnAction(event -> {
-			musicaPantallaInicial.stop();
+		botonNuevoJuego.setEffect(dropShadow);
+        Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+        botonOpciones.setEffect(dropShadow);
+        botonOpciones.setOnAction(event ->{
+        	PantallaOpciones pantallaOpciones = new PantallaOpciones(this.controlador);
+        	pantallaOpciones.cargarPantalla(stage,this.reproductor);
+        });
+        Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+		botonAyuda.setEffect(dropShadow);
+        Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  22 arial; -fx-base: #FFFFFF;");
+        botonSalir.setEffect(dropShadow);
+        botonSalir.setOnAction(event -> {
+			reproductor.stopMusicaInicial();
 			stage.close();
         });
 
         contenedorBotones.getChildren().addAll(botonAyuda,botonSalir);
-        contenedorBotones.setSpacing(25);
+        contenedorBotones.setSpacing(35);
         contenedorBotones.setAlignment(Pos.BASELINE_CENTER);
         contenedorHorizontal.getChildren().addAll(imageViewTitulo);
         contenedorHorizontal.setAlignment(Pos.BOTTOM_CENTER);
-        contenedorVerticalCentral.getChildren().addAll(botonNuevoJuego,botonCargarJuego,botonOpciones,contenedorBotones);
-        contenedorVerticalCentral.setSpacing(25);
+        contenedorVerticalCentral.getChildren().addAll(botonNuevoJuego,botonOpciones,contenedorBotones);
+        contenedorVerticalCentral.setSpacing(40);
         contenedorVerticalCentral.setAlignment(Pos.BASELINE_CENTER);
-        contenedorVerticalIzquierdo.getChildren().addAll(imageViewPikachu);
-        contenedorVerticalDerecho.getChildren().addAll(imageViewPikachu2);
-        Scene principal = new Scene(border, 981, 600);
+        border.setBackground(new Background(new BackgroundImage(new Image("vista/imagenes/fondoPantallaInicio.jpg",ancho,alto,false,false),
+                null,null, BackgroundPosition.CENTER,
+         null)));
+        Scene principal = new Scene(border,ancho-20,alto-100);
+        stage.centerOnScreen();
         stage.setScene(principal);
         stage.show();
 	}
