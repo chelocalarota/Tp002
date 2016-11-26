@@ -66,8 +66,8 @@ public class ControladorLogicoDelJuego {
 
 	}
 
-	public boolean verificarCantidadAlgomonDeJugadorActual() {
-		if(this.juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
+	public boolean cantidadAlgomonesDeJugadorActualEsTres() {
+		if(this.juego.obtenerJugadorActual().obtenerAlgomon().size() == 3){
 			return true;
 		}
 		return false;
