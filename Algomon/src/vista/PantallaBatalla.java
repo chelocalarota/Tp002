@@ -751,13 +751,13 @@ public class PantallaBatalla {
 				this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador2);
 				this.actualizarJugadorActual(controlador, contenedorEstadosJugador1);
 			    controlador.atacar(this.diccionarioEnums.get(ataque.getNombre()));
-
+			    notificaciones.notificar("Se ha realizado el ataque "+ ataque.getNombre());
 			    reproductor.reproducir(ataque.getNombre());
 
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
-			    notificaciones.notificar("");
+	
 			} catch (SinPuntosDePoderException
 					e) {
 					notificaciones.notificar("No se pudo utilizar el ataque. No quedan puntos de poder para el mismo");
