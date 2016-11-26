@@ -55,6 +55,7 @@ public class ControladorLogicoDelJuego {
 
 	public void limpiarEleccionDeAlgomones(){
 		this.juego.obtenerJugadorActual().eliminarAlgomonesElegidos();
+		this.juego.obtenerJugadorActual().eliminarAlgomonActivo();
 		if(this.miniaturasJugadorInicial.size()==3){
 			this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 			this.miniaturasJugadorSegundo = new LinkedList<ImageView>();

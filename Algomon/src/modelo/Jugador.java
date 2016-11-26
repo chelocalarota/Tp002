@@ -40,9 +40,13 @@ public class Jugador {
 			this.algomonActivo = unAlgomon;
 		}
 	}
+	
+	public void eliminarAlgomonActivo(){
+		this.algomonActivo = null;
+	}
 
 	public void eliminarAlgomonesElegidos(){
-		this.algomonDisponibles = new ArrayList<Algomon>();
+		this.algomonDisponibles.clear();
 	}
 
 	public void elegirAlgomonEnBatalla(int indice) throws PokemonMuertoException{
