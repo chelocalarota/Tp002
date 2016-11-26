@@ -122,7 +122,6 @@ public class PantallaEleccionAlgomon {
 			}
 		});
 
-
 		botonLimpiar.setOnAction(event->{
 			controlador.limpiarEleccionDeAlgomones();
 			this.limpiarMiniaturas(controlador);

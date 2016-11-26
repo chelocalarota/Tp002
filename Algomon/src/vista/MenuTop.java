@@ -58,11 +58,12 @@ public class MenuTop {
         
         
         RadioMenuItem reglas = new RadioMenuItem("Reglas del juego");
-        
+      
+		
         reglas.setOnAction(event->{
-        	
+        	PantallaAyuda pantallaAyuda = new PantallaAyuda();
+        	pantallaAyuda.cargarPantalla();
         });
-        
 
         menuAyuda.getItems().addAll(reglas,
             new SeparatorMenuItem());
