@@ -24,6 +24,3 @@ $ git commit -m "_mensaje_"
 ```bash
 $ git push origin _branch en donde se esta trabajando_
 ```
-
-Mail de Marcio:
-mdegiov@gmail.com
