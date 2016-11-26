@@ -100,11 +100,11 @@ public class ControladorLogicoDelJuego {
 	public void agregarMiniatura(String algomon){
 
 		if(this.miniaturasJugadorInicial.size()<3){
-			this.imagenesJugadorInicial.add(this.creadorImagen.crearImagenParaBatalla("Jugador1", algomon));
+			this.imagenesJugadorInicial.add(this.creadorImagen.crearImagenParaBatalla("Jugador1", algomon,130,130));
 			this.miniaturasJugadorInicial.add(this.creadorImagen.crearMiniaturas(algomon));
 		}
 		else{
-			this.imagenesJugadorSegundo.add(this.creadorImagen.crearImagenParaBatalla("Jugador2", algomon));
+			this.imagenesJugadorSegundo.add(this.creadorImagen.crearImagenParaBatalla("Jugador2", algomon,70,70));
 			this.miniaturasJugadorSegundo.add(this.creadorImagen.crearMiniaturas(algomon));
 		}
 

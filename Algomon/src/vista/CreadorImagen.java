@@ -24,7 +24,7 @@ public class CreadorImagen {
 
 	}
 
-	public ImageView crearImagenParaBatalla(String jugador, String algomon){
+	public ImageView crearImagenParaBatalla(String jugador, String algomon,int ancho,int alto){
 
 		this.rutaDeImagenesJugador1.put("Charmander", "vista/imagenes/CharmanderEspalda.gif");
 		this.rutaDeImagenesJugador1.put("Chansey", "vista/imagenes/Chansey_espalda.gif");
@@ -42,7 +42,7 @@ public class CreadorImagen {
 
 		String pathImagen = this.rutaDeImagenes.get(jugador).get(algomon);
 
-		return crearImageViewConTamanioEspecifico(pathImagen, 130, 130, false, true);
+		return crearImageViewConTamanioEspecifico(pathImagen, ancho, alto, false, true);
 
 	}
 

@@ -26,19 +26,13 @@ public class PantallaVictoria {
 		HBox contenedorBotones = new HBox();
 		ReproductorDeSonidos reproductor = new ReproductorDeSonidos();
 		CreadorBoton creadorBoton = new CreadorBoton();
-        Button botonNuevoJuego = creadorBoton.crearBoton("Nuevo Juego","-fx-font: 55 arial; -fx-base: #FFFFFF;");
-        botonNuevoJuego.setOnAction(event ->{
-        	PantallaEleccionAlgomon pantallaEleccionAlgomon = new PantallaEleccionAlgomon();
-			pantallaEleccionAlgomon.cargarPantalla(stage, controlador, 1, reproductor);
-
-        });
+      
         Button botonSalir = creadorBoton.crearBoton("Salir","-fx-font:  55 arial; -fx-base: #FFFFFF;");
         botonSalir.setOnAction(event -> {
 			reproductor.stopMusicaInicial();
 			stage.close();
         });
         border.setBottom(contenedorBotones);
-        contenedorBotones.getChildren().add(botonNuevoJuego);
         contenedorBotones.setAlignment(Pos.CENTER);
 		contenedorBotones.getChildren().add(botonSalir);
 		ImageView copa = creador.crearImageView("vista/imagenes/copaPokemon.png");
