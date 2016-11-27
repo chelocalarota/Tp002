@@ -99,7 +99,8 @@ public class PantallaBatalla {
 
 			BorderPane panelPrincipal = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
-	        VBox contenedorHorizontalBottom = new VBox();
+	        VBox contenedorVerticalBottom = new VBox();
+	        HBox contenedorHorizontalBottom = new HBox();
 	        VBox contenedorVerticalIzquierdo = new VBox();
 	        contenedorVerticalIzquierdo.setMaxWidth(350);
 	        VBox contenedorVerticalCentral = new VBox();
@@ -122,8 +123,15 @@ public class PantallaBatalla {
 	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
-	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
-	        contenedorHorizontalBottom.getChildren().addAll(notificaciones.getTextArea());
+	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus características");
+	        advertenciaAlUsuario.setStyle("-fx-font-family: arial; -fx-font-size: 20; -fx-text-fill: darkred;");
+	        contenedorVerticalBottom.getChildren().add(advertenciaAlUsuario);
+	        contenedorVerticalBottom.getChildren().addAll(notificaciones.getTextArea());
+	        contenedorVerticalBottom.setAlignment(Pos.TOP_CENTER);
+	        contenedorHorizontalBottom.getChildren().add(contenedorVerticalBottom);
+	        contenedorHorizontalBottom.setAlignment(Pos.BASELINE_CENTER);
+
+
 
 	        //Imagenes de algomones iniciales
 	        VBox contenedorAlgomonesActivos = new VBox();
@@ -760,7 +768,7 @@ public class PantallaBatalla {
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
-	
+
 			} catch (SinPuntosDePoderException
 					e) {
 					notificaciones.notificar("No se pudo utilizar el ataque. No quedan puntos de poder para el mismo");
@@ -846,6 +854,7 @@ public class PantallaBatalla {
             if( e.isPrimaryButtonDown()) {
             	usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar,
 					boton,enumAsociado, listaDeBotonesDeCambio);
+            	notificaciones.notificarUsoDeItem(enumAsociado);
 			}
             else{
             	final Stage stage = new Stage(StageStyle.TRANSPARENT);
