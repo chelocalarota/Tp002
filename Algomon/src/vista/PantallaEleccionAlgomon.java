@@ -3,6 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

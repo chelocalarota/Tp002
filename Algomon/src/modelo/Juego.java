@@ -106,7 +106,6 @@ public class Juego {
 		if (this.obtenerJugadorDefensor().verificarVictoriaContraOtroJugador(jugador)){
 			throw new VictoriaObtenidaException("");
 		}
-
 	}
 
 	public Jugador obtenerJugadorDefensor() {

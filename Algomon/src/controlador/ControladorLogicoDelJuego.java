@@ -1,4 +1,4 @@
-package vista;
+package controlador;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,15 +13,16 @@ import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
+import vista.CreadorImagen;
 
 public class ControladorLogicoDelJuego {
 
-	Juego juego;
-	CreadorImagen creadorImagen;
-	LinkedList<ImageView> miniaturasJugadorInicial;
-	LinkedList<ImageView> imagenesJugadorInicial;
-	LinkedList<ImageView> miniaturasJugadorSegundo;
-	LinkedList<ImageView> imagenesJugadorSegundo;
+	private Juego juego;
+	private CreadorImagen creadorImagen;
+	private LinkedList<ImageView> miniaturasJugadorInicial;
+	private LinkedList<ImageView> imagenesJugadorInicial;
+	private LinkedList<ImageView> miniaturasJugadorSegundo;
+	private LinkedList<ImageView> imagenesJugadorSegundo;
 
 	public void crearJuegoNuevo() throws NoSuchMethodException, SecurityException {
 		this.juego = new Juego();
@@ -32,6 +33,14 @@ public class ControladorLogicoDelJuego {
 		this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 
+	}
+	
+	public void verificarVictoria() throws VictoriaObtenidaException{
+		try {
+			this.juego.verificarVictoria();
+		} catch (VictoriaObtenidaException e) {
+			throw new VictoriaObtenidaException("");
+		}
 	}
 
 	public void agregarCharmanderJugadorActual() {

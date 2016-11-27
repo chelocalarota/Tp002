@@ -2,6 +2,7 @@ package vista;
 
 import java.util.ArrayList;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;

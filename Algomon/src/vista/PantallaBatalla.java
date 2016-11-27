@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.animation.FadeTransition;
 import javafx.animation.FadeTransitionBuilder;
 import javafx.event.ActionEvent;
@@ -772,7 +773,7 @@ public class PantallaBatalla {
 
 				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){
 					try{
-						controlador.juego.verificarVictoria();
+						controlador.verificarVictoria();
 					} catch (VictoriaObtenidaException e2) {
 						PantallaVictoria pantallaVictoria2 = new PantallaVictoria();
 						pantallaVictoria2.cargarPantalla(stage, controlador);
