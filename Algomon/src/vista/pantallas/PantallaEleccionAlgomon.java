@@ -17,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import vista.ReproductorDeSonidos;
 import vista.creadores.CreadorBoton;
-import vista.creadores.CreadorBotonesDeEleccion;
 
 public class PantallaEleccionAlgomon {
 
@@ -46,7 +45,7 @@ public class PantallaEleccionAlgomon {
 		HBox contenedorHorizontalInferior = new HBox();
 		this.contenedorBarraDeMiniaturas = new HBox();
 
-		CreadorBotonesDeEleccion creadorBotonesDeEleccion = new CreadorBotonesDeEleccion();
+		CreadorBoton creadorBotonesDeEleccion = new CreadorBoton();
 
 		ArrayList<Button> listaDeBotones = creadorBotonesDeEleccion.crearBotonesDeEleccion();
 
