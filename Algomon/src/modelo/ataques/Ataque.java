@@ -48,10 +48,6 @@ public abstract class Ataque {
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;
 	}
-	
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomonAtacante, int danio) throws PokemonMuertoException{
-		return;
-	}
 
 	public void agregarPuntosDePoder(int cantidad) {
 		this.cantidad += cantidad;
