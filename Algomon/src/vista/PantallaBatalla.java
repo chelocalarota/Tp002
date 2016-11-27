@@ -281,7 +281,8 @@ public class PantallaBatalla {
 	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
 		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-		            			 fadeTransition.play();
+	                     	 	fadeTransition.setNode(contenedorAlgomonesActivos2.getChildren().get(0));
+	                     	 	fadeTransition.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
@@ -321,7 +322,8 @@ public class PantallaBatalla {
 	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
 		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-		            			 fadeTransition.play();
+	                     	 	fadeTransition.setNode(contenedorAlgomonesActivos2.getChildren().get(0));
+	                     	 	fadeTransition.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
@@ -362,7 +364,8 @@ public class PantallaBatalla {
 	                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador1,
 		 	 	        				contenedorEstadosJugador2, listaDeBotones1, listaDeBotones2,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador1, botonesDeCambioDeAlgomonDelJugador2);
-		            			 fadeTransition.play();
+	                     	 fadeTransition.setNode(contenedorAlgomonesActivos2.getChildren().get(0));
+	                     	 fadeTransition.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
@@ -458,7 +461,8 @@ public class PantallaBatalla {
                     	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 	 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 	 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-	            			 fadeTransition2.play();
+                    	 fadeTransition2.setNode(contenedorAlgomonesActivos1.getChildren().get(0));
+                    	 fadeTransition2.play();
                     }
                     else{
                     	crearImagenAuxiliarAtaques(creadorBoton);
@@ -512,7 +516,8 @@ public class PantallaBatalla {
 	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-		            			 fadeTransition2.play();
+	                    	 fadeTransition2.setNode(contenedorAlgomonesActivos1.getChildren().get(0));
+	                    	 fadeTransition2.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
@@ -554,7 +559,8 @@ public class PantallaBatalla {
 	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-		            			 fadeTransition2.play();
+	                    	 fadeTransition2.setNode(contenedorAlgomonesActivos1.getChildren().get(0));
+	                    	 fadeTransition2.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
@@ -595,7 +601,8 @@ public class PantallaBatalla {
 	                    	 this.asignarEventABotonesAtaque(controlador, contenedorEstadosJugador2,
 		 	 	        				contenedorEstadosJugador1, listaDeBotones2, listaDeBotones1,
 		 	 	        				ataque, botonesDeCambioDeAlgomonDelJugador2, botonesDeCambioDeAlgomonDelJugador1);
-		            			 fadeTransition2.play();
+	                    	 fadeTransition2.setNode(contenedorAlgomonesActivos1.getChildren().get(0));
+	                    	 fadeTransition2.play();
 	                    }
 	                    else{
 	                    	crearImagenAuxiliarAtaques(creadorBoton);
