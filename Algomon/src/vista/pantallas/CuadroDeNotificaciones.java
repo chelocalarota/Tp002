@@ -29,7 +29,7 @@ public class CuadroDeNotificaciones {
 		this.textArea.setText("No hay mas " + item + " disponible.\n");
 	}
 
-		public void notificarPokemonMuerto(){
+	public void notificarPokemonMuerto(){
 		this.textArea.setText("Este pokemon ha muerto. No podrás seguir utilizándolo.");
 	}
 
