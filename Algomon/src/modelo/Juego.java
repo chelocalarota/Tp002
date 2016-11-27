@@ -2,8 +2,7 @@ package modelo;
 
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
-import modelo.enums.AtaquesEnum;
-import modelo.enums.ItemsEnum;
+import modelo.enums.*;
 
 public class Juego {
 	private Jugador jugador1;

@@ -11,8 +11,7 @@ import modelo.algomon.EstaDormidoException;
 import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
-import modelo.enums.AtaquesEnum;
-import modelo.enums.ItemsEnum;
+import modelo.enums.*;
 import vista.creadores.CreadorImagen;
 
 public class ControladorLogicoDelJuego {
