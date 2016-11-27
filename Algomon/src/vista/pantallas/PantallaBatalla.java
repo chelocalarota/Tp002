@@ -123,7 +123,7 @@ public class PantallaBatalla {
 	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
-	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus características");
+	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus caracteristicas");
 	        advertenciaAlUsuario.setStyle("-fx-font-family: arial; -fx-font-size: 20; -fx-text-fill: darkred;");
 	        contenedorVerticalBottom.getChildren().add(advertenciaAlUsuario);
 	        contenedorVerticalBottom.getChildren().addAll(notificaciones.getTextArea());
