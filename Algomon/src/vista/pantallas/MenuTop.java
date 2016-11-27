@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -6,14 +6,13 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
 
 public class MenuTop {
 	
 	private MenuBar menu;
 	
-	
 	public MenuTop(Stage stage, ReproductorDeSonidos reproductor){
-		
 		
 		this.menu = new MenuBar();
         // --- Menu Archivo

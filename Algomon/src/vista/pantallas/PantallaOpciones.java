@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,15 +16,10 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
 
 public class PantallaOpciones {
-	ControladorLogicoDelJuego controlador;
-	
-
-
-	public PantallaOpciones(ControladorLogicoDelJuego controlador){
-		this.controlador = controlador;
-	}
 
 	public void cargarPantalla(Stage stage, ReproductorDeSonidos reproductor, PantallaInicial pantallaInicial) {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;

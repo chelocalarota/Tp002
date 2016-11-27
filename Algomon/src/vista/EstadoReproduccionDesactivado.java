@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import javafx.scene.media.AudioClip;
 
-
-
 public class EstadoReproduccionDesactivado extends EstadoReproduccion {
 
 	@Override
@@ -14,12 +12,9 @@ public class EstadoReproduccionDesactivado extends EstadoReproduccion {
 		
 	}
 
-	
-
 	@Override
 	public void stop(String nombresonido, HashMap<String, AudioClip> diccionarioDeSonidos) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

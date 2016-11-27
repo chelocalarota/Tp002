@@ -1,9 +1,5 @@
 package modelo;
 
-
-
-
-
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
@@ -106,7 +102,6 @@ public class Juego {
 		if (this.obtenerJugadorDefensor().verificarVictoriaContraOtroJugador(jugador)){
 			throw new VictoriaObtenidaException("");
 		}
-
 	}
 
 	public Jugador obtenerJugadorDefensor() {

@@ -1,4 +1,4 @@
-package vista;
+package vista.creadores;
 
 import java.util.ArrayList;
 
@@ -7,9 +7,9 @@ import javafx.scene.image.ImageView;
 
 public class CreadorBotonesDeEleccion {
 
-	CreadorImagen creadorImagen;
-	CreadorBoton creadorBoton;
-	ArrayList<Button> listaDeBotones;
+	private CreadorImagen creadorImagen;
+	private CreadorBoton creadorBoton;
+	private ArrayList<Button> listaDeBotones;
 
 	public CreadorBotonesDeEleccion(){
 		this.creadorBoton = new CreadorBoton();

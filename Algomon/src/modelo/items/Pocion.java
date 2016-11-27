@@ -4,7 +4,7 @@ import modelo.algomon.Algomon;
 import modelo.algomon.PokemonMuertoException;
 
 public class Pocion implements Item {
-	int cantidadDeUsos;
+	private int cantidadDeUsos;
 	
 	public Pocion(){
 		cantidadDeUsos = 4;

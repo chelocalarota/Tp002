@@ -1,8 +1,9 @@
-package vista;
+package vista.pantallas;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,16 +15,16 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorBotonesDeEleccion;
 
 public class PantallaEleccionAlgomon {
 
-	Scene escena;
-	LinkedList<ImageView> miniaturasActual;
-	ReproductorDeSonidos reproductor;
-	HBox contenedorBarraDeMiniaturas;
-
-	public PantallaEleccionAlgomon(){
-	}
+	private Scene escena;
+	private LinkedList<ImageView> miniaturasActual;
+	private ReproductorDeSonidos reproductor;
+	private HBox contenedorBarraDeMiniaturas;
 
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int numeroDeJugador,
 							   ReproductorDeSonidos reproductor) {

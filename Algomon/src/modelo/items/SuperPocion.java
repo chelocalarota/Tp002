@@ -4,11 +4,12 @@ import modelo.algomon.Algomon;
 import modelo.algomon.PokemonMuertoException;
 
 public class SuperPocion implements Item {
-	int cantidadDeUsos;
+	private int cantidadDeUsos;
 
 	public SuperPocion(){
 		cantidadDeUsos = 2;
 	}
+	
 	@Override
 	public boolean sinUsosDisponibles() {
 		return this.cantidadDeUsos == 0;

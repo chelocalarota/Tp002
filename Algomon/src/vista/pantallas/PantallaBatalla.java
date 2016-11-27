@@ -1,9 +1,10 @@
-package vista;
+package vista.pantallas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.animation.FadeTransition;
 import javafx.animation.FadeTransitionBuilder;
 import javafx.event.ActionEvent;
@@ -27,7 +28,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,28 +40,24 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorImagen;
 
 @SuppressWarnings("deprecation")
 public class PantallaBatalla {
 
-	Scene escena;
+	private Scene escena;
 	private Stage stage;
-	ReproductorDeSonidos reproductor;
-	LinkedList<ImageView> miniaturasJugadorInicial;
-	LinkedList<ImageView> imagenesJugadorInicial;
-	LinkedList<ImageView> miniaturasJugadorSegundo;
-	LinkedList<ImageView> imagenesJugadorSegundo;
-	LinkedList<Button> botonesIntocablesTemporal;
-	LinkedList<Button> botonesBloqueadosForEver;
-	CuadroDeNotificaciones notificaciones;
-	HashMap<String, AtaquesEnum>diccionarioEnums;
-	int vidaAlgomon1;
-	String estadoEfimeroAlgomon1;
-	String estadoPersistenteAlgomon1;
-	int vidaAlgomon2;
-	String estadoEfimeroAlgomon2;
-	String estadoPersistenteAlgomon2;
-	HashMap<String,AudioClip>diccionarioSonidosDeAtaques ;
+	private ReproductorDeSonidos reproductor;
+	private LinkedList<ImageView> miniaturasJugadorInicial;
+	private LinkedList<ImageView> imagenesJugadorInicial;
+	private LinkedList<ImageView> miniaturasJugadorSegundo;
+	private LinkedList<ImageView> imagenesJugadorSegundo;
+	private LinkedList<Button> botonesIntocablesTemporal;
+	private LinkedList<Button> botonesBloqueadosForEver;
+	private CuadroDeNotificaciones notificaciones;
+	private HashMap<String, AtaquesEnum>diccionarioEnums;
 
 
 	public PantallaBatalla(){
@@ -103,7 +99,8 @@ public class PantallaBatalla {
 
 			BorderPane panelPrincipal = new BorderPane();
 	        HBox contenedorHorizontalTop = new HBox();
-	        VBox contenedorHorizontalBottom = new VBox();
+	        VBox contenedorVerticalBottom = new VBox();
+	        HBox contenedorHorizontalBottom = new HBox();
 	        VBox contenedorVerticalIzquierdo = new VBox();
 	        contenedorVerticalIzquierdo.setMaxWidth(350);
 	        VBox contenedorVerticalCentral = new VBox();
@@ -126,8 +123,15 @@ public class PantallaBatalla {
 	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
-	        contenedorHorizontalBottom.getChildren().add(new Label("Notificaciones:"));
-	        contenedorHorizontalBottom.getChildren().addAll(notificaciones.getTextArea());
+	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus características");
+	        advertenciaAlUsuario.setStyle("-fx-font-family: arial; -fx-font-size: 20; -fx-text-fill: darkred;");
+	        contenedorVerticalBottom.getChildren().add(advertenciaAlUsuario);
+	        contenedorVerticalBottom.getChildren().addAll(notificaciones.getTextArea());
+	        contenedorVerticalBottom.setAlignment(Pos.TOP_CENTER);
+	        contenedorHorizontalBottom.getChildren().add(contenedorVerticalBottom);
+	        contenedorHorizontalBottom.setAlignment(Pos.BASELINE_CENTER);
+
+
 
 	        //Imagenes de algomones iniciales
 	        VBox contenedorAlgomonesActivos = new VBox();
@@ -764,7 +768,7 @@ public class PantallaBatalla {
 			    this.actualizarJugadorDefensor(controlador, contenedorEstadosJugador1);
 			    this.actualizarJugadorActual(controlador, contenedorEstadosJugador2);
 			    this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotones1, listaDeBotones2);
-	
+
 			} catch (SinPuntosDePoderException
 					e) {
 					notificaciones.notificar("No se pudo utilizar el ataque. No quedan puntos de poder para el mismo");
@@ -772,7 +776,7 @@ public class PantallaBatalla {
 
 				if(controlador.obtenerJugadorActual().getPokemonActivo().estaMuerto()){
 					try{
-						controlador.juego.verificarVictoria();
+						controlador.verificarVictoria();
 					} catch (VictoriaObtenidaException e2) {
 						PantallaVictoria pantallaVictoria2 = new PantallaVictoria();
 						pantallaVictoria2.cargarPantalla(stage, controlador);
@@ -850,6 +854,7 @@ public class PantallaBatalla {
             if( e.isPrimaryButtonDown()) {
             	usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar,
 					boton,enumAsociado, listaDeBotonesDeCambio);
+            	notificaciones.notificarUsoDeItem(enumAsociado);
 			}
             else{
             	final Stage stage = new Stage(StageStyle.TRANSPARENT);

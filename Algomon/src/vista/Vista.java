@@ -1,8 +1,11 @@
 package vista;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
+import vista.pantallas.PantallaEleccionAlgomon;
+import vista.pantallas.PantallaInicial;
 
 public class Vista extends Application {
 

@@ -72,13 +72,10 @@ public class AlgomonTest {
 		
 		assertFalse(unAlgomon.estaMuerto());
 		
-		unAlgomon.cambiarVida(-vidaOriginal);
-		
-		assertTrue(unAlgomon.estaMuerto());
-		
-		unAlgomon.cambiarVida(-vidaOriginal); //la vida es un numero negativo como vida
-		
-		assertTrue(unAlgomon.estaMuerto());
-		
+		try {
+			unAlgomon.cambiarVida(-vidaOriginal);
+		} catch (PokemonMuertoException e) {
+			assertTrue(true);
+		}
 	}
 }

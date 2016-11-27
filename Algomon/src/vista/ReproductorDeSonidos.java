@@ -3,11 +3,9 @@ package vista;
 import java.util.HashMap;
 import javafx.scene.media.AudioClip;
 
-
-
 public class ReproductorDeSonidos {
 	public EstadoReproduccion estado = new EstadoReproduccionActivado();
-	HashMap<String, AudioClip> diccionarioDeSonidos = new HashMap<String,AudioClip>();
+	private HashMap<String, AudioClip> diccionarioDeSonidos = new HashMap<String,AudioClip>();
 
 	public ReproductorDeSonidos(){
 
@@ -64,24 +62,17 @@ public class ReproductorDeSonidos {
 
 	public void desactivar() {
 		this.estado = new EstadoReproduccionDesactivado();
-
 	}
+	
 	public void activar() {
 		this.estado = new EstadoReproduccionActivado();
-
 	}
 
 	public void stopMusicaInicial() {
 		this.estado.stop("inicial", diccionarioDeSonidos);
-
-
 	}
 
 	public void playMusicaInicial() {
 		this.estado.reproducir("inicial", diccionarioDeSonidos);
-
-
 	}
-
-
 }

@@ -1,5 +1,6 @@
-package vista;
+package vista.pantallas;
 
+import controlador.ControladorLogicoDelJuego;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,11 +16,14 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorImagen;
 
 public class PantallaInicial {
 
-	ControladorLogicoDelJuego controlador;
-	ReproductorDeSonidos reproductor;
+	private ControladorLogicoDelJuego controlador;
+	private ReproductorDeSonidos reproductor;
 
 
 	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
@@ -61,7 +65,7 @@ public class PantallaInicial {
         Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonOpciones.setEffect(dropShadow);
         botonOpciones.setOnAction(event ->{
-        	PantallaOpciones pantallaOpciones = new PantallaOpciones(this.controlador);
+        	PantallaOpciones pantallaOpciones = new PantallaOpciones();
         	pantallaOpciones.cargarPantalla(stage,this.reproductor,this);
         });
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");

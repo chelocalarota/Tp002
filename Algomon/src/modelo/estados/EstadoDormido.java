@@ -4,7 +4,7 @@ import modelo.algomon.Algomon;
 import modelo.algomon.EstaDormidoException;
 
 public class EstadoDormido implements Estado {
-	int turnos;
+	private int turnos;
 	
 	public EstadoDormido(){
 		turnos = 3;
