@@ -7,13 +7,8 @@ import java.util.HashMap;
 
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
-import modelo.enums.AtaquesEnum;
-import modelo.enums.ItemsEnum;
-import modelo.items.Item;
-import modelo.items.Pocion;
-import modelo.items.Restaurador;
-import modelo.items.SuperPocion;
-import modelo.items.Vitamina;
+import modelo.enums.*;
+import modelo.items.*;
 
 public class Jugador {
 	private List<Algomon> algomonDisponibles;
