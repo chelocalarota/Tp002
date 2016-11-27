@@ -12,7 +12,6 @@ public class CreadorBoton {
 	
 
 	private CreadorImagen creadorImagen;
-	private CreadorBoton creadorBoton;
 	private ArrayList<Button> listaDeBotones;
 
 	public CreadorBoton(){
