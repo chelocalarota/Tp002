@@ -854,7 +854,7 @@ public class PantallaBatalla {
             if( e.isPrimaryButtonDown()) {
             	usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar,
 					boton,enumAsociado, listaDeBotonesDeCambio);
-            	notificaciones.notificarUsoDeItem(enumAsociado);
+            	
 			}
             else{
             	final Stage stage = new Stage(StageStyle.TRANSPARENT);
@@ -902,7 +902,7 @@ public class PantallaBatalla {
 				controlador.usarItem(item);
 				controlador.verificarAlgomonActualMuerto();
 				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
-
+				notificaciones.notificarUsoDeItem(item);
 				reproductor.reproducir("item");
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
