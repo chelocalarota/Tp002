@@ -123,7 +123,7 @@ public class PantallaEleccionAlgomon {
 
 		botonLimpiar.setOnAction(event->{
 			controlador.limpiarEleccionDeAlgomones();
-			this.limpiarMiniaturas(controlador);
+			this.limpiarMiniaturas(controlador,botonContinuar,listaDeBotones);
 		});
 
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
@@ -162,7 +162,6 @@ public class PantallaEleccionAlgomon {
 				boton_auxiliar.setDisable(true);
 			}
 			botonContinuar.setDisable(false);
-			botonLimpiar.setDisable(true);
 		}
 		reproductor.reproducir(algomon);
 		controlador.agregarMiniatura(algomon);
@@ -172,9 +171,15 @@ public class PantallaEleccionAlgomon {
 		this.miniaturasActual = controlador.getMiniaturasJugadorSegundo();
 	}
 
-	private void limpiarMiniaturas(ControladorLogicoDelJuego controlador){
+	private void limpiarMiniaturas(ControladorLogicoDelJuego controlador, Button botonContinuar, ArrayList<Button> listaDeBotonesEleccionAlgomon){
+			for (Button boton_auxiliar:listaDeBotonesEleccionAlgomon){
+				boton_auxiliar.setDisable(false);
+			}
+			botonContinuar.setDisable(true);
 		this.contenedorBarraDeMiniaturas.getChildren().clear();
 		this.miniaturasActual.clear();
 		this.miniaturasActual = controlador.getMiniaturaDeJugadorActual();
+		botonContinuar.setDisable(true);
+		
 	}
 }
