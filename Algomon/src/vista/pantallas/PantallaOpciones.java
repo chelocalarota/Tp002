@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
 
 public class PantallaOpciones {
 

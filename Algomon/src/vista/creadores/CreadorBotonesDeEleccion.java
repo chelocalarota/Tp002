@@ -1,4 +1,4 @@
-package vista;
+package vista.creadores;
 
 import java.util.ArrayList;
 

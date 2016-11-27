@@ -13,7 +13,7 @@ import modelo.algomon.SinPuntosDePoderException;
 import modelo.algomon.SinUsosDisponiblesException;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
-import vista.CreadorImagen;
+import vista.creadores.CreadorImagen;
 
 public class ControladorLogicoDelJuego {
 

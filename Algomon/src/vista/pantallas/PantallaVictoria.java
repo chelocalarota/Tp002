@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import controlador.ControladorLogicoDelJuego;
 import javafx.geometry.Pos;
@@ -10,6 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorImagen;
 
 public class PantallaVictoria {
 	

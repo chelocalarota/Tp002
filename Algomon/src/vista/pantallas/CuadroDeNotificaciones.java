@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import javafx.scene.control.TextArea;
 import modelo.enums.ItemsEnum;

@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +40,9 @@ import modelo.algomon.SinUsosDisponiblesException;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;
 import modelo.enums.ItemsEnum;
+import vista.ReproductorDeSonidos;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorImagen;
 
 @SuppressWarnings("deprecation")
 public class PantallaBatalla {

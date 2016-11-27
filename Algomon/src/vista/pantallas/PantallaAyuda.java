@@ -1,4 +1,4 @@
-package vista;
+package vista.pantallas;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import vista.creadores.CreadorBoton;
+import vista.creadores.CreadorImagen;
 
 public class PantallaAyuda {
 	
