@@ -21,9 +21,6 @@ public class Jugador {
 	private Algomon algomonActivo;
 	public String nombre;
 
-	public List<Algomon> obtenerAlgomon(){
-		return this.algomonDisponibles;
-	}
 
 	public Jugador(){
 		this.algomonDisponibles = new ArrayList<Algomon>();
@@ -34,13 +31,17 @@ public class Jugador {
 		this.itemsDisponibles.put(ItemsEnum.VITAMINA, new Vitamina());
 	}
 
+	public List<Algomon> obtenerAlgomon(){
+		return this.algomonDisponibles;
+	}
+
 	public void agregarAlgomon(Algomon unAlgomon){
 		this.algomonDisponibles.add(unAlgomon);
 		if (this.algomonActivo == null){
 			this.algomonActivo = unAlgomon;
 		}
 	}
-	
+
 	public void eliminarAlgomonActivo(){
 		this.algomonActivo = null;
 	}
@@ -99,5 +100,9 @@ public class Jugador {
 	public int cantidadDeUsosDisponiblesDeItem(ItemsEnum unItem) {
 		Item item = this.itemsDisponibles.get(unItem);
 		return item.cantidadDeUsos();
+	}
+
+	public Map<ItemsEnum, Item> getItemsDisponibles(){
+		return this.itemsDisponibles;
 	}
 }
