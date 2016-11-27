@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 
 public class PantallaInicial {
 
-	ControladorLogicoDelJuego controlador;
-	ReproductorDeSonidos reproductor;
+	private ControladorLogicoDelJuego controlador;
+	private ReproductorDeSonidos reproductor;
 
 
 	public PantallaInicial(ControladorLogicoDelJuego controlador,ReproductorDeSonidos reproductor){
@@ -62,7 +62,7 @@ public class PantallaInicial {
         Button botonOpciones = creadorBoton.crearBoton("Opciones","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonOpciones.setEffect(dropShadow);
         botonOpciones.setOnAction(event ->{
-        	PantallaOpciones pantallaOpciones = new PantallaOpciones(this.controlador);
+        	PantallaOpciones pantallaOpciones = new PantallaOpciones();
         	pantallaOpciones.cargarPantalla(stage,this.reproductor,this);
         });
         Button botonAyuda = creadorBoton.crearBoton("Ayuda","-fx-font:  22 arial; -fx-base: #FFFFFF;");

@@ -14,7 +14,6 @@ public class CreadorBoton {
 		Button boton = new Button(titulo);
         boton.setStyle(estilo);
         return boton;
-		
 	}
 
 	public Button crearBoton(String titulo, ImageView imageView) {

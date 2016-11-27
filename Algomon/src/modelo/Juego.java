@@ -1,9 +1,5 @@
 package modelo;
 
-
-
-
-
 import modelo.algomon.*;
 import modelo.ataques.Ataque;
 import modelo.enums.AtaquesEnum;

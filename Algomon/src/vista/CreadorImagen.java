@@ -7,10 +7,10 @@ import javafx.scene.image.ImageView;
 
 public class CreadorImagen {
 
-	HashMap<String, HashMap <String, String>> rutaDeImagenes;
-	HashMap<String, String> rutaDeImagenesJugador1;
-	HashMap<String, String> rutaDeImagenesJugador2;
-	HashMap<String, String> rutaDeMiniaturas;
+	private HashMap<String, HashMap <String, String>> rutaDeImagenes;
+	private HashMap<String, String> rutaDeImagenesJugador1;
+	private HashMap<String, String> rutaDeImagenesJugador2;
+	private HashMap<String, String> rutaDeMiniaturas;
 
 	public CreadorImagen(){
 

@@ -4,7 +4,7 @@ import modelo.algomon.Algomon;
 import modelo.estados.EstadoNormal;
 
 public class Restaurador implements Item {
-	int cantidadDeUsos;
+	private int cantidadDeUsos;
 	
 	public Restaurador(){
 		cantidadDeUsos = 3;

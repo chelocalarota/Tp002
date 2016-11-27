@@ -5,7 +5,7 @@ import modelo.enums.ItemsEnum;
 
 public class CuadroDeNotificaciones {
 
-	TextArea textArea;
+	private TextArea textArea;
 
 	public CuadroDeNotificaciones(){
 		this.textArea = new TextArea();

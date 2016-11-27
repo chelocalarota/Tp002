@@ -6,7 +6,7 @@ import modelo.algomon.Algomon;
 import modelo.ataques.Ataque;
 
 public class Vitamina implements Item {
-	int usosDisponibles = 5;
+	private int usosDisponibles = 5;
 	
 	@Override
 	public boolean sinUsosDisponibles() {

@@ -1,7 +1,7 @@
 package modelo;
 import java.util.LinkedList;
 public class Cola {
-	LinkedList<Jugador> cola;
+	private LinkedList<Jugador> cola;
 	
 	public Cola(){
 		this.cola = new LinkedList<Jugador>();

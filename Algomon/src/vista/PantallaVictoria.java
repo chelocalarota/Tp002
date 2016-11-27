@@ -12,13 +12,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PantallaVictoria {
+	
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador){
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+	    
 		BorderPane border = new BorderPane();
 		CreadorImagen creador = new CreadorImagen();
 		Label mensajeVictoria = new Label("VICTORIA");
 		Label mensajeAgradecimiento = new Label( "MUCHAS GRACIAS POR JUGAR ALGOMON.");
+		
 		mensajeAgradecimiento.setStyle("-fx-font: 40 arial");
 		mensajeVictoria.setStyle("-fx-font: 56 arial");
 		VBox contenedorMensajes = new VBox();

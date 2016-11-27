@@ -28,7 +28,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -45,24 +44,17 @@ import modelo.enums.ItemsEnum;
 @SuppressWarnings("deprecation")
 public class PantallaBatalla {
 
-	Scene escena;
+	private Scene escena;
 	private Stage stage;
-	ReproductorDeSonidos reproductor;
-	LinkedList<ImageView> miniaturasJugadorInicial;
-	LinkedList<ImageView> imagenesJugadorInicial;
-	LinkedList<ImageView> miniaturasJugadorSegundo;
-	LinkedList<ImageView> imagenesJugadorSegundo;
-	LinkedList<Button> botonesIntocablesTemporal;
-	LinkedList<Button> botonesBloqueadosForEver;
-	CuadroDeNotificaciones notificaciones;
-	HashMap<String, AtaquesEnum>diccionarioEnums;
-	int vidaAlgomon1;
-	String estadoEfimeroAlgomon1;
-	String estadoPersistenteAlgomon1;
-	int vidaAlgomon2;
-	String estadoEfimeroAlgomon2;
-	String estadoPersistenteAlgomon2;
-	HashMap<String,AudioClip>diccionarioSonidosDeAtaques ;
+	private ReproductorDeSonidos reproductor;
+	private LinkedList<ImageView> miniaturasJugadorInicial;
+	private LinkedList<ImageView> imagenesJugadorInicial;
+	private LinkedList<ImageView> miniaturasJugadorSegundo;
+	private LinkedList<ImageView> imagenesJugadorSegundo;
+	private LinkedList<Button> botonesIntocablesTemporal;
+	private LinkedList<Button> botonesBloqueadosForEver;
+	private CuadroDeNotificaciones notificaciones;
+	private HashMap<String, AtaquesEnum>diccionarioEnums;
 
 
 	public PantallaBatalla(){

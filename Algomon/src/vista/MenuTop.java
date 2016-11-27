@@ -11,9 +11,7 @@ public class MenuTop {
 	
 	private MenuBar menu;
 	
-	
 	public MenuTop(Stage stage, ReproductorDeSonidos reproductor){
-		
 		
 		this.menu = new MenuBar();
         // --- Menu Archivo

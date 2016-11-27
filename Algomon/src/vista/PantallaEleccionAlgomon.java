@@ -18,13 +18,10 @@ import javafx.stage.Stage;
 
 public class PantallaEleccionAlgomon {
 
-	Scene escena;
-	LinkedList<ImageView> miniaturasActual;
-	ReproductorDeSonidos reproductor;
-	HBox contenedorBarraDeMiniaturas;
-
-	public PantallaEleccionAlgomon(){
-	}
+	private Scene escena;
+	private LinkedList<ImageView> miniaturasActual;
+	private ReproductorDeSonidos reproductor;
+	private HBox contenedorBarraDeMiniaturas;
 
 	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int numeroDeJugador,
 							   ReproductorDeSonidos reproductor) {
