@@ -4,10 +4,12 @@ import java.util.HashMap;
 import javafx.scene.media.AudioClip;
 
 public class ReproductorDeSonidos {
-	public EstadoReproduccion estado = new EstadoReproduccionActivado();
-	private HashMap<String, AudioClip> diccionarioDeSonidos = new HashMap<String,AudioClip>();
+	public EstadoReproduccion estado;
+	private HashMap<String, AudioClip> diccionarioDeSonidos;
 
 	public ReproductorDeSonidos(){
+		this.diccionarioDeSonidos = new HashMap<String,AudioClip>();
+		this.estado = new EstadoReproduccionActivado();
 
 		//sonidos pantalla incial
 

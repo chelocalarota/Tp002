@@ -123,7 +123,7 @@ public class PantallaBatalla {
 	        contenedorHorizontalTop.getChildren().addAll(Menu.obtenerMenu());
 
 	        //Notificaciones
-	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus características");
+	        Label advertenciaAlUsuario = new Label("Realizar click derecho sobre los ataques e items para ver sus caracteristicas");
 	        advertenciaAlUsuario.setStyle("-fx-font-family: arial; -fx-font-size: 20; -fx-text-fill: darkred;");
 	        contenedorVerticalBottom.getChildren().add(advertenciaAlUsuario);
 	        contenedorVerticalBottom.getChildren().addAll(notificaciones.getTextArea());
@@ -854,7 +854,7 @@ public class PantallaBatalla {
             if( e.isPrimaryButtonDown()) {
             	usoDeItemYPasarTurno(controlador, contenedorEstadosJugador2, listaDeBotonesABloquear, listaDeBotonesAAgregar,
 					boton,enumAsociado, listaDeBotonesDeCambio);
-            	notificaciones.notificarUsoDeItem(enumAsociado);
+            	
 			}
             else{
             	final Stage stage = new Stage(StageStyle.TRANSPARENT);
@@ -902,7 +902,7 @@ public class PantallaBatalla {
 				controlador.usarItem(item);
 				controlador.verificarAlgomonActualMuerto();
 				this.desbloquearBotonesDePrimerListaYBloquearBotonesDeLaSegunda(listaDeBotonesBloqueable , listaDeBotonesDesbloqueables);
-
+				notificaciones.notificarUsoDeItem(item);
 				reproductor.reproducir("item");
 				if(controlador.obtenerJugadorActual().cantidadDeUsosDisponiblesDeItem(item)== 0){
 					notificaciones.notificarNoHayItemDisponible(item);
