@@ -27,7 +27,7 @@ public class CreadorBoton {
 								   ControladorLogicoDelJuego controlador, AudioClip audio) {
 	
 			botonElegido.setOnAction(event ->{
-			if (!controlador.verificarCantidadAlgomonDeJugadorActual()){
+			if (!controlador.cantidadAlgomonesDeJugadorActualEsTres()){
 				controlador.agregarCharmanderJugadorActual();
 			}
 			else{

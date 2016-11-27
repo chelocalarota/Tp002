@@ -55,6 +55,7 @@ public class ControladorLogicoDelJuego {
 
 	public void limpiarEleccionDeAlgomones(){
 		this.juego.obtenerJugadorActual().eliminarAlgomonesElegidos();
+		this.juego.obtenerJugadorActual().eliminarAlgomonActivo();
 		if(this.miniaturasJugadorInicial.size()==3){
 			this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 			this.miniaturasJugadorSegundo = new LinkedList<ImageView>();
@@ -66,8 +67,8 @@ public class ControladorLogicoDelJuego {
 
 	}
 
-	public boolean verificarCantidadAlgomonDeJugadorActual() {
-		if(this.juego.obtenerJugadorActual().obtenerAlgomon().size()==3){
+	public boolean cantidadAlgomonesDeJugadorActualEsTres() {
+		if(this.juego.obtenerJugadorActual().obtenerAlgomon().size() == 3){
 			return true;
 		}
 		return false;

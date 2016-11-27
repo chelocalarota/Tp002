@@ -25,7 +25,8 @@ public class PantallaEleccionAlgomon {
 	public PantallaEleccionAlgomon(){
 	}
 
-	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int i, ReproductorDeSonidos reproductor) {
+	public void cargarPantalla(Stage stage, ControladorLogicoDelJuego controlador, int numeroDeJugador,
+							   ReproductorDeSonidos reproductor) {
 
 		this.reproductor = reproductor;
 
@@ -34,7 +35,7 @@ public class PantallaEleccionAlgomon {
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 
-		Label label = new Label("JUGADOR  " + String.valueOf(i));
+		Label label = new Label("JUGADOR  " + String.valueOf(numeroDeJugador));
 		label.setStyle("-fx-font: 38 arial;");
 		label.setTextFill(Color.WHITE);
 		VBox contenedorVertical = new VBox();
@@ -71,48 +72,46 @@ public class PantallaEleccionAlgomon {
 				elegirAlgomon("Charmander", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-});
+		});
+		
 		botonSquirtle.setOnAction(event ->{
 				controlador.agregarSquirtleJugadorActual();
 				elegirAlgomon("Squirtle", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-});
+		});
 
 		botonBulbasaur.setOnAction(event ->{
 				controlador.agregarBulbasaurJugadorActual();
 				elegirAlgomon("Bulbasaur", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-
-});
+		});
 
 		botonRattata.setOnAction(event ->{
 				controlador.agregarRattataJugadorActual();
 				elegirAlgomon("Rattata", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-
-});
+		});
+		
 		botonJigglypuff.setOnAction(event ->{
 				controlador.agregarJigglypuffJugadorActual();
 				elegirAlgomon("Jigglypuff", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-
-});
+		});
+		
 		botonChansey.setOnAction(event ->{
 				controlador.agregarChanseyJugadorActual();
 				elegirAlgomon("Chansey", controlador, listaDeBotones, botonContinuar,botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
-
-
-});
+		});
 
 		botonContinuar.setOnAction(event->{
 			controlador.pasarTurno();
-			if(controlador.verificarCantidadAlgomonDeJugadorActual()){
+			if(controlador.cantidadAlgomonesDeJugadorActualEsTres()){
 				PantallaBatalla pantallaBatalla = new PantallaBatalla();
 				pantallaBatalla.cargarPantalla(stage,controlador,reproductor);
 			}
@@ -130,18 +129,22 @@ public class PantallaEleccionAlgomon {
 		contenedorHorizontalSuperior.getChildren().addAll(botonCharmander,botonSquirtle,botonBulbasaur);
 		contenedorHorizontalSuperior.setSpacing(60);
 		contenedorHorizontalSuperior.setAlignment(Pos.BASELINE_CENTER);
-		contenedorVertical.getChildren().addAll(label, contenedorHorizontalSuperior, contenedorHorizontalMedio, contenedorHorizontalInferior);
-		contenedorVertical.setAlignment(Pos.CENTER);
-		contenedorVertical.setSpacing(35);
+
 		contenedorHorizontalMedio.getChildren().addAll(botonChansey,botonRattata,botonJigglypuff);
 		contenedorHorizontalMedio.setSpacing(60);
 		contenedorHorizontalMedio.setAlignment(Pos.BASELINE_CENTER);
 
-		this.contenedorBarraDeMiniaturas.setSpacing(20);
-		contenedorHorizontalInferior.getChildren().addAll(contenedorBarraDeMiniaturas, botonLimpiar, botonContinuar);
+		contenedorHorizontalInferior.getChildren().addAll(botonLimpiar, botonContinuar);
 		contenedorHorizontalInferior.setSpacing(150);
 		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
-
+		
+		this.contenedorBarraDeMiniaturas.setSpacing(20);
+		this.contenedorBarraDeMiniaturas.setAlignment(Pos.BASELINE_CENTER);
+		
+		contenedorVertical.getChildren().addAll(label, contenedorHorizontalSuperior, contenedorHorizontalMedio, contenedorHorizontalInferior, this.contenedorBarraDeMiniaturas);
+		contenedorVertical.setAlignment(Pos.CENTER);
+		contenedorVertical.setSpacing(35);
+		
 	    BorderPane border = new BorderPane();
 	    border.setStyle("-fx-base: #17202A;");
 		border.setTop(contenedorVertical);
@@ -154,7 +157,7 @@ public class PantallaEleccionAlgomon {
 
 	private void elegirAlgomon(String algomon, ControladorLogicoDelJuego controlador, ArrayList<Button> listaDeBotonesEleccionAlgomon, Button botonContinuar, Button botonLimpiar) {
 
-		if (controlador.verificarCantidadAlgomonDeJugadorActual()){
+		if (controlador.cantidadAlgomonesDeJugadorActualEsTres()){
 			for (Button boton_auxiliar:listaDeBotonesEleccionAlgomon){
 				boton_auxiliar.setDisable(true);
 			}
