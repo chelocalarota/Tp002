@@ -60,7 +60,9 @@ public class PantallaOpciones {
         Button botonActivarSonido = creadorBoton.crearBoton("Activar Sonido","-fx-font:  22 arial; -fx-base: #FFFFFF;");
         botonActivarSonido.setEffect(dropShadow);
         botonActivarSonido.setOnAction(event ->{
+        	reproductor.stopMusicaInicial();
         	reproductor.activar();
+        	reproductor.playMusicaInicial();
         });
         
         Button botonVolver = creadorBoton.crearBoton("Volver","-fx-font:  22 arial; -fx-base: #FFFFFF;");
