@@ -171,7 +171,8 @@ public class PantallaEleccionAlgomon {
 
 	private void cambiarMiniaturas(ControladorLogicoDelJuego controlador){
 		this.miniaturasActual = controlador.getMiniaturasJugadorSegundo();
-	}
+		this.imagenesActual= controlador.getImagenesJugadorSegundo();
+	}	
 
 	private void limpiarMiniaturas(ControladorLogicoDelJuego controlador, Button botonContinuar, ArrayList<Button> listaDeBotonesEleccionAlgomon){
 			for (Button boton_auxiliar:listaDeBotonesEleccionAlgomon){

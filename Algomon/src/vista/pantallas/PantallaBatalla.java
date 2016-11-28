@@ -278,6 +278,7 @@ public class PantallaBatalla {
 	    	    gridBotonesDeAtaqueJugador1.getChildren().clear();
 	    	    for(Ataque ataque: listaDeAtaquesNueva){
 	            	Button botonAtaque = creadorBoton.crearBoton(ataque.getNombre(),"-fx-font: 14 arial; -fx-base: #b6e7c9;");
+	            	botonAtaque.setMinWidth(255);
 	            	botonAtaque.setDisable(true);
 	            	listaDeBotones1.add(botonAtaque);
 	            	botonAtaque.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
