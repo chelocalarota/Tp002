@@ -71,7 +71,7 @@ public class Juego {
 				throw new PokemonMuertoException(null);
 			}
 			catch(VictoriaObtenidaException e2){
-				System.out.println("entro a la parte de victoria");
+//				System.out.println("entro a la parte de victoria");
 				throw new VictoriaObtenidaException(null);
 			}
 		}
