@@ -17,7 +17,6 @@ public abstract class Algomon {
 	protected Map<AtaquesEnum, Ataque> ataques;
 	protected Estado estadoEfimero;
 	protected Estado estadoPersistente;
-	protected String imagenAsociada;
 
 	public Ataque ataque(AtaquesEnum nombreAtaque) throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 		Ataque ataque = ataques.get(nombreAtaque);
