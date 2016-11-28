@@ -24,7 +24,7 @@ import modelo.items.Vitamina;
 public class AtaquesEspecialesTest {
 
 	@Test
-	public void test01JigglypuffYChanseyPuebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, SinUsosDisponiblesException {
+	public void test01JigglypuffYChanseyPruebanCantoConEstadoDormido() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException, SinUsosDisponiblesException {
 		Algomon Jigglypuff = new Jigglypuff();
 		Algomon Chansey = new Chansey();
 		List<Algomon> TodosLosAlgomones = new ArrayList<Algomon>();
@@ -81,7 +81,7 @@ public class AtaquesEspecialesTest {
 	}
 	}
 	@Test
-	public void test03ChupaVidasBulbasaurVsCharmander() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+	public void test03BulbasaurAtacaConChupavidasACharmanderYLeQuita7PuntosYGana2Devida() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Charmander = new Charmander();
@@ -89,14 +89,14 @@ public class AtaquesEspecialesTest {
 		int vidaBulbasaur = Bulbasaur.getVida();
 		int vidaCharmander = Charmander.getVida();
 		
-		Bulbasaur.cambiarVida(-20);
+		Bulbasaur.cambiarVida(-20); //esto se hace porque sino tendria la vida maxima y no podria ganar puntos de vida.
 		Charmander.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
 		vidaBulbasaur = vidaBulbasaur -20 + 2;
 		assertEquals(vidaCharmander - 7, Charmander.getVida());
 		assertEquals(vidaBulbasaur, Bulbasaur.getVida());
 	}
 	@Test
-	public void test04ChupaVidasBulbasaurVsSquirtle() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+	public void test04BulbasaurAtacaConChupavidasASquirtleYLeQuita30PuntosYGana9DeVida() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Bulbasaur = new Bulbasaur();
 		Algomon Squirtle = new Squirtle();
@@ -104,7 +104,7 @@ public class AtaquesEspecialesTest {
 		int vidaBulbasor = Bulbasaur.getVida();
 		int vidaSquirtle = Squirtle.getVida();
 
-		Bulbasaur.cambiarVida(-20);
+		Bulbasaur.cambiarVida(-20); //esto se hace para poder ganar los puntos de vida porque sino estaria al maximo.
 		Squirtle.recibirDanio(Bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS),Bulbasaur);
 		vidaBulbasor = vidaBulbasor - 20 + 9;
 
@@ -113,7 +113,7 @@ public class AtaquesEspecialesTest {
 	}
 
 	@Test
-	public void test05ChupaVidasBulbasaurVsOtrosAlgomones() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+	public void test05BulbasaurAtacoConChupavidasAOtrosAlgomonesYLesQuita15DeVidaYAumenta4PuntosDeVida() throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon bulbasaur = new Bulbasaur();
 		List<Algomon> otrosAlgomones = new ArrayList<Algomon>();
@@ -125,20 +125,21 @@ public class AtaquesEspecialesTest {
 		for(Algomon atacado : otrosAlgomones){
 
 			int vidaAtacado = atacado.getVida();
-			bulbasaur.cambiarVida(-10);
+			int vidaBulbasaur = bulbasaur.getVida();
+			bulbasaur.cambiarVida(-10);//esto se hace para poder ganar los puntos de vida porque sino estaria al maximo.
 
 			atacado.recibirDanio(bulbasaur.ataque(AtaquesEnum.CHUPAVIDAS), bulbasaur);
-			int vidaBulbasaur = bulbasaur.getVida();
+			
 			
 
 			assertEquals(vidaAtacado - 15, atacado.getVida());
-			assertEquals(vidaBulbasaur, bulbasaur.getVida());
+			assertEquals(vidaBulbasaur - 10 + 4, bulbasaur.getVida());
 
 		}
 
 	}
 	@Test
-	public void test06CharmanderYRattataAtacanConFogonazo()throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
+	public void test06CharmanderYRattataAtacanConFogonazoYElAlgomónAtacadoRecibiráUn10PorcientoDeSuVidaOriginalEnCadaTurno()throws SinPuntosDePoderException, EstaDormidoException, PokemonMuertoException{
 
 		Algomon Charmander = new Charmander();
 		Algomon Rattata = new Rattata();
