@@ -68,6 +68,7 @@ public abstract class Algomon {
 
 		double multiplicador =  this.tipo.reaccionATipo(tipoAtacante);
 		double danioResultante = unAtaque.getPotencia()*multiplicador;
+		unAtaque.aumentarVidaConsecuanciaDeChupavidas(unAlgomonAtacante, (int)danioResultante);
 		this.cambiarVida(-(int)danioResultante);
 
 		unAtaque.cambioDeEstado(this);

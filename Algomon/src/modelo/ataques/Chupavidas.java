@@ -13,7 +13,7 @@ public class Chupavidas extends Ataque {
 		this.nombre = "ChupaVidas";
 	}
 	
-	public void consecuenciaPropiaDeAtaque(Algomon unAlgomon, int danioResultante) throws PokemonMuertoException{
+	public void aumentarVidaConsecuanciaDeChupavidas(Algomon unAlgomon, int danioResultante) throws PokemonMuertoException{
 		unAlgomon.cambiarVida((int) (danioResultante*0.30));
 	}
 }

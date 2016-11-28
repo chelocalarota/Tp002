@@ -1,6 +1,7 @@
 package modelo.ataques;
 
 import modelo.algomon.Algomon;
+import modelo.algomon.PokemonMuertoException;
 import modelo.algomon.SinPuntosDePoderException;
 import modelo.tipos.Tipo;
 
@@ -47,6 +48,11 @@ public abstract class Ataque {
 	public void cambioDeEstado(Algomon unAlgomon){
 		return;
 	}
+	
+    public void aumentarVidaConsecuanciaDeChupavidas(Algomon unAlgomonAtacante, int danio) throws PokemonMuertoException{
+    	return;
+    }
+
 
 	public void agregarPuntosDePoder(int cantidad) {
 		this.cantidad += cantidad;
