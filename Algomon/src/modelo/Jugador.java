@@ -45,8 +45,8 @@ public class Jugador {
 	public void elegirAlgomonEnBatalla(int indice) throws PokemonMuertoException{
 		/**
 		 * Los Pokemon estaran en un orden. El mismo que eligio el jugador
-		 * Cuando uno decide cambiar, elegir� el Algomon numero 2, por ejemplo,
-		 * ese ser� el indice que recibe.
+		 * Cuando uno decide cambiar, elegira el Algomon numero 2, por ejemplo,
+		 * ese sera el indice que recibe.
 		 */
 		Algomon unAlgomon = algomonDisponibles.get(indice);
 		if (unAlgomon.estaMuerto()){

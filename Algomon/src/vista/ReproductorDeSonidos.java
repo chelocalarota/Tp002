@@ -48,7 +48,7 @@ public class ReproductorDeSonidos {
 
 		this.diccionarioDeSonidos.put("Fogonazo",ataqueDeFuego);
 		this.diccionarioDeSonidos.put("Brasas", ataqueDeFuego);
-		this.diccionarioDeSonidos.put("Ca�on de Agua", ataqueDeAgua);
+		this.diccionarioDeSonidos.put("Canion de Agua", ataqueDeAgua);
 		this.diccionarioDeSonidos.put("Burbuja",ataqueBurbujas);
 		this.diccionarioDeSonidos.put("Canto", canto);
 		this.diccionarioDeSonidos.put("Ataque Rapido", ataqueRapido);

@@ -39,7 +39,7 @@ public class CreadorBoton {
 		this.listaDeBotones.add(botonChansey);
 
 		String estiloSquirtle = "-fx-font: 18 arial; -fx-base: #A9D0F5;";
-		String textoSquirtle = "SQUIRTLE\n\nTipo: Agua\nVida: 150\nAtaques:\n  -Burbuja\n  -Cañon de Agua\n  -AtaqueRapido\n";
+		String textoSquirtle = "SQUIRTLE\n\nTipo: Agua\nVida: 150\nAtaques:\n  -Burbuja\n  -Canion de Agua\n  -AtaqueRapido\n";
 		Button botonSquirtle =this.crearBotonEleccionAlgomon(textoSquirtle, imageViewSquirtle, estiloSquirtle);
 		this.listaDeBotones.add(botonSquirtle);
 

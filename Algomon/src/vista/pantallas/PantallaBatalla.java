@@ -69,7 +69,7 @@ public class PantallaBatalla {
 		diccionarioEnums.put("Ataque Rapido", AtaquesEnum.ATAQUE_RAPIDO);
 		diccionarioEnums.put("Brasas", AtaquesEnum.BRASAS);
 		diccionarioEnums.put("Burbuja", AtaquesEnum.BURBUJA);
-		diccionarioEnums.put("Ca�on de Agua", AtaquesEnum.CANION_DE_AGUA);
+		diccionarioEnums.put("Canion de Agua", AtaquesEnum.CANION_DE_AGUA);
 		diccionarioEnums.put("Canto", AtaquesEnum.CANTO);
 		diccionarioEnums.put("ChupaVidas", AtaquesEnum.CHUPAVIDAS);
 		diccionarioEnums.put("Fogonazo", AtaquesEnum.FOGONAZO);
