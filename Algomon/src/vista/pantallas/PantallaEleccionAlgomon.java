@@ -22,6 +22,7 @@ public class PantallaEleccionAlgomon {
 
 	private Scene escena;
 	private LinkedList<ImageView> miniaturasActual;
+	private LinkedList<ImageView> imagenesActual;
 	private ReproductorDeSonidos reproductor;
 	private HBox contenedorBarraDeMiniaturas;
 
@@ -31,6 +32,7 @@ public class PantallaEleccionAlgomon {
 		this.reproductor = reproductor;
 
 		this.miniaturasActual = controlador.getMiniaturasJugadorInicial();
+		this.imagenesActual = controlador.getImagenesJugadorInicial();
 
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -73,7 +75,7 @@ public class PantallaEleccionAlgomon {
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
 		});
-		
+
 		botonSquirtle.setOnAction(event ->{
 				controlador.agregarSquirtleJugadorActual();
 				elegirAlgomon("Squirtle", controlador, listaDeBotones, botonContinuar, botonLimpiar);
@@ -94,14 +96,14 @@ public class PantallaEleccionAlgomon {
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
 		});
-		
+
 		botonJigglypuff.setOnAction(event ->{
 				controlador.agregarJigglypuffJugadorActual();
 				elegirAlgomon("Jigglypuff", controlador, listaDeBotones, botonContinuar, botonLimpiar);
 				this.contenedorBarraDeMiniaturas.getChildren().clear();
 				this.contenedorBarraDeMiniaturas.getChildren().addAll(this.miniaturasActual);
 		});
-		
+
 		botonChansey.setOnAction(event ->{
 				controlador.agregarChanseyJugadorActual();
 				elegirAlgomon("Chansey", controlador, listaDeBotones, botonContinuar,botonLimpiar);
@@ -137,14 +139,14 @@ public class PantallaEleccionAlgomon {
 		contenedorHorizontalInferior.getChildren().addAll(botonLimpiar, botonContinuar);
 		contenedorHorizontalInferior.setSpacing(150);
 		contenedorHorizontalInferior.setAlignment(Pos.BASELINE_CENTER);
-		
+
 		this.contenedorBarraDeMiniaturas.setSpacing(20);
 		this.contenedorBarraDeMiniaturas.setAlignment(Pos.BASELINE_CENTER);
-		
+
 		contenedorVertical.getChildren().addAll(label, contenedorHorizontalSuperior, contenedorHorizontalMedio, contenedorHorizontalInferior, this.contenedorBarraDeMiniaturas);
 		contenedorVertical.setAlignment(Pos.CENTER);
 		contenedorVertical.setSpacing(35);
-		
+
 	    BorderPane border = new BorderPane();
 	    border.setStyle("-fx-base: #17202A;");
 		border.setTop(contenedorVertical);
@@ -179,7 +181,9 @@ public class PantallaEleccionAlgomon {
 		this.contenedorBarraDeMiniaturas.getChildren().clear();
 		this.miniaturasActual.clear();
 		this.miniaturasActual = controlador.getMiniaturaDeJugadorActual();
+		this.imagenesActual.clear();
+		this.imagenesActual = controlador.getImagenesDeJugadorActual();
 		botonContinuar.setDisable(true);
-		
+
 	}
 }

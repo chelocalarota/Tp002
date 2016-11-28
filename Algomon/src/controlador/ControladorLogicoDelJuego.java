@@ -33,7 +33,7 @@ public class ControladorLogicoDelJuego {
 		this.imagenesJugadorSegundo = new LinkedList<ImageView>();
 
 	}
-	
+
 	public void verificarVictoria() throws VictoriaObtenidaException{
 		try {
 			this.juego.verificarVictoria();
@@ -123,6 +123,13 @@ public class ControladorLogicoDelJuego {
 			return this.miniaturasJugadorSegundo;
 		}
 		return this.miniaturasJugadorInicial;
+	}
+
+	public LinkedList<ImageView> getImagenesDeJugadorActual(){
+		if(this.imagenesJugadorInicial.size()==3){
+			return this.imagenesJugadorSegundo;
+		}
+		return this.imagenesJugadorInicial;
 	}
 
 	public LinkedList<ImageView> getMiniaturasJugadorInicial(){
