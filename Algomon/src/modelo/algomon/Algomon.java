@@ -54,7 +54,7 @@ public abstract class Algomon {
 			this.vida = this.vidaOriginal;
 		}
 		if(this.estaMuerto()){
-			throw new PokemonMuertoException("Te moriste... JA!");
+			throw new PokemonMuertoException("");
 		}
 	}
 
