@@ -22,9 +22,6 @@ public class Juego {
 
 	}
 
-	public void setNombreJugadorActual(String nombre){
-		this.obtenerJugadorActual().setNombre(nombre);
-	}
 	public Jugador obtenerJugadorActual() {
 		return this.colaAtacante.verPrimero();
 	}

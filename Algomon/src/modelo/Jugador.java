@@ -14,9 +14,6 @@ public class Jugador {
 	private List<Algomon> algomonDisponibles;
 	private Map<ItemsEnum, Item> itemsDisponibles;
 	private Algomon algomonActivo;
-	public String nombre;
-
-
 	public Jugador(){
 		this.algomonDisponibles = new ArrayList<Algomon>();
 		this.itemsDisponibles = new HashMap<>();
@@ -86,10 +83,6 @@ public class Jugador {
 			}
 		}
 		return true;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public int cantidadDeUsosDisponiblesDeItem(ItemsEnum unItem) {
