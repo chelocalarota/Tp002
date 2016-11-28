@@ -3,6 +3,8 @@ Algomon/.classpath
 Algomon/.project
 Algomon/.settings
 Algomon/bin
+Algomon/libs
 /bin/
 .recommenders/index/
 .recommenders/caches/
+.recommenders/caches/identified-project-coordinates.json
